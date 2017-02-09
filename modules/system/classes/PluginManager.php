@@ -149,9 +149,9 @@ class PluginManager
      * Runs the register() method on all plugins. Can only be called once.
      * @return void
      */
-    public function registerAll($force = false)
+    public function registerAll()
     {
-        if ($this->registered && !$force) {
+        if ($this->registered) {
             return;
         }
 
@@ -241,9 +241,9 @@ class PluginManager
     /**
      * Runs the boot() method on all plugins. Can only be called once.
      */
-    public function bootAll($force = false)
+    public function bootAll()
     {
-        if ($this->booted && !$force) {
+        if ($this->booted) {
             return;
         }
 

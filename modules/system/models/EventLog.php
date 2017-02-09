@@ -33,8 +33,7 @@ class EventLog extends Model
             class_exists('Model') &&
             Model::getConnectionResolver() &&
             App::hasDatabase() &&
-            !defined('OCTOBER_NO_EVENT_LOGGING') &&
-            LogSetting::get('log_requests')
+            !defined('OCTOBER_NO_EVENT_LOGGING')
         );
     }
 

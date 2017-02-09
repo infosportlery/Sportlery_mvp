@@ -33,9 +33,8 @@ class MaintenanceSetting extends Model
 
     public function getCmsPageOptions()
     {
-        if (!$theme = Theme::getEditTheme()) {
+        if (!$theme = Theme::getEditTheme())
             throw new ApplicationException('Unable to find the active theme.');
-        }
 
         return Page::listInTheme($theme)->lists('fileName', 'fileName');
     }
@@ -46,9 +45,8 @@ class MaintenanceSetting extends Model
      */
     public function beforeValidate()
     {
-        if (!$theme = Theme::getEditTheme()) {
+        if (!$theme = Theme::getEditTheme())
             throw new ApplicationException('Unable to find the active theme.');
-        }
 
         $themeMap = $this->getSettingsValue('theme_map', []);
         $themeMap[$theme->getDirName()] = $this->getSettingsValue('cms_page');

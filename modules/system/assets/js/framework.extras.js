@@ -19,13 +19,18 @@
     // FLASH HANDLING
     // ============================
 
-    $(document).on('ajaxSetup', '[data-request][data-request-flash]', function(event, context) {
-        context.options.handleErrorMessage = function(message) {
+    $(document).on('ajaxError', '[data-request][data-request-flash]', function(event, context, message) {
+        if (!event.isDefaultPrevented() && message) {
             $.oc.flashMsg({ text: message, class: 'error' })
+            event.preventDefault()
         }
+    })
 
-        context.options.handleFlashMessage = function(message, type) {
-            $.oc.flashMsg({ text: message, class: type })
+    $(document).on('ajaxBeforeUpdate', '[data-request][data-request-flash]', function(event, context, data) {
+        if (data['X_OCTOBER_FLASH_MESSAGES']) {
+            $.each(data['X_OCTOBER_FLASH_MESSAGES'], function(type, message) {
+                $.oc.flashMsg({ text: message, class: type })
+            })
         }
     })
 

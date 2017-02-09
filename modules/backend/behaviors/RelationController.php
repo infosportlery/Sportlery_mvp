@@ -1058,10 +1058,10 @@ class RelationController extends ControllerBehavior
         }
         elseif ($this->viewMode == 'single') {
             $this->viewWidget->setFormValues($saveData);
-            $this->viewModel->save(null, $this->manageWidget->getSessionKey());
+            $this->viewModel->save();
         }
 
-        return $this->relationRefresh();
+        return ['#'.$this->relationGetId('view') => $this->relationRenderView()];
     }
 
     /**

@@ -13,17 +13,15 @@
         {% styles %}
     </head>
     <body>
-        {% partial 'site/header' %}
+        <div class="content-wrap">
 
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
+            {% partial 'site/header' %}
 
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    {% page %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        {% page %}
+                    </div>
                 </div>
             </div>
         </div>
@@ -31,8 +29,8 @@
         {% partial 'site/footer' %}
 
         <!-- Scripts -->
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
         <script src="{{ 'assets/js/sportlery.js'|theme }}"></script>
         {% scripts %}
-
     </body>
 </html>

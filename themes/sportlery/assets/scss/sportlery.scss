@@ -1,9 +1,6 @@
 @import "variables";
 @import "vendor/bootstrap";
-
-body {
-    padding-top: 70px;
-}
+@import "base";
 
 .navbar-fixed-top {
     border-width: 0;

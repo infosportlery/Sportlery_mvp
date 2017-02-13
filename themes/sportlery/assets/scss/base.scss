@@ -1,0 +1,19 @@
+html,
+body {
+    height: 100%;
+
+}
+
+body {
+    padding-top: $navbar-height + $navbar-margin-bottom;
+}
+
+.content-wrap {
+     min-height: calc(100vh - #{$footer-height + $navbar-height + $navbar-margin-bottom});
+}
+
+#footer {
+    height: $footer-height;
+    background-color: $footer-bg;
+    color: $footer-color;
+}

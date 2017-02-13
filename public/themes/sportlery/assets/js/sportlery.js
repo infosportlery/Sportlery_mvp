@@ -10297,10 +10297,8 @@ return jQuery;
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(__webpack_provided_window_dot_jQuery) {window.$ = __webpack_provided_window_dot_jQuery = __webpack_require__(0);
 __webpack_require__(3);
 __webpack_require__(4);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
 /* 2 */

@@ -93,3 +93,14 @@ items:
                     isHidden: '0'
                     cssClass: ''
                     isExternal: '0'
+    -
+        title: Login
+        nesting: '0'
+        type: static-page
+        code: login
+        reference: login
+        replace: '0'
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'

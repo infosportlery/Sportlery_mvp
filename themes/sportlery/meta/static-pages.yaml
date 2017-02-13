@@ -1,2 +1,6 @@
 static-pages:
-    nl-pagina: {  }
+    home: {  }
+    sportclub: {  }
+    trainer: {  }
+    team-sportlery: {  }
+    contact: {  }

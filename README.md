@@ -14,6 +14,11 @@ Run `npm run dev` to compile the necessary assets for development mode.
 If you are developing JavaScript or SCSS you can use `npm run watch` to automatically
 compile assets as upon save.
 
+## Installing OctoberCMS plugins
+
+After installing an OctoberCMS plugin, please make sure to run `php artisan october:mirror public/` to ensure
+that all plugin assets are mirrored into the public directory!
+
 ## Before publishing
 
 Run `npm run production` to compile the assets for production (minified, optimized).

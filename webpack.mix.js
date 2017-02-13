@@ -1,4 +1,4 @@
-const { mix } = require('laravel-mix');
+const { mix, config } = require('laravel-mix');
 
 /*
  |--------------------------------------------------------------------------
@@ -11,5 +11,5 @@ const { mix } = require('laravel-mix');
  |
  */
 
-mix.js('themes/sportlery/assets/js/sportlery.js', 'public/themes/sportlery/assets/js')
-   .sass('themes/sportlery/assets/scss/sportlery.scss', 'public/themes/sportlery/assets/css');
+mix.js('themes/sportlery/assets/js/sportlery.js', 'public/themes/sportlery/assets/js/')
+   .sass('themes/sportlery/assets/scss/sportlery.scss', 'public/themes/sportlery/assets/css/');

@@ -1,6 +1,7 @@
-.navbar-fixed-top {
-}
-
 .navbar-brand {
-    letter-spacing: -1px;
+    padding: 20px $navbar-padding-horizontal;
+
+    img {
+        max-height: $navbar-height - 40px;
+    }
 }

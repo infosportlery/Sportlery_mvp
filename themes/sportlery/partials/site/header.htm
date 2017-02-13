@@ -1,9 +1,12 @@
-[staticMenu mainMenu]
-code = "mainMenu"
-
 [viewBag]
+
+[staticMenu guestMenu]
+code = "guestMenu"
+
+[staticMenu userMenu]
+code = "userMenu"
 ==
-<nav id="layout-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<nav id="layout-nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
@@ -15,7 +18,20 @@ code = "mainMenu"
             <a class="navbar-brand" href="{{ 'home'|staticPage }}">SPORTLERY</a>
         </div>
         <div class="collapse navbar-collapse navbar-main-collapse">
-            {% partial 'site/menu-items' items=mainMenu.menuItems class='nav navbar-nav navbar-right' %}
+            {% if not user %}
+                {% partial 'site/menu-items' items=guestMenu.menuItems class='nav navbar-nav navbar-right' %}
+            {% else %}
+                {% partial 'site/menu-items' items=userMenu.menuItems class='nav navbar-nav navbar-right' %}
+            {% endif %}
         </div>
     </div>
 </nav>
+{% flash %}
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="alert alert-{{ type == 'error' ? 'danger' : type }}">{{ message }}</div>
+        </div>
+    </div>
+</div>
+{% endflash %}

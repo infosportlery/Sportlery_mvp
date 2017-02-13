@@ -1,20 +1,6 @@
-// ------------
-// START BOOTSTRAP OVERRIDES
-// ------------
-$font-family-sans-serif: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-$font-family-monospace:  Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-
-$brand-primary: #f46835;
-
-$navbar-inverse-color: #fff;
-$navbar-inverse-bg: #f46835;
-$navbar-inverse-link-color: #fff;
-
-// ------------
-// END BOOTSTRAP OVERRIDES
-// ------------
-
 $footer-height: 100px;
-$footer-bg: #595959;
-$footer-color: #fff;
-
+$footer-bg: #f0f0f0;
+$footer-color: #595959;
+$footer-margin-top: $navbar-margin-bottom;
+$footer-padding-top: $line-height-computed;
+$footer-padding-bottom: $line-height-computed;

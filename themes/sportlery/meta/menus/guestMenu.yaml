@@ -1,4 +1,4 @@
-name: 'Main menu'
+name: 'Guest menu'
 items:
     -
         title: Home
@@ -95,11 +95,13 @@ items:
                     isExternal: '0'
     -
         title: Login
-        nesting: '0'
-        type: static-page
+        nesting: ''
+        type: cms-page
+        url: ''
         code: login
         reference: login
-        replace: '0'
+        cmsPage: ''
+        replace: ''
         viewBag:
             isHidden: '0'
             cssClass: ''

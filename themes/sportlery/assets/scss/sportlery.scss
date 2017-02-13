@@ -1,7 +1,8 @@
-@import "variables";
+@import "overrides";
 @import "vendor/bootstrap";
+@import "variables";
 @import "base";
 
-.navbar-fixed-top {
-    border-width: 0;
-}
+@import "components/footer";
+@import "components/navbar";
+

@@ -1,0 +1,21 @@
+description = "locations"
+
+[viewBag]
+snippetCode = "locations list"
+snippetName = "Locations"
+
+[builderList]
+modelClass = "Sportlery\Letslist\Models\Location"
+scope = "-"
+displayColumn = "name"
+noRecordsMessage = "No records found"
+detailsPage = "-"
+detailsUrlParameter = "id"
+recordsPerPage = 10
+pageNumber = "{{ :page }}"
+==
+<div class="col-md-12 text-center">
+
+{% component 'builderList' %}
+	
+</div>

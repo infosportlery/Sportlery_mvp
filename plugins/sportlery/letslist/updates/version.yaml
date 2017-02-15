@@ -1,0 +1,26 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table sportlery_letslist_location'
+    - builder_table_create_sportlery_letslist_location.php
+1.0.3:
+    - 'Created table sportlery_letslist_catagory'
+    - builder_table_create_sportlery_letslist_catagory.php
+1.0.4:
+    - 'Updated table sportlery_letslist_catagory'
+    - builder_table_update_sportlery_letslist_catagory.php
+1.0.5:
+    - 'Created table sportlery_letslist_location_catagories'
+    - builder_table_create_sportlery_letslist_location_catagories.php
+1.0.6:
+    - 'Created table sportlery_letslist_type'
+    - builder_table_create_sportlery_letslist_type.php
+1.0.7:
+    - 'Updated table sportlery_letslist_location'
+    - builder_table_update_sportlery_letslist_location.php
+1.0.8:
+    - 'Updated table sportlery_letslist_location'
+    - builder_table_update_sportlery_letslist_location_2.php
+1.0.9:
+    - 'Updated table sportlery_letslist_location'
+    - builder_table_update_sportlery_letslist_location_3.php

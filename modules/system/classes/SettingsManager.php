@@ -1,10 +1,8 @@
 <?php namespace System\Classes;
 
-use Event;
 use Backend;
 use BackendAuth;
 use System\Classes\PluginManager;
-use SystemException;
 
 /**
  * Manages the system settings.
@@ -41,11 +39,11 @@ class SettingsManager
      * @var array List of registered items.
      */
     protected $items;
-
+    
     /**
-     * @var array Grouped collection of all items, by category.
+     * @var array Flat collection of all items.
      */
-    protected $groupedItems;
+    protected $allItems;
 
     /**
      * @var string Active plugin or module owner.
@@ -109,11 +107,6 @@ class SettingsManager
         }
 
         /*
-         * Extensibility
-         */
-        Event::fire('system.settings.extendItems', [$this]);
-
-        /*
          * Sort settings items
          */
         usort($this->items, function ($a, $b) {
@@ -130,22 +123,21 @@ class SettingsManager
          * Process each item in to a category array
          */
         $catItems = [];
-        foreach ($this->items as $code => $item) {
+        foreach ($this->items as $item) {
             $category = $item->category ?: self::CATEGORY_MISC;
             if (!isset($catItems[$category])) {
                 $catItems[$category] = [];
             }
 
-            $catItems[$category][$code] = $item;
+            $catItems[$category][] = $item;
         }
 
-        $this->groupedItems = $catItems;
+        $this->allItems = $this->items;
+        $this->items = $catItems;
     }
 
     /**
-     * Returns a collection of all settings by group, filtered by context
-     * @param  string $context
-     * @return array
+     * Returns a collection of all settings
      */
     public function listItems($context = null)
     {
@@ -154,10 +146,10 @@ class SettingsManager
         }
 
         if ($context !== null) {
-            return $this->filterByContext($this->groupedItems, $context);
+            return $this->filterByContext($this->items, $context);
         }
 
-        return $this->groupedItems;
+        return $this->items;
     }
 
     /**
@@ -226,77 +218,33 @@ class SettingsManager
             $this->items = [];
         }
 
-        $this->addSettingItems($owner, $definitions);
-    }
-
-    /**
-     * Dynamically add an array of setting items
-     * @param string $owner
-     * @param array  $definitions
-     */
-    public function addSettingItems($owner, array $definitions)
-    {
         foreach ($definitions as $code => $definition) {
-            $this->addSettingItem($owner, $code, $definition);
-        }
-    }
+            $item = array_merge(self::$itemDefaults, array_merge($definition, [
+                'code' => $code,
+                'owner' => $owner
+            ]));
 
-    /**
-     * Dynamically add a single setting item
-     * @param string $owner
-     * @param string $code
-     * @param array  $definitions
-     */
-    public function addSettingItem($owner, $code, array $definition)
-    {
-        $itemKey = $this->makeItemKey($owner, $code);
+            /*
+             * Link to the generic settings page
+             */
+            if (isset($item['class'])) {
+                $uri = [];
 
-        $item = array_merge(self::$itemDefaults, array_merge($definition, [
-            'code' => $code,
-            'owner' => $owner
-        ]));
-
-        /*
-         * Link to the generic settings page
-         */
-        if (isset($item['class'])) {
-            $uri = [];
-
-            if (strpos($owner, '.') !== null) {
-                list($author, $plugin) = explode('.', $owner);
-                $uri[] = strtolower($author);
-                $uri[] = strtolower($plugin);
-            }
-            else {
-                $uri[] = strtolower($owner);
-            }
-
-            $uri[] = strtolower($code);
-            $uri =  implode('/', $uri);
-            $item['url'] = Backend::url('system/settings/update/' . $uri);
-        }
-
-        $this->items[$itemKey] = (object) $item;
-    }
-
-    /**
-     * Removes a single setting item
-     */
-    public function removeSettingItem($owner, $code)
-    {
-        if (!$this->items) {
-            throw new SystemException('Unable to remove settings item before items are loaded.');
-        }
-
-        $itemKey = $this->makeItemKey($owner, $code);
-        unset($this->items[$itemKey]);
-
-        if ($this->groupedItems) {
-            foreach ($this->groupedItems as $category => $items) {
-                if (isset($items[$itemKey])) {
-                    unset($this->groupedItems[$category][$itemKey]);
+                if (strpos($owner, '.') !== null) {
+                    list($author, $plugin) = explode('.', $owner);
+                    $uri[] = strtolower($author);
+                    $uri[] = strtolower($plugin);
                 }
+                else {
+                    $uri[] = strtolower($owner);
+                }
+
+                $uri[] = strtolower($code);
+                $uri =  implode('/', $uri);
+                $item['url'] = Backend::url('system/settings/update/' . $uri);
             }
+
+            $this->items[] = (object)$item;
         }
     }
 
@@ -321,7 +269,7 @@ class SettingsManager
      */
     public function getContext()
     {
-        return (object) [
+        return (object)[
             'itemCode' => $this->contextItemCode,
             'owner' => $this->contextOwner
         ];
@@ -335,14 +283,14 @@ class SettingsManager
      */
     public function findSettingItem($owner, $code)
     {
-        if ($this->items === null) {
+        if ($this->allItems === null) {
             $this->loadItems();
         }
 
         $owner = strtolower($owner);
         $code = strtolower($code);
 
-        foreach ($this->items as $item) {
+        foreach ($this->allItems as $item) {
             if (strtolower($item->owner) == $owner && strtolower($item->code) == $code) {
                 return $item;
             }
@@ -368,15 +316,5 @@ class SettingsManager
         });
 
         return $items;
-    }
-
-    /**
-     * Internal method to make a unique key for an item.
-     * @param  object $item
-     * @return string
-     */
-    protected function makeItemKey($owner, $code)
-    {
-        return strtoupper($owner).'.'.strtoupper($code);
     }
 }

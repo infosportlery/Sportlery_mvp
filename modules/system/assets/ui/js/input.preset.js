@@ -249,26 +249,12 @@
 
         $el.val(prefix).trigger('oc.inputPreset.afterUpdate')
 
-        this.$src = $(options.inputPreset, parent)
-
+        this.$src = $(options.inputPreset, parent),
         this.$src.on('keyup', function() {
             if (self.cancelled)
                 return
 
-            $el
-                .val(prefix + self.formatValue())
-                .trigger('oc.inputPreset.afterUpdate')
-        })
-
-        this.$src.on('paste', function() {
-            if (self.cancelled)
-                return
-
-            setTimeout(function() {
-                $el
-                    .val(prefix + self.formatValue())
-                    .trigger('oc.inputPreset.afterUpdate')
-            }, 100)
+            $el.val(prefix + self.formatValue()).trigger('oc.inputPreset.afterUpdate')
         })
 
         this.$el.on('change', function() {

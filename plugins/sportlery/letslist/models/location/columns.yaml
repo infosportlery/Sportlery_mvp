@@ -1,0 +1,25 @@
+columns:
+    name:
+        label: Name
+        type: text
+        searchable: true
+        sortable: true
+    email:
+        label: Email
+        type: text
+        searchable: true
+        sortable: true
+    description:
+        label: Description
+        type: text
+        searchable: true
+        sortable: true
+    zipcode:
+        label: zipcode
+        type: text
+        searchable: true
+    city:
+        label: city
+        type: text
+        searchable: true
+        sortable: true

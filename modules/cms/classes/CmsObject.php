@@ -319,4 +319,5 @@ class CmsObject extends HalcyonModel implements CmsObjectContract
             throw $ex;
         }
     }
+
 }

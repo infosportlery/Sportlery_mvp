@@ -94,11 +94,22 @@ items:
                     cssClass: ''
                     isExternal: '0'
     -
+        title: Locations
+        type: cms-page
+        code: locations
+        reference: location
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
         title: Login
         nesting: '0'
         type: static-page
+        url: ''
         code: login
         reference: login
+        cmsPage: ''
         replace: '0'
         viewBag:
             isHidden: '0'

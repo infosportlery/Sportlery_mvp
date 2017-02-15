@@ -1,0 +1,11 @@
+plugin:
+    name: 'sportlery.location::lang.plugin.name'
+    description: 'sportlery.location::lang.plugin.description'
+    author: Sportlery
+    icon: oc-icon-list-alt
+    homepage: ''
+navigation:
+    main-menu-dropdown:
+        label: Location
+        url: sportlery/letslist/locations
+        icon: icon-location-arrow

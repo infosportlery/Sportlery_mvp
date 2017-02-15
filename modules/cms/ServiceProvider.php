@@ -12,9 +12,7 @@ use System\Classes\SettingsManager;
 use System\Classes\CombineAssets;
 use Cms\Classes\ComponentManager;
 use Cms\Classes\Page as CmsPage;
-use Cms\Classes\CmsObject;
 use Cms\Models\ThemeData;
-use Cms\Models\ThemeLog;
 
 class ServiceProvider extends ModuleServiceProvider
 {
@@ -28,7 +26,6 @@ class ServiceProvider extends ModuleServiceProvider
         parent::register('cms');
 
         $this->registerComponents();
-        $this->registerThemeLogging();
         $this->registerAssetBundles();
         $this->registerCombinerEvents();
 
@@ -58,7 +55,7 @@ class ServiceProvider extends ModuleServiceProvider
     }
 
     /**
-     * Register components.
+     * Register components
      */
     protected function registerComponents()
     {
@@ -68,17 +65,7 @@ class ServiceProvider extends ModuleServiceProvider
     }
 
     /**
-     * Registers theme logging on templates.
-     */
-    protected function registerThemeLogging()
-    {
-        CmsObject::extend(function($model) {
-            ThemeLog::bindEventsToModel($model);
-        });
-    }
-
-    /**
-     * Register asset bundles.
+     * Register asset bundles
      */
     protected function registerAssetBundles()
     {
@@ -287,16 +274,6 @@ class ServiceProvider extends ModuleServiceProvider
                     'permissions' => ['cms.manage_themes'],
                     'order'       => 300
                 ],
-                'theme_logs' => [
-                    'label'       => 'cms::lang.theme_log.menu_label',
-                    'description' => 'cms::lang.theme_log.menu_description',
-                    'category'    => SettingsManager::CATEGORY_LOGS,
-                    'icon'        => 'icon-magic',
-                    'url'         => Backend::url('cms/themelogs'),
-                    'permissions' => ['system.access_logs'],
-                    'order'       => 910,
-                    'keywords'    => 'theme change log'
-                ]
             ]);
         });
     }

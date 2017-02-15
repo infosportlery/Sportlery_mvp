@@ -1,0 +1,13 @@
+title = "location single"
+url = "/location/:slug"
+layout = "default"
+is_hidden = 0
+
+[builderDetails]
+modelClass = "Sportlery\Letslist\Models\Location"
+identifierValue = "{{ :slug }}"
+modelKeyColumn = "slug"
+displayColumn = "name"
+notFoundMessage = "Record not found"
+==
+{% component 'builderDetails' %}

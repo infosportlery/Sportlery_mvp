@@ -1,7 +1,6 @@
 html,
 body {
     height: 100%;
-
 }
 
 body {
@@ -9,11 +8,5 @@ body {
 }
 
 .content-wrap {
-     min-height: calc(100vh - #{$footer-height + $navbar-height + $navbar-margin-bottom});
-}
-
-#footer {
-    height: $footer-height;
-    background-color: $footer-bg;
-    color: $footer-color;
+     min-height: calc(100vh - #{$footer-height + $navbar-height + $navbar-margin-bottom + $footer-margin-top});
 }

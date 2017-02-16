@@ -37,12 +37,13 @@ fields:
         span: auto
         placeholder: 'Url To website'
         type: text
-    description:
-        label: Description
-        size: large
-        oc.commentPosition: ''
+    catagories:
+        label: Catagories
         span: auto
-        type: richeditor
+        oc.commentPosition: ''
+        nameFrom: cat_name
+        descriptionFrom: description
+        type: relation
     slug:
         label: 'Url Slug'
         span: auto
@@ -52,3 +53,40 @@ fields:
             field: name
             type: slug
         type: text
+    type:
+        label: Type
+        oc.commentPosition: ''
+        nameFrom: name_type
+        descriptionFrom: description
+        span: auto
+        type: relation
+    location_gallery:
+        label: 'Location Gallery'
+        span: auto
+        oc.commentPosition: ''
+        mode: image
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        imageWidth: '50'
+        imageHeight: '50'
+        type: fileupload
+    avatar:
+        label: 'Location Avatar'
+        span: auto
+        oc.commentPosition: ''
+        mode: image
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        imageWidth: '80'
+        imageHeight: '80'
+        type: fileupload
+    description:
+        label: Description
+        size: large
+        oc.commentPosition: ''
+        span: auto
+        type: richeditor

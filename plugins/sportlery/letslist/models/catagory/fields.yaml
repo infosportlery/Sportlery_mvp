@@ -1,7 +1,0 @@
-fields:
-    name:
-        label: Name
-        oc.commentPosition: ''
-        span: auto
-        placeholder: 'Name of the catagory'
-        type: text

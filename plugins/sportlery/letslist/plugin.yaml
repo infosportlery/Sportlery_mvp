@@ -5,7 +5,16 @@ plugin:
     icon: oc-icon-list-alt
     homepage: ''
 navigation:
-    main-menu-dropdown:
-        label: Location
+    main-menu-item:
+        label: Locations
         url: sportlery/letslist/locations
         icon: icon-location-arrow
+        sideMenu:
+            side-menu-item:
+                label: Catagories
+                url: sportlery/letslist/catagories
+                icon: icon-tags
+            side-menu-item2:
+                label: Types
+                url: sportlery/letslist/types
+                icon: icon-tag

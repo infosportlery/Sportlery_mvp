@@ -1,0 +1,108 @@
+name: 'Guest menu'
+items:
+    -
+        title: Home
+        nesting: '0'
+        type: static-page
+        url: ''
+        code: home
+        reference: home
+        cmsPage: ''
+        replace: '0'
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Partners
+        nesting: ''
+        type: header
+        url: ''
+        code: partners
+        reference: ''
+        cmsPage: ''
+        replace: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+        items:
+            -
+                title: Sportclub
+                nesting: '0'
+                type: static-page
+                url: ''
+                code: sportclub
+                reference: sportclub
+                cmsPage: ''
+                replace: '0'
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: Trainer
+                nesting: '0'
+                type: static-page
+                url: ''
+                code: trainer
+                reference: trainer
+                cmsPage: ''
+                replace: '0'
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+    -
+        title: 'Over ons'
+        nesting: ''
+        type: header
+        url: ''
+        code: about
+        reference: ''
+        cmsPage: ''
+        replace: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+        items:
+            -
+                title: 'Team Sportlery'
+                nesting: '0'
+                type: static-page
+                url: ''
+                code: team
+                reference: team-sportlery
+                cmsPage: ''
+                replace: '0'
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: Contact
+                nesting: '0'
+                type: static-page
+                url: ''
+                code: contact
+                reference: contact
+                cmsPage: ''
+                replace: '0'
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+    -
+        title: Login
+        nesting: ''
+        type: cms-page
+        url: ''
+        code: login
+        reference: login
+        cmsPage: ''
+        replace: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'

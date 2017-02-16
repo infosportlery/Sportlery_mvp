@@ -1,0 +1,10 @@
+name: Catagories
+form: $/sportlery/letslist/models/cata/fields.yaml
+modelClass: Sportlery\Letslist\Models\Cata
+defaultRedirect: sportlery/letslist/catagories
+create:
+    redirect: 'sportlery/letslist/catagories/update/:id'
+    redirectClose: sportlery/letslist/catagories
+update:
+    redirect: sportlery/letslist/catagories
+    redirectClose: sportlery/letslist/catagories

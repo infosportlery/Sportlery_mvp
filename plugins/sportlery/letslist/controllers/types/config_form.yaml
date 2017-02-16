@@ -1,0 +1,10 @@
+name: Types
+form: $/sportlery/letslist/models/type/fields.yaml
+modelClass: Sportlery\Letslist\Models\Type
+defaultRedirect: sportlery/letslist/types
+create:
+    redirect: 'sportlery/letslist/types/update/:id'
+    redirectClose: sportlery/letslist/types
+update:
+    redirect: sportlery/letslist/types
+    redirectClose: sportlery/letslist/types

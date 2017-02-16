@@ -1,0 +1,24 @@
+name: 'User menu'
+items:
+    -
+        title: Home
+        nesting: '0'
+        type: static-page
+        url: ''
+        code: home
+        reference: home
+        cmsPage: ''
+        replace: '0'
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Logout
+        type: url
+        url: /logout
+        code: logout
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'

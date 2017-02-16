@@ -5,7 +5,7 @@ use Model;
 /**
  * Model
  */
-class LocationCatagory extends Model
+class Cata extends Model
 {
     use \October\Rain\Database\Traits\Validation;
     
@@ -24,5 +24,5 @@ class LocationCatagory extends Model
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'sportlery_letslist_location_catagories';
+    public $table = 'sportlery_letslist_catas';
 }

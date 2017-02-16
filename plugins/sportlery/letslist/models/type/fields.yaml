@@ -1,0 +1,15 @@
+fields:
+    name_type:
+        label: 'Type Name'
+        oc.commentPosition: ''
+        span: auto
+        placeholder: 'Payed or Public'
+        type: text
+    slug:
+        label: Slug
+        span: auto
+        oc.commentPosition: ''
+        preset:
+            field: name_type
+            type: slug
+        type: text

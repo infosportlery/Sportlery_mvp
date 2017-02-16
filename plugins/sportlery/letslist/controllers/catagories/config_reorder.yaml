@@ -1,0 +1,4 @@
+title: Catagories
+modelClass: Sportlery\Letslist\Models\Cata
+toolbar:
+    buttons: reorder_toolbar

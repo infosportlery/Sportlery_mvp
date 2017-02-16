@@ -10,7 +10,6 @@ class Plugin extends PluginBase
 
     public function pluginDetails()
     {
-        dd('oi');
         return [
             'name'        => 'Sportlery User Plugin',
             'description' => 'User plugin extended for Sportlery',

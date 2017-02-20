@@ -1,0 +1,20 @@
+plugin:
+    name: 'sportlery.location::lang.plugin.name'
+    description: 'sportlery.location::lang.plugin.description'
+    author: Sportlery
+    icon: oc-icon-list-alt
+    homepage: ''
+navigation:
+    main-menu-item:
+        label: Sportlery
+        url: sportlery/library/locations
+        icon: icon-location-arrow
+        sideMenu:
+            locations:
+                label: Locations
+                url: sportlery/library/locations
+                icon: icon-location-arrow
+            categories:
+                label: Categories
+                url: sportlery/library/categories
+                icon: icon-tags

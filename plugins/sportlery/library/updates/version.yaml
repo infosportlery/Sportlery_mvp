@@ -1,0 +1,5 @@
+1.0.1:
+    - 'Initialize plugin.'
+    - create_spr_locations_table.php
+    - create_spr_categories_table.php
+    - create_spr_category_location_table.php

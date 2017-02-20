@@ -1,5 +1,0 @@
-columns:
-    name_type:
-        label: Type
-        type: text
-        searchable: true

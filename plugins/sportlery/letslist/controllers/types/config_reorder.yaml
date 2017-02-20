@@ -1,4 +1,0 @@
-title: Types
-modelClass: Sportlery\Letslist\Models\Type
-toolbar:
-    buttons: reorder_toolbar

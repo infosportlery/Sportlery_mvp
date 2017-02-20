@@ -1,6 +1,0 @@
-columns:
-    cat_name:
-        label: 'Catagory Name'
-        type: text
-        searchable: true
-        sortable: true

@@ -1,0 +1,10 @@
+name: Categories
+form: $/sportlery/library/models/category/fields.yaml
+modelClass: Sportlery\Library\Models\Category
+defaultRedirect: sportlery/library/categories
+create:
+    redirect: 'sportlery/library/categories/update/:id'
+    redirectClose: sportlery/library/categories
+update:
+    redirect: sportlery/library/categories
+    redirectClose: sportlery/library/categories

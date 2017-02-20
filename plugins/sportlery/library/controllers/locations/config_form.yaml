@@ -1,0 +1,11 @@
+name: Locations
+modelClass: Sportlery\Library\Models\Location
+form: $/sportlery/library/models/location/fields.yaml
+defaultRedirect: sportlery/library/locations
+create:
+    redirect: 'sportlery/library/locations/update/:id'
+    redirectClose: sportlery/library/locations
+update:
+    redirect: sportlery/library/locations
+    redirectClose: sportlery/library/locations
+preview: {  }

@@ -1,4 +1,0 @@
-title: Locations
-modelClass: Sportlery\Letslist\Models\Location
-toolbar:
-    buttons: reorder_toolbar

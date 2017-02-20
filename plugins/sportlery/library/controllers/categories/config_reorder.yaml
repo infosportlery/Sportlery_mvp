@@ -1,0 +1,4 @@
+title: Categories
+modelClass: Sportlery\Library\Models\Category
+toolbar:
+    buttons: reorder_toolbar

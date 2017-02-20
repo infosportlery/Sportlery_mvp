@@ -6,7 +6,7 @@ use Model;
 /**
  * Model
  */
-class Location extends Model
+class Event extends Model
 {
     use \October\Rain\Database\Traits\Validation;
 
@@ -18,22 +18,18 @@ class Location extends Model
      * Validation
      */
     public $rules = [
-        'name' => 'required',
-        'street' => 'required',
-        'email' => 'required|email',
-        'zipcode' => 'required',
-        'city' => 'required',
-        'location_url' => 'url',
-        'slug' => 'required|alpha_dash|unique:spr_locations,slug',
-        'is_public' => 'required|in:0,1',
+        'slug' => 'required|unique:spr_events,slug',
+        'starts_at' => 'required|date_format:"Y-m-d H:i:s"',
+        'ends_at' => 'required|date_format:"Y-m-d H:i:s"',
         'description' => 'required',
+        'price' => 'required|integer',
+        'location_id' => 'required|exists:spr_locations,id',
     ];
-
 
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'spr_locations';
+    public $table = 'spr_events';
 
     /* Relations */
     public $attachOne = [
@@ -41,15 +37,24 @@ class Location extends Model
     ];
 
     public $attachMany = [
-        'location_gallery' => 'System\Models\File'
+        'event_gallery' => 'System\Models\File'
+    ];
+
+    public $belongsTo = [
+        'location' => Location::class,
     ];
 
     public $belongsToMany = [
+        'sports' => [
+            Sport::class,
+            'table' => 'spr_event_sport',
+            'order' => 'name',
+        ],
         'categories' => [
             Category::class,
-            'table' => 'spr_category_location',
+            'table' => 'spr_category_event',
             'order' => 'name',
-            'scope' => 'forLocations',
+            'scope' => 'forEvents',
         ],
     ];
 

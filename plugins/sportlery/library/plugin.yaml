@@ -14,7 +14,15 @@ navigation:
                 label: Locations
                 url: sportlery/library/locations
                 icon: icon-location-arrow
+            events:
+                label: Events
+                url: sportlery/library/events
+                icon: icon-calendar
             categories:
                 label: Categories
                 url: sportlery/library/categories
                 icon: icon-tags
+            sports:
+                label: Sports
+                url: sportlery/library/sports
+                icon: icon-futbol-o

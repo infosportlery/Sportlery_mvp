@@ -1,0 +1,4 @@
+title: Events
+modelClass: Sportlery\Library\Models\Event
+toolbar:
+    buttons: reorder_toolbar

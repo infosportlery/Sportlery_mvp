@@ -1,23 +1,16 @@
 fields:
     name:
-        label: 'Category Name'
+        label: 'Sport Name'
         oc.commentPosition: ''
         span: auto
         type: text
+        required: 1
     slug:
         label: Slug
         span: auto
         oc.commentPosition: ''
+        required: 1
         preset:
             field: name
             type: slug
         type: text
-    for:
-        label: 'Category Type'
-        oc.commentPosition: ''
-        span: auto
-        type: radio
-        default: location
-        options:
-            location: Locatie
-            event: Evenement

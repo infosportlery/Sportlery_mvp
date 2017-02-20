@@ -1,8 +1,7 @@
 <?php namespace Sportlery\Library;
 
 use Hashids\Hashids;
-use Sportlery\Library\Components\LocationList;
-use Sportlery\Library\Components\LocationProfile;
+use Sportlery\Library\Components;
 use System\Classes\PluginBase;
 
 class Plugin extends PluginBase
@@ -10,8 +9,10 @@ class Plugin extends PluginBase
     public function registerComponents()
     {
         return [
-            LocationList::class => 'locationList',
-            LocationProfile::class => 'locationProfile',
+            Components\LocationList::class => 'locationList',
+            Components\LocationProfile::class => 'locationProfile',
+            Components\EventList::class => 'eventList',
+            Components\EventProfile::class => 'eventProfile',
         ];
     }
 

@@ -1,0 +1,6 @@
+columns:
+    name:
+        label: 'Sport'
+        type: text
+        searchable: true
+        sortable: true

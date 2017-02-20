@@ -1,0 +1,39 @@
+fields:
+    name:
+        label: Name
+        oc.commentPosition: ''
+        span: auto
+        placeholder: 'Event name'
+        required: 1
+        type: text
+    slug:
+        label: 'Slug'
+        span: auto
+        placeholder: 'URL-friendly name'
+        preset:
+            field: name
+            type: slug
+        type: text
+    starts_at:
+        label: Starts at
+        span: auto
+        type: datepicker
+    ends_at:
+        label: Ends at
+        span: auto
+        type: datepicker
+    price:
+        label: Price
+        span: auto
+        type: number
+    location:
+        label: Location
+        span: auto
+        default: ''
+        required: 1
+        nameFrom: name
+        type: relation
+    description:
+        label: Description
+        span: full
+        type: richeditor

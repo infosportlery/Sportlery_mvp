@@ -1,0 +1,11 @@
+name: Events
+modelClass: Sportlery\Library\Models\Event
+form: $/sportlery/library/models/event/fields.yaml
+defaultRedirect: sportlery/library/events
+create:
+    redirect: 'sportlery/library/events/update/:id'
+    redirectClose: sportlery/library/events
+update:
+    redirect: sportlery/library/events
+    redirectClose: sportlery/library/events
+preview: {  }

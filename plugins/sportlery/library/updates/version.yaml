@@ -3,3 +3,7 @@
     - create_spr_locations_table.php
     - create_spr_categories_table.php
     - create_spr_category_location_table.php
+1.0.2:
+    - 'Update locations table to include lat/long'
+    - add_lat_lng_to_locations_table.php
+    - remove_description_en_from_locations_table.php

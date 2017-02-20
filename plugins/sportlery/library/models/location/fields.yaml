@@ -18,18 +18,21 @@ fields:
         oc.commentPosition: ''
         span: auto
         placeholder: 'The street of the location'
+        required: 1
         type: text
     zipcode:
         label: Zip
         oc.commentPosition: ''
         span: auto
         placeholder: 'eg: 1234 AB'
+        required: 1
         type: text
     city:
         label: City
         oc.commentPosition: ''
         span: auto
         placeholder: 'The location''s City'
+        required: 1
         type: text
     url:
         label: 'Location Url'
@@ -43,6 +46,7 @@ fields:
         span: auto
         type: radio
         default: 1
+        required: 1
         options:
           0: Paid
           1: Public
@@ -51,7 +55,6 @@ fields:
         span: auto
         oc.commentPosition: ''
         nameFrom: name
-        descriptionFrom: description
         type: relation
     slug:
         label: 'Url Slug'
@@ -88,12 +91,6 @@ fields:
         type: fileupload
     description:
         label: Description
-        size: large
-        oc.commentPosition: ''
-        span: auto
-        type: richeditor
-    description_en:
-        label: Description (English)
         size: large
         oc.commentPosition: ''
         span: auto

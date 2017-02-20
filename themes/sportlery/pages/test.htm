@@ -1,0 +1,15 @@
+title = "test"
+url = "/test"
+layout = "listing"
+is_hidden = 0
+
+[viewBag]
+localeUrl[en] = "/test"
+
+[locationList]
+perPage = 10
+detailsPage = "testsingle"
+==
+<h1>Locaties</h1>
+
+{% component 'locationList' %}

@@ -1,6 +1,5 @@
 <?php namespace Sportlery\Library\Models;
 
-use Hashids\Hashids;
 use Model;
 
 /**
@@ -9,6 +8,7 @@ use Model;
 class Event extends Model
 {
     use \October\Rain\Database\Traits\Validation;
+    use \Sportlery\Library\Classes\Traits\HashIds;
 
     public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
 
@@ -58,31 +58,14 @@ class Event extends Model
         ],
     ];
 
-    public function getHashId()
-    {
-        return $this->slug.'-'.app(Hashids::class)->encode($this->getKey());
-    }
-
+    /**
+     * Get an array of category names attached to the event.
+     *
+     * @return array
+     */
     public function getCategoryNamesAttribute()
     {
         return $this->categories->lists('name');
-    }
-
-    public static function findByHashId($hashId)
-    {
-        $hashId = explode('-', $hashId);
-
-        if (empty($hashId)) {
-            return null;
-        }
-
-        $hashId = app(Hashids::class)->decode(end($hashId));
-
-        if (empty($hashId)) {
-            return null;
-        }
-
-        return static::find(reset($hashId));
     }
 }
 

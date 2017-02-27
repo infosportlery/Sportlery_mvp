@@ -53,6 +53,9 @@ class LocationList extends ComponentBase
         $this->page['locationTypes'] = $this->getLocationTypes();
         $this->page['locations'] = $this->getLocations();
         $this->page['detailsPage'] = $this->property('detailsPage');
+
+        $this->addCss('https://unpkg.com/leaflet@1.0.3/dist/leaflet.css');
+        $this->addJs('https://unpkg.com/leaflet@1.0.3/dist/leaflet.js');
     }
 
     public function getLocations()

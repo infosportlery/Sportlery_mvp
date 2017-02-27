@@ -16,3 +16,6 @@
 1.0.4:
     - 'Add sports to locations'
     - create_spr_location_sport_table.php
+1.0.5:
+    - 'Add country and state to locations'
+    - add_country_and_state_id_to_locations_table.php

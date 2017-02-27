@@ -48,6 +48,24 @@
         </div>
     <?= Form::close() ?>
 
+<script>
+    $(function() {
+        var rStartsWithStreetNum = /^\d+/;
+        $('[data-control="location-autocomplete"]').on('changedLocation', function() {
+            var locationAutocomplete = $(this).data('ui.location-autocomplete');
+
+            if (locationAutocomplete.options.inputStreet) {
+                var $street = $(locationAutocomplete.options.inputStreet);
+                var street = $street.val();
+                if (rStartsWithStreetNum.test(street)) {
+                    var firstSpaceIndex = street.indexOf(' ');
+                    $street.val(street.slice(firstSpaceIndex + 1) + ' ' + street.slice(0, firstSpaceIndex));
+                }
+            }
+        });
+    });
+</script>
+
 <?php else: ?>
     <p class="flash-message static error"><?= e(trans($this->fatalError)) ?></p>
     <p><a href="<?= Backend::url('sportlery/library/locations') ?>" class="btn btn-default"><?= e(trans('backend::lang.form.return_to_list')) ?></a></p>

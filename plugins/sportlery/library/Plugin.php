@@ -1,5 +1,6 @@
 <?php namespace Sportlery\Library;
 
+use Backend\Models\User;
 use Hashids\Hashids;
 use Sportlery\Library\Components;
 use System\Classes\PluginBase;

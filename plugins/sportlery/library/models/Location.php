@@ -10,7 +10,10 @@ class Location extends Model
     use \October\Rain\Database\Traits\Validation;
     use \Sportlery\Library\Classes\Traits\HashIds;
 
-    public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
+    public $implement = [
+        'RainLab.Translate.Behaviors.TranslatableModel',
+        'RainLab.Location.Behaviors.LocationModel',
+    ];
 
     public $translatable = ['description'];
 
@@ -95,6 +98,13 @@ class Location extends Model
         return $query;
     }
 
+    public function beforeSave()
+    {
+        if (isset($this->attributes['address'])) {
+            unset($this->attributes['address']);
+        }
+    }
+
     /**
      * Get an array of category names attached to the event.
      *
@@ -103,6 +113,27 @@ class Location extends Model
     public function getCategoryNamesAttribute()
     {
         return $this->categories->lists('name');
+    }
+
+    public function getAddressAttribute()
+    {
+        $address = $this->street.', '.$this->city;
+
+        if ($this->country) {
+            $address .= ', '.$this->country->name;
+        }
+
+        return $address;
+    }
+
+    public function setStreetAttribute($value)
+    {
+        if (preg_match('/^\d+?/', $value)) {
+            list($number, $street) = explode(' ', $value, 2);
+            $value = trim("$street $number");
+        }
+
+        $this->attributes['street'] = $value;
     }
 }
 

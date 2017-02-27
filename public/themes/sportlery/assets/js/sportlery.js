@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -10295,10 +10295,22 @@ return jQuery;
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-__webpack_require__(3);
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_locationMap__ = __webpack_require__(3);
 __webpack_require__(4);
+__webpack_require__(5);
+__webpack_require__(15);
+
+
+
+window.$(function ($) {
+    if ($('[data-component="locationMap"]').length) {
+        new __WEBPACK_IMPORTED_MODULE_0__components_locationMap__["a" /* default */]($('[data-component="locationMap"]'));
+    }
+});
 
 /***/ }),
 /* 2 */
@@ -10308,6 +10320,136 @@ __webpack_require__(4);
 
 /***/ }),
 /* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function($) {var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var LocationMap = function () {
+    /**
+     * Create a new map instance in the given jQuery element.
+     * Automatically initialized on elements that use a `data-component="locationMap"` attribute.
+     *
+     * Config:
+     * data-locations="{name}": The name of the locations property on the `window.sportlery` object.
+     * data-details-url="{url}": The URL to the details page of the location, replace ID with _id_
+     *
+     * @param {jQuery} $el
+     */
+    function LocationMap($el) {
+        var _this = this;
+
+        _classCallCheck(this, LocationMap);
+
+        if (!window.L) {
+            throw new Error('Leaflet must be included to load the location map.');
+        }
+
+        var locationVarName = $el.data('locations') || 'locations';
+
+        if (!window.sportlery || !window.sportlery[locationVarName]) {
+            throw new Error('The locations must be available on the window in order to display them.');
+        }
+
+        this.locations = window.sportlery[locationVarName];
+        this.detailsUrl = $el.data('details-url');
+        this.map = L.map($el[0]);
+        this.markerPopupTmpl = decodeURI($el.find('#marker-popup-tmpl').html());
+
+        this.centerMap();
+        this.initTiles();
+        this.addMarkers();
+
+        if ($el.closest('.tab-pane').length) {
+            var $tabPane = $el.closest('.tab-pane');
+            var $tab = $('[href="#' + $tabPane.attr('id') + '"]');
+            $tab.on('shown.bs.tab', function () {
+                _this.map.invalidateSize();
+            });
+        }
+    }
+
+    /**
+     * Initialize the tile layer and add it to the map.
+     */
+
+
+    _createClass(LocationMap, [{
+        key: 'initTiles',
+        value: function initTiles() {
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: ''
+            }).addTo(this.map);
+        }
+
+        /**
+         * Add a marker to the map for every given location.
+         */
+
+    }, {
+        key: 'addMarkers',
+        value: function addMarkers() {
+            var _this2 = this;
+
+            this.locations.forEach(function (location) {
+                var marker = L.marker([location.latitude, location.longitude]).addTo(_this2.map);
+                marker.bindPopup(_this2.renderMarkerPopup(location));
+            });
+        }
+    }, {
+        key: 'renderMarkerPopup',
+        value: function renderMarkerPopup(location) {
+            return this.markerPopupTmpl.replace(/\[\[\s*?(.+?)\s*?\]\]/g, function (match, prop) {
+                var propParts = prop.split('.');
+                var result = location;
+                for (var i = 0; i < propParts.length; i++) {
+                    if (result.hasOwnProperty(propParts[i])) {
+                        result = result[propParts[i]];
+                    } else {
+                        break;
+                    }
+                }
+                return result;
+            });
+        }
+
+        /**
+         * Center the map around the first available location.
+         */
+
+    }, {
+        key: 'centerMap',
+        value: function centerMap() {
+            if (this.locations[0]) {
+                this.map.setView([this.locations[0].latitude, this.locations[0].longitude], 13);
+            } else {
+                console.log('No locations');
+            }
+        }
+
+        /**
+         * Build the details url for the given id.
+         *
+         * @param  {string}  id
+         */
+
+    }, {
+        key: 'getDetailsUrl',
+        value: function getDetailsUrl(id) {
+            return this.detailsUrl.replace('_id_', id);
+        }
+    }]);
+
+    return LocationMap;
+}();
+
+/* harmony default export */ __webpack_exports__["a"] = LocationMap;
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {/* ========================================================================
@@ -10526,7 +10668,7 @@ __webpack_require__(4);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {/* ========================================================================
@@ -10698,12 +10840,182 @@ __webpack_require__(4);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(1);
 module.exports = __webpack_require__(2);
 
+
+/***/ }),
+/* 7 */,
+/* 8 */,
+/* 9 */,
+/* 10 */,
+/* 11 */,
+/* 12 */,
+/* 13 */,
+/* 14 */,
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(jQuery) {/* ========================================================================
+ * Bootstrap: tab.js v3.3.7
+ * http://getbootstrap.com/javascript/#tabs
+ * ========================================================================
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // TAB CLASS DEFINITION
+  // ====================
+
+  var Tab = function (element) {
+    // jscs:disable requireDollarBeforejQueryAssignment
+    this.element = $(element)
+    // jscs:enable requireDollarBeforejQueryAssignment
+  }
+
+  Tab.VERSION = '3.3.7'
+
+  Tab.TRANSITION_DURATION = 150
+
+  Tab.prototype.show = function () {
+    var $this    = this.element
+    var $ul      = $this.closest('ul:not(.dropdown-menu)')
+    var selector = $this.data('target')
+
+    if (!selector) {
+      selector = $this.attr('href')
+      selector = selector && selector.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
+    }
+
+    if ($this.parent('li').hasClass('active')) return
+
+    var $previous = $ul.find('.active:last a')
+    var hideEvent = $.Event('hide.bs.tab', {
+      relatedTarget: $this[0]
+    })
+    var showEvent = $.Event('show.bs.tab', {
+      relatedTarget: $previous[0]
+    })
+
+    $previous.trigger(hideEvent)
+    $this.trigger(showEvent)
+
+    if (showEvent.isDefaultPrevented() || hideEvent.isDefaultPrevented()) return
+
+    var $target = $(selector)
+
+    this.activate($this.closest('li'), $ul)
+    this.activate($target, $target.parent(), function () {
+      $previous.trigger({
+        type: 'hidden.bs.tab',
+        relatedTarget: $this[0]
+      })
+      $this.trigger({
+        type: 'shown.bs.tab',
+        relatedTarget: $previous[0]
+      })
+    })
+  }
+
+  Tab.prototype.activate = function (element, container, callback) {
+    var $active    = container.find('> .active')
+    var transition = callback
+      && $.support.transition
+      && ($active.length && $active.hasClass('fade') || !!container.find('> .fade').length)
+
+    function next() {
+      $active
+        .removeClass('active')
+        .find('> .dropdown-menu > .active')
+          .removeClass('active')
+        .end()
+        .find('[data-toggle="tab"]')
+          .attr('aria-expanded', false)
+
+      element
+        .addClass('active')
+        .find('[data-toggle="tab"]')
+          .attr('aria-expanded', true)
+
+      if (transition) {
+        element[0].offsetWidth // reflow for transition
+        element.addClass('in')
+      } else {
+        element.removeClass('fade')
+      }
+
+      if (element.parent('.dropdown-menu').length) {
+        element
+          .closest('li.dropdown')
+            .addClass('active')
+          .end()
+          .find('[data-toggle="tab"]')
+            .attr('aria-expanded', true)
+      }
+
+      callback && callback()
+    }
+
+    $active.length && transition ?
+      $active
+        .one('bsTransitionEnd', next)
+        .emulateTransitionEnd(Tab.TRANSITION_DURATION) :
+      next()
+
+    $active.removeClass('in')
+  }
+
+
+  // TAB PLUGIN DEFINITION
+  // =====================
+
+  function Plugin(option) {
+    return this.each(function () {
+      var $this = $(this)
+      var data  = $this.data('bs.tab')
+
+      if (!data) $this.data('bs.tab', (data = new Tab(this)))
+      if (typeof option == 'string') data[option]()
+    })
+  }
+
+  var old = $.fn.tab
+
+  $.fn.tab             = Plugin
+  $.fn.tab.Constructor = Tab
+
+
+  // TAB NO CONFLICT
+  // ===============
+
+  $.fn.tab.noConflict = function () {
+    $.fn.tab = old
+    return this
+  }
+
+
+  // TAB DATA-API
+  // ============
+
+  var clickHandler = function (e) {
+    e.preventDefault()
+    Plugin.call($(this), 'show')
+  }
+
+  $(document)
+    .on('click.bs.tab.data-api', '[data-toggle="tab"]', clickHandler)
+    .on('click.bs.tab.data-api', '[data-toggle="pill"]', clickHandler)
+
+}(jQuery);
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ })
 /******/ ]);

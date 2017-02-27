@@ -2,4 +2,18 @@
     - 'Initialize plugin.'
     - create_spr_locations_table.php
     - create_spr_categories_table.php
+<<<<<<< HEAD
     - create_spr_category_location_table.php
+=======
+    - create_spr_category_location_table.php
+1.0.2:
+    - 'Update locations table to include lat/long'
+    - add_lat_lng_to_locations_table.php
+    - remove_description_en_from_locations_table.php
+1.0.3:
+    - 'Add events and sports'
+    - create_spr_events_table.php
+    - create_spr_sports_table.php
+    - create_spr_category_event_table.php
+    - create_spr_event_sport_table.php
+>>>>>>> 227415713ae1ed19a4a814ceed7391bee735b249

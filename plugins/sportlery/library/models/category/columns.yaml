@@ -4,3 +4,8 @@ columns:
         type: text
         searchable: true
         sortable: true
+    for:
+        label: 'Category Type'
+        type: text
+        searchable: true
+        sortable: true

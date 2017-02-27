@@ -1,0 +1,8 @@
+{% if event %}
+    <h1>{{ event.name }}</h1>
+    <strong>Categorieën: </strong> {{ event.categoryNames|join(',')}}
+    {{ event.description|raw }}
+{% else %}
+    <h1>Niet gevonden</h1>
+    <p>Sorry, het evenement die je zocht kon niet worden gevonden.</p>
+{% endif %}

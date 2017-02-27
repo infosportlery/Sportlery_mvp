@@ -1,0 +1,10 @@
+name: Sports
+form: $/sportlery/library/models/sport/fields.yaml
+modelClass: Sportlery\Library\Models\Sport
+defaultRedirect: sportlery/library/sports
+create:
+    redirect: 'sportlery/library/sports/update/:id'
+    redirectClose: sportlery/library/sports
+update:
+    redirect: sportlery/library/sports
+    redirectClose: sportlery/library/sports

@@ -1,0 +1,31 @@
+{% for row in locations|batch(2) %}
+    <div class="row">
+        {% for location in row %}
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h3>
+                            <a href="{{ detailsPage|page({ id: attribute(location, 'id') }) }}">
+                                {{ location.name }}
+                            </a>
+                        </h3>
+                        {{ location.description|raw }}
+                        <div class="text-right">
+                            <a href="{{ detailsPage|page({ id: attribute(location, 'id') }) }}" class="btn btn-primary">Bekijk &raquo;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="alert alert-danger">
+                Geen locaties beschikbaar
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+{{ locations.render|raw }}

@@ -1,0 +1,31 @@
+{% for row in events|batch(2) %}
+    <div class="row">
+        {% for event in row %}
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h3>
+                            <a href="{{ detailsPage|page({ id: attribute(event, 'id') }) }}">
+                                {{ event.name }}
+                            </a>
+                        </h3>
+                        {{ event.description|raw }}
+                        <div class="text-right">
+                            <a href="{{ detailsPage|page({ id: attribute(event, 'id') }) }}" class="btn btn-primary">Bekijk &raquo;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="alert alert-danger">
+                Geen evenementen beschikbaar
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+{{ events.render|raw }}

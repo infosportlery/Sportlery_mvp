@@ -1,0 +1,8 @@
+{% if location %}
+    <h1>{{ location.name }}</h1>
+    <strong>Categorieën: </strong> {{ location.categoryNames|join(',')}}
+    {{ location.description|raw }}
+{% else %}
+    <h1>Niet gevonden</h1>
+    <p>Sorry, de locatie die je zocht kon niet worden gevonden.</p>
+{% endif %}

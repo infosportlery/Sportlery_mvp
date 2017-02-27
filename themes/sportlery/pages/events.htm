@@ -1,0 +1,17 @@
+title = "Evenementen"
+url = "/evenementen"
+layout = "listing"
+meta_title = "Evenementen"
+meta_description = "Evenementen"
+is_hidden = 0
+
+[viewBag]
+localeUrl[en] = "/events"
+
+[eventList]
+perPage = 10
+detailsPage = "events-profile"
+==
+<h1>Evenementen</h1>
+
+{% component 'eventList' %}

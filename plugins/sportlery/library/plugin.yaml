@@ -1,6 +1,6 @@
 plugin:
-    name: 'sportlery.location::lang.plugin.name'
-    description: 'sportlery.location::lang.plugin.description'
+    name: 'sportlery.library::lang.plugin.name'
+    description: 'sportlery.library::lang.plugin.description'
     author: Sportlery
     icon: oc-icon-list-alt
     homepage: ''
@@ -8,7 +8,7 @@ navigation:
     main-menu-item:
         label: Sportlery
         url: sportlery/library/locations
-        icon: icon-location-arrow
+        icon: icon-university
         sideMenu:
             locations:
                 label: Locations
@@ -18,3 +18,7 @@ navigation:
                 label: Categories
                 url: sportlery/library/categories
                 icon: icon-tags
+            side-menu-item:
+                label: Profiles
+                url: sportlery/library/profiles
+                icon: icon-male

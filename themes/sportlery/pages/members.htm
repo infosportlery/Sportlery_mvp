@@ -1,0 +1,15 @@
+title = "members"
+url = "/members/:page?"
+layout = "default"
+is_hidden = 0
+
+[builderList]
+modelClass = "RainLab\User\Models\User"
+scope = "-"
+displayColumn = "email"
+noRecordsMessage = "No records found"
+detailsPage = "-"
+detailsUrlParameter = "id"
+pageNumber = "{{ :page }}"
+==
+{% component 'builderList' %}

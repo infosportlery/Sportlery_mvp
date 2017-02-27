@@ -1,11 +1,37 @@
 description = "Login formulier"
 
-[account]
-paramCode = "code"
-forceSecure = 0
-
 [viewBag]
 snippetCode = "login"
 snippetName = "Login formulier"
+
+[account]
+paramCode = "code"
+forceSecure = 0
 ==
-{% component 'account' %}
+{% if not user %}
+
+    <div class="row">
+
+        <div class="col-md-6">
+            <h3>Sign in</h3>
+            {% partial account ~ '::signin' %}
+        </div>
+
+        <div class="col-md-6">
+            <h3>Register</h3>
+            {% partial account ~ '::register' %}
+        </div>
+
+    </div>
+
+{% else %}
+
+    {% partial account ~ '::activation_check' %}
+
+    {% partial account ~ '::update' %}
+    
+    {% partial account ~ 'profile' %}
+
+    {% partial account ~ '::deactivate_link' %}
+
+{% endif %}

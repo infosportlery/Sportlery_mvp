@@ -13,3 +13,6 @@
     - create_spr_sports_table.php
     - create_spr_category_event_table.php
     - create_spr_event_sport_table.php
+1.0.4:
+    - 'Add sports to locations'
+    - create_spr_location_sport_table.php

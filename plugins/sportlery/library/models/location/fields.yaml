@@ -56,6 +56,12 @@ fields:
         oc.commentPosition: ''
         nameFrom: name
         type: relation
+    sports:
+        label: Sports
+        span: auto
+        oc.commentPosition: ''
+        nameFrom: name
+        type: relation
     slug:
         label: 'Url Slug'
         span: auto

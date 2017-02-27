@@ -6,6 +6,7 @@ use Cms\Classes\ComponentBase;
 use Cms\Classes\Page;
 use Hashids\Hashids;
 use Sportlery\Library\Models\Location;
+use Sportlery\Library\Models\Sport;
 
 class LocationList extends ComponentBase
 {
@@ -47,17 +48,40 @@ class LocationList extends ComponentBase
 
     public function onRun()
     {
-        $this->page['locations'] = $this->locations();
+        $this->page['sports'] = $this->getSports();
+        $this->page['cities'] = $this->getCities();
+        $this->page['locationTypes'] = $this->getLocationTypes();
+        $this->page['locations'] = $this->getLocations();
         $this->page['detailsPage'] = $this->property('detailsPage');
     }
 
-    public function locations()
+    public function getLocations()
     {
         $perPage = $this->property('perPage');
         $hashids = \App::make(Hashids::class);
 
-        return Location::orderBy('name', 'asc')->paginate($perPage)->each(function($location) use ($hashids) {
-            $location->id = $location->getHashId();
-        });
+        $searchParameters = \Input::only(['q', 'sport', 'location_type', 'city']);
+
+        return Location::search($searchParameters)
+                       ->orderBy('name', 'asc')
+                       ->paginate($perPage)
+                       ->each(function($location) use ($hashids) {
+                           $location->id = $location->getHashId();
+                       });
+    }
+
+    private function getSports()
+    {
+        return Sport::orderBy('name','asc')->lists('name', 'id');
+    }
+
+    private function getLocationTypes()
+    {
+        return [0 => 'Paid', 1 => 'Public'];
+    }
+
+    private function getCities()
+    {
+        return Location::orderBy('city', 'asc')->distinct()->lists('city', 'city');
     }
 }

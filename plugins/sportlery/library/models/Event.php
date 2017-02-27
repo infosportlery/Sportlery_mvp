@@ -10,6 +10,9 @@ class Event extends Model
     use \October\Rain\Database\Traits\Validation;
     use \Sportlery\Library\Classes\Traits\HashIds;
 
+    const TYPE_PAID = 0;
+    const TYPE_FREE = 1;
+
     public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
 
     public $translatable = ['description'];
@@ -57,6 +60,41 @@ class Event extends Model
             'scope' => 'forEvents',
         ],
     ];
+
+    public static function search(array $params)
+    {
+        $query = (new static)->newQuery();
+
+        if (isset($params['q']) && $q = trim($params['q'])) {
+            $q = '%'.$q.'%';
+
+            $query->where(function($query) use ($q) {
+                $query->orWhere('name', 'like', $q)->orWhere('description', 'like', $q);
+            });
+        }
+
+        if (isset($params['sport']) && $params['sport'] !== '') {
+            $query->whereHas('sports', function($query) use ($params) {
+                return $query->where('id', $params['sport']);
+            });
+        }
+
+        if (isset($params['event_type']) && $params['event_type'] !== '') {
+            if ($params['event_type'] == self::TYPE_FREE) {
+                $query->where('price', 0);
+            } else {
+                $query->where('price', '>', 0);
+            }
+        }
+
+        if (isset($params['city']) && $city = trim($params['city'])) {
+            $query->whereHas('location', function($query) use ($city) {
+                return $query->where('city', $city);
+            });
+        }
+
+        return $query;
+    }
 
     /**
      * Get an array of category names attached to the event.

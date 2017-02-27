@@ -51,7 +51,49 @@ class Location extends Model
             'order' => 'name',
             'scope' => 'forLocations',
         ],
+        'sports' => [
+            Sport::class,
+            'table' => 'spr_location_sport',
+            'order' => 'name',
+        ],
     ];
+
+    /**
+     * Search for locations using the given parameters (available: q, sport, location_type, city)
+     *
+     * @param  array  $params
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public static function search(array $params)
+    {
+        $query = (new static)->newQuery();
+
+        if (isset($params['q']) && $q = trim($params['q'])) {
+            $q = '%'.$q.'%';
+
+            $query->where(function($query) use ($q) {
+                $query->orWhere('name', 'like', $q)
+                      ->orWhere('city', 'like', $q)
+                      ->orWhere('description', 'like', $q);
+            });
+        }
+
+        if (isset($params['sport']) && $params['sport'] !== '') {
+            $query->whereHas('sports', function($query) use ($params) {
+                return $query->where('id', $params['sport']);
+            });
+        }
+
+        if (isset($params['location_type']) && $params['location_type'] !== '') {
+            $query->where('is_public', $params['location_type']);
+        }
+
+        if (isset($params['city']) && $city = trim($params['city'])) {
+            $query->where('city', $city);
+        }
+
+        return $query;
+    }
 
     /**
      * Get an array of category names attached to the event.

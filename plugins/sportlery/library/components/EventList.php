@@ -6,6 +6,8 @@ use Cms\Classes\ComponentBase;
 use Cms\Classes\Page;
 use Hashids\Hashids;
 use Sportlery\Library\Models\Event;
+use Sportlery\Library\Models\Location;
+use Sportlery\Library\Models\Sport;
 
 class EventList extends ComponentBase
 {
@@ -47,17 +49,40 @@ class EventList extends ComponentBase
 
     public function onRun()
     {
-        $this->page['events'] = $this->events();
+        $this->page['events'] = $this->getEvents();
+        $this->page['sports'] = $this->getSports();
+        $this->page['cities'] = $this->getCities();
+        $this->page['eventTypes'] = $this->getEventTypes();
         $this->page['detailsPage'] = $this->property('detailsPage');
     }
 
-    public function events()
+    private function getEvents()
     {
         $perPage = $this->property('perPage');
         $hashids = \App::make(Hashids::class);
 
-        return Event::orderBy('name', 'asc')->paginate($perPage)->each(function($event) use ($hashids) {
-            $event->id = $event->getHashId();
-        });
+        $searchParameters = \Input::only(['q', 'event_type', 'sport', 'city']);
+
+        return Event::search($searchParameters)
+                    ->orderBy('name', 'asc')
+                    ->paginate($perPage)
+                    ->each(function($event) use ($hashids) {
+                        $event->id = $event->getHashId();
+                    });
+    }
+
+    private function getSports()
+    {
+        return Sport::orderBy('name', 'asc')->lists('name', 'id');
+    }
+
+    private function getCities()
+    {
+        return Location::distinct()->orderBy('city', 'asc')->lists('city', 'city');
+    }
+
+    private function getEventTypes()
+    {
+        return [Event::TYPE_PAID => 'Paid', Event::TYPE_FREE => 'Free'];
     }
 }

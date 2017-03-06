@@ -1,5 +1,6 @@
 <?php namespace Sportlery\Profile;
 
+use Sportlery\Library\Models\User;
 use System\Classes\PluginBase;
 
 use Rainlab\User\Controllers\Users as UsersController;

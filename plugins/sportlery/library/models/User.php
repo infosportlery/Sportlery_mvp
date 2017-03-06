@@ -12,6 +12,11 @@ class User extends RainlabUser
         return null;
     }
 
+    public function listFriends()
+    {
+        return $this->friends()->wherePivot('user_id', $this->getKey())->orWherePivot('friend_id', $this->getKey())->get();
+    }
+
     public function sendFriendRequest($otherUser)
     {
         if (!$otherUser || $this->getFriendshipStatus($otherUser) !== null) {
@@ -20,8 +25,6 @@ class User extends RainlabUser
         }
 
         $this->friends()->attach($otherUser, ['status' => FriendshipStatus::PENDING]);
-
-        // TODO: Send notification
 
         return true;
     }

@@ -13,13 +13,14 @@ class Plugin extends PluginBase
     public function registerComponents()
     {
         return [
-            Components\LocationList::class => 'locationList',
-            Components\LocationProfile::class => 'locationProfile',
             Components\EventList::class => 'eventList',
             Components\EventProfile::class => 'eventProfile',
+            Components\FriendList::class => 'friendsList',
+            Components\LocationList::class => 'locationList',
+            Components\LocationProfile::class => 'locationProfile',
+            Components\UserDashboard::class => 'userDashboard',
             Components\UserList::class => 'userList',
             Components\UserProfile::class => 'userProfile',
-            Components\UserDashboard::class => 'userDashboard',
         ];
     }
 
@@ -52,6 +53,8 @@ class Plugin extends PluginBase
         });
 
         Users::extend(function($controller) {
+            $controller->formConfig = '$/sportlery/library/overrides/rainlab_user/config_user_form.yaml';
+            $controller->listConfig = '$/sportlery/library/overrides/rainlab_user/config_user_list.yaml';
             $controller->implement[] = 'Backend.Behaviors.RelationController';
             $controller->relationConfig = [
                 'friends' => [

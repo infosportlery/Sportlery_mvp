@@ -13,27 +13,55 @@ fields:
         placeholder: 'Locations active contact Email'
         required: 1
         type: text
+    address:
+        label: Address
+        type: addressfinder
+        span: auto
+        placeholder: 'Find an address'
+        fieldMap:
+            latitude: latitude
+            longitude: longitude
+            street: street
+            city: city
+            zip: zipcode
+            country: country_code
+            state: state_code
+    latitude:
+        label: Latitude
+        type: text
+        readOnly: true
+        required: true
+        cssClass: 'hide'
+    longitude:
+        label: Longitude
+        type: text
+        readOnly: true
+        required: true
+        cssClass: 'hide'
     street:
         label: Street
-        oc.commentPosition: ''
-        span: auto
-        placeholder: 'The street of the location'
-        required: 1
         type: text
+        required: true
     zipcode:
         label: Zip
-        oc.commentPosition: ''
-        span: auto
-        placeholder: 'eg: 1234 AB'
-        required: 1
         type: text
+        required: true
     city:
         label: City
-        oc.commentPosition: ''
-        span: auto
-        placeholder: 'The location''s City'
-        required: 1
         type: text
+        required: true
+    state_code:
+        label: State
+        type: text
+        required: true
+        readOnly: true
+        cssClass: 'hide'
+    country_code:
+        label: Country
+        type: text
+        required: true
+        readOnly: true
+        cssClass: 'hide'
     url:
         label: 'Location Url'
         oc.commentPosition: ''
@@ -52,6 +80,12 @@ fields:
           1: Public
     categories:
         label: Categories
+        span: auto
+        oc.commentPosition: ''
+        nameFrom: name
+        type: relation
+    sports:
+        label: Sports
         span: auto
         oc.commentPosition: ''
         nameFrom: name

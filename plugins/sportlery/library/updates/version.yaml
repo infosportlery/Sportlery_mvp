@@ -16,9 +16,13 @@
 1.0.4:
     - 'Drop table sportlery_library_profile'
     - builder_table_delete_sportlery_library_profile.php
+    - 'Add sports to locations'
+    - create_spr_location_sport_table.php
 1.0.5:
     - 'Created table sportlery_library_user_sports'
     - builder_table_create_sportlery_library_user_sports.php
+    - 'Add country and state to locations'
+    - add_country_and_state_id_to_locations_table.php
 1.0.6:
     - 'Updated table sportlery_library_user_sports'
     - builder_table_update_sportlery_library_user_sports.php

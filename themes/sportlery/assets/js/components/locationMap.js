@@ -21,17 +21,21 @@ export default class LocationMap {
         }
 
         this.locations = window.sportlery[locationVarName];
-        this.detailsUrl = $el.data('details-url');
+
+        if (!Array.isArray(this.locations)) {
+            this.locations = [this.locations];
+        }
+
         this.map = L.map($el[0]);
-        this.markerPopupTmpl = decodeURI($el.find('#marker-popup-tmpl').html());
+        this.markerPopupTmpl = decodeURI($el.find('#marker-popup-tmpl').detach().html());
 
         this.centerMap();
         this.initTiles();
         this.addMarkers();
 
         if ($el.closest('.tab-pane').length) {
-            var $tabPane = $el.closest('.tab-pane');
-            var $tab = $(`[href="#${$tabPane.attr('id')}"]`);
+            const $tabPane = $el.closest('.tab-pane');
+            const $tab = $(`[href="#${$tabPane.attr('id')}"]`);
             $tab.on('shown.bs.tab', () => {
                 this.map.invalidateSize();
             })
@@ -52,21 +56,21 @@ export default class LocationMap {
      */
     addMarkers() {
         this.locations.forEach((location) => {
-            var marker = L.marker([location.latitude, location.longitude]).addTo(this.map);
+            const marker = L.marker([location.latitude, location.longitude]).addTo(this.map);
             marker.bindPopup(this.renderMarkerPopup(location));
         });
     }
 
     renderMarkerPopup(location) {
-        return this.markerPopupTmpl.replace(/\[\[\s*?(.+?)\s*?\]\]/g, function(match, prop) {
+        return this.markerPopupTmpl.replace(/\[\[\s*?(.+?)\s*?\]\]/g, (match, prop) => {
             const propParts = prop.split('.');
             let result = location;
             for (let i = 0; i < propParts.length; i++) {
-                if (result.hasOwnProperty(propParts[i])) {
-                    result = result[propParts[i]];
-                } else {
+                if (!result || typeof result !== 'object' || !result.hasOwnProperty(propParts[i])) {
                     break;
                 }
+
+                result = result[propParts[i]];
             }
             return result;
         });
@@ -78,17 +82,6 @@ export default class LocationMap {
     centerMap() {
         if (this.locations[0]) {
             this.map.setView([this.locations[0].latitude, this.locations[0].longitude], 13);
-        } else {
-            console.log('No locations');
         }
-    }
-
-    /**
-     * Build the details url for the given id.
-     *
-     * @param  {string}  id
-     */
-    getDetailsUrl(id) {
-        return this.detailsUrl.replace('_id_', id);
     }
 }

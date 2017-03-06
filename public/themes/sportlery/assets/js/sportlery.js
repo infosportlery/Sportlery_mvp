@@ -10316,14 +10316,16 @@ window.$(function ($) {
 /* 2 */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed: ModuleBuildError: Module build failed: Error: Missing binding /home/vagrant/Code/sportlery/node_modules/node-sass/vendor/linux-x64-48/binding.node\nNode Sass could not find a binding for your current environment: Linux 64-bit with Node.js 6.x\n\nFound bindings for the following environments:\n  - Windows 64-bit with Node.js 7.x\n\nThis usually happens because your environment has changed since running `npm install`.\nRun `npm rebuild node-sass` to build the binding for your current environment.\n    at module.exports (/home/vagrant/Code/sportlery/node_modules/node-sass/lib/binding.js:15:13)\n    at Object.<anonymous> (/home/vagrant/Code/sportlery/node_modules/node-sass/lib/index.js:14:35)\n    at Module._compile (module.js:570:32)\n    at Object.Module._extensions..js (module.js:579:10)\n    at Module.load (module.js:487:32)\n    at tryModuleLoad (module.js:446:12)\n    at Function.Module._load (module.js:438:3)\n    at Module.require (module.js:497:17)\n    at require (internal/module.js:20:19)\n    at Object.<anonymous> (/home/vagrant/Code/sportlery/node_modules/sass-loader/index.js:4:12)\n    at Module._compile (module.js:570:32)\n    at Object.Module._extensions..js (module.js:579:10)\n    at Module.load (module.js:487:32)\n    at tryModuleLoad (module.js:446:12)\n    at Function.Module._load (module.js:438:3)\n    at Module.require (module.js:497:17)\n    at require (internal/module.js:20:19)\n    at loadLoader (/home/vagrant/Code/sportlery/node_modules/loader-runner/lib/loadLoader.js:13:17)\n    at iteratePitchingLoaders (/home/vagrant/Code/sportlery/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (/home/vagrant/Code/sportlery/node_modules/loader-runner/lib/LoaderRunner.js:165:10)\n    at /home/vagrant/Code/sportlery/node_modules/loader-runner/lib/LoaderRunner.js:173:18\n    at loadLoader (/home/vagrant/Code/sportlery/node_modules/loader-runner/lib/loadLoader.js:36:3)\n    at iteratePitchingLoaders (/home/vagrant/Code/sportlery/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (/home/vagrant/Code/sportlery/node_modules/loader-runner/lib/LoaderRunner.js:165:10)\n    at /home/vagrant/Code/sportlery/node_modules/loader-runner/lib/LoaderRunner.js:173:18\n    at loadLoader (/home/vagrant/Code/sportlery/node_modules/loader-runner/lib/loadLoader.js:36:3)\n    at iteratePitchingLoaders (/home/vagrant/Code/sportlery/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (/home/vagrant/Code/sportlery/node_modules/loader-runner/lib/LoaderRunner.js:165:10)\n    at /home/vagrant/Code/sportlery/node_modules/loader-runner/lib/LoaderRunner.js:173:18\n    at loadLoader (/home/vagrant/Code/sportlery/node_modules/loader-runner/lib/loadLoader.js:36:3)\n    at /home/vagrant/Code/sportlery/node_modules/webpack/lib/NormalModule.js:141:35\n    at /home/vagrant/Code/sportlery/node_modules/loader-runner/lib/LoaderRunner.js:364:11\n    at /home/vagrant/Code/sportlery/node_modules/loader-runner/lib/LoaderRunner.js:170:18\n    at loadLoader (/home/vagrant/Code/sportlery/node_modules/loader-runner/lib/loadLoader.js:27:11)\n    at iteratePitchingLoaders (/home/vagrant/Code/sportlery/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (/home/vagrant/Code/sportlery/node_modules/loader-runner/lib/LoaderRunner.js:165:10)\n    at /home/vagrant/Code/sportlery/node_modules/loader-runner/lib/LoaderRunner.js:173:18\n    at loadLoader (/home/vagrant/Code/sportlery/node_modules/loader-runner/lib/loadLoader.js:36:3)\n    at iteratePitchingLoaders (/home/vagrant/Code/sportlery/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (/home/vagrant/Code/sportlery/node_modules/loader-runner/lib/LoaderRunner.js:165:10)\n    at /home/vagrant/Code/sportlery/node_modules/loader-runner/lib/LoaderRunner.js:173:18\n    at loadLoader (/home/vagrant/Code/sportlery/node_modules/loader-runner/lib/loadLoader.js:36:3)\n    at iteratePitchingLoaders (/home/vagrant/Code/sportlery/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (/home/vagrant/Code/sportlery/node_modules/loader-runner/lib/LoaderRunner.js:165:10)\n    at /home/vagrant/Code/sportlery/node_modules/loader-runner/lib/LoaderRunner.js:173:18\n    at loadLoader (/home/vagrant/Code/sportlery/node_modules/loader-runner/lib/loadLoader.js:36:3)\n    at iteratePitchingLoaders (/home/vagrant/Code/sportlery/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at runLoaders (/home/vagrant/Code/sportlery/node_modules/loader-runner/lib/LoaderRunner.js:362:2)\n    at NormalModule.doBuild (/home/vagrant/Code/sportlery/node_modules/webpack/lib/NormalModule.js:129:2)\n    at NormalModule.build (/home/vagrant/Code/sportlery/node_modules/webpack/lib/NormalModule.js:180:15)\n    at Compilation.buildModule (/home/vagrant/Code/sportlery/node_modules/webpack/lib/Compilation.js:142:10)\n    at moduleFactory.create (/home/vagrant/Code/sportlery/node_modules/webpack/lib/Compilation.js:424:9)\n    at /home/vagrant/Code/sportlery/node_modules/webpack/lib/NormalModuleFactory.js:242:4\n    at /home/vagrant/Code/sportlery/node_modules/webpack/lib/NormalModuleFactory.js:93:13\n    at /home/vagrant/Code/sportlery/node_modules/tapable/lib/Tapable.js:204:11\n    at NormalModuleFactory.params.normalModuleFactory.plugin (/home/vagrant/Code/sportlery/node_modules/webpack/lib/CompatibilityPlugin.js:52:5)\n    at NormalModuleFactory.applyPluginsAsyncWaterfall (/home/vagrant/Code/sportlery/node_modules/tapable/lib/Tapable.js:208:13)\n    at onDoneResolving (/home/vagrant/Code/sportlery/node_modules/webpack/lib/NormalModuleFactory.js:68:11)\n    at onDoneResolving (/home/vagrant/Code/sportlery/node_modules/webpack/lib/NormalModuleFactory.js:189:6)\n    at _combinedTickCallback (internal/process/next_tick.js:67:7)");
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 /* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function($) {var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+/* WEBPACK VAR INJECTION */(function($) {var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -10354,9 +10356,13 @@ var LocationMap = function () {
         }
 
         this.locations = window.sportlery[locationVarName];
-        this.detailsUrl = $el.data('details-url');
+
+        if (!Array.isArray(this.locations)) {
+            this.locations = [this.locations];
+        }
+
         this.map = L.map($el[0]);
-        this.markerPopupTmpl = decodeURI($el.find('#marker-popup-tmpl').html());
+        this.markerPopupTmpl = decodeURI($el.find('#marker-popup-tmpl').detach().html());
 
         this.centerMap();
         this.initTiles();
@@ -10405,11 +10411,11 @@ var LocationMap = function () {
                 var propParts = prop.split('.');
                 var result = location;
                 for (var i = 0; i < propParts.length; i++) {
-                    if (result.hasOwnProperty(propParts[i])) {
-                        result = result[propParts[i]];
-                    } else {
+                    if (!result || (typeof result === 'undefined' ? 'undefined' : _typeof(result)) !== 'object' || !result.hasOwnProperty(propParts[i])) {
                         break;
                     }
+
+                    result = result[propParts[i]];
                 }
                 return result;
             });
@@ -10424,21 +10430,7 @@ var LocationMap = function () {
         value: function centerMap() {
             if (this.locations[0]) {
                 this.map.setView([this.locations[0].latitude, this.locations[0].longitude], 13);
-            } else {
-                console.log('No locations');
             }
-        }
-
-        /**
-         * Build the details url for the given id.
-         *
-         * @param  {string}  id
-         */
-
-    }, {
-        key: 'getDetailsUrl',
-        value: function getDetailsUrl(id) {
-            return this.detailsUrl.replace('_id_', id);
         }
     }]);
 

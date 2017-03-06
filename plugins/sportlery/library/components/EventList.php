@@ -54,6 +54,9 @@ class EventList extends ComponentBase
         $this->page['cities'] = $this->getCities();
         $this->page['eventTypes'] = $this->getEventTypes();
         $this->page['detailsPage'] = $this->property('detailsPage');
+
+        $this->addCss('https://unpkg.com/leaflet@1.0.3/dist/leaflet.css');
+        $this->addJs('https://unpkg.com/leaflet@1.0.3/dist/leaflet.js');
     }
 
     private function getEvents()
@@ -63,12 +66,16 @@ class EventList extends ComponentBase
 
         $searchParameters = \Input::only(['q', 'event_type', 'sport', 'city']);
 
-        return Event::search($searchParameters)
+        $events = Event::search($searchParameters)
                     ->orderBy('name', 'asc')
-                    ->paginate($perPage)
-                    ->each(function($event) use ($hashids) {
-                        $event->id = $event->getHashId();
-                    });
+                    ->paginate($perPage);
+
+        $events->each(function($event) use ($hashids) {
+            $event->id = $event->getHashId();
+            $event->description = str_limit(strip_tags($event->description), 140);
+        });
+
+        return $events;
     }
 
     private function getSports()

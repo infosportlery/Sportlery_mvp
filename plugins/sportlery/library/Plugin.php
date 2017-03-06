@@ -16,6 +16,7 @@ class Plugin extends PluginBase
             Components\EventProfile::class => 'eventProfile',
             Components\UserList::class => 'userList',
             Components\UserProfile::class => 'userProfile',
+            Components\UserDashboard::class => 'userDashboard',
         ];
     }
 

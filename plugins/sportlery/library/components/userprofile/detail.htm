@@ -5,13 +5,13 @@
 		<div class="panel panel-default">
 			<div class="panel-heading"><strong>Personal Information</strong></div>
         	<div class="panel-body">
-				<p class="text-right"><strong class="strong-name-left">Name:</strong> {{ user.name }} {{ user.surname}}</p>
-				<p class="text-right"><strong class="strong-name-left">Street:</strong> {{ user.street }} {{ user.street_num}}</p>
-				<p class="text-right"><strong class="strong-name-left">Zipcode:</strong> {{ user.zip_code }}</p>
-				<p class="text-right"><strong class="strong-name-left">City:</strong> {{ user.city }}</p>
+				<p class="text-right"><strong class="strong-name-left">Name:</strong> {{ user.name ?: '-' }} {{ user.surname ?: '-' }}</p>
+				<p class="text-right"><strong class="strong-name-left">Street:</strong> {{ user.street ?: '-' }} {{ user.street_num ?: '-' }}</p>
+				<p class="text-right"><strong class="strong-name-left">Zipcode:</strong> {{ user.zip_code ?: '-' }}</p>
+				<p class="text-right"><strong class="strong-name-left">City:</strong> {{ user.city ?: '-' }}</p>
 				<p class="text-right"><strong class="strong-name-left">Favorite Sports:</strong>
 					{% for sport in user.sports %}
-						{{ sport.name }}
+						{{ sport.name ?: '-' }}
 					{% endfor %}
 				</p>
         	</div>

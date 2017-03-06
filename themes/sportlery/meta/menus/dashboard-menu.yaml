@@ -1,0 +1,20 @@
+name: 'Dashboard Menu'
+items:
+    -
+        title: Dashboard
+        type: url
+        url: /dashboard
+        code: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Logout
+        type: url
+        url: /logout
+        code: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'

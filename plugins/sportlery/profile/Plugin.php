@@ -59,18 +59,15 @@ class Plugin extends PluginBase
 					'type' => 'textarea',
 					'tab' => 'Profile'
 				],
+
+
                 'sports' => [
                     'label' => 'Sports',
                     'nameFrom' => 'name',
                     'type' => 'relation',
                     'tab' => 'Profile',
-                ],
-                'favorite' => [
-                	'label' => 'Favorite',
-                	'nameFrom' => 'favorite',
-                	'type' => 'relation',
-                	'tab' => 'Profile',
-                ],
+            	],
+
 			]);
     	});
 
@@ -79,6 +76,7 @@ class Plugin extends PluginBase
                 'Sportlery\Library\Models\Sport',
                 'table' => 'sportlery_library_user_sports',
                 'order' => 'name',
+                'pivot' => ['favorite'],
             ];
         });
 

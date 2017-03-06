@@ -3,13 +3,11 @@ url = "/locaties"
 layout = "listing"
 is_hidden = 0
 
+[viewBag]
+localeUrl[en] = "/locations"
+
 [locationList]
 perPage = 10
 detailsPage = "location-profile"
-
-[viewBag]
-localeUrl[en] = "/locations"
 ==
-<h1>Locations</h1>
-
 {% component 'locationList' %}

@@ -13,3 +13,18 @@
     - create_spr_sports_table.php
     - create_spr_category_event_table.php
     - create_spr_event_sport_table.php
+1.0.4:
+    - 'Drop table sportlery_library_profile'
+    - builder_table_delete_sportlery_library_profile.php
+1.0.5:
+    - 'Created table sportlery_library_user_sports'
+    - builder_table_create_sportlery_library_user_sports.php
+1.0.6:
+    - 'Updated table sportlery_library_user_sports'
+    - builder_table_update_sportlery_library_user_sports.php
+1.0.7:
+    - 'Updated table sportlery_library_user_sports'
+    - builder_table_update_sportlery_library_user_sports_2.php
+1.0.8:
+    - 'Updated table sportlery_library_user_sports'
+    - builder_table_update_sportlery_library_user_sports_3.php

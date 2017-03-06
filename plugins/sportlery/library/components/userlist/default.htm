@@ -1,0 +1,30 @@
+{% for row in users|batch(2) %}
+    <div class="row">
+        {% for user in row %}
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h3>
+                            <a href="{{ detailsPage|page({ id: attribute(user, 'id') }) }}">
+                                {{ user.email }}
+                            </a>
+                        </h3>
+                        <div class="text-right">
+                            <a href="{{ detailsPage|page({ id: attribute(user, 'id') }) }}" class="btn btn-primary">Bekijk &raquo;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="alert alert-danger">
+                Geen locaties beschikbaar
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+{{ users.render|raw }}

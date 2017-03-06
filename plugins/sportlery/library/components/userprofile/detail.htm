@@ -1,0 +1,50 @@
+<!-- User Info Row -->
+
+<div class="row">
+	<div class="col-sm-6 col-xs-12" >
+		<div class="panel panel-default">
+			<div class="panel-heading"><strong>Personal Information</strong></div>
+        	<div class="panel-body">
+				<p class="text-right"><strong class="strong-name-left">Name:</strong> {{ user.name }} {{ user.surname}}</p>
+				<p class="text-right"><strong class="strong-name-left">Street:</strong> {{ user.street }} {{ user.street_num}}</p>
+				<p class="text-right"><strong class="strong-name-left">Zipcode:</strong> {{ user.zip_code }}</p>
+				<p class="text-right"><strong class="strong-name-left">City:</strong> {{ user.city }}</p>
+				<p class="text-right"><strong class="strong-name-left">Favorite Sports:</strong>
+					{% for sport in user.sports %}
+						{{ sport.name }}
+					{% endfor %}
+				</p>
+        	</div>
+        </div>
+	</div>
+	<div class="col-sm-5 col-sm-offset-1 col-xs-12">
+		<div class="panel panel-default">
+			<div class="panel-heading"><strong>Friend</strong></div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-12">
+						<button class="btn btn-primary btn-block">Add friend</button>		
+					</div>
+					
+				</div>
+				<hr class="hr-invisible">
+				<div class="row">
+					<div class="col-md-6">
+						<button class="btn btn-primary medium-btn btn-block">Block</button>
+					</div>
+					<div class="col-md-6">
+						<button class="btn btn-primary medium-btn btn-block">Message</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- User Info Row End -->
+
+<!-- Actieve Sporten Row -->
+
+<hr class="hr-invisible">
+
+

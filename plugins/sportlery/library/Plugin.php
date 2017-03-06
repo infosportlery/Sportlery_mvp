@@ -13,6 +13,8 @@ class Plugin extends PluginBase
             Components\LocationProfile::class => 'locationProfile',
             Components\EventList::class => 'eventList',
             Components\EventProfile::class => 'eventProfile',
+            Components\UserList::class => 'userList',
+            Components\UserProfile::class => 'userProfile',
         ];
     }
 

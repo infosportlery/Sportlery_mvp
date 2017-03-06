@@ -22,10 +22,6 @@ navigation:
                 label: Categories
                 url: sportlery/library/categories
                 icon: icon-tags
-            side-menu-item:
-                label: Profiles
-                url: sportlery/library/profiles
-                icon: icon-male
             sports:
                 label: Sports
                 url: sportlery/library/sports

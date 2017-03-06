@@ -10,3 +10,19 @@ body {
 .content-wrap {
      min-height: calc(100vh - #{$footer-height + $navbar-height + $navbar-margin-bottom + $footer-margin-top});
 }
+
+.hr-invisible {
+	border-top: none;
+}
+
+.strong-name-left {
+	float: left;
+}
+
+.header-row {
+	min-height: 300px;
+}
+
+.profile-container {
+	position: relative;
+}

@@ -1,0 +1,6 @@
+{% if user %}
+	{% partial __SELF__ ~ '::detail' %}
+{% else %}
+    <h1>Niet gevonden</h1>
+    <p>Sorry ik ken deze gebruiker niet.</p>
+{% endif %}

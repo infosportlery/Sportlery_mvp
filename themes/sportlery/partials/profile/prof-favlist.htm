@@ -1,0 +1,13 @@
+<div class="row">
+	{% for sport in user.sports %}
+	<div class="col-sm-3">
+		<div class="panel panel-default">
+			<div class="panel-heading"><strong> {{ sport.name }} </strong></div>
+			<div class="panel-body">
+				information about the sport 
+			</div>
+		</div>
+	</div>
+
+	{% endfor %}
+</div>

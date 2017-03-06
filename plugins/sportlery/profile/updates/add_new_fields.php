@@ -27,17 +27,19 @@ class AddNewFields extends Migration
 
     public function down()
     {
-        $table->dropDown([
-            'first_name',
-            'last_name',
-            'street',
-            'street_num',
-            'zip_code',
-            'city',
-            'tel_no',
-            'favorite_sport',
-            'bio'
-            ]);
+        Schema::table('users',function($table) {
+            $table->dropColumn([
+                'first_name',
+                'last_name',
+                'street',
+                'street_num',
+                'zip_code',
+                'city',
+                'tel_no',
+                'favorite_sport',
+                'bio'
+                ]);
+            });
     }
 
 }

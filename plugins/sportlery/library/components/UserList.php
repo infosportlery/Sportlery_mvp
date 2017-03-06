@@ -56,8 +56,18 @@ class UserList extends ComponentBase
         $perPage = $this->property('perPage');
         $hashids = \App::make(Hashids::class);
 
-        return User::orderBy('email', 'asc')->paginate($perPage)->each(function($user) use ($hashids) {
+        $query = User::orderBy('last_name', 'asc')->orderBy('first_name', 'asc');
+
+        if ($user = \Auth::getUser()) {
+            $query->where('id', '!=', $user->id);
+        }
+
+        $users = $query->paginate($perPage);
+
+        $users->each(function($user) use ($hashids) {
             $user->id = $user->getHashId();
         });
+
+        return $users;
     }
 }

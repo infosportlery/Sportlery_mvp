@@ -394,7 +394,7 @@ class FormController extends ControllerBehavior
         if (post('close') && !ends_with($context, '-close')) {
             $context .= '-close';
         }
-        
+
         if (post('refresh', false)) {
 	        return Redirect::refresh();
         }
@@ -411,7 +411,7 @@ class FormController extends ControllerBehavior
     }
 
     /**
-     * Internal method, returns a redirect URL from the config based on 
+     * Internal method, returns a redirect URL from the config based on
      * supplied context. Otherwise the default redirect is used.
      * @param string $context Redirect context, eg: create, update, delete.
      * @return string

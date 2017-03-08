@@ -6,6 +6,11 @@ use Hashids\Hashids as HashidGenerator;
 
 trait HashIds
 {
+    protected static function getHashIdPrefixColumn()
+    {
+        return 'slug';
+    }
+
     /**
      * Get the hashid for the model.
      *
@@ -13,7 +18,11 @@ trait HashIds
      */
     public function getHashId()
     {
-        return $this->slug.'-'.app(HashidGenerator::class)->encode($this->getKey());
+        $prefixColumn = static::getHashIdPrefixColumn();
+        $prefix = $prefixColumn ? $this->attributes[$prefixColumn] : null;
+        $hashId = app(HashidGenerator::class)->encode($this->getKey());
+
+        return ($prefix ? $prefix.'-' : '').$hashId;
     }
 
     /**
@@ -24,7 +33,7 @@ trait HashIds
      */
     public static function findByHashId($hashId)
     {
-        $hashId = explode('-', $hashId);
+        $hashId = static::getHashIdPrefixColumn() ? explode('-', $hashId) : [$hashId];
 
         if (empty($hashId)) {
             return null;

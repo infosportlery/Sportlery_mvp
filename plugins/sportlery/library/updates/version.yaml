@@ -32,3 +32,6 @@
 1.0.8:
     - 'Updated table sportlery_library_user_sports'
     - builder_table_update_sportlery_library_user_sports_3.php
+1.0.9:
+    - 'Create friendships table'
+    - create_spr_friendships_table.php

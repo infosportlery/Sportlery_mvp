@@ -1,44 +1,76 @@
 <!-- User Info Row -->
 
 <div class="row">
-	<div class="col-sm-6 col-xs-12" >
-		<div class="panel panel-default">
-			<div class="panel-heading"><strong>Personal Information</strong></div>
-        	<div class="panel-body">
-				<p class="text-right"><strong class="strong-name-left">Name:</strong> {{ user.name ?: '-' }} {{ user.surname ?: '-' }}</p>
-				<p class="text-right"><strong class="strong-name-left">Street:</strong> {{ user.street ?: '-' }} {{ user.street_num ?: '-' }}</p>
-				<p class="text-right"><strong class="strong-name-left">Zipcode:</strong> {{ user.zip_code ?: '-' }}</p>
-				<p class="text-right"><strong class="strong-name-left">City:</strong> {{ user.city ?: '-' }}</p>
-				<p class="text-right"><strong class="strong-name-left">Favorite Sports:</strong>
-					{% for sport in user.sports %}
-						{{ sport.name ?: '-' }}
-					{% endfor %}
-				</p>
-        	</div>
+    <div class="col-sm-6 col-xs-12" >
+        <div class="panel panel-default">
+            <div class="panel-heading"><strong>Personal Information</strong></div>
+            <div class="panel-body">
+                <p class="text-right"><strong class="strong-name-left">Name:</strong> {{ profile.name ?: '-' }} {{ profile.surname }}</p>
+                <p class="text-right"><strong class="strong-name-left">Street:</strong> {{ profile.street ?: '-' }} {{ profile.street_num }}</p>
+                <p class="text-right"><strong class="strong-name-left">Zipcode:</strong> {{ profile.zip_code ?: '-' }}</p>
+                <p class="text-right"><strong class="strong-name-left">City:</strong> {{ profile.city ?: '-' }}</p>
+                <p class="text-right"><strong class="strong-name-left">Favorite Sports:</strong>
+                    {% for sport in profile.sports %}
+                        {{ sport.name }}
+                    {% endfor %}
+                </p>
+            </div>
         </div>
-	</div>
-	<div class="col-sm-5 col-sm-offset-1 col-xs-12">
-		<div class="panel panel-default">
-			<div class="panel-heading"><strong>Friend</strong></div>
-			<div class="panel-body">
-				<div class="row">
-					<div class="col-md-12">
-						<button class="btn btn-primary btn-block">Add friend</button>		
-					</div>
-					
-				</div>
-				<hr class="hr-invisible">
-				<div class="row">
-					<div class="col-md-6">
-						<button class="btn btn-primary medium-btn btn-block">Block</button>
-					</div>
-					<div class="col-md-6">
-						<button class="btn btn-primary medium-btn btn-block">Message</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    </div>
+    <div class="col-sm-5 col-sm-offset-1 col-xs-12">
+        {% if user.id != profile.id %}
+        <div class="panel panel-default">
+            <div class="panel-heading"><strong>Friend</strong></div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        {% if isFriend %}
+                            {{ form_open({ route: 'friends.unfriend' }) }}
+                                {{ form_hidden('friend_id', profileHashId) }}
+                                <button type="submit" class="btn btn-success btn-block">Friended</button>
+                            {{ form_close() }}
+                        {% elseif friendshipPending %}
+                            <button class="btn btn-default btn-block" disabled>Awaiting response</button>
+                        {% elseif blocked %}
+                            {{ form_open({ route: 'friends.block' }) }}
+                                {{ form_hidden('friend_id', profileHashId) }}
+                                <button class="btn btn-danger btn-block">Blocked</button>
+                            {{ form_close() }}
+                        {% elseif friendshipNone or friendshipDeclined %}
+                            {{ form_open({ route: 'friends.add' }) }}
+                                {{ form_hidden('friend_id', profileHashId) }}
+                                <button type="submit" class="btn btn-primary btn-block">Add friend</button>
+                            {{ form_close() }}
+                        {% endif %}
+                    </div>
+                </div>
+                <hr class="hr-invisible">
+                <div class="row">
+                    <div class="col-md-6">
+                        {% if blocked %}
+                            {{ form_open({ route: 'friends.unblock' }) }}
+                                {{ form_hidden('friend_id', profileHashId) }}
+                                <button class="btn btn-danger btn-block">Unblock</button>
+                            {{ form_close() }}
+                        {% else %}
+                            {{ form_open({ route: 'friends.block' }) }}
+                                {{ form_hidden('friend_id', profileHashId) }}
+                                <button class="btn btn-danger btn-block">Block</button>
+                            {{ form_close() }}
+                        {% endif %}
+                    </div>
+                    <div class="col-md-6">
+                        {% if not blocked %}
+                        <button class="btn btn-default medium-btn btn-block">Message</button>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+            <p>Dit ben jij zelf</p>
+        {% endif %}
+    </div>
 </div>
 
 <!-- User Info Row End -->

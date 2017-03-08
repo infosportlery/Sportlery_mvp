@@ -61,6 +61,9 @@ class Event extends Model
         ],
     ];
 
+    protected $with = ['location'];
+    protected $appends = ['latitude', 'longitude'];
+
     public static function search(array $params)
     {
         $query = (new static)->newQuery();
@@ -104,6 +107,16 @@ class Event extends Model
     public function getCategoryNamesAttribute()
     {
         return $this->categories->lists('name');
+    }
+
+    public function getLatitudeAttribute()
+    {
+        return $this->location ? $this->location->latitude : null;
+    }
+
+    public function getLongitudeAttribute()
+    {
+        return $this->location ? $this->location->longitude : null;
     }
 }
 

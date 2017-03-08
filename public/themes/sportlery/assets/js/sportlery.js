@@ -10328,7 +10328,9 @@ window.$(function ($) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function($) {var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+/* WEBPACK VAR INJECTION */(function($) {var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -10359,9 +10361,13 @@ var LocationMap = function () {
         }
 
         this.locations = window.sportlery[locationVarName];
-        this.detailsUrl = $el.data('details-url');
+
+        if (!Array.isArray(this.locations)) {
+            this.locations = [this.locations];
+        }
+
         this.map = L.map($el[0]);
-        this.markerPopupTmpl = decodeURI($el.find('#marker-popup-tmpl').html());
+        this.markerPopupTmpl = decodeURI($el.find('#marker-popup-tmpl').detach().html());
 
         this.centerMap();
         this.initTiles();
@@ -10410,11 +10416,11 @@ var LocationMap = function () {
                 var propParts = prop.split('.');
                 var result = location;
                 for (var i = 0; i < propParts.length; i++) {
-                    if (result.hasOwnProperty(propParts[i])) {
-                        result = result[propParts[i]];
-                    } else {
+                    if (!result || (typeof result === 'undefined' ? 'undefined' : _typeof(result)) !== 'object' || !result.hasOwnProperty(propParts[i])) {
                         break;
                     }
+
+                    result = result[propParts[i]];
                 }
                 return result;
             });
@@ -10429,21 +10435,7 @@ var LocationMap = function () {
         value: function centerMap() {
             if (this.locations[0]) {
                 this.map.setView([this.locations[0].latitude, this.locations[0].longitude], 13);
-            } else {
-                console.log('No locations');
             }
-        }
-
-        /**
-         * Build the details url for the given id.
-         *
-         * @param  {string}  id
-         */
-
-    }, {
-        key: 'getDetailsUrl',
-        value: function getDetailsUrl(id) {
-            return this.detailsUrl.replace('_id_', id);
         }
     }]);
 

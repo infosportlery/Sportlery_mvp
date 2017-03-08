@@ -6,4 +6,6 @@ class User extends RainlabUser {
 	
     use \Sportlery\Library\Classes\Traits\HashIds;
 
+
+
 }

@@ -10310,6 +10310,11 @@ window.$(function ($) {
     if ($('[data-component="locationMap"]').length) {
         new __WEBPACK_IMPORTED_MODULE_0__components_locationMap__["a" /* default */]($('[data-component="locationMap"]'));
     }
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+        $("#sidebar-toggle").toggleClass("glyphicon-chevron-left glyphicon-chevron-right");
+    });
 });
 
 /***/ }),

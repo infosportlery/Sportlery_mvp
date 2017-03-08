@@ -8,4 +8,9 @@ window.$(function($) {
     if ($('[data-component="locationMap"]').length) {
         new LocationMap($('[data-component="locationMap"]'));
     }
+    $("#menu-toggle").click(function(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
+    $("#sidebar-toggle").toggleClass("glyphicon-chevron-left glyphicon-chevron-right");
+    });
 });

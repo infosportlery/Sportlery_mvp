@@ -1,5 +1,6 @@
  body.dashboard {
     overflow-x: hidden;
+    padding-top: 100px;
  }
 
 /* Toggle Styles */
@@ -22,6 +23,7 @@
     left: 250px;
     width: 0;
     height: 100%;
+    padding-top: 250px;
     margin-left: -250px;
     overflow-y: auto;
     background: #000;
@@ -81,17 +83,27 @@
 
 .sidebar-nav > .sidebar-brand {
     height: 65px;
+    line-height: 60px;
+    color: #FFF;
+}
+
+.sidebar-user {
+    height: 65px;
     font-size: 18px;
     line-height: 60px;
+    color: #FFF;	
 }
 
 .sidebar-nav > .sidebar-brand a {
-    color: #999999;
 }
 
 .sidebar-nav > .sidebar-brand a:hover {
     color: #fff;
     background: none;
+}
+
+.sidebar-nav-sub {
+	list-style: none;
 }
 
 @media(min-width:768px) {

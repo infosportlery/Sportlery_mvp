@@ -1,17 +1,24 @@
 <div id="sidebar-wrapper">
-		{% partial 'site/header' %}
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <a href="#">
-                        Start Bootstrap
-                    </a>
-                </li>
+            <ul class="sidebar-nav">	
+				<div class="sidebar-img text-center">
+					<img src="{{ user.avatar.thumb(200,auto) }}
+					<li class="sidebar-user">
+	                	{{ user.name }} {{ user.surname }}
+	                </li>
+				</div>
                 <li>
-                    <a href="#">Dashboard</a>
+                    <a href="/dashboard">Dashboard</a>
                 </li>
-                <li>
-                    <a href="#">Shortcuts</a>
-                </li>
+            	<li class="sidebar-brand">
+            		<h4><span class="glyphicon glyphicon-wrench"></span><b> Personal</b></h4>
+                <ul class="sidebar-nav-sub">
+                	
+	                <li>
+	                    <a href=""><span class="glyphicon glyphicon-cog"> Settings</span></a>
+	                </li>
+                </ul>	
+            	</li>
+                
                 <li>
                     <a href="#">Overview</a>
                 </li>

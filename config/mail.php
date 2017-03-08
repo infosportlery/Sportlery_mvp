@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'foxhousegr@gmail.com', 'name' => 'Sportlery'],
+    'from' => ['address' => 'foxhousegr@gmail.com', 'name' => 'Sportlery Support'],
 
     /*
     |--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return [
     |
     */
 
-    'password' => env('MAIL_PASSWORD', 'Y90889f9'),
+    'password' => env('MAIL_PASSWORD', 'Y90889F9'),
 
     /*
     |--------------------------------------------------------------------------

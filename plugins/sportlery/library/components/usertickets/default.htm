@@ -1,0 +1,27 @@
+<form data-request="userTickets::onSend" data-request-success="alert('We have recieved your email.. we\'ll get back to you shortly')" data-request-error="Sorry, something went wrong!">
+	<label>
+		Subject dd
+	</label>
+	<select name="subject">
+		<option value="Event">Event</option>
+		<option value="Payment">Payment</option>
+		<option value="other">Other</option>
+	</select>
+
+	<label>
+		Name
+	</label>
+	<input type="text" name="name">
+	<label>
+		Email
+	</label>
+	<input type="email" name="email">
+	<label>
+		Message
+	</label>
+	<textarea name="content"></textarea>
+	<label>
+
+	<button type="submit">Submit</button>
+
+</form>

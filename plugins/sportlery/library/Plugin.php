@@ -21,6 +21,7 @@ class Plugin extends PluginBase
             Components\UserDashboard::class => 'userDashboard',
             Components\UserList::class => 'userList',
             Components\UserProfile::class => 'userProfile',
+            Components\UserTickets::class => 'userTickets',
         ];
     }
 

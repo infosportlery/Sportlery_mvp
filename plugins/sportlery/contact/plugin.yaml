@@ -1,0 +1,6 @@
+plugin:
+    name: 'sportlery.contact::lang.plugin.name'
+    description: 'sportlery.contact::lang.plugin.description'
+    author: Sportlery
+    icon: oc-icon-envelope-o
+    homepage: ''

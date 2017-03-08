@@ -29,7 +29,6 @@ redirect = "login"
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                    {{ user }}
                         {% page %}
                     </div>
                 </div>
@@ -42,6 +41,7 @@ redirect = "login"
         {% partial 'site/footer' %}
 
         <!-- Scripts -->
+        {% framework %}
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
         {% scripts %}
         <script src="{{ 'assets/js/sportlery.js'|theme }}"></script>

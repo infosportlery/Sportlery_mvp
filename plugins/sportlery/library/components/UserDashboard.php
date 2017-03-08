@@ -20,5 +20,6 @@ class UserDashboard extends ComponentBase
 
     public function onRun()
     {
+        $user = \Auth::getUser();
     }
 }

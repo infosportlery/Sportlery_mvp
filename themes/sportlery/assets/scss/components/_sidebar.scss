@@ -23,7 +23,7 @@
     left: 250px;
     width: 0;
     height: 100%;
-    padding-top: 250px;
+    padding-top: 10px;
     margin-left: -250px;
     overflow-y: auto;
     background: #000;
@@ -31,6 +31,16 @@
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
+}
+
+.sidebar-nav .sidebar-item {
+	text-indent: 30px;
+	line-height: 25px;
+	font-size: 14px;
+}
+
+.sidebar-nav .sidebar-item-header {
+	font-size: 16px;
 }
 
 #wrapper.toggled #sidebar-wrapper {
@@ -51,7 +61,6 @@
 /* Sidebar Styles */
 
 .sidebar-nav {
-    position: absolute;
     top: 0;
     width: 250px;
     margin: 0;
@@ -104,6 +113,21 @@
 
 .sidebar-nav-sub {
 	list-style: none;
+}
+
+.dashboard-badge {
+	margin-right: 15px;
+    background-color: #F46835;
+    padding: 1px 7px;
+    text-align: center;
+    vertical-align: top;
+    border-radius: 7px;
+    color: #FFF;
+    font-size: 12px;
+}
+
+#menu-toggle {
+	background-color: #f46835;
 }
 
 @media(min-width:768px) {

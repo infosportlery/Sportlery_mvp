@@ -17,7 +17,7 @@ redirect = "login"
         {% styles %}
     </head>
     <body class="dashboard">
-		
+
 		{% partial 'site/header' %}
         <!-- Sidebar -->
     <div id="wrapper">
@@ -35,15 +35,15 @@ redirect = "login"
             </div>
         </div>
         <!-- /#page-content-wrapper -->
-	
+
 
     </div>
         {% partial 'site/footer' %}
 
         <!-- Scripts -->
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-        {% scripts %}
         {% framework %}
+        {% scripts %}
         <script src="{{ 'assets/js/sportlery.js'|theme }}"></script>
     </body>
 </html>

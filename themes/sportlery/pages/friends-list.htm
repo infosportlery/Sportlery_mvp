@@ -8,6 +8,24 @@ localeUrl[en] = "/dashboard/sportbuddies"
 
 [friendsList]
 ==
-<h3>Sport Buddies</h3>
+<div class="row">
+    <div class="col-md-4 col-sm-12">
+        <h3>Sport Buddies</h3>
+        {% component 'friendsList' listType="friends" %}
+    </div>
+    <div class="col-md-4 col-sm-12">
+        <h3>Received Requests</h3>
+        {% component 'friendsList' listType="received" %}
+    </div>
+    <div class="col-md-4 col-sm-12">
+        <h3>Sent Requests</h3>
+        {% component 'friendsList' listType="sent" %}
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <h3 class="text-danger">Blocked users</h3>
+        {% component 'friendsList' listType="blocked" %}
+    </div>
+</div>
 
-{% component 'friendsList' %}

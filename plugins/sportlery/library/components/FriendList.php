@@ -2,7 +2,11 @@
 
 namespace Sportlery\Library\Components;
 
+use Auth;
 use Cms\Classes\ComponentBase;
+use Redirect;
+use RainLab\User\Models\User;
+use Sportlery\Library\Classes\FriendshipStatus;
 
 class FriendList extends ComponentBase
 {
@@ -17,10 +21,74 @@ class FriendList extends ComponentBase
         ];
     }
 
-    public function onRun()
+    public function defineProperties()
     {
-        $user = \Auth::getUser();
+        return [
+            'listType' => [
+                'title'       => 'List type',
+                'description' => 'The type of friends list to show',
+                'type'        => 'dropdown',
+                'default'     => 'friends',
+                'options'     => [
+                    'blocked'  => 'Blocked users',
+                    'friends'  => 'All accepted friends',
+                    'sent'     => 'All sent friend requests',
+                    'received' => 'All received friend requests',
+                ]
+            ],
+        ];
+    }
 
-        $this->page['friends'] = $user->listFriends();
+    public function onRender()
+    {
+        $user = Auth::getUser();
+        $this->page['showAcceptButtons'] = false;
+        $this->page['showUnblockButton'] = false;
+
+        switch ($this->property('listType')) {
+            case 'blocked':
+                $this->page['friends'] = $user->listBlockedFriends();
+                $this->page['showUnblockButton'] = true;
+                break;
+            case 'sent':
+                $this->page['friends'] = $user->listSentFriendRequests();
+                break;
+            case 'received':
+                $this->page['friends'] = $user->listReceivedFriendRequests();
+                $this->page['showAcceptButtons'] = true;
+                break;
+            case 'friends':
+            default:
+                $this->page['friends'] = $user->listFriends();
+                break;
+        }
+
+        $this->page['friends']->each(function($friend) {
+            $friend->hashId = $friend->getHashId();
+        });
+    }
+
+    public function onUpdateFriendship()
+    {
+        $user = Auth::getUser();
+
+        if ($friend = User::findByHashId(post('friend_id'))) {
+            switch (post('action')) {
+                case 'accept':
+                    $user->acceptFriendRequest($friend);
+                    break;
+                case 'decline':
+                    $user->declineFriendRequest($friend);
+                    break;
+                case 'block':
+                    $friend->block($user);
+                    break;
+                case 'unblock':
+                    $friend->unblock($user);
+                    break;
+            }
+        }
+
+        return Redirect::refresh();
     }
 }

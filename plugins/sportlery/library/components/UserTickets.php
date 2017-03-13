@@ -3,6 +3,8 @@
 use Cms\Classes\ComponentBase;
 use Input;
 use Mail;
+use Validator;
+use Redirect;
 
 class UserTickets extends ComponentBase {
 
@@ -14,7 +16,21 @@ class UserTickets extends ComponentBase {
 		];
 	}
 
-	public function onSend() {
+	public function onCreate() {
+
+		$user = \Auth::getUser();
+		$validator = Validator::make(
+			[
+				'subject' => Input::get('subject'),
+				'content' => Input::get('content'),
+			],
+			[
+				'subject' => 'required',
+				'content' => 'required',
+
+			]
+		);
+
 		// These variables are available inside the message as Twig
 		$vars = ['name' => Input::get('name'), 'email' => Input::get('email'), 'content' => Input::get('content')];
 

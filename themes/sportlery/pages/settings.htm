@@ -9,11 +9,28 @@ paramCode = "code"
 forceSecure = 0
 
 [session]
-security = "all"
+security = "user"
+==
+<?php
+function onInit()
+{
+    $user = Auth::getUser();
+        $component = $this->addComponent(
+            'NetSTI\Uploader\Components\ImageUploader',
+            'imageUploader',
+            ['modelClass'=>'RainLab\User\Models\User','modelKeyColumn'=>'avatar', 'deferredBinding' => false]
+        );
+
+        $component->bindModel('avatar', $user);
+}
+?>
 ==
 <div class="row">
 	<div class="col-md-4">
 		<h3>Personal Settings</h3>
+
+		{% component 'imageUploader' %}
+		
 		{% component 'account' %}		
 	</div>
 	<div class="col-md-5 col-md-offset-1 col-sm-12">

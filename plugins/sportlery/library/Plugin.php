@@ -39,8 +39,22 @@ class Plugin extends PluginBase
             return new Hashids('sportlery', 10, $alphabet);
         });
 
+        Event::listen('locale.changed', function($locale) {
+            switch ($locale) {
+                case 'nl':
+                    $locale = 'nl_NL';
+                    break;
+                case 'en':
+                    $locale = 'en_US';
+                    break;
+            }
+
+            setlocale(LC_ALL, $locale);
+        });
+
         User::extend(function($model) {
-            $model->implement[] = 'Sportlery.Library.Behaviors.UserModel';
+            $model->implement[] = 'Sportlery.Library.Behaviors.UserFriendsModel';
+            $model->implement[] = 'Sportlery.Library.Behaviors.UserEventsModel';
         });
 
         Users::extend(function($controller) {

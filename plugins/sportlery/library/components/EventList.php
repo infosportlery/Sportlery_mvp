@@ -64,7 +64,7 @@ class EventList extends ComponentBase
         $perPage = $this->property('perPage');
         $hashids = \App::make(Hashids::class);
 
-        $searchParameters = \Input::only(['q', 'event_type', 'sport', 'city']);
+        $searchParameters = \Input::only(['q', 'event_type', 'sport', 'city', 'past']);
 
         $events = Event::search($searchParameters)
                     ->orderBy('name', 'asc')

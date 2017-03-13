@@ -63,10 +63,15 @@ class Event extends Model
 
     protected $with = ['location'];
     protected $appends = ['latitude', 'longitude'];
+    protected $dates = ['starts_at', 'ends_at'];
 
     public static function search(array $params)
     {
         $query = (new static)->newQuery();
+
+        if (!isset($params['past']) || $params['past'] === '0') {
+            $query->whereDate('ends_at', '>=', date('Y-m-d'));
+        }
 
         if (isset($params['q']) && $q = trim($params['q'])) {
             $q = '%'.$q.'%';

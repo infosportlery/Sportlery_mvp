@@ -7,7 +7,7 @@ use Sportlery\Library\Classes\FriendshipStatus;
 use System\Classes\ModelBehavior;
 use Hashids\Hashids as HashidGenerator;
 
-class UserModel extends ModelBehavior
+class UserFriendsModel extends ModelBehavior
 {
     /**
      * Initialize the friendable model behavior.
@@ -78,23 +78,55 @@ class UserModel extends ModelBehavior
     }
 
     /**
-     * Get all accepted friends for this model.
+     * Determine whether the model has any accepted friends.
      *
-     * @return \Illuminate\Database\Eloquent\Collection|User[]
+     * @return bool
      */
-    public function listFriends()
+    public function hasFriends()
     {
-        $friendships = $this->model->friends()->newPivotStatement()
-                                              ->where(function($q) {
-                                                  return $q->orWhere('user_id', $this->model->getKey())
-                                                      ->orWhere('friend_id', $this->model->getKey());
-                                              })->where('status', FriendshipStatus::ACCEPTED)
-                                              ->get(['user_id', 'friend_id']);
+        return $this->findFriendships()->exists();
+    }
 
-        if (!count($friendships)) {
+    public function findFriendIdsByHashIds(array $ids)
+    {
+        /** @var HashidGenerator $hashIds */
+        $hashIds = app(HashidGenerator::class);
+
+        $ids = array_map(function ($id) use ($hashIds) {
+            $id = $hashIds->decode($id);
+
+            return !is_null($id) ? reset($id) : null;
+        }, $ids);
+
+        $ids = array_filter($ids);
+
+        if (!count($ids)) {
             return $this->model->newCollection();
         }
 
+        return $this->getFriendIds($ids);
+    }
+
+    /**
+     * Get all accepted friends for this model.
+     *
+     * @param  array  $ids
+     * @return \Illuminate\Database\Eloquent\Collection|User[]
+     */
+    public function listFriends(array $ids = [])
+    {
+        $friendIds = $this->getFriendIds($ids);
+
+        if (!count($friendIds)) {
+            return $this->model->newCollection();
+        }
+
+        return $this->model->newQuery()->whereIn('id', $friendIds)->get();
+    }
+
+    private function getFriendIds(array $ids = [])
+    {
+        $friendships = $this->findFriendships($ids)->get(['user_id', 'friend_id']);
         $friendIds = [];
 
         foreach ($friendships as $friendship) {
@@ -105,7 +137,7 @@ class UserModel extends ModelBehavior
             }
         }
 
-        return $this->model->newQuery()->whereIn('id', $friendIds)->get();
+        return $friendIds;
     }
 
     /**
@@ -285,5 +317,29 @@ class UserModel extends ModelBehavior
                 $query->where('user_id', $otherUser->getKey())->where('friend_id', $this->model->getKey());
             });
         });
+    }
+
+    /**
+     * Start a new pivot query for all accepted friendships for this model.
+     *
+     * @param  array  $ids
+     * @return \October\Rain\Database\Builder
+     */
+    protected function findFriendships(array $ids = [])
+    {
+        $query = $this->model->friends()->newPivotStatement()
+            ->where('status', FriendshipStatus::ACCEPTED)
+            ->where(function($q) {
+                return $q->orWhere('user_id', $this->model->getKey())
+                         ->orWhere('friend_id', $this->model->getKey());
+            });
+
+        if (count($ids)) {
+            $query->where(function($q) use ($ids) {
+                return $q->orWhereIn('user_id', $ids)->orWhereIn('friend_id', $ids);
+            });
+        }
+
+        return $query;
     }
 }

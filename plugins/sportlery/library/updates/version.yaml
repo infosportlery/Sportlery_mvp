@@ -35,3 +35,7 @@
 1.0.9:
     - 'Create friendships table'
     - create_spr_friendships_table.php
+1.0.10:
+    - 'Create table to track users going to events (invites, going, interested, canceled)'
+    - create_spr_event_user_table.php
+    - create_spr_event_invites_table.php

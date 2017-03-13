@@ -5,7 +5,7 @@ namespace Sportlery\Library\Components;
 use Cms\Classes\ComponentBase;
 use Cms\Classes\Page;
 use Hashids\Hashids;
-use Sportlery\Library\Models\User;
+use Rainlab\User\Models\User;
 
 class UserList extends ComponentBase
 {

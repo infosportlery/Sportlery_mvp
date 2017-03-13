@@ -5,7 +5,7 @@ namespace Sportlery\Library\Classes;
 use Redirect;
 use Illuminate\Routing\Controller;
 use October\Rain\Support\Facades\Flash;
-use Sportlery\Library\Models\User;
+use Rainlab\User\Models\User;
 
 class FriendshipsController extends Controller
 {

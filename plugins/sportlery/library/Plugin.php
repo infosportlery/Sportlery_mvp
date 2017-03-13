@@ -39,24 +39,11 @@ class Plugin extends PluginBase
             return new Hashids('sportlery', 10, $alphabet);
         });
 
-        App::singleton('user.auth', function() {
-            return \Sportlery\Library\Classes\AuthManager::instance();
-        });
-
         User::extend(function($model) {
-            $model->belongsToMany['friends'] = [
-                'Sportlery\Library\Models\User',
-                'table' => 'spr_friendships',
-                'pivot' => ['status'],
-                'timestamps' => true,
-                'key' => 'user_id',
-                'otherKey' => 'friend_id',
-            ];
+            $model->implement[] = 'Sportlery.Library.Behaviors.UserModel';
         });
 
         Users::extend(function($controller) {
-            $controller->formConfig = '$/sportlery/library/overrides/rainlab_user/config_user_form.yaml';
-            $controller->listConfig = '$/sportlery/library/overrides/rainlab_user/config_user_list.yaml';
             $controller->implement[] = 'Backend.Behaviors.RelationController';
             $controller->relationConfig = [
                 'friends' => [

@@ -70,11 +70,11 @@ class Plugin extends PluginBase
                     'nameFrom' => 'name',
                     'type' => 'relation',
                     'tab' => 'Profile',
-            	],
+                ],
                 'friends' => [
                     'tab' => 'Friends',
                     'type' => 'partial',
-                    'path' => '$/sportlery/library/models/friendship/formField.htm',
+                    'path' => '$/sportlery/library/partials/friendship/formField.htm',
                 ]
             ]);
         });

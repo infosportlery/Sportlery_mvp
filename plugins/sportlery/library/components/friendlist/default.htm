@@ -1,7 +1,6 @@
 <div class="panel panel-default">
     <ul class="list-group">
         {% for friend in friends %}
-            {{ friend.RainlabUser.avatar }}
             <li class="list-group-item">
                 <img src="{{ friend.avatar.thumb(25,auto) }}">
                 {{ friend.first_name }} {{ friend.last_name }}

@@ -4,7 +4,7 @@ namespace Sportlery\Library\Components;
 
 use Cms\Classes\ComponentBase;
 use Sportlery\Library\Classes\FriendshipStatus;
-use Sportlery\Library\Models\User;
+use Rainlab\User\Models\User;
 
 class UserProfile extends ComponentBase
 {

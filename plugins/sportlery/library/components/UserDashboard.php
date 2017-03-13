@@ -3,7 +3,6 @@
 namespace Sportlery\Library\Components;
 
 use Cms\Classes\ComponentBase;
-use Sportlery\Library\Models\User;
 
 class UserDashboard extends ComponentBase
 {

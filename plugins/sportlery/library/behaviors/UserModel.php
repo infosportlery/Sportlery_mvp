@@ -3,6 +3,7 @@
 namespace Sportlery\Library\Behaviors;
 
 use RainLab\User\Models\User;
+use Sportlery\Library\Classes\FriendshipStatus;
 use System\Classes\ModelBehavior;
 use Hashids\Hashids as HashidGenerator;
 
@@ -24,6 +25,16 @@ class UserModel extends ModelBehavior
             'timestamps' => true,
             'key' => 'user_id',
             'otherKey' => 'friend_id',
+        ];
+
+        // Inverse of friends.
+        $model->belongsToMany['friendedBy'] = [
+            User::class,
+            'table' => 'spr_friendships',
+            'pivot' => ['status'],
+            'timestamps' => true,
+            'key' => 'friend_id',
+            'otherKey' => 'user_id',
         ];
     }
 
@@ -67,15 +78,64 @@ class UserModel extends ModelBehavior
     }
 
     /**
-     * Get all friends for this model.
+     * Get all accepted friends for this model.
      *
      * @return \Illuminate\Database\Eloquent\Collection|User[]
      */
     public function listFriends()
     {
-        return $this->model->friends()->wherePivot('user_id', $this->model->getKey())
-                               ->orWherePivot('friend_id', $this->model->getKey())
-                               ->get();
+        $friendships = $this->model->friends()->newPivotStatement()
+                                              ->where(function($q) {
+                                                  return $q->orWhere('user_id', $this->model->getKey())
+                                                      ->orWhere('friend_id', $this->model->getKey());
+                                              })->where('status', FriendshipStatus::ACCEPTED)
+                                              ->get(['user_id', 'friend_id']);
+
+        if (!count($friendships)) {
+            return $this->model->newCollection();
+        }
+
+        $friendIds = [];
+
+        foreach ($friendships as $friendship) {
+            if ($friendship->user_id === $this->model->getKey()) {
+                $friendIds[] = $friendship->friend_id;
+            } else {
+                $friendIds[] = $friendship->user_id;
+            }
+        }
+
+        return $this->model->newQuery()->whereIn('id', $friendIds)->get();
+    }
+
+    /**
+     * Get a list of all received friend requests that are pending.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection|User[]
+     */
+    public function listReceivedFriendRequests()
+    {
+        return $this->model->friendedBy()->wherePivot('status', FriendshipStatus::PENDING)->get();
+    }
+
+    /**
+     * Get a list of all sent friend requests that are pending.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection|User[]
+     */
+    public function listSentFriendRequests()
+    {
+        return $this->model->friends()->wherePivot('status', FriendshipStatus::PENDING)->get();
+    }
+
+    /**
+     * Get a list of all blocked users.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection|User[]
+     */
+    public function listBlockedFriends()
+    {
+        return $this->model->friendedBy()->wherePivot('status', FriendshipStatus::BLOCKED)->get();
     }
 
     /**
@@ -108,7 +168,50 @@ class UserModel extends ModelBehavior
             return false;
         }
 
+        return $this->findFriendship($otherUser)->where(['status' => FriendshipStatus::ACCEPTED])->delete();
+    }
+
+    /**
+     * Delete the friendship between the model and the other user.
+     *
+     * @param  User  $otherUser
+     * @return bool
+     */
+    public function deleteFriendship($otherUser)
+    {
+        if (!$otherUser) {
+            return false;
+        }
+
         return $this->findFriendship($otherUser)->delete();
+    }
+
+    /**
+     * Accept the friend request from the other user.
+     *
+     * @param  User  $otherUser
+     * @return bool
+     */
+    public function acceptFriendRequest($otherUser)
+    {
+        if (!$otherUser) {
+            return false;
+        }
+
+        return $this->model->friendedBy()->updateExistingPivot($otherUser->getKey(), [
+            'status' => FriendshipStatus::ACCEPTED
+        ]);
+    }
+
+    /**
+     * Decline the friend request from the other user.
+     *
+     * @param  User  $otherUser
+     * @return bool
+     */
+    public function declineFriendRequest($otherUser)
+    {
+        return $this->deleteFriendship($otherUser);
     }
 
     /**
@@ -123,7 +226,9 @@ class UserModel extends ModelBehavior
             return false;
         }
 
-        $updated = $this->findFriendship($otherUser)->update(['status' => FriendshipStatus::BLOCKED]);
+        $updated = $this->model->friendedBy()->updateExistingPivot($otherUser->getKey(), [
+            'status' => FriendshipStatus::BLOCKED,
+        ]);
 
         if (!$updated) {
             $this->model->friends()->attach($otherUser, ['status' => FriendshipStatus::BLOCKED]);
@@ -140,7 +245,7 @@ class UserModel extends ModelBehavior
      */
     public function unblock($otherUser)
     {
-        return $this->unfriend($otherUser);
+        return $this->deleteFriendship($otherUser);
     }
 
     /**

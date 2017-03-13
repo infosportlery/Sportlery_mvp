@@ -1,46 +1,38 @@
-    <div class="row">
-    	<div class="col-md-3 col-sm-12">
-			<div class="panel panel-default">
-			<h3>Sport Buddies</h3>
-		    <ul class="list-group">
-		        {% for friend in friends %}
-		            <li class="list-group-item">
-		                <img src="{{ friend.avatar.thumb(25,auto) }}">
-		                {{ friend.first_name }} {{ friend.last_name }}
-		            </li>
-		        {% endfor %}
-		    </ul>
-    		
-	    	</div>
-	    </div>
-    	<div class="col-md-3 col-md-offset-1 col-sm-12">
-    		
-			<div class="panel panel-default">
-			<h3>Buddy Requests</h3>
-		    <ul class="list-group">
-		        {% for friend in friends %}
-		            <li class="list-group-item">
-		                <img src="{{ friend.avatar.thumb(25,auto) }}">
-		                {{ friend.first_name }} {{ friend.last_name }}
-		            </li>
-		        {% endfor %}
-		    </ul>
-    		
-	    	</div>
-    	</div>
-    	<div class="col-md-3 col-md-offset-1 col-sm-12">
-    		
-			<div class="panel panel-default">
-			<h3>Your Requests</h3>
-		    <ul class="list-group">
-		        {% for friend in friends %}
-		            <li class="list-group-item">
-		                <img src="{{ friend.avatar.thumb(25,auto) }}">
-		                {{ friend.first_name }} {{ friend.last_name }}
-		            </li>
-		        {% endfor %}
-		    </ul>
-    		
-	    	</div>
-    	</div>
+<div class="panel panel-default">
+    <ul class="list-group">
+        {% for friend in friends %}
+            <li class="list-group-item">
+                <img src="{{ friend.avatar.thumb(25,auto) }}">
+                {{ friend.first_name }} {{ friend.last_name }}
+                {% if showAcceptButtons %}
+                    <span class="pull-right">
+                        {{ form_open({ class: 'd-inline', request: __SELF__~'::onUpdateFriendship' }) }}
+                            {{ form_hidden('friend_id', friend.hashId) }}
+                            <button class="btn btn-success btn-xs" name="action" value="accept">Accept</button>
+                            <button class="btn btn-danger btn-xs" name="action" value="decline">Decline</button>
+                            <button class="btn btn-danger btn-xs" name="action" value="block">Block</button>
+                        {{ form_close() }}
+                    </span>
+                {% endif %}
+                {% if showUnblockButton %}
+                    <span class="pull-right">
+                        {{ form_open({ class: 'd-inline', request: __SELF__~'::onUpdateFriendship' }) }}
+                            {{ form_hidden('friend_id', friend.hashId) }}
+                            <button class="btn btn-danger btn-xs" name="action" value="unblock">Unblock</button>
+                        {{ form_close() }}
+                    </span>
+                {% endif %}
+                {% if showUnfriendButton %}
+                    <span class="pull-right">
+                        {{ form_open({ class: 'd-inline', request: __SELF__~'::onUpdateFriendship' }) }}
+                            {{ form_hidden('friend_id', friend.hashId) }}
+                            <button class="btn btn-danger btn-xs" name="action" value="unfriend">Unfriend</button>
+                        {{ form_close() }}
+                    </span>
+                {% endif %}
+            </li>
+        {% else %}
+            <li class="list-group-item text-muted">No sport buddies found.</li>
+        {% endfor %}
+    </ul>
 </div>

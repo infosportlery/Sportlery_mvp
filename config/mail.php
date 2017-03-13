@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.gmail.com'),
+    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +54,10 @@ return [
     |
     */
 
-    'from' => ['address' => 'foxhousegr@gmail.com', 'name' => 'Sportlery Support'],
+    'from' => [
+        'address' => env('MAIL_FROM_ADDRESS', 'foxhousegr@gmail.com'),
+        'name' => env('MAIL_FROM_NAME', 'Sportlery Support'),
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +83,7 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME', 'foxhousegr@gmail.com'),
+    'username' => env('MAIL_USERNAME'),
 
     /*
     |--------------------------------------------------------------------------
@@ -93,7 +96,7 @@ return [
     |
     */
 
-    'password' => env('MAIL_PASSWORD', 'Y90889F9'),
+    'password' => env('MAIL_PASSWORD'),
 
     /*
     |--------------------------------------------------------------------------
@@ -107,6 +110,7 @@ return [
     */
 
     'sendmail' => '/usr/sbin/sendmail -bs',
+
     'to' => [
         'address' => 'foxhousegr@gmail.com',
         'name' => 'Get aalll mails'

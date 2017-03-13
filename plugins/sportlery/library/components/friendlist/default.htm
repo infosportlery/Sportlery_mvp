@@ -1,10 +1,46 @@
-<div class="panel panel-default">
-    <ul class="list-group">
-        {% for friend in friends %}
-            <li class="list-group-item">
-                <img src="{{ friend.avatar.thumb(25,auto) }}">
-                {{ friend.first_name }} {{ friend.last_name }}
-            </li>
-        {% endfor %}
-    </ul>
+    <div class="row">
+    	<div class="col-md-3 col-sm-12">
+			<div class="panel panel-default">
+			<h3>Sport Buddies</h3>
+		    <ul class="list-group">
+		        {% for friend in friends %}
+		            <li class="list-group-item">
+		                <img src="{{ friend.avatar.thumb(25,auto) }}">
+		                {{ friend.first_name }} {{ friend.last_name }}
+		            </li>
+		        {% endfor %}
+		    </ul>
+    		
+	    	</div>
+	    </div>
+    	<div class="col-md-3 col-md-offset-1 col-sm-12">
+    		
+			<div class="panel panel-default">
+			<h3>Buddy Requests</h3>
+		    <ul class="list-group">
+		        {% for friend in friends %}
+		            <li class="list-group-item">
+		                <img src="{{ friend.avatar.thumb(25,auto) }}">
+		                {{ friend.first_name }} {{ friend.last_name }}
+		            </li>
+		        {% endfor %}
+		    </ul>
+    		
+	    	</div>
+    	</div>
+    	<div class="col-md-3 col-md-offset-1 col-sm-12">
+    		
+			<div class="panel panel-default">
+			<h3>Your Requests</h3>
+		    <ul class="list-group">
+		        {% for friend in friends %}
+		            <li class="list-group-item">
+		                <img src="{{ friend.avatar.thumb(25,auto) }}">
+		                {{ friend.first_name }} {{ friend.last_name }}
+		            </li>
+		        {% endfor %}
+		    </ul>
+    		
+	    	</div>
+    	</div>
 </div>

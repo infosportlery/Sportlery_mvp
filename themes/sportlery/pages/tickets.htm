@@ -5,4 +5,18 @@ is_hidden = 0
 
 [userTickets]
 ==
-{% component 'userTickets' %}
+
+<div class="row">
+	<div class="col-md-5">
+		<h3>New Ticket</h3>
+		{% component 'userTickets' %}		
+	</div>	
+	<div class="col-md-6 col-md-offset-1">
+		<h3>Current Tickets</h3>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<h3>Finished Tickets</h3>
+	</div>
+</div>

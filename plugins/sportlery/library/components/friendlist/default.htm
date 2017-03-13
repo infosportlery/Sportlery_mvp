@@ -22,6 +22,14 @@
                         {{ form_close() }}
                     </span>
                 {% endif %}
+                {% if showUnfriendButton %}
+                    <span class="pull-right">
+                        {{ form_open({ class: 'd-inline', request: __SELF__~'::onUpdateFriendship' }) }}
+                            {{ form_hidden('friend_id', friend.hashId) }}
+                            <button class="btn btn-danger btn-xs" name="action" value="unfriend">Unfriend</button>
+                        {{ form_close() }}
+                    </span>
+                {% endif %}
             </li>
         {% else %}
             <li class="list-group-item text-muted">No sport buddies found.</li>

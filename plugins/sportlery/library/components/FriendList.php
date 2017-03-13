@@ -44,6 +44,7 @@ class FriendList extends ComponentBase
         $user = Auth::getUser();
         $this->page['showAcceptButtons'] = false;
         $this->page['showUnblockButton'] = false;
+        $this->page['showUnfriendButton'] = false;
 
         switch ($this->property('listType')) {
             case 'blocked':
@@ -60,6 +61,7 @@ class FriendList extends ComponentBase
             case 'friends':
             default:
                 $this->page['friends'] = $user->listFriends();
+                $this->page['showUnfriendButton'] = true;
                 break;
         }
 
@@ -85,6 +87,9 @@ class FriendList extends ComponentBase
                     break;
                 case 'unblock':
                     $friend->unblock($user);
+                    break;
+                case 'unfriend':
+                    $friend->unfriend($user);
                     break;
             }
         }

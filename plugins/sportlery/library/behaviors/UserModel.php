@@ -168,6 +168,21 @@ class UserModel extends ModelBehavior
             return false;
         }
 
+        return $this->findFriendship($otherUser)->where(['status' => FriendshipStatus::ACCEPTED])->delete();
+    }
+
+    /**
+     * Delete the friendship between the model and the other user.
+     *
+     * @param  User  $otherUser
+     * @return bool
+     */
+    public function deleteFriendship($otherUser)
+    {
+        if (!$otherUser) {
+            return false;
+        }
+
         return $this->findFriendship($otherUser)->delete();
     }
 
@@ -196,7 +211,7 @@ class UserModel extends ModelBehavior
      */
     public function declineFriendRequest($otherUser)
     {
-        return $this->unfriend($otherUser);
+        return $this->deleteFriendship($otherUser);
     }
 
     /**
@@ -230,7 +245,7 @@ class UserModel extends ModelBehavior
      */
     public function unblock($otherUser)
     {
-        return $this->unfriend($otherUser);
+        return $this->deleteFriendship($otherUser);
     }
 
     /**

@@ -59,7 +59,7 @@ class EventForm extends ComponentBase
             $event = new Event();
 
             $event->name = Input::get('name');
-            $event->slug = $this->generateRandomString(20);
+            $event->slug = $this->generateRandomString(8);
             $event->description = Input::get('description');
             $event->price = Input::get('price');
             $event->starts_at = Input::get('starts_at');
@@ -74,8 +74,11 @@ class EventForm extends ComponentBase
         }
     }
 
-    public function onUpdate()
+    public function onUpdate($slug)
     {
+        $event = Event::where('slug', '=', $slug)->first();
+
+        echo $event;
 
     }
 

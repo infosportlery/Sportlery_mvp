@@ -7,7 +7,7 @@ fields:
         required: 1
         type: text
     slug:
-        label: 'Slug'
+        label: Slug
         span: auto
         placeholder: 'URL-friendly name'
         preset:
@@ -15,23 +15,27 @@ fields:
             type: slug
         type: text
     starts_at:
-        label: Starts at
+        label: 'Starts at'
         span: auto
         type: datepicker
     ends_at:
-        label: Ends at
+        label: 'Ends at'
         span: auto
         type: datepicker
     price:
         label: Price
+        oc.commentPosition: ''
         span: auto
+        placeholder: '0'
+        default: '0'
         type: number
     location:
         label: Location
-        span: auto
-        default: ''
-        required: 1
+        oc.commentPosition: ''
         nameFrom: name
+        descriptionFrom: description
+        span: auto
+        required: 0
         type: relation
     description:
         label: Description

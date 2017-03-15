@@ -2,5 +2,28 @@ title = "Dashboard Events"
 url = "/dashboard/events"
 layout = "dashboard"
 is_hidden = 0
+
+[eventList]
+perPage = 10
+detailsPage = "events-profile"
+
+[eventForm]
 ==
-This is the Event Page for Users
+<div class="row">
+	<div class="col-md-4 col-sm-12">
+		
+		<div class="panel panel-default panel-edge">
+			<h3>New Event</h3>
+			{% component 'eventForm' %}
+		</div>
+		
+	</div>
+	<div class="col-md-7 col-md-offset-1 col-sm-12">
+		<div class="panel panel-default panel-edge">
+			<h3>Events</h3>
+			{% component 'eventList' %}	
+			
+		</div>	
+	</div>
+	
+</div>

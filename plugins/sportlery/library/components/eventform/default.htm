@@ -1,0 +1,50 @@
+<form data-request="onCreate">
+
+	<div class="form-group">
+		<label for="name">Name</label>
+		<input type="text" name="name" class="form-control">
+	</div>
+		{{ errors.first('name') }}	
+	<div class="form-group">
+		<label for="starts_at">Starts At</label>
+		<div class='input-group date' id='datetime-start'>
+            <input type='text' class="form-control" name="starts_at" />
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+        </div>
+        {{ errors.first('starts_at') }}
+	</div>
+	<div class="form-group">
+		<label for="ends_at">Ends At</label>
+		<div class='input-group date' id='datetime-end'>
+            <input type='text' class="form-control" name="ends_at" />
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+        </div>
+        {{ errors.first('ends_at') }}
+	</div>
+	<div class="form-group">
+		<label for="price">Price</label>
+		<input type="text" name="price" class="form-control">
+	</div>
+	<div class="form-group">
+		<label for="description">Description</label>
+		<textarea class="form-control" name="description"></textarea>
+		
+	</div>
+		{{ errors.first('description') }}
+	<div class="form-group">
+		<label for="location">Location</label>
+		{{ form_select('location', locations, input('location'), {class: 'form-control'}) }}
+	</div>
+
+	<button type="submit" class="btn btn-default">Submit</button>
+
+	{% flash success %}
+		<p>{{ message }}</p>
+	{% endflash %}
+
+</form>
+

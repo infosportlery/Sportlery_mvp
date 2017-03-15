@@ -22,7 +22,8 @@ class Plugin extends PluginBase
             Components\UserList::class => 'userList',
             Components\UserProfile::class => 'userProfile',
             Components\UserTickets::class => 'userTickets',
-            Components\ProfileForm::class => 'profileForm',
+            Components\EventForm::class => 'eventForm',
+
         ];
     }
 
@@ -82,6 +83,7 @@ class Plugin extends PluginBase
                             ]
                         ],
                     ],
+
                 ]
             ];
         });

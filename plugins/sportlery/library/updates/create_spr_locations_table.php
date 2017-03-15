@@ -20,7 +20,7 @@ class CreateSprLocationsTable extends Migration
             $table->string('city');
             $table->text('description');
             $table->text('description_en');
-            $table->string('avatar');
+            $table->string('avatar')->nullable();
             $table->string('url');
             $table->boolean('is_public')->default(true);
             $table->timestamps();

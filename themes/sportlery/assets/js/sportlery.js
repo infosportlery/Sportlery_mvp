@@ -1,6 +1,7 @@
 require('bootstrap-sass/assets/javascripts/bootstrap/collapse');
 require('bootstrap-sass/assets/javascripts/bootstrap/dropdown');
 require('bootstrap-sass/assets/javascripts/bootstrap/tab');
+require('eonasdan-bootstrap-datetimepicker');
 
 import LocationMap from './components/locationMap';
 
@@ -14,3 +15,17 @@ window.$(function($) {
     $("#sidebar-toggle").toggleClass("glyphicon-chevron-left glyphicon-chevron-right");
     });
 });
+$(function() {
+    $('#datetime-start').datetimepicker({
+        locale: 'nl',
+        format: 'YYYY-MM-DD HH:mm:ss',
+    });
+});
+$(function(){
+	$('#datetime-end').datetimepicker({
+        locale: 'nl',
+        format: 'YYYY-MM-DD HH:mm:ss',
+
+
+    });
+})

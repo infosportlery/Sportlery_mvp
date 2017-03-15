@@ -24,15 +24,6 @@
     - 'Add country and state to locations'
     - add_country_and_state_id_to_locations_table.php
 1.0.6:
-    - 'Updated table sportlery_library_user_sports'
-    - builder_table_update_sportlery_library_user_sports.php
-1.0.7:
-    - 'Updated table sportlery_library_user_sports'
-    - builder_table_update_sportlery_library_user_sports_2.php
-1.0.8:
-    - 'Updated table sportlery_library_user_sports'
-    - builder_table_update_sportlery_library_user_sports_3.php
-1.0.9:
     - 'Create friendships table'
     - create_spr_friendships_table.php
 1.0.10:

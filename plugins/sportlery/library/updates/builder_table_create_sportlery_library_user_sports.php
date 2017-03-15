@@ -13,6 +13,7 @@ class BuilderTableCreateSportleryLibraryUserSports extends Migration
             $table->integer('user_id');
             $table->integer('sports_id');
             $table->smallInteger('interest_level');
+            $table->boolean('favorite')->nullable()->change();
             $table->primary(['user_id','sports_id']);
         });
     }

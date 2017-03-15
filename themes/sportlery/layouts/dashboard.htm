@@ -25,6 +25,16 @@ redirect = "login"
         {% partial 'dashboard/sideMenu' %}
         <!-- Page Content -->
         <div id="page-content-wrapper">
+                    
+            {% flash %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="alert alert-{{ type == 'error' ? 'danger' : type }}">{{ message }}</div>
+                    </div>
+                </div>
+            </div>
+            {% endflash %}
         	<a href="#menu-toggle" class="btn btn-warning" id="menu-toggle" title="Hide/Show Sidebar"><span class="glyphicon glyphicon-chevron-left" id="sidebar-toggle"></span></a>
             <div class="container-fluid">
                 <div class="row">

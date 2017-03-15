@@ -35,3 +35,7 @@
 1.0.12:
     - 'Created table sportlery_library_ticket_messages'
     - builder_table_create_sportlery_library_ticket_messages.php
+1.0.13:
+    - 'Create table to track users going to events (invites, going, interested, canceled)'
+    - create_spr_event_user_table.php
+    - create_spr_event_invites_table.php

@@ -18,9 +18,17 @@
                         {{ form_label('city', 'City', {class: 'control-label'}) }}
                         {{ form_select('city', cities, input('city'), {class: 'form-control', emptyOption: 'All'}) }}
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-2">
                         {{ form_label('q', 'Search', {class: 'control-label'}) }}
                         {{ form_text('q', input('q'), {class: 'form-control'}) }}
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="checkbox">
+                            <label>
+                                {{ form_checkbox('past', '1', input('past')) }}
+                                Include past events
+                            </label>
+                        </div>
                     </div>
                     <div class="col-sm-2">
                         <div class="form-group">
@@ -59,6 +67,10 @@
                                                     {{ event.name }}
                                                 </a>
                                             </h3>
+                                            <p>
+                                                <strong>Date:</strong>
+                                                {{ event.starts_at.formatLocalized('%A %d %B, %Y') }}
+                                            </p>
                                             {{ event.description|raw }}
                                             <div class="text-right">
                                                 <a href="{{ detailsPage|page({ id: attribute(event, 'id') }) }}" class="btn btn-primary">Bekijk &raquo;</a>

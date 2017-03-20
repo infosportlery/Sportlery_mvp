@@ -5,6 +5,7 @@ require('eonasdan-bootstrap-datetimepicker');
 require('bootstrap-sass/assets/javascripts/bootstrap/modal');
 
 import LocationMap from './components/locationMap';
+import './components/chat';
 
 window.$(function($) {
     if ($('[data-component="locationMap"]').length) {

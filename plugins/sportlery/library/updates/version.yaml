@@ -39,3 +39,6 @@
     - 'Create table to track users going to events (invites, going, interested, canceled)'
     - create_spr_event_user_table.php
     - create_spr_event_invites_table.php
+1.0.14:
+    - 'Install Messenger package'
+    - install_messenger_tables.php

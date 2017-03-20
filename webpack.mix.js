@@ -11,5 +11,11 @@ const { mix, config } = require('laravel-mix');
  |
  */
 
+mix.webpackConfig({
+    externals: {
+        jquery: 'jQuery'
+    }
+});
+
 mix.js('themes/sportlery/assets/js/sportlery.js', 'public/themes/sportlery/assets/js/')
    .sass('themes/sportlery/assets/scss/sportlery.scss', 'public/themes/sportlery/assets/css/');

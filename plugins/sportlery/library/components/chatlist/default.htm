@@ -1,0 +1,61 @@
+<div class="text-right" style="margin-bottom:15px;">
+    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#new-chat-modal">
+        <i class="glyphicon glyphicon-plus"></i> New Chat
+    </button>
+</div>
+<div class="panel panel-default">
+    <div class="panel-body">
+        {% if chats is empty %}
+            <p class="text-muted">No chats found.</p>
+        {% else %}
+            {% for chat in chats %}
+                <div class="media">
+                    <div class="media-left">
+                        <a href="{{ 'chat'|page({ id: attribute(chat, 'id')}) }}">
+                            <img src="{{ chat.avatar.thumb(40,40) }}" class="media-object">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">
+                            <a href="{{ 'chat'|page({ id: attribute(chat, 'id')}) }}">
+                                {{ chat.subject }}
+                                {% if chat.unreadMessagesCount > 0 %}
+                                    <span class="badge">{{ chat.unreadMessagesCount }}</span>
+                                {% endif %}
+                            </a>
+                        </h4>
+                        {% if chat.lastMessage %}
+                            <p class="text-muted" style="margin-bottom:0;">
+                                <strong>{{ chat.lastMessage.user.first_name }} {{ chat.lastMessage.user.last_name }}</strong>
+                                <small>
+                                    {% if chat.lastMessage.created_at.isToday() %}
+                                        {{ chat.lastMessage.created_at.format('d-m-Y') }} at
+                                    {% endif %}
+                                    {{ chat.lastMessage.created_at.format('H:i') }}
+                                </small><br>
+                                {{ str_limit(chat.lastMessage.body, 100) }}
+                            </p>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+
+<div class="modal fade" id="new-chat-modal" tabindex="-1" role="dialog" aria-labelledby="new-chat-modal-label">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="new-chat-modal-label">New Chat</h4>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

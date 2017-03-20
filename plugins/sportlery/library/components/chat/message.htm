@@ -1,0 +1,18 @@
+<div class="media chat-message" style="margin-bottom: 10px;">
+    <div class="media-left">
+        <a href="#">
+            <img src="{{ message.user.avatar.thumb(40, 40) }}"  class="media-object img-rounded">
+        </a>
+    </div>
+    <div class="media-body">
+        <div class="media-title">
+            <strong>{{ message.user.first_name }} {{ message.user.last_name }}</strong>
+            <small class="text-muted">
+                <time datetime="{{ message.created_at.toATOMString() }}">
+                    {{ message.created_at.format("H:i") }}
+                </time>
+            </small>
+        </div>
+        <p>{{ message.body }}</p>
+    </div>
+</div>

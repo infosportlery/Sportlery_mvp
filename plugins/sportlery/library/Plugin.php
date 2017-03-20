@@ -1,6 +1,7 @@
 <?php namespace Sportlery\Library;
 
 use App;
+use Cmgmyr\Messenger\MessengerServiceProvider;
 use Event;
 use Rainlab\User\Models\User;
 use Hashids\Hashids;
@@ -23,7 +24,8 @@ class Plugin extends PluginBase
             Components\UserProfile::class => 'userProfile',
             Components\UserTickets::class => 'userTickets',
             Components\EventForm::class => 'eventForm',
-
+            Components\ChatList::class => 'chatList',
+            Components\Chat::class => 'chat',
         ];
     }
 
@@ -33,6 +35,8 @@ class Plugin extends PluginBase
 
     public function boot()
     {
+        $this->bootMessengerPackage();
+
         App::singleton(Hashids::class, function() {
             // All lowercase characters.
             $alphabet = 'abcdefghijklmnopqrstuvwxyz0123456789';
@@ -56,6 +60,7 @@ class Plugin extends PluginBase
         User::extend(function($model) {
             $model->implement[] = 'Sportlery.Library.Behaviors.UserFriendsModel';
             $model->implement[] = 'Sportlery.Library.Behaviors.UserEventsModel';
+            $model->implement[] = 'Sportlery.Library.Behaviors.MessagableModel';
         });
 
         Users::extend(function($controller) {
@@ -97,9 +102,20 @@ class Plugin extends PluginBase
                             ]
                         ],
                     ],
-
                 ]
             ];
         });
+    }
+
+    private function bootMessengerPackage()
+    {
+        \Config::set('messenger', [
+            'user_model' => User::class,
+            'messages_table' => 'spr_chat_messages',
+            'participants_table' => 'spr_chat_participants',
+            'threads_table' => 'spr_chats',
+        ]);
+
+        App::register(MessengerServiceProvider::class);
     }
 }

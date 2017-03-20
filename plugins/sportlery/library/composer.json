@@ -1,0 +1,9 @@
+{
+    "name": "sportlery/library",
+    "type": "library",
+    "license": "Proprietary",
+    "minimum-stability": "stable",
+    "require": {
+        "cmgmyr/messenger": "~2.0"
+    }
+}

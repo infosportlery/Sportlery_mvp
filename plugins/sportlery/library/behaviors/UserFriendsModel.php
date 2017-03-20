@@ -124,9 +124,26 @@ class UserFriendsModel extends ModelBehavior
         return $this->model->newQuery()->whereIn('id', $friendIds)->get();
     }
 
-    private function getFriendIds(array $ids = [])
+    /**
+     * Get all accepted friends for this model where the user id is not in the given list.
+     *
+     * @param  array  $ids
+     * @return \Illuminate\Database\Eloquent\Collection|User[]
+     */
+    public function listFriendsNotIn(array $ids = [])
     {
-        $friendships = $this->findFriendships($ids)->get(['user_id', 'friend_id']);
+        $friendIds = $this->getFriendIds($ids, true);
+
+        if (!count($friendIds)) {
+            return $this->model->newCollection();
+        }
+
+        return $this->model->newQuery()->where('id', $friendIds)->get();
+    }
+
+    private function getFriendIds(array $ids = [], $inverse = false)
+    {
+        $friendships = $this->findFriendships($ids, $inverse)->get(['user_id', 'friend_id']);
         $friendIds = [];
 
         foreach ($friendships as $friendship) {
@@ -323,9 +340,10 @@ class UserFriendsModel extends ModelBehavior
      * Start a new pivot query for all accepted friendships for this model.
      *
      * @param  array  $ids
+     * @param  bool  $inverse
      * @return \October\Rain\Database\Builder
      */
-    protected function findFriendships(array $ids = [])
+    protected function findFriendships(array $ids = [], $inverse = false)
     {
         $query = $this->model->friends()->newPivotStatement()
             ->where('status', FriendshipStatus::ACCEPTED)
@@ -335,7 +353,11 @@ class UserFriendsModel extends ModelBehavior
             });
 
         if (count($ids)) {
-            $query->where(function($q) use ($ids) {
+            $query->where(function($q) use ($ids, $inverse) {
+                if ($inverse) {
+                    return $q->whereNotIn('user_id', $ids)->whereNotIn('friend_id', $ids);
+                }
+
                 return $q->orWhereIn('user_id', $ids)->orWhereIn('friend_id', $ids);
             });
         }

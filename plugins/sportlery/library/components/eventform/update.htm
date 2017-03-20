@@ -2,7 +2,7 @@
 
 	<div class="form-group">
 		<label for="name">Name</label>
-		<input type="text" name="name" class="form-control">
+		<input type="text" name="name" class="form-control" value="{{ event.name }}">
 	</div>
 		{{ errors.first('name') }}	
 	<div class="form-group">

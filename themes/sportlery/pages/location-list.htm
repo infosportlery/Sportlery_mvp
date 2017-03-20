@@ -1,0 +1,24 @@
+title = "location-list"
+url = "/dashboard/location-list"
+layout = "dashboard"
+is_hidden = 0
+
+[locationList]
+perPage = 10
+detailsPage = "location-profile"
+==
+<div class="row">
+	<h2>Locations</h2>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<h4>
+			Is the Location you want not in the list? Request it here!
+		<button class="btn btn-primary">Request Location</button>
+		</h4>
+	</div>
+</div>
+<div class="row">
+	{% component 'locationList' %}	
+</div>
+

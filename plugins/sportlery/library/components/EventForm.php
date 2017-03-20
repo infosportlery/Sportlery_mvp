@@ -68,6 +68,10 @@ class EventForm extends ComponentBase
 
             $event->save();        
 
+            $userEvent = new UserEvent();
+
+            //user_event save
+
             Flash::success('You\'ve added an Event!');
 
             return Redirect::back();
@@ -78,8 +82,19 @@ class EventForm extends ComponentBase
     {
         $event = Event::where('slug', '=', $slug)->first();
 
-        echo $event;
+        $event->name = Input::get('name');
+        $event->slug = $this->generateRandomString(8);
+        $event->description = Input::get('description');
+        $event->price = Input::get('price');
+        $event->starts_at = Input::get('starts_at');
+        $event->ends_at = Input::get('ends_at');
+        $event->location_id = Input::get('location');
 
+        $event->save();
+        
+        Flash::success('You\'ve added an Event!');
+
+        return Redirect::back();
     }
 
     public function onDelete()

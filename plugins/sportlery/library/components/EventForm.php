@@ -2,6 +2,7 @@
 
 namespace Sportlery\Library\Components;
 
+use Auth;
 use Cms\Classes\ComponentBase;
 use Validator;
 use Input;
@@ -9,13 +10,10 @@ use Redirect;
 use Flash;
 use Sportlery\Library\Models\Event;
 use Sportlery\Library\Models\Location;
-/**
-* 
-*/
+
 class EventForm extends ComponentBase
 {
-	
-	 public function componentDetails()
+    public function componentDetails()
     {
         return [
             'name' => 'Event Form',
@@ -23,39 +21,27 @@ class EventForm extends ComponentBase
         ];
     }
 
-    public function onRun() {
+    public function onRun()
+    {
         $this->page['locations'] = $this->getLocations();
     }
 
-    public function onCreate() 
+    public function onCreate()
     {
-        $validator = Validator::make(
-            [ 
-                'name' => Input::get('name'),
-                'description' => Input::get('description'),
-                'price' => Input::get('price'),
-                'starts_at' => Input::get('starts_at'),
-                'ends_at' => Input::get('ends_at'),
+        $validator = Validator::make(Input::all(), [
+            'name' => 'required|min:8',
+            'description' => 'required|min:30',
+            'price' => 'numeric',
+            'starts_at' => 'required|date_format:"Y-m-d H:i:s"|before:ends_at',
+            'ends_at' => 'required|date_format:"Y-m-d H:i:s"|after:starts_at',
+            'location' => 'required|exists:spr_locations,id'
+        ]);
 
-            ],
-            [
-                'name' => 'required|min:8',
-                'description' => 'required|min:30',
-                'price' => 'integer',
-                'starts_at' => 'required|date_format:"Y-m-d H:i:s"|before:ends_at',
-                'ends_at' => 'required|date_format:"Y-m-d H:i:s"|after:starts_at',
-
-            ]
-        );
-
-
-        if($validator->fails()) {
+        if ($validator->fails()) {
             //sendbacktothing
-            return Redirect::back()->withErrors($validator);
-
+            return Redirect::back()->withInput()->withErrors($validator);
         } else {
-            //sendtodb
-
+            $user = Auth::getUser();
             $event = new Event();
 
             $event->name = Input::get('name');
@@ -66,11 +52,7 @@ class EventForm extends ComponentBase
             $event->ends_at = Input::get('ends_at');
             $event->location_id = Input::get('location');
 
-            $event->save();        
-
-            $userEvent = new UserEvent();
-
-            //user_event save
+            $user->events()->save($event);
 
             Flash::success('You\'ve added an Event!');
 
@@ -91,7 +73,7 @@ class EventForm extends ComponentBase
         $event->location_id = Input::get('location');
 
         $event->save();
-        
+
         Flash::success('You\'ve added an Event!');
 
         return Redirect::back();
@@ -99,7 +81,7 @@ class EventForm extends ComponentBase
 
     public function onDelete()
     {
-    	
+
     }
 
     public function generateRandomString($length) {

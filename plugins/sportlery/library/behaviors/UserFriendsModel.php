@@ -110,10 +110,11 @@ class UserFriendsModel extends ModelBehavior
     /**
      * Get all accepted friends for this model.
      *
-     * @param  array  $ids
-     * @return \Illuminate\Database\Eloquent\Collection|User[]
+     * @param  array $ids
+     * @param array $with
+     * @return \Illuminate\Database\Eloquent\Collection|\RainLab\User\Models\User[]
      */
-    public function listFriends(array $ids = [])
+    public function listFriends(array $ids = [], array $with = [])
     {
         $friendIds = $this->getFriendIds($ids);
 
@@ -121,16 +122,17 @@ class UserFriendsModel extends ModelBehavior
             return $this->model->newCollection();
         }
 
-        return $this->model->newQuery()->whereIn('id', $friendIds)->get();
+        return $this->model->newQuery()->with($with)->whereIn('id', $friendIds)->get();
     }
 
     /**
      * Get all accepted friends for this model where the user id is not in the given list.
      *
-     * @param  array  $ids
-     * @return \Illuminate\Database\Eloquent\Collection|User[]
+     * @param  array $ids
+     * @param array $with
+     * @return \Illuminate\Database\Eloquent\Collection|\RainLab\User\Models\User[]
      */
-    public function listFriendsNotIn(array $ids = [])
+    public function listFriendsNotIn(array $ids = [], array $with = [])
     {
         $friendIds = $this->getFriendIds($ids, true);
 
@@ -138,7 +140,7 @@ class UserFriendsModel extends ModelBehavior
             return $this->model->newCollection();
         }
 
-        return $this->model->newQuery()->where('id', $friendIds)->get();
+        return $this->model->newQuery()->with($with)->whereIn('id', $friendIds)->get();
     }
 
     private function getFriendIds(array $ids = [], $inverse = false)

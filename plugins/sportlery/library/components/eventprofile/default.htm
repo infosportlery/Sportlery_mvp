@@ -30,8 +30,8 @@
             <ul class="list-group">
                 {% for friend in friendsGoing %}
                     <li class="list-group-item">
-                        <img src="{{ friend.avatar.thumb(25,auto) }}">
-                        {{ friend.first_name }} {{ friend.last_name }}
+                        <img src="{{ friend.avatarThumb(25) }}">
+                        {{ friend.name }} {{ friend.surname }}
                         {% if friend.id in friendsInvited %}
                             <span class="pull-right text-muted">
                                 Invited by you
@@ -59,8 +59,8 @@
                             {% for friend in friends %}
                                 <label class="list-group-item">
                                     <input type="checkbox" name="friend_id[]" value="{{ friend.getHashId() }}">
-                                    <img src="{{ friend.avatar.thumb(25,auto) }}">
-                                    {{ friend.first_name }} {{ friend.last_name }}
+                                    <img src="{{ friend.avatarThumb(25) }}">
+                                    {{ friend.name {{ friend.surname }}
                                 </label>
                             {% endfor %}
                         </ul>

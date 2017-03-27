@@ -6,6 +6,8 @@ use Auth;
 use Cmgmyr\Messenger\Models\Participant;
 use Cmgmyr\Messenger\Models\Thread;
 use Cms\Classes\ComponentBase;
+use Hashids\Hashids;
+use Illuminate\Support\Facades\Redirect;
 
 class ChatList extends ComponentBase
 {
@@ -34,15 +36,26 @@ class ChatList extends ComponentBase
 
         $threads = Thread::forUser($userId)->latest('updated_at')->with(['messages' => $messages, 'messages.user'])->get();
 
-        $pms = $threads->filter(function ($thread) {
-            return $thread->subject === '_pm';
+        $threads->filter(function ($thread) {
+            return $thread->subject === '_pm' || $thread->subject === '_group_pm';
         })->load(['participants' => function($q) use ($userId) {
-            $q->where('user_id', '!=', $userId)->take(1);
+            $q->where('user_id', '!=', $userId);
         }, 'participants.user.avatar'])->each(function ($thread) {
-            $otherUser = $thread->participants->first()->user;
-            $thread->subject = $otherUser->first_name.' '.$otherUser->last_name;
-            $thread->avatar = $otherUser->avatar;
-            $thread->isPM = true;
+            $names = $thread->participants->map(function($participant) {
+                return $participant->user->name.' '.$participant->user->surname;
+            });
+
+            if ($names->count() > 5) {
+                $names = $names->slice(0, 5);
+                $names->push($names->count().' more');
+            }
+
+            $thread->subject = $names->implode(', ');
+            $thread->avatar = null;
+
+            if ($thread->participants->count() === 1) {
+                $thread->avatar = $thread->participants->first()->user->getAvatarThumb(40);
+            }
         });
 
         return $threads->each(function ($thread) use ($userId) {
@@ -57,6 +70,34 @@ class ChatList extends ComponentBase
         $pmIds = Thread::forUser($user->id)->where('subject', '_pm')->lists('id');
         $pmFriends = Participant::whereIn('thread_id', $pmIds)->where('user_id', '!=', $user->id)->lists('user_id');
 
-        $friends = $user->listFriendsNotIn($pmFriends->all());
+        $this->page['friends'] = $user->listFriendsNotIn($pmFriends->all(), ['avatar']);
+
+        return ['#new-chat-friends' => $this->renderPartial('chatList::new-chat')];
+    }
+
+    public function onCreateChat()
+    {
+        $user = Auth::getUser();
+        $friendIds = post('friend_id');
+
+        if (!is_array($friendIds) || empty($friendIds)) {
+            return Redirect::refresh();
+        }
+        $hashIds = app(Hashids::class);
+
+        $friendIds = array_filter(array_map(function($friendId) use ($hashIds) {
+            $decoded = $hashIds->decode($friendId);
+
+            return is_null($decoded) ? null : reset($decoded);
+        }, $friendIds));
+
+        if (empty($friendIds)) {
+            return Redirect::refresh();
+        }
+
+        $thread = Thread::create(['subject' => count($friendIds) > 1 ? '_group_pm' : '_pm']);
+        $thread->addParticipant($user->id, ...$friendIds);
+
+        return Redirect::refresh();
     }
 }

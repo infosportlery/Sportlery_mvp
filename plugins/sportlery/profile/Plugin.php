@@ -27,12 +27,12 @@ class Plugin extends PluginBase
             }
 
             $form->addTabFields([
-                'first_name' => [
+                'name' => [
                     'label' => 'First Name',
                     'type' => 'text',
                     'tab' => 'Profile'
                 ],
-                'last_name' => [
+                'surname' => [
                     'label' => 'Last Name',
                     'type' => 'text',
                     'tab' => 'Profile'

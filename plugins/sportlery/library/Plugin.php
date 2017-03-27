@@ -64,10 +64,18 @@ class Plugin extends PluginBase
             setlocale(LC_ALL, $locale);
         });
 
-        User::extend(function($model) {
+        User::extend(function(User $model) {
             $model->implement[] = 'Sportlery.Library.Behaviors.UserFriendsModel';
             $model->implement[] = 'Sportlery.Library.Behaviors.UserEventsModel';
             $model->implement[] = 'Sportlery.Library.Behaviors.MessagableModel';
+            $model->addFillable([
+                'street',
+                'street_num',
+                'zip_code',
+                'city',
+                'tel_no',
+                'bio',
+            ]);
         });
 
         Users::extend(function($controller) {

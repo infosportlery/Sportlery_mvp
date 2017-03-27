@@ -27,6 +27,12 @@ class UserEventsModel extends ModelBehavior
             'otherKey' => 'event_id',
         ];
 
+        $model->belongsToMany['ownedEvents'] = [
+            Event::class,
+            'table' => 'spr_events',
+            'key' => 'user_id',
+        ];
+
         $model->belongsToMany['invitedToEvents'] = [
             Event::class,
             'table' => 'spr_event_invites',
@@ -104,6 +110,7 @@ class UserEventsModel extends ModelBehavior
     {
         $query = $this->model->events()->newPivotStatement()
                            ->where('event_id', $event->getKey())
+                           ->where('user_id', '!=', $this->model->getKey())
                            ->where('status', EventJoinStatus::GOING);
 
         if (count($friendIds)) {

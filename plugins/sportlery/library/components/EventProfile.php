@@ -99,6 +99,12 @@ class EventProfile extends ComponentBase
         $this->page['friends'] = $this->page['user']->listFriends();
         $this->page['hasFriends'] = !$this->page['friends']->isEmpty();
 
+        $friendsGoing = $this->page['user']->getFriendsGoingToEvent($this->page['event']);
+
+        if (count($friendsGoing) === $this->page['friends']->count()) {
+            $this->page['hasFriends'] = false;
+        }
+
         if ($this->page['hasFriends']) {
             $friendsInvited = $this->page['user']->getFriendsInvitedToEvent($this->page['event']);
             $friendIds = $this->page['friends']->modelKeys();
@@ -108,12 +114,6 @@ class EventProfile extends ComponentBase
                 // All friends are already invited.
                 $this->page['hasFriends'] = false;
             }
-        }
-
-        $friendsGoing = $this->page['user']->getFriendsGoingToEvent($this->page['event']);
-
-        if (count($friendsGoing) === $this->page['friends']->count()) {
-            $this->page['hasFriends'] = false;
         }
 
         $this->page['friendsGoing'] = $this->page['friends']->only($friendsGoing);

@@ -1,0 +1,13 @@
+{% if friends is empty %}
+    No friends found.
+{% else %}
+    <ul class="list-group">
+        {% for friend in friends %}
+            <label class="list-group-item">
+                <input type="checkbox" name="friend_id[]" value="{{ friend.getHashId() }}">
+                <img src="{{ friend.avatarThumb(25) }}">
+                {{ friend.name }} {{ friend.surname }}
+            </label>
+        {% endfor %}
+    </ul>
+{% endif %}

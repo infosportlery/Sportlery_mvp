@@ -27,7 +27,7 @@ class Chat extends ComponentBase
         $user = \Auth::getUser();
 
         $messages = function ($q) {
-            return $q->latest()->limit(10);
+            return $q->latest()->limit(25);
         };
 
         $thread = $user->threads()->with([
@@ -36,6 +36,7 @@ class Chat extends ComponentBase
         ])->where('spr_chats.id', $this->param('id'))->firstOrFail();
         $thread->messages = $thread->messages->reverse();
         $thread->markAsRead($user->id);
+        $thread->messageCount = $thread->messages()->count();
 
         $this->page['chat'] = $thread;
     }

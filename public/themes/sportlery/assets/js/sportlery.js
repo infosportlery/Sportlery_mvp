@@ -15671,11 +15671,14 @@ $(function () {
 
 $(function () {
 
-    // $('#new-chat-modal').on('show.bs.modal', function() {
-    //     $.request('onFetchFriends', {
-    //
-    //     });
-    // });
+    $('#new-chat-modal').on('show.bs.modal', function () {
+        $.request('onFetchFriends', {
+            success: function success(data) {
+                console.log(data);
+                this.success(data);
+            }
+        });
+    });
 
     var $chatForm = $('#chat-form');
 

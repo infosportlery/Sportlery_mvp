@@ -56,7 +56,7 @@ class UserList extends ComponentBase
         $perPage = $this->property('perPage');
         $hashids = \App::make(Hashids::class);
 
-        $query = User::orderBy('last_name', 'asc')->orderBy('first_name', 'asc');
+        $query = User::orderBy('surname', 'asc')->orderBy('name', 'asc');
 
         if ($user = \Auth::getUser()) {
             $query->where('id', '!=', $user->id);

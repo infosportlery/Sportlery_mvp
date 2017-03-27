@@ -1,10 +1,13 @@
 $(function() {
 
-    // $('#new-chat-modal').on('show.bs.modal', function() {
-    //     $.request('onFetchFriends', {
-    //
-    //     });
-    // });
+    $('#new-chat-modal').on('show.bs.modal', function() {
+        $.request('onFetchFriends', {
+            success(data) {
+                console.log(data);
+                this.success(data);
+            }
+        });
+    });
 
     const $chatForm = $('#chat-form');
 

@@ -8,6 +8,8 @@ use Rainlab\User\Models\User as UserModel;
 
 class Plugin extends PluginBase
 {
+    public $require = ['RainLab.User'];
+
     public function registerComponents()
     {
     }

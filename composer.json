@@ -25,6 +25,7 @@
     },
     "require": {
         "php": ">=5.5.9",
+        "ext-gd": "*",
         "october/rain": "~1.0",
         "october/system": "~1.0",
         "october/backend": "~1.0",

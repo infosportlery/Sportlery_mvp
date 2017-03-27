@@ -1,3 +1,4 @@
+const path = require('path');
 const { mix, config } = require('laravel-mix');
 
 /*

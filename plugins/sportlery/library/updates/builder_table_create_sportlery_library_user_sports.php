@@ -11,13 +11,13 @@ class BuilderTableCreateSportleryLibraryUserSports extends Migration
         {
             $table->engine = 'InnoDB';
             $table->integer('user_id');
-            $table->integer('sports_id');
+            $table->integer('sport_id');
             $table->smallInteger('interest_level');
             $table->boolean('favorite')->nullable()->change();
-            $table->primary(['user_id','sports_id']);
+            $table->primary(['user_id','sport_id']);
         });
     }
-    
+
     public function down()
     {
         Schema::dropIfExists('sportlery_library_user_sports');

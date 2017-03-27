@@ -8,12 +8,14 @@ use Model;
 class Event extends Model
 {
     use \October\Rain\Database\Traits\Validation;
-    use \Sportlery\Library\Classes\Traits\HashIds;
 
     const TYPE_PAID = 0;
     const TYPE_FREE = 1;
 
-    public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
+    public $implement = [
+        'RainLab.Translate.Behaviors.TranslatableModel',
+        'Sportlery.Library.Behaviors.HashIdsModel',
+    ];
 
     public $translatable = ['description'];
 

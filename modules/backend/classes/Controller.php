@@ -181,7 +181,7 @@ class Controller extends Extendable
          * Check forced HTTPS protocol.
          */
         if (!$this->verifyForceSecure()) {
-            return Redirect::secure(Request::path());
+            // return Redirect::secure(Request::path());
         }
 
         /*

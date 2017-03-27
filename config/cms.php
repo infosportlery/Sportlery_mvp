@@ -239,15 +239,15 @@ return [
     'storage' => [
 
         'uploads' => [
-            'disk'   => 'local',
-            'folder' => 'uploads',
-            'path'   => '/storage/app/uploads',
+            'disk'   => env('STORAGE_UPLOADS_DISK', 'local'),
+            'folder' => env('STORAGE_UPLOADS_FOLDER', 'uploads'),
+            'path'   => env('STORAGE_UPLOADS_PATH', '/storage/app/uploads'),
         ],
 
         'media' => [
-            'disk'   => 'local',
-            'folder' => 'media',
-            'path'   => '/storage/app/media',
+            'disk'   => env('STORAGE_MEDIA_DISK', 'local'),
+            'folder' => env('STORAGE_MEDIA_FOLDER', 'media'),
+            'path'   => env('STORAGE_MEDIA_PATH', '/storage/app/media'),
         ],
 
     ],

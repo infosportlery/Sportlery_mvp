@@ -49,7 +49,7 @@ return [
     |
     */
 
-    'backendForceSecure' => null,
+    'backendForceSecure' => env('BACKEND_SECURE'),
 
     /*
     |--------------------------------------------------------------------------

@@ -15810,8 +15810,8 @@ var LocationMap = function () {
 
         this.map = L.map($el[0]);
         this.markerPopupTmpl = decodeURI($el.find('#marker-popup-tmpl').detach().html());
+        this.markerGroup = null;
 
-        this.centerMap();
         this.initTiles();
         this.addMarkers();
 
@@ -15820,6 +15820,7 @@ var LocationMap = function () {
             var $tab = $('[href="#' + $tabPane.attr('id') + '"]');
             $tab.on('shown.bs.tab', function () {
                 _this.map.invalidateSize();
+                _this.map.fitBounds(_this.markerGroup.getBounds());
             });
         }
     }
@@ -15846,10 +15847,13 @@ var LocationMap = function () {
         value: function addMarkers() {
             var _this2 = this;
 
-            this.locations.forEach(function (location) {
+            var markers = this.locations.map(function (location) {
                 var marker = L.marker([location.latitude, location.longitude]).addTo(_this2.map);
                 marker.bindPopup(_this2.renderMarkerPopup(location));
+                return marker;
             });
+
+            this.markerGroup = L.featureGroup(markers);
         }
     }, {
         key: 'renderMarkerPopup',
@@ -15875,8 +15879,9 @@ var LocationMap = function () {
     }, {
         key: 'centerMap',
         value: function centerMap() {
-            if (this.locations[0]) {
-                this.map.setView([this.locations[0].latitude, this.locations[0].longitude], 13);
+            if (this.locations.length) {
+
+                // this.map.setView([this.locations[0].latitude, this.locations[0].longitude], 13);
             }
         }
     }]);

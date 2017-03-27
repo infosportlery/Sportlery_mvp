@@ -11,6 +11,13 @@ use System\Classes\PluginBase;
 
 class Plugin extends PluginBase
 {
+    public $require = [
+        'RainLab.User',
+        'RainLab.Location',
+        'RainLab.Pages',
+        'RainLab.Translate',
+    ];
+
     public function registerComponents()
     {
         return [

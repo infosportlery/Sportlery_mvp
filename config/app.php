@@ -116,6 +116,7 @@ return [
         // 'Illuminate\Html\HtmlServiceProvider', // Example
 
         'System\ServiceProvider',
+        Cmgmyr\Messenger\MessengerServiceProvider::class,
     ]),
 
     /*

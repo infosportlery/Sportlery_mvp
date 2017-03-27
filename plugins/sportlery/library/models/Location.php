@@ -8,11 +8,11 @@ use Model;
 class Location extends Model
 {
     use \October\Rain\Database\Traits\Validation;
-    use \Sportlery\Library\Classes\Traits\HashIds;
 
     public $implement = [
         'RainLab.Translate.Behaviors.TranslatableModel',
         'RainLab.Location.Behaviors.LocationModel',
+        'Sportlery.Library.Behaviors.HashIdsModel',
     ];
 
     public $translatable = ['description'];

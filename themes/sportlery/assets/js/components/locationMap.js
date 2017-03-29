@@ -28,8 +28,8 @@ export default class LocationMap {
 
         this.map = L.map($el[0]);
         this.markerPopupTmpl = decodeURI($el.find('#marker-popup-tmpl').detach().html());
+        this.markerGroup = null;
 
-        this.centerMap();
         this.initTiles();
         this.addMarkers();
 
@@ -38,6 +38,7 @@ export default class LocationMap {
             const $tab = $(`[href="#${$tabPane.attr('id')}"]`);
             $tab.on('shown.bs.tab', () => {
                 this.map.invalidateSize();
+                this.map.fitBounds(this.markerGroup.getBounds());
             })
         }
     }
@@ -55,10 +56,13 @@ export default class LocationMap {
      * Add a marker to the map for every given location.
      */
     addMarkers() {
-        this.locations.forEach((location) => {
+        const markers = this.locations.map((location) => {
             const marker = L.marker([location.latitude, location.longitude]).addTo(this.map);
             marker.bindPopup(this.renderMarkerPopup(location));
+            return marker;
         });
+
+        this.markerGroup = L.featureGroup(markers);
     }
 
     renderMarkerPopup(location) {
@@ -80,8 +84,9 @@ export default class LocationMap {
      * Center the map around the first available location.
      */
     centerMap() {
-        if (this.locations[0]) {
-            this.map.setView([this.locations[0].latitude, this.locations[0].longitude], 13);
+        if (this.locations.length) {
+
+            // this.map.setView([this.locations[0].latitude, this.locations[0].longitude], 13);
         }
     }
 }

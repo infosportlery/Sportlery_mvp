@@ -1,0 +1,76 @@
+	{% if events is not empty %}
+	    <div class="row">
+	        <div class="col-sm-12">
+	            <ul class="nav nav-tabs" style="margin-bottom:15px;" role="tablist">
+	                <li role="presentation" class="active"><a href="#tab-list" aria-controls="tab-list" role="tab" data-toggle="tab">Lijst</a></li>
+	                <li role="presentation"><a href="#tab-map" aria-controls="tab-map" role="tab" data-toggle="tab">Map</a></li>
+	            </ul>
+	        </div>
+	    </div>
+	    <div class="row">
+	        <div class="col-sm-12">
+	            <div class="tab-content">
+	                <div role="tabpanel" class="tab-pane active" id="tab-list">
+	                    {% for row in events|batch(2) %}
+	                        <div class="row">
+	                            {% for event in row %}
+	                            	{% if event.user_id == user.id %}
+	                                <div class="col-md-6">
+	                                    <div class="panel panel-default">
+	                                        <div class="panel-body">
+	                                            <h3>
+	                                                <a href="{{ detailsPage|page({ id: attribute(event, 'id') }) }}">
+	                                                    {{ event.name }}
+	                                                </a>
+	                                            </h3>
+	                                            <p>
+	                                                <strong>Date:</strong>
+	                                                {{ event.starts_at.formatLocalized('%A %d %B, %Y') }}
+	                                            </p>
+	                                            {{ event.description|raw }}
+	                                            <div class="text-right">
+	                                                {% if event.user_id == user.id %}
+	                                                    <a href="edit/{{ event.id }}" class="btn btn-default">Edit</a>
+	                                                {% endif %}
+	                                                <a href="{{ detailsPage|page({ id: attribute(event, 'id') }) }}" class="btn btn-primary">Bekijk &raquo;</a>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                                {% else %}
+										
+	                                {% endif %}
+	                            {% endfor %}
+	                        </div>
+	                    {% else %}
+	                    {% endfor %}
+	                </div>
+	                <div role="tabpanel" class="tab-pane" id="tab-map">
+	                    <div data-component="locationMap" data-locations="events" style="height:360px;">
+	                        <div id="marker-popup-tmpl">
+	                            <h4>[[name]]</h4>
+	                            <p>[[description]]</p>
+	                            <div class="text-right">
+	                                <a href="{{ detailsPage|page({ id: '[[id]]' }) }}" class="btn btn-primary">Bekijk &raquo;</a>
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <script>(function(){window.sportlery=window.sportlery||{};window.sportlery.events={{ events.all|json_encode|raw }}; })();</script>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="row">
+	        <div class="col-sm-12">
+	            {{ events.render|raw }}
+	        </div>
+	    </div>
+	{% else %}
+	    <div class="row">
+	        <div class="col-sm-12">
+	            <div class="alert alert-danger">
+	                Geen evenementen beschikbaar
+	            </div>
+	        </div>
+	    </div>
+	{% endif %}

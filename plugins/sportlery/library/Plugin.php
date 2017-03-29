@@ -33,6 +33,7 @@ class Plugin extends PluginBase
             Components\EventForm::class => 'eventForm',
             Components\ChatList::class => 'chatList',
             Components\Chat::class => 'chat',
+            Components\UserEventList::class => 'userEventList',
         ];
     }
 

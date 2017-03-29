@@ -6,6 +6,10 @@ is_hidden = 0
 [eventList]
 perPage = 10
 detailsPage = "events-profile"
+
+[userEventList]
+perPage = 10
+detailsPage = "events-profile"
 ==
 <div class="row">
 	<h2>Events</h2>
@@ -23,9 +27,17 @@ detailsPage = "events-profile"
 </div>
 <div class="row">
 
-	<div class="col-sm-12">
+	<div class="col-sm-6">
 		<div class="panel panel-default panel-edge">
 			<h3>Your Events</h3>
+			{% component 'userEventList' %}	
+			
+		</div>	
+	</div>
+	
+	<div class="col-sm-6">
+		<div class="panel panel-default panel-edge">
+			<h3>All Events</h3>
 			{% component 'eventList' %}	
 			
 		</div>	

@@ -69,9 +69,10 @@ class EventForm extends ComponentBase
         }
     }
 
-    public function onUpdate($id)
+    public function onUpdate()
     {
-        $event = Event::where('slug', '=', $slug)->first();
+
+        $event = Event::findByHashId($this->param('id'));
 
         $event->name = Input::get('name');
         $event->description = Input::get('description');
@@ -89,7 +90,13 @@ class EventForm extends ComponentBase
 
     public function onDelete()
     {
+        $event = Event::findByHashId($this->param('id'));
 
+        $event->delete();
+
+        Flash::success('AWESOME! No more event!');
+
+        return Redirect::back();
     }
 
     public function generateRandomString($length) {

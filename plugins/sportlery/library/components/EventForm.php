@@ -24,6 +24,12 @@ class EventForm extends ComponentBase
     public function onRun()
     {
         $this->page['locations'] = $this->getLocations();
+
+        if ($eventId = $this->param('id')) {
+            
+            $unscrabled = 
+            $this->page['event'] = Event::findByHashId($eventId);
+        }
     }
 
     public function onCreate()
@@ -50,7 +56,10 @@ class EventForm extends ComponentBase
             $event->price = Input::get('price');
             $event->starts_at = Input::get('starts_at');
             $event->ends_at = Input::get('ends_at');
+            $event->user_id = $user->id;
             $event->location_id = Input::get('location');
+
+            $user->events()->status = 1;
 
             $user->events()->save($event);
 
@@ -60,12 +69,11 @@ class EventForm extends ComponentBase
         }
     }
 
-    public function onUpdate($slug)
+    public function onUpdate($id)
     {
         $event = Event::where('slug', '=', $slug)->first();
 
         $event->name = Input::get('name');
-        $event->slug = $this->generateRandomString(8);
         $event->description = Input::get('description');
         $event->price = Input::get('price');
         $event->starts_at = Input::get('starts_at');
@@ -74,7 +82,7 @@ class EventForm extends ComponentBase
 
         $event->save();
 
-        Flash::success('You\'ve added an Event!');
+        Flash::success('You\'ve Changed the event!');
 
         return Redirect::back();
     }

@@ -28,7 +28,5 @@ $(function(){
 	$('#datetime-end').datetimepicker({
         locale: 'nl',
         format: 'YYYY-MM-DD HH:mm:ss',
-
-
     });
 })

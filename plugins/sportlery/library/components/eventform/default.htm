@@ -1,51 +1,9 @@
-<form data-request="onCreate">
+{% if event %}
 
-	<div class="form-group {{ errors.first('name', 'has-error') }}">
-        {{ form_label('name', 'Name', {class: 'control-label'}) }}
-        {{ form_text('name', null, {class: 'form-control'}) }}
-        {{ errors.first('name', '<p class="help-block">:message</p>')|raw }}
-	</div>
-	<div class="form-group {{ errors.first('starts_at', 'has-error') }}">
-        {{ form_label('starts_at', 'Starts At', {class: 'control-label'}) }}
-		<div class='input-group date' id='datetime-start'>
-            {{ form_text('starts_at', null, {class: 'form-control'}) }}
-            <span class="input-group-addon">
-                <span class="glyphicon glyphicon-calendar"></span>
-            </span>
-        </div>
-        {{ errors.first('starts_at', '<p class="help-block">:message</p>')|raw }}
-	</div>
-	<div class="form-group {{ errors.first('ends_at', 'has-error') }}">
-        {{ form_label('ends_at', 'Ends At', {class: 'control-label'}) }}
-		<div class='input-group date' id='datetime-end'>
-            {{ form_text('ends_at', null, {class: 'form-control'}) }}
-            <span class="input-group-addon">
-                <span class="glyphicon glyphicon-calendar"></span>
-            </span>
-        </div>
-        {{ errors.first('ends_at', '<p class="help-block">:message</p>')|raw }}
-	</div>
-	<div class="form-group {{ errors.first('price', 'has-error') }}">
-        {{ form_label('price', 'Price', {class: 'control-label'}) }}
-        {{ form_input('number', 'price', null, {class: 'form-control'}) }}
-        {{ errors.first('price', '<p class="help-block">:message</p>')|raw }}
-    </div>
-	<div class="form-group {{ errors.first('description', 'has-error') }}">
-        {{ form_label('description', 'Description', {class: 'control-label'}) }}
-        {{ form_textarea('description', null, {class: 'form-control'}) }}
-        {{ errors.first('description', '<p class="help-block">:message</p>')|raw }}
-	</div>
-	<div class="form-group {{ errors.first('location', 'has-error') }}">
-        {{ form_label('location', 'Location', {class: 'control-label'}) }}
-		{{ form_select('location', locations, null, {class: 'form-control'}) }}
-        {{ errors.first('location', '<p class="help-block">:message</p>')|raw }}
-	</div>
+{% partial __SELF__ ~ '::update' %}
 
-	<button type="submit" class="btn btn-default">Submit</button>
+{% else %}
 
-	{% flash success %}
-		<p>{{ message }}</p>
-	{% endflash %}
+{% partial __SELF__ ~ '::create' %}
 
-</form>
-
+{% endif %}

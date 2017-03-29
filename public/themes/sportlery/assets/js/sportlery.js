@@ -1,41 +1,41 @@
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
-/******/
+
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/
+
 /******/ 		// Check if module is in cache
 /******/ 		if(installedModules[moduleId])
 /******/ 			return installedModules[moduleId].exports;
-/******/
+
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			i: moduleId,
 /******/ 			l: false,
 /******/ 			exports: {}
 /******/ 		};
-/******/
+
 /******/ 		// Execute the module function
 /******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
+
 /******/ 		// Flag the module as loaded
 /******/ 		module.l = true;
-/******/
+
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/
-/******/
+
+
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = modules;
-/******/
+
 /******/ 	// expose the module cache
 /******/ 	__webpack_require__.c = installedModules;
-/******/
+
 /******/ 	// identity function for calling harmony imports with the correct context
 /******/ 	__webpack_require__.i = function(value) { return value; };
-/******/
+
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
@@ -46,7 +46,7 @@
 /******/ 			});
 /******/ 		}
 /******/ 	};
-/******/
+
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
 /******/ 	__webpack_require__.n = function(module) {
 /******/ 		var getter = module && module.__esModule ?
@@ -55,13 +55,13 @@
 /******/ 		__webpack_require__.d(getter, 'a', getter);
 /******/ 		return getter;
 /******/ 	};
-/******/
+
 /******/ 	// Object.prototype.hasOwnProperty.call
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
+
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
-/******/
+/******/ 	__webpack_require__.p = "./";
+
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 121);
 /******/ })
@@ -71,11 +71,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {//! moment.js
-<<<<<<< HEAD
 //! version : 2.17.1
-=======
-//! version : 2.18.1
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 //! authors : Tim Wood, Iskren Chernev, Moment.js contributors
 //! license : MIT
 //! momentjs.com
@@ -429,16 +425,8 @@ function set (config) {
     }
     this._config = config;
     // Lenient ordinal parsing accepts just a number in addition to
-<<<<<<< HEAD
     // number + (possibly) stuff coming from _ordinalParseLenient.
     this._ordinalParseLenient = new RegExp(this._ordinalParse.source + '|' + (/\d{1,2}/).source);
-=======
-    // number + (possibly) stuff coming from _dayOfMonthOrdinalParse.
-    // TODO: Remove "ordinalParse" fallback in next major release.
-    this._dayOfMonthOrdinalParseLenient = new RegExp(
-        (this._dayOfMonthOrdinalParse.source || this._ordinalParse.source) +
-            '|' + (/\d{1,2}/).source);
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 }
 
 function mergeConfigs(parentConfig, childConfig) {
@@ -1896,11 +1884,7 @@ function loadLocale(name) {
             module && module.exports) {
         try {
             oldLocale = globalLocale._abbr;
-<<<<<<< HEAD
             __webpack_require__(119)("./" + name);
-=======
-            __webpack_require__(125)("./" + name);
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
             // because defineLocale currently also sets the global locale, we
             // want to undo that for lazy loaded locales
             getSetGlobalLocale(oldLocale);
@@ -4352,11 +4336,7 @@ addParseToken('x', function (input, array, config) {
 // Side effect imports
 
 
-<<<<<<< HEAD
 hooks.version = '2.17.1';
-=======
-hooks.version = '2.18.1';
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 
 setHookCallback(createLocal);
 
@@ -4392,14 +4372,16 @@ return hooks;
 
 })));
 
-<<<<<<< HEAD
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(120)(module)))
-=======
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(126)(module)))
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 
 /***/ }),
 /* 1 */
+/***/ (function(module, exports) {
+
+module.exports = jQuery;
+
+/***/ }),
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -4477,7 +4459,7 @@ return af;
 
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -4541,77 +4523,10 @@ return arDz;
 
 
 /***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-//! moment.js locale configuration
-<<<<<<< HEAD
-=======
-//! locale : Arabic (Kuwait) [ar-kw]
-//! author : Nusret Parlak: https://github.com/nusretparlak
-
-;(function (global, factory) {
-    true ? factory(__webpack_require__(0)) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
-}(this, (function (moment) { 'use strict';
-
-
-var arKw = moment.defineLocale('ar-kw', {
-    months : 'يناير_فبراير_مارس_أبريل_ماي_يونيو_يوليوز_غشت_شتنبر_أكتوبر_نونبر_دجنبر'.split('_'),
-    monthsShort : 'يناير_فبراير_مارس_أبريل_ماي_يونيو_يوليوز_غشت_شتنبر_أكتوبر_نونبر_دجنبر'.split('_'),
-    weekdays : 'الأحد_الإتنين_الثلاثاء_الأربعاء_الخميس_الجمعة_السبت'.split('_'),
-    weekdaysShort : 'احد_اتنين_ثلاثاء_اربعاء_خميس_جمعة_سبت'.split('_'),
-    weekdaysMin : 'ح_ن_ث_ر_خ_ج_س'.split('_'),
-    weekdaysParseExact : true,
-    longDateFormat : {
-        LT : 'HH:mm',
-        LTS : 'HH:mm:ss',
-        L : 'DD/MM/YYYY',
-        LL : 'D MMMM YYYY',
-        LLL : 'D MMMM YYYY HH:mm',
-        LLLL : 'dddd D MMMM YYYY HH:mm'
-    },
-    calendar : {
-        sameDay: '[اليوم على الساعة] LT',
-        nextDay: '[غدا على الساعة] LT',
-        nextWeek: 'dddd [على الساعة] LT',
-        lastDay: '[أمس على الساعة] LT',
-        lastWeek: 'dddd [على الساعة] LT',
-        sameElse: 'L'
-    },
-    relativeTime : {
-        future : 'في %s',
-        past : 'منذ %s',
-        s : 'ثوان',
-        m : 'دقيقة',
-        mm : '%d دقائق',
-        h : 'ساعة',
-        hh : '%d ساعات',
-        d : 'يوم',
-        dd : '%d أيام',
-        M : 'شهر',
-        MM : '%d أشهر',
-        y : 'سنة',
-        yy : '%d سنوات'
-    },
-    week : {
-        dow : 0, // Sunday is the first day of the week.
-        doy : 12  // The week that contains Jan 1st is the first week of the year.
-    }
-});
-
-return arKw;
-
-})));
-
-
-/***/ }),
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 //! locale : Arabic (Lybia) [ar-ly]
 //! author : Ali Hmer: https://github.com/kikoanis
 
@@ -6641,90 +6556,6 @@ return de;
 }(this, (function (moment) { 'use strict';
 
 
-<<<<<<< HEAD
-=======
-function processRelativeTime(number, withoutSuffix, key, isFuture) {
-    var format = {
-        'm': ['eine Minute', 'einer Minute'],
-        'h': ['eine Stunde', 'einer Stunde'],
-        'd': ['ein Tag', 'einem Tag'],
-        'dd': [number + ' Tage', number + ' Tagen'],
-        'M': ['ein Monat', 'einem Monat'],
-        'MM': [number + ' Monate', number + ' Monaten'],
-        'y': ['ein Jahr', 'einem Jahr'],
-        'yy': [number + ' Jahre', number + ' Jahren']
-    };
-    return withoutSuffix ? format[key][0] : format[key][1];
-}
-
-var de = moment.defineLocale('de', {
-    months : 'Januar_Februar_März_April_Mai_Juni_Juli_August_September_Oktober_November_Dezember'.split('_'),
-    monthsShort : 'Jan._Febr._Mrz._Apr._Mai_Jun._Jul._Aug._Sept._Okt._Nov._Dez.'.split('_'),
-    monthsParseExact : true,
-    weekdays : 'Sonntag_Montag_Dienstag_Mittwoch_Donnerstag_Freitag_Samstag'.split('_'),
-    weekdaysShort : 'So._Mo._Di._Mi._Do._Fr._Sa.'.split('_'),
-    weekdaysMin : 'So_Mo_Di_Mi_Do_Fr_Sa'.split('_'),
-    weekdaysParseExact : true,
-    longDateFormat : {
-        LT: 'HH:mm',
-        LTS: 'HH:mm:ss',
-        L : 'DD.MM.YYYY',
-        LL : 'D. MMMM YYYY',
-        LLL : 'D. MMMM YYYY HH:mm',
-        LLLL : 'dddd, D. MMMM YYYY HH:mm'
-    },
-    calendar : {
-        sameDay: '[heute um] LT [Uhr]',
-        sameElse: 'L',
-        nextDay: '[morgen um] LT [Uhr]',
-        nextWeek: 'dddd [um] LT [Uhr]',
-        lastDay: '[gestern um] LT [Uhr]',
-        lastWeek: '[letzten] dddd [um] LT [Uhr]'
-    },
-    relativeTime : {
-        future : 'in %s',
-        past : 'vor %s',
-        s : 'ein paar Sekunden',
-        m : processRelativeTime,
-        mm : '%d Minuten',
-        h : processRelativeTime,
-        hh : '%d Stunden',
-        d : processRelativeTime,
-        dd : processRelativeTime,
-        M : processRelativeTime,
-        MM : processRelativeTime,
-        y : processRelativeTime,
-        yy : processRelativeTime
-    },
-    dayOfMonthOrdinalParse: /\d{1,2}\./,
-    ordinal : '%d.',
-    week : {
-        dow : 1, // Monday is the first day of the week.
-        doy : 4  // The week that contains Jan 4th is the first week of the year.
-    }
-});
-
-return de;
-
-})));
-
-
-/***/ }),
-/* 24 */
-/***/ (function(module, exports, __webpack_require__) {
-
-//! moment.js locale configuration
-//! locale : Maldivian [dv]
-//! author : Jawish Hameed : https://github.com/jawish
-
-;(function (global, factory) {
-    true ? factory(__webpack_require__(0)) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
-}(this, (function (moment) { 'use strict';
-
-
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 var months = [
     'ޖެނުއަރީ',
     'ފެބްރުއަރީ',
@@ -6816,11 +6647,7 @@ return dv;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 24 */
-=======
-/* 25 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -6923,11 +6750,7 @@ return el;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 25 */
-=======
-/* 26 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -6999,11 +6822,7 @@ return enAu;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 26 */
-=======
-/* 27 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7071,11 +6890,7 @@ return enCa;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 27 */
-=======
-/* 28 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7147,11 +6962,7 @@ return enGb;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 28 */
-=======
-/* 29 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7223,11 +7034,7 @@ return enIe;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 29 */
-=======
-/* 30 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7299,11 +7106,7 @@ return enNz;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 30 */
-=======
-/* 31 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7381,11 +7184,7 @@ return eo;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 31 */
-=======
-/* 32 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7470,11 +7269,7 @@ return esDo;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 32 */
-=======
-/* 33 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7560,11 +7355,7 @@ return es;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 33 */
-=======
-/* 34 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7649,11 +7440,7 @@ return et;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 34 */
-=======
-/* 35 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7724,11 +7511,7 @@ return eu;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 35 */
-=======
-/* 36 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7840,11 +7623,7 @@ return fa;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 36 */
-=======
-/* 37 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7956,11 +7735,7 @@ return fi;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 37 */
-=======
-/* 38 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8025,11 +7800,7 @@ return fo;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 38 */
-=======
-/* 39 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8094,11 +7865,7 @@ return frCa;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 39 */
-=======
-/* 40 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8167,11 +7934,7 @@ return frCh;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 40 */
-=======
-/* 41 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8240,11 +8003,7 @@ return fr;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 41 */
-=======
-/* 42 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8322,11 +8081,7 @@ return fy;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 42 */
-=======
-/* 43 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8407,11 +8162,7 @@ return gd;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 43 */
-=======
-/* 44 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8493,138 +8244,7 @@ return gl;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 44 */
-=======
-/* 45 */
-/***/ (function(module, exports, __webpack_require__) {
-
-//! moment.js locale configuration
-//! locale : Konkani Latin script [gom-latn]
-//! author : The Discoverer : https://github.com/WikiDiscoverer
-
-;(function (global, factory) {
-    true ? factory(__webpack_require__(0)) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
-}(this, (function (moment) { 'use strict';
-
-
-function processRelativeTime(number, withoutSuffix, key, isFuture) {
-    var format = {
-        's': ['thodde secondanim', 'thodde second'],
-        'm': ['eka mintan', 'ek minute'],
-        'mm': [number + ' mintanim', number + ' mintam'],
-        'h': ['eka horan', 'ek hor'],
-        'hh': [number + ' horanim', number + ' hor'],
-        'd': ['eka disan', 'ek dis'],
-        'dd': [number + ' disanim', number + ' dis'],
-        'M': ['eka mhoinean', 'ek mhoino'],
-        'MM': [number + ' mhoineanim', number + ' mhoine'],
-        'y': ['eka vorsan', 'ek voros'],
-        'yy': [number + ' vorsanim', number + ' vorsam']
-    };
-    return withoutSuffix ? format[key][0] : format[key][1];
-}
-
-var gomLatn = moment.defineLocale('gom-latn', {
-    months : 'Janer_Febrer_Mars_Abril_Mai_Jun_Julai_Agost_Setembr_Otubr_Novembr_Dezembr'.split('_'),
-    monthsShort : 'Jan._Feb._Mars_Abr._Mai_Jun_Jul._Ago._Set._Otu._Nov._Dez.'.split('_'),
-    monthsParseExact : true,
-    weekdays : 'Aitar_Somar_Mongllar_Budvar_Brestar_Sukrar_Son\'var'.split('_'),
-    weekdaysShort : 'Ait._Som._Mon._Bud._Bre._Suk._Son.'.split('_'),
-    weekdaysMin : 'Ai_Sm_Mo_Bu_Br_Su_Sn'.split('_'),
-    weekdaysParseExact : true,
-    longDateFormat : {
-        LT : 'A h:mm [vazta]',
-        LTS : 'A h:mm:ss [vazta]',
-        L : 'DD-MM-YYYY',
-        LL : 'D MMMM YYYY',
-        LLL : 'D MMMM YYYY A h:mm [vazta]',
-        LLLL : 'dddd, MMMM[achea] Do, YYYY, A h:mm [vazta]',
-        llll: 'ddd, D MMM YYYY, A h:mm [vazta]'
-    },
-    calendar : {
-        sameDay: '[Aiz] LT',
-        nextDay: '[Faleam] LT',
-        nextWeek: '[Ieta to] dddd[,] LT',
-        lastDay: '[Kal] LT',
-        lastWeek: '[Fatlo] dddd[,] LT',
-        sameElse: 'L'
-    },
-    relativeTime : {
-        future : '%s',
-        past : '%s adim',
-        s : processRelativeTime,
-        m : processRelativeTime,
-        mm : processRelativeTime,
-        h : processRelativeTime,
-        hh : processRelativeTime,
-        d : processRelativeTime,
-        dd : processRelativeTime,
-        M : processRelativeTime,
-        MM : processRelativeTime,
-        y : processRelativeTime,
-        yy : processRelativeTime
-    },
-    dayOfMonthOrdinalParse : /\d{1,2}(er)/,
-    ordinal : function (number, period) {
-        switch (period) {
-            // the ordinal 'er' only applies to day of the month
-            case 'D':
-                return number + 'er';
-            default:
-            case 'M':
-            case 'Q':
-            case 'DDD':
-            case 'd':
-            case 'w':
-            case 'W':
-                return number;
-        }
-    },
-    week : {
-        dow : 1, // Monday is the first day of the week.
-        doy : 4  // The week that contains Jan 4th is the first week of the year.
-    },
-    meridiemParse: /rati|sokalli|donparam|sanje/,
-    meridiemHour : function (hour, meridiem) {
-        if (hour === 12) {
-            hour = 0;
-        }
-        if (meridiem === 'rati') {
-            return hour < 4 ? hour : hour + 12;
-        } else if (meridiem === 'sokalli') {
-            return hour;
-        } else if (meridiem === 'donparam') {
-            return hour > 12 ? hour : hour + 12;
-        } else if (meridiem === 'sanje') {
-            return hour + 12;
-        }
-    },
-    meridiem : function (hour, minute, isLower) {
-        if (hour < 4) {
-            return 'rati';
-        } else if (hour < 12) {
-            return 'sokalli';
-        } else if (hour < 16) {
-            return 'donparam';
-        } else if (hour < 20) {
-            return 'sanje';
-        } else {
-            return 'rati';
-        }
-    }
-});
-
-return gomLatn;
-
-})));
-
-
-/***/ }),
-/* 46 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8728,11 +8348,7 @@ return he;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 45 */
-=======
-/* 47 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8861,11 +8477,7 @@ return hi;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 46 */
-=======
-/* 48 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9015,11 +8627,7 @@ return hr;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 47 */
-=======
-/* 49 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9133,11 +8741,7 @@ return hu;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 48 */
-=======
-/* 50 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9237,11 +8841,7 @@ return hyAm;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 49 */
-=======
-/* 51 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9329,11 +8929,7 @@ return id;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 50 */
-=======
-/* 52 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9465,11 +9061,7 @@ return is;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 51 */
-=======
-/* 53 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9544,11 +9136,7 @@ return it;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 52 */
-=======
-/* 54 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9629,11 +9217,7 @@ return ja;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 53 */
-=======
-/* 55 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9721,11 +9305,7 @@ return jv;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 54 */
-=======
-/* 56 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9819,11 +9399,7 @@ return ka;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 55 */
-=======
-/* 57 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9915,11 +9491,7 @@ return kk;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 56 */
-=======
-/* 58 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9982,142 +9554,7 @@ return km;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 57 */
-=======
-/* 59 */
-/***/ (function(module, exports, __webpack_require__) {
-
-//! moment.js locale configuration
-//! locale : Kannada [kn]
-//! author : Rajeev Naik : https://github.com/rajeevnaikte
-
-;(function (global, factory) {
-    true ? factory(__webpack_require__(0)) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
-}(this, (function (moment) { 'use strict';
-
-
-var symbolMap = {
-    '1': '೧',
-    '2': '೨',
-    '3': '೩',
-    '4': '೪',
-    '5': '೫',
-    '6': '೬',
-    '7': '೭',
-    '8': '೮',
-    '9': '೯',
-    '0': '೦'
-};
-var numberMap = {
-    '೧': '1',
-    '೨': '2',
-    '೩': '3',
-    '೪': '4',
-    '೫': '5',
-    '೬': '6',
-    '೭': '7',
-    '೮': '8',
-    '೯': '9',
-    '೦': '0'
-};
-
-var kn = moment.defineLocale('kn', {
-    months : 'ಜನವರಿ_ಫೆಬ್ರವರಿ_ಮಾರ್ಚ್_ಏಪ್ರಿಲ್_ಮೇ_ಜೂನ್_ಜುಲೈ_ಆಗಸ್ಟ್_ಸೆಪ್ಟೆಂಬರ್_ಅಕ್ಟೋಬರ್_ನವೆಂಬರ್_ಡಿಸೆಂಬರ್'.split('_'),
-    monthsShort : 'ಜನ_ಫೆಬ್ರ_ಮಾರ್ಚ್_ಏಪ್ರಿಲ್_ಮೇ_ಜೂನ್_ಜುಲೈ_ಆಗಸ್ಟ್_ಸೆಪ್ಟೆಂಬ_ಅಕ್ಟೋಬ_ನವೆಂಬ_ಡಿಸೆಂಬ'.split('_'),
-    monthsParseExact: true,
-    weekdays : 'ಭಾನುವಾರ_ಸೋಮವಾರ_ಮಂಗಳವಾರ_ಬುಧವಾರ_ಗುರುವಾರ_ಶುಕ್ರವಾರ_ಶನಿವಾರ'.split('_'),
-    weekdaysShort : 'ಭಾನು_ಸೋಮ_ಮಂಗಳ_ಬುಧ_ಗುರು_ಶುಕ್ರ_ಶನಿ'.split('_'),
-    weekdaysMin : 'ಭಾ_ಸೋ_ಮಂ_ಬು_ಗು_ಶು_ಶ'.split('_'),
-    longDateFormat : {
-        LT : 'A h:mm',
-        LTS : 'A h:mm:ss',
-        L : 'DD/MM/YYYY',
-        LL : 'D MMMM YYYY',
-        LLL : 'D MMMM YYYY, A h:mm',
-        LLLL : 'dddd, D MMMM YYYY, A h:mm'
-    },
-    calendar : {
-        sameDay : '[ಇಂದು] LT',
-        nextDay : '[ನಾಳೆ] LT',
-        nextWeek : 'dddd, LT',
-        lastDay : '[ನಿನ್ನೆ] LT',
-        lastWeek : '[ಕೊನೆಯ] dddd, LT',
-        sameElse : 'L'
-    },
-    relativeTime : {
-        future : '%s ನಂತರ',
-        past : '%s ಹಿಂದೆ',
-        s : 'ಕೆಲವು ಕ್ಷಣಗಳು',
-        m : 'ಒಂದು ನಿಮಿಷ',
-        mm : '%d ನಿಮಿಷ',
-        h : 'ಒಂದು ಗಂಟೆ',
-        hh : '%d ಗಂಟೆ',
-        d : 'ಒಂದು ದಿನ',
-        dd : '%d ದಿನ',
-        M : 'ಒಂದು ತಿಂಗಳು',
-        MM : '%d ತಿಂಗಳು',
-        y : 'ಒಂದು ವರ್ಷ',
-        yy : '%d ವರ್ಷ'
-    },
-    preparse: function (string) {
-        return string.replace(/[೧೨೩೪೫೬೭೮೯೦]/g, function (match) {
-            return numberMap[match];
-        });
-    },
-    postformat: function (string) {
-        return string.replace(/\d/g, function (match) {
-            return symbolMap[match];
-        });
-    },
-    meridiemParse: /ರಾತ್ರಿ|ಬೆಳಿಗ್ಗೆ|ಮಧ್ಯಾಹ್ನ|ಸಂಜೆ/,
-    meridiemHour : function (hour, meridiem) {
-        if (hour === 12) {
-            hour = 0;
-        }
-        if (meridiem === 'ರಾತ್ರಿ') {
-            return hour < 4 ? hour : hour + 12;
-        } else if (meridiem === 'ಬೆಳಿಗ್ಗೆ') {
-            return hour;
-        } else if (meridiem === 'ಮಧ್ಯಾಹ್ನ') {
-            return hour >= 10 ? hour : hour + 12;
-        } else if (meridiem === 'ಸಂಜೆ') {
-            return hour + 12;
-        }
-    },
-    meridiem : function (hour, minute, isLower) {
-        if (hour < 4) {
-            return 'ರಾತ್ರಿ';
-        } else if (hour < 10) {
-            return 'ಬೆಳಿಗ್ಗೆ';
-        } else if (hour < 17) {
-            return 'ಮಧ್ಯಾಹ್ನ';
-        } else if (hour < 20) {
-            return 'ಸಂಜೆ';
-        } else {
-            return 'ರಾತ್ರಿ';
-        }
-    },
-    dayOfMonthOrdinalParse: /\d{1,2}(ನೇ)/,
-    ordinal : function (number) {
-        return number + 'ನೇ';
-    },
-    week : {
-        dow : 0, // Sunday is the first day of the week.
-        doy : 6  // The week that contains Jan 1st is the first week of the year.
-    }
-});
-
-return kn;
-
-})));
-
-
-/***/ }),
-/* 60 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10187,11 +9624,7 @@ return ko;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 58 */
-=======
-/* 61 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10284,11 +9717,7 @@ return ky;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 59 */
-=======
-/* 62 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10430,11 +9859,7 @@ return lb;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 60 */
-=======
-/* 63 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10509,11 +9934,7 @@ return lo;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 61 */
-=======
-/* 64 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10635,11 +10056,7 @@ return lt;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 62 */
-=======
-/* 65 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10741,11 +10158,7 @@ return lv;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 63 */
-=======
-/* 66 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10861,11 +10274,7 @@ return me;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 64 */
-=======
-/* 67 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10934,11 +10343,7 @@ return mi;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 65 */
-=======
-/* 68 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11033,11 +10438,7 @@ return mk;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 66 */
-=======
-/* 69 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11123,11 +10524,7 @@ return ml;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 67 */
-=======
-/* 70 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11291,11 +10688,7 @@ return mr;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 68 */
-=======
-/* 71 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11383,11 +10776,7 @@ return msMy;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 69 */
-=======
-/* 72 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11474,11 +10863,7 @@ return ms;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 70 */
-=======
-/* 73 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11579,11 +10964,7 @@ return my;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 71 */
-=======
-/* 74 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11651,11 +11032,7 @@ return nb;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 72 */
-=======
-/* 75 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11783,11 +11160,7 @@ return ne;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 73 */
-=======
-/* 76 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11878,11 +11251,7 @@ return nlBe;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 74 */
-=======
-/* 77 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11973,11 +11342,7 @@ return nl;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 75 */
-=======
-/* 78 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12042,11 +11407,7 @@ return nn;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 76 */
-=======
-/* 79 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12175,11 +11536,7 @@ return paIn;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 77 */
-=======
-/* 80 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12289,11 +11646,7 @@ return pl;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 78 */
-=======
-/* 81 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12359,11 +11712,7 @@ return ptBr;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 79 */
-=======
-/* 82 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12433,11 +11782,7 @@ return pt;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 80 */
-=======
-/* 83 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12517,11 +11862,7 @@ return ro;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 81 */
-=======
-/* 84 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12709,114 +12050,7 @@ return ru;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 82 */
-=======
-/* 85 */
-/***/ (function(module, exports, __webpack_require__) {
-
-//! moment.js locale configuration
-//! locale : Sindhi [sd]
-//! author : Narain Sagar : https://github.com/narainsagar
-
-;(function (global, factory) {
-    true ? factory(__webpack_require__(0)) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
-}(this, (function (moment) { 'use strict';
-
-
-var months = [
-    'جنوري',
-    'فيبروري',
-    'مارچ',
-    'اپريل',
-    'مئي',
-    'جون',
-    'جولاءِ',
-    'آگسٽ',
-    'سيپٽمبر',
-    'آڪٽوبر',
-    'نومبر',
-    'ڊسمبر'
-];
-var days = [
-    'آچر',
-    'سومر',
-    'اڱارو',
-    'اربع',
-    'خميس',
-    'جمع',
-    'ڇنڇر'
-];
-
-var sd = moment.defineLocale('sd', {
-    months : months,
-    monthsShort : months,
-    weekdays : days,
-    weekdaysShort : days,
-    weekdaysMin : days,
-    longDateFormat : {
-        LT : 'HH:mm',
-        LTS : 'HH:mm:ss',
-        L : 'DD/MM/YYYY',
-        LL : 'D MMMM YYYY',
-        LLL : 'D MMMM YYYY HH:mm',
-        LLLL : 'dddd، D MMMM YYYY HH:mm'
-    },
-    meridiemParse: /صبح|شام/,
-    isPM : function (input) {
-        return 'شام' === input;
-    },
-    meridiem : function (hour, minute, isLower) {
-        if (hour < 12) {
-            return 'صبح';
-        }
-        return 'شام';
-    },
-    calendar : {
-        sameDay : '[اڄ] LT',
-        nextDay : '[سڀاڻي] LT',
-        nextWeek : 'dddd [اڳين هفتي تي] LT',
-        lastDay : '[ڪالهه] LT',
-        lastWeek : '[گزريل هفتي] dddd [تي] LT',
-        sameElse : 'L'
-    },
-    relativeTime : {
-        future : '%s پوء',
-        past : '%s اڳ',
-        s : 'چند سيڪنڊ',
-        m : 'هڪ منٽ',
-        mm : '%d منٽ',
-        h : 'هڪ ڪلاڪ',
-        hh : '%d ڪلاڪ',
-        d : 'هڪ ڏينهن',
-        dd : '%d ڏينهن',
-        M : 'هڪ مهينو',
-        MM : '%d مهينا',
-        y : 'هڪ سال',
-        yy : '%d سال'
-    },
-    preparse: function (string) {
-        return string.replace(/،/g, ',');
-    },
-    postformat: function (string) {
-        return string.replace(/,/g, '،');
-    },
-    week : {
-        dow : 1, // Monday is the first day of the week.
-        doy : 4  // The week that contains Jan 4th is the first week of the year.
-    }
-});
-
-return sd;
-
-})));
-
-
-/***/ }),
-/* 86 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12882,11 +12116,7 @@ return se;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 83 */
-=======
-/* 87 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12962,11 +12192,7 @@ return si;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 84 */
-=======
-/* 88 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13121,11 +12347,7 @@ return sk;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 85 */
-=======
-/* 89 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13292,11 +12514,7 @@ return sl;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 86 */
-=======
-/* 90 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13371,11 +12589,7 @@ return sq;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 87 */
-=======
-/* 91 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13490,11 +12704,7 @@ return srCyrl;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 88 */
-=======
-/* 92 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13609,11 +12819,7 @@ return sr;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 89 */
-=======
-/* 93 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13707,11 +12913,7 @@ return ss;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 90 */
-=======
-/* 94 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13785,11 +12987,7 @@ return sv;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 91 */
-=======
-/* 95 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13853,11 +13051,7 @@ return sw;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 92 */
-=======
-/* 96 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13992,11 +13186,7 @@ return ta;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 93 */
-=======
-/* 97 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14090,11 +13280,7 @@ return te;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 94 */
-=======
-/* 98 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14167,11 +13353,7 @@ return tet;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 95 */
-=======
-/* 99 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14243,11 +13425,7 @@ return th;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 96 */
-=======
-/* 100 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14314,11 +13492,7 @@ return tlPh;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 97 */
-=======
-/* 101 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14443,11 +13617,7 @@ return tlh;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 98 */
-=======
-/* 102 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14542,11 +13712,7 @@ return tr;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 99 */
-=======
-/* 103 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14642,11 +13808,7 @@ return tzl;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 100 */
-=======
-/* 104 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14709,11 +13871,7 @@ return tzmLatn;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 101 */
-=======
-/* 105 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14776,11 +13934,7 @@ return tzm;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 102 */
-=======
-/* 106 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14931,178 +14085,7 @@ return uk;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 103 */
-=======
-/* 107 */
-/***/ (function(module, exports, __webpack_require__) {
-
-//! moment.js locale configuration
-//! locale : Urdu [ur]
-//! author : Sawood Alam : https://github.com/ibnesayeed
-//! author : Zack : https://github.com/ZackVision
-
-;(function (global, factory) {
-    true ? factory(__webpack_require__(0)) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
-}(this, (function (moment) { 'use strict';
-
-
-var months = [
-    'جنوری',
-    'فروری',
-    'مارچ',
-    'اپریل',
-    'مئی',
-    'جون',
-    'جولائی',
-    'اگست',
-    'ستمبر',
-    'اکتوبر',
-    'نومبر',
-    'دسمبر'
-];
-var days = [
-    'اتوار',
-    'پیر',
-    'منگل',
-    'بدھ',
-    'جمعرات',
-    'جمعہ',
-    'ہفتہ'
-];
-
-var ur = moment.defineLocale('ur', {
-    months : months,
-    monthsShort : months,
-    weekdays : days,
-    weekdaysShort : days,
-    weekdaysMin : days,
-    longDateFormat : {
-        LT : 'HH:mm',
-        LTS : 'HH:mm:ss',
-        L : 'DD/MM/YYYY',
-        LL : 'D MMMM YYYY',
-        LLL : 'D MMMM YYYY HH:mm',
-        LLLL : 'dddd، D MMMM YYYY HH:mm'
-    },
-    meridiemParse: /صبح|شام/,
-    isPM : function (input) {
-        return 'شام' === input;
-    },
-    meridiem : function (hour, minute, isLower) {
-        if (hour < 12) {
-            return 'صبح';
-        }
-        return 'شام';
-    },
-    calendar : {
-        sameDay : '[آج بوقت] LT',
-        nextDay : '[کل بوقت] LT',
-        nextWeek : 'dddd [بوقت] LT',
-        lastDay : '[گذشتہ روز بوقت] LT',
-        lastWeek : '[گذشتہ] dddd [بوقت] LT',
-        sameElse : 'L'
-    },
-    relativeTime : {
-        future : '%s بعد',
-        past : '%s قبل',
-        s : 'چند سیکنڈ',
-        m : 'ایک منٹ',
-        mm : '%d منٹ',
-        h : 'ایک گھنٹہ',
-        hh : '%d گھنٹے',
-        d : 'ایک دن',
-        dd : '%d دن',
-        M : 'ایک ماہ',
-        MM : '%d ماہ',
-        y : 'ایک سال',
-        yy : '%d سال'
-    },
-    preparse: function (string) {
-        return string.replace(/،/g, ',');
-    },
-    postformat: function (string) {
-        return string.replace(/,/g, '،');
-    },
-    week : {
-        dow : 1, // Monday is the first day of the week.
-        doy : 4  // The week that contains Jan 4th is the first week of the year.
-    }
-});
-
-return ur;
-
-})));
-
-
-/***/ }),
-/* 108 */
-/***/ (function(module, exports, __webpack_require__) {
-
-//! moment.js locale configuration
-//! locale : Uzbek Latin [uz-latn]
-//! author : Rasulbek Mirzayev : github.com/Rasulbeeek
-
-;(function (global, factory) {
-    true ? factory(__webpack_require__(0)) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
-}(this, (function (moment) { 'use strict';
-
-
-var uzLatn = moment.defineLocale('uz-latn', {
-    months : 'Yanvar_Fevral_Mart_Aprel_May_Iyun_Iyul_Avgust_Sentabr_Oktabr_Noyabr_Dekabr'.split('_'),
-    monthsShort : 'Yan_Fev_Mar_Apr_May_Iyun_Iyul_Avg_Sen_Okt_Noy_Dek'.split('_'),
-    weekdays : 'Yakshanba_Dushanba_Seshanba_Chorshanba_Payshanba_Juma_Shanba'.split('_'),
-    weekdaysShort : 'Yak_Dush_Sesh_Chor_Pay_Jum_Shan'.split('_'),
-    weekdaysMin : 'Ya_Du_Se_Cho_Pa_Ju_Sha'.split('_'),
-    longDateFormat : {
-        LT : 'HH:mm',
-        LTS : 'HH:mm:ss',
-        L : 'DD/MM/YYYY',
-        LL : 'D MMMM YYYY',
-        LLL : 'D MMMM YYYY HH:mm',
-        LLLL : 'D MMMM YYYY, dddd HH:mm'
-    },
-    calendar : {
-        sameDay : '[Bugun soat] LT [da]',
-        nextDay : '[Ertaga] LT [da]',
-        nextWeek : 'dddd [kuni soat] LT [da]',
-        lastDay : '[Kecha soat] LT [da]',
-        lastWeek : '[O\'tgan] dddd [kuni soat] LT [da]',
-        sameElse : 'L'
-    },
-    relativeTime : {
-        future : 'Yaqin %s ichida',
-        past : 'Bir necha %s oldin',
-        s : 'soniya',
-        m : 'bir daqiqa',
-        mm : '%d daqiqa',
-        h : 'bir soat',
-        hh : '%d soat',
-        d : 'bir kun',
-        dd : '%d kun',
-        M : 'bir oy',
-        MM : '%d oy',
-        y : 'bir yil',
-        yy : '%d yil'
-    },
-    week : {
-        dow : 1, // Monday is the first day of the week.
-        doy : 7  // The week that contains Jan 1st is the first week of the year.
-    }
-});
-
-return uzLatn;
-
-})));
-
-
-/***/ }),
-/* 109 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15165,11 +14148,7 @@ return uz;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 104 */
-=======
-/* 110 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15253,11 +14232,7 @@ return vi;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 105 */
-=======
-/* 111 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15330,11 +14305,7 @@ return xPseudo;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 106 */
-=======
-/* 112 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15399,11 +14370,7 @@ return yo;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 107 */
-=======
-/* 113 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15535,11 +14502,7 @@ return zhCn;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 108 */
-=======
-/* 114 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15649,11 +14612,7 @@ return zhHk;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 109 */
-=======
-/* 115 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15762,7 +14721,6 @@ return zhTw;
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 110 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -15776,21 +14734,6 @@ __webpack_require__(115);
 __webpack_require__(117);
 __webpack_require__(118);
 __webpack_require__(116);
-=======
-/* 116 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_locationMap__ = __webpack_require__(119);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_chat__ = __webpack_require__(118);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_chat___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_chat__);
-__webpack_require__(120);
-__webpack_require__(121);
-__webpack_require__(123);
-__webpack_require__(124);
-__webpack_require__(122);
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 
 
 
@@ -15816,30 +14759,21 @@ $(function () {
     $('#datetime-end').datetimepicker({
         locale: 'nl',
         format: 'YYYY-MM-DD HH:mm:ss'
-
     });
 });
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 
 /***/ }),
-<<<<<<< HEAD
 /* 111 */
-=======
-/* 117 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-<<<<<<< HEAD
 /* 112 */
 /***/ (function(module, exports, __webpack_require__) {
-=======
-/* 118 */
-/***/ (function(module, exports) {
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 
-$(function () {
+/* WEBPACK VAR INJECTION */(function($) {$(function () {
 
     $('#new-chat-modal').on('show.bs.modal', function () {
         $.request('onFetchFriends', {
@@ -15934,17 +14868,14 @@ $(function () {
         polledSince = new Date().toISOString();
     }, POLL_RATE);
 });
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-<<<<<<< HEAD
 /* 113 */
-=======
-/* 119 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+/* WEBPACK VAR INJECTION */(function($) {var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -16058,18 +14989,14 @@ var LocationMap = function () {
     return LocationMap;
 }();
 
-/* harmony default export */ __webpack_exports__["a"] = (LocationMap);
+/* harmony default export */ __webpack_exports__["a"] = LocationMap;
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 
 /***/ }),
-<<<<<<< HEAD
 /* 114 */
 /***/ (function(module, exports, __webpack_require__) {
-=======
-/* 120 */
-/***/ (function(module, exports) {
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 
-/* ========================================================================
+/* WEBPACK VAR INJECTION */(function(jQuery) {/* ========================================================================
  * Bootstrap: collapse.js v3.3.7
  * http://getbootstrap.com/javascript/#collapse
  * ========================================================================
@@ -16282,17 +15209,13 @@ var LocationMap = function () {
 
 }(jQuery);
 
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-<<<<<<< HEAD
 /* 115 */
 /***/ (function(module, exports, __webpack_require__) {
-=======
-/* 121 */
-/***/ (function(module, exports) {
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 
-/* ========================================================================
+/* WEBPACK VAR INJECTION */(function(jQuery) {/* ========================================================================
  * Bootstrap: dropdown.js v3.3.7
  * http://getbootstrap.com/javascript/#dropdowns
  * ========================================================================
@@ -16458,17 +15381,13 @@ var LocationMap = function () {
 
 }(jQuery);
 
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-<<<<<<< HEAD
 /* 116 */
 /***/ (function(module, exports, __webpack_require__) {
-=======
-/* 122 */
-/***/ (function(module, exports) {
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 
-/* ========================================================================
+/* WEBPACK VAR INJECTION */(function(jQuery) {/* ========================================================================
  * Bootstrap: modal.js v3.3.7
  * http://getbootstrap.com/javascript/#modals
  * ========================================================================
@@ -16808,17 +15727,13 @@ var LocationMap = function () {
 
 }(jQuery);
 
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-<<<<<<< HEAD
 /* 117 */
 /***/ (function(module, exports, __webpack_require__) {
-=======
-/* 123 */
-/***/ (function(module, exports) {
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 
-/* ========================================================================
+/* WEBPACK VAR INJECTION */(function(jQuery) {/* ========================================================================
  * Bootstrap: tab.js v3.3.7
  * http://getbootstrap.com/javascript/#tabs
  * ========================================================================
@@ -16974,13 +15889,10 @@ var LocationMap = function () {
 
 }(jQuery);
 
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-<<<<<<< HEAD
 /* 118 */
-=======
-/* 124 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! version : 4.17.47
@@ -17022,7 +15934,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     'use strict';
     if (true) {
         // AMD is used - Register as an anonymous module.
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(127), __webpack_require__(0)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(0)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -19625,7 +18537,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -19635,19 +18546,6 @@ var map = {
 	"./ar": 8,
 	"./ar-dz": 3,
 	"./ar-dz.js": 3,
-=======
-/* 125 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var map = {
-	"./af": 1,
-	"./af.js": 1,
-	"./ar": 8,
-	"./ar-dz": 2,
-	"./ar-dz.js": 2,
-	"./ar-kw": 3,
-	"./ar-kw.js": 3,
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 	"./ar-ly": 4,
 	"./ar-ly.js": 4,
 	"./ar-ma": 5,
@@ -19681,7 +18579,6 @@ var map = {
 	"./cy.js": 19,
 	"./da": 20,
 	"./da.js": 20,
-<<<<<<< HEAD
 	"./de": 22,
 	"./de-at": 21,
 	"./de-at.js": 21,
@@ -19860,205 +18757,13 @@ var map = {
 	"./zh-hk.js": 108,
 	"./zh-tw": 109,
 	"./zh-tw.js": 109
-=======
-	"./de": 23,
-	"./de-at": 21,
-	"./de-at.js": 21,
-	"./de-ch": 22,
-	"./de-ch.js": 22,
-	"./de.js": 23,
-	"./dv": 24,
-	"./dv.js": 24,
-	"./el": 25,
-	"./el.js": 25,
-	"./en-au": 26,
-	"./en-au.js": 26,
-	"./en-ca": 27,
-	"./en-ca.js": 27,
-	"./en-gb": 28,
-	"./en-gb.js": 28,
-	"./en-ie": 29,
-	"./en-ie.js": 29,
-	"./en-nz": 30,
-	"./en-nz.js": 30,
-	"./eo": 31,
-	"./eo.js": 31,
-	"./es": 33,
-	"./es-do": 32,
-	"./es-do.js": 32,
-	"./es.js": 33,
-	"./et": 34,
-	"./et.js": 34,
-	"./eu": 35,
-	"./eu.js": 35,
-	"./fa": 36,
-	"./fa.js": 36,
-	"./fi": 37,
-	"./fi.js": 37,
-	"./fo": 38,
-	"./fo.js": 38,
-	"./fr": 41,
-	"./fr-ca": 39,
-	"./fr-ca.js": 39,
-	"./fr-ch": 40,
-	"./fr-ch.js": 40,
-	"./fr.js": 41,
-	"./fy": 42,
-	"./fy.js": 42,
-	"./gd": 43,
-	"./gd.js": 43,
-	"./gl": 44,
-	"./gl.js": 44,
-	"./gom-latn": 45,
-	"./gom-latn.js": 45,
-	"./he": 46,
-	"./he.js": 46,
-	"./hi": 47,
-	"./hi.js": 47,
-	"./hr": 48,
-	"./hr.js": 48,
-	"./hu": 49,
-	"./hu.js": 49,
-	"./hy-am": 50,
-	"./hy-am.js": 50,
-	"./id": 51,
-	"./id.js": 51,
-	"./is": 52,
-	"./is.js": 52,
-	"./it": 53,
-	"./it.js": 53,
-	"./ja": 54,
-	"./ja.js": 54,
-	"./jv": 55,
-	"./jv.js": 55,
-	"./ka": 56,
-	"./ka.js": 56,
-	"./kk": 57,
-	"./kk.js": 57,
-	"./km": 58,
-	"./km.js": 58,
-	"./kn": 59,
-	"./kn.js": 59,
-	"./ko": 60,
-	"./ko.js": 60,
-	"./ky": 61,
-	"./ky.js": 61,
-	"./lb": 62,
-	"./lb.js": 62,
-	"./lo": 63,
-	"./lo.js": 63,
-	"./lt": 64,
-	"./lt.js": 64,
-	"./lv": 65,
-	"./lv.js": 65,
-	"./me": 66,
-	"./me.js": 66,
-	"./mi": 67,
-	"./mi.js": 67,
-	"./mk": 68,
-	"./mk.js": 68,
-	"./ml": 69,
-	"./ml.js": 69,
-	"./mr": 70,
-	"./mr.js": 70,
-	"./ms": 72,
-	"./ms-my": 71,
-	"./ms-my.js": 71,
-	"./ms.js": 72,
-	"./my": 73,
-	"./my.js": 73,
-	"./nb": 74,
-	"./nb.js": 74,
-	"./ne": 75,
-	"./ne.js": 75,
-	"./nl": 77,
-	"./nl-be": 76,
-	"./nl-be.js": 76,
-	"./nl.js": 77,
-	"./nn": 78,
-	"./nn.js": 78,
-	"./pa-in": 79,
-	"./pa-in.js": 79,
-	"./pl": 80,
-	"./pl.js": 80,
-	"./pt": 82,
-	"./pt-br": 81,
-	"./pt-br.js": 81,
-	"./pt.js": 82,
-	"./ro": 83,
-	"./ro.js": 83,
-	"./ru": 84,
-	"./ru.js": 84,
-	"./sd": 85,
-	"./sd.js": 85,
-	"./se": 86,
-	"./se.js": 86,
-	"./si": 87,
-	"./si.js": 87,
-	"./sk": 88,
-	"./sk.js": 88,
-	"./sl": 89,
-	"./sl.js": 89,
-	"./sq": 90,
-	"./sq.js": 90,
-	"./sr": 92,
-	"./sr-cyrl": 91,
-	"./sr-cyrl.js": 91,
-	"./sr.js": 92,
-	"./ss": 93,
-	"./ss.js": 93,
-	"./sv": 94,
-	"./sv.js": 94,
-	"./sw": 95,
-	"./sw.js": 95,
-	"./ta": 96,
-	"./ta.js": 96,
-	"./te": 97,
-	"./te.js": 97,
-	"./tet": 98,
-	"./tet.js": 98,
-	"./th": 99,
-	"./th.js": 99,
-	"./tl-ph": 100,
-	"./tl-ph.js": 100,
-	"./tlh": 101,
-	"./tlh.js": 101,
-	"./tr": 102,
-	"./tr.js": 102,
-	"./tzl": 103,
-	"./tzl.js": 103,
-	"./tzm": 105,
-	"./tzm-latn": 104,
-	"./tzm-latn.js": 104,
-	"./tzm.js": 105,
-	"./uk": 106,
-	"./uk.js": 106,
-	"./ur": 107,
-	"./ur.js": 107,
-	"./uz": 109,
-	"./uz-latn": 108,
-	"./uz-latn.js": 108,
-	"./uz.js": 109,
-	"./vi": 110,
-	"./vi.js": 110,
-	"./x-pseudo": 111,
-	"./x-pseudo.js": 111,
-	"./yo": 112,
-	"./yo.js": 112,
-	"./zh-cn": 113,
-	"./zh-cn.js": 113,
-	"./zh-hk": 114,
-	"./zh-hk.js": 114,
-	"./zh-tw": 115,
-	"./zh-tw.js": 115
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
 };
 function webpackContextResolve(req) {
 	var id = map[req];
-	if(!(id + 1)) // check for number or string
+	if(!(id + 1)) // check for number
 		throw new Error("Cannot find module '" + req + "'.");
 	return id;
 };
@@ -20067,18 +18772,11 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-<<<<<<< HEAD
 webpackContext.id = 119;
 
 
 /***/ }),
 /* 120 */
-=======
-webpackContext.id = 125;
-
-/***/ }),
-/* 126 */
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -20106,25 +18804,11 @@ module.exports = function(module) {
 
 
 /***/ }),
-<<<<<<< HEAD
 /* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(110);
 module.exports = __webpack_require__(111);
-=======
-/* 127 */
-/***/ (function(module, exports) {
-
-module.exports = jQuery;
-
-/***/ }),
-/* 128 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(116);
-module.exports = __webpack_require__(117);
->>>>>>> c55c42ef36b72356266494b2be2bbf03e8c813f0
 
 
 /***/ })

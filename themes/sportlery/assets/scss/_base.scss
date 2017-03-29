@@ -5,6 +5,7 @@ body {
 
 body {
     padding-top: $navbar-height + $navbar-margin-bottom;
+    overflow-x: hidden;
 }
 
 .content-wrap {

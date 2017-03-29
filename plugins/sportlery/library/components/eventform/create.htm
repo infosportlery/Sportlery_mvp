@@ -1,4 +1,4 @@
-{{ form_open({ request: __SELF__ ~'::onUpdate', model: event }) }}
+<form data-request="onCreate">
 
 	<div class="form-group {{ errors.first('name', 'has-error') }}">
         {{ form_label('name', 'Name', {class: 'control-label'}) }}
@@ -47,5 +47,5 @@
 		<p>{{ message }}</p>
 	{% endflash %}
 
-{{ form_close() }}
+</form>
 

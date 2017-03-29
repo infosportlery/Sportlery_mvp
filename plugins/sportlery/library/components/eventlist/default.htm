@@ -73,6 +73,9 @@
                                             </p>
                                             {{ event.description|raw }}
                                             <div class="text-right">
+                                                {% if event.user_id == user.id %}
+                                                    <a href="edit/{{ event.id }}" class="btn btn-default">Edit</a>
+                                                {% endif %}
                                                 <a href="{{ detailsPage|page({ id: attribute(event, 'id') }) }}" class="btn btn-primary">Bekijk &raquo;</a>
                                             </div>
                                         </div>

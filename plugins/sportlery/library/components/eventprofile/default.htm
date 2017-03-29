@@ -5,7 +5,9 @@
         <strong>Starts at:</strong> {{ event.starts_at.formatLocalized('%A %d %B, %Y') }} om {{ event.starts_at.format('H:i') }}<br>
     <strong>Ends at:</strong> {{ event.ends_at.formatLocalized('%A %d %B, %Y') }} om {{ event.ends_at.format('H:i') }}</p>
     {{ event.description|raw }}
-
+    {% if event.user_id == user.id %}
+        <a href="/dashboard/events/edit/{{ event.getHashId() }}" class="btn btn-default">Edit</a>
+    {% endif %}
     {% if user %}
         <p>
             {{ form_open({ class: 'd-inline', request: __SELF__~'::onUpdateEventJoinStatus' }) }}
@@ -60,7 +62,7 @@
                                 <label class="list-group-item">
                                     <input type="checkbox" name="friend_id[]" value="{{ friend.getHashId() }}">
                                     <img src="{{ friend.avatarThumb(25) }}">
-                                    {{ friend.name {{ friend.surname }}
+                                    {{ friend.name }} {{ friend.surname }}
                                 </label>
                             {% endfor %}
                         </ul>

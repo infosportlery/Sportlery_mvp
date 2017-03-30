@@ -3,7 +3,7 @@
         {% for friend in friends %}
             <li class="list-group-item">
                 <img src="{{ friend.avatarThumb(25) }}">
-                {{ friend.name }} {{ friend.surname }}
+                {{ friend.name }} {{ friend.surname }} - <small>{{ friend.last_seen }}</small>
                 {% if showAcceptButtons %}
                     <span class="pull-right">
                         {{ form_open({ class: 'd-inline', request: __SELF__~'::onUpdateFriendship' }) }}

@@ -1,15 +1,11 @@
 
 {{ form_ajax('onUpdate', { model: user }, { files: true }) }}
 
-    <div class="form-group">
+    <div class="form-group"> 
     </div>
     <div class="form-group">
-        <label for="accountName">First Name</label>
+        <label for="accountName">Full Name</label>
         <input name="name" type="text" class="form-control" id="accountName" value="{{ form_value('name') }}">
-    </div>
-    <div class="form-group">
-        <label for="accountSurname">Last Name</label>
-        <input name="surname" type="text" class="form-control" id="accountSurname" value="{{ form_value('surname') }}">
     </div>
 
     <div class="form-group">
@@ -29,7 +25,7 @@
 
     <div class="form-group">
         <label for="street">Street</label>
-        <input type="text" name="street" name="street" value="{{ form_value('street') }}" id="street" class="form-control">
+        <input type="text" name="street" name="street" value="{{ form_value('street') }}" id="street" class="form-control">    
     </div>
     <div class="form-group">
         <label for="street_num">street Number</label>

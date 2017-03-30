@@ -6,7 +6,7 @@
     <h2>{{ record.name }}</h2>
 
     <img src="
-    {{ record.avatarThumb(100, {'mode':'crop'}) }}">
+    {{ record.avatar.thumb(100,100, {'mode':'crop'}) }}">
 
 
     <h5>{{ record.city }}</h5>
@@ -26,7 +26,7 @@
     {% endfor %}
 
     <ul class="gallery clearfix record-list list-group">
-
+    	
     	{% for image in record.location_gallery %}
 
     		<li class="record-list list-group-item">

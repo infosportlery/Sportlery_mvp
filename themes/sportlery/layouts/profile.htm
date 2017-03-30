@@ -13,7 +13,7 @@ security = "all"
         <meta name="author" content="Sportlery">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="{{ 'assets/css/sportlery.css'|theme }}" rel="stylesheet">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
         {% styles %}
     </head>
     <body>
@@ -24,8 +24,8 @@ security = "all"
                 {% partial 'profile/prof-header' %}
             </div>
 
-            <div class="container profile-container">
-                            
+            <div class="profile-container">
+
                 {% flash %}
                 <div class="container">
                     <div class="row">
@@ -36,37 +36,47 @@ security = "all"
                 </div>
                 {% endflash %}
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-6 col-sm-offset-1 col-xs-10 col-xs-offset-1">
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 {% page %}
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="container profile-container">
-                <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-4 col-sm-offset-0 col-xs-10 col-xs-offset-1">
                         <div class="panel panel-default">
                             <div class="panel-body">
+                                <a class="btn btn-default btn-block" href="#" role="button">Boek nu</a>
+                                <div class="contact">
+                                    <a class="btn btn-default" href="https://goo.gl/maps/1zg5Fuu9cNE2"></a>
+                                    <i class="fa fa-location-arrow fa-2x"></i>
+                                    <i class="fa fa-map-marker"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="container profile-container">
+            <div class="profile-container">
+
                 <div class="row">
-                    <div class="col-sm-12">
-                        <div class="panel-default">
+                    <div class="col-sm-6 col-sm-offset-1 col-xs-10 col-xs-offset-1">
+                        <div class="panel panel-default">
                             <div class="panel-body">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
         {% partial 'site/footer' %}
 
         <!-- Scripts -->

@@ -1,13 +1,18 @@
 <!-- If User -->
 
-	<div class="col-sm-12" style="background-color: black;position: absolute;height: 30%;top: 0;left: 0;width: 100%; max-height: 400px;">
-		<div class="user-block" style="height: 150px;width: 60%;top: 75%;left: 10%;position: absolute;z-index: 99;">
-			<div class="avatar-block" style="background-color: white;border: 1px solid black;height: 150px;width: 150px;z-index: 99; float: left;" >
-				<img src="">
+<div class="row header-row">
+	<div id="pheader" class="col-sm-12">
+		<div class="user-block">
+			<div class="avatar-block">
+				<img class="img-circle" src="{{ location.avatar.thumb(150,150, {'mode':'crop'}) }}">
+			</div>
+			<div class="location-title">
+				<h2>{{ location.name }}</h2>
 			</div>
 		</div>
-		<div class="banner-block" style="position: absolute;height: 100%;width: 100%;bottom: 0;left: 0;background-size: cover;background-image: url('http://rockstartemplate.com/blogheaders/bannerdesign2.jpg');background-position: center;background-repeat: no-repeat; max-height: 400px;"></div>
-    </div>
+		<div class="banner-block"></div>
+	</div>
+</div>
 
 <!-- elseif Location -->
 

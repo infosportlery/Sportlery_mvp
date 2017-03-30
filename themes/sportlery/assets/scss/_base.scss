@@ -1,16 +1,16 @@
 html,
 body {
     height: 100%;
+	overflow-x: hidden;
 }
 
 body {
     padding-top: $navbar-height + $navbar-margin-bottom;
-    overflow-x: hidden;
 }
 
-.content-wrap {
-     min-height: calc(100vh - #{$footer-height + $navbar-height + $navbar-margin-bottom + $footer-margin-top});
-}
+//.content-wrap {
+//     min-height: calc(100vh - #{$footer-height + $navbar-height + $navbar-margin-bottom + $footer-margin-top});
+//}
 
 .hr-invisible {
 	border-top: none;
@@ -31,3 +31,109 @@ body {
 .panel-edge {
 	padding: 10px;
 }
+
+//
+
+// home \\
+.intro-container {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+@media screen and (min-width: 1200px){
+	.intro-container {
+		width: 100%;
+	}
+}
+
+.intro-header {
+	padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+	padding-bottom: 50px;
+	text-align: center;
+	color: #f8f8f8;
+	background: url("http://bit.ly/2mPCXYb") no-repeat center center;
+	background-size: cover;
+}
+
+.intro-message {
+	position: relative;
+	padding-top: 20%;
+	padding-bottom: 20%;
+}
+
+.intro-message > h1 {
+	margin: 0;
+	text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+	font-size: 5em;
+}
+
+.intro-divider {
+	width: 400px;
+	border-top: 1px solid #f8f8f8;
+	border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.intro-message > h3 {
+	text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+}
+
+/* home end */
+
+// Location profile \\
+// header
+#pheader {
+	background-color: black;
+	position: absolute;
+	height: 30%;
+	top: 0;
+	left: 0;
+	width: 100%;
+	max-height: 400px;
+}
+
+.user-block {
+	height: 150px;
+	width: 60%;
+	top: 75%;
+	left: 10%;
+	position: absolute;
+	z-index: 99;
+}
+
+.avatar-block {
+	height: 150px;
+	width: 150px;
+	z-index: 99;
+	float: left;
+}
+
+.img-circle {
+	border: 1px solid black
+}
+
+.location-title {
+	position: absolute;
+	bottom: 0;
+	padding-left: 160px;
+}
+
+.banner-block {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	bottom: 0;
+	left: 0;
+	background-size: cover;
+	background-image: url('http://rockstartemplate.com/blogheaders/bannerdesign2.jpg');
+	background-position: center;
+	background-repeat: no-repeat;
+	max-height: 400px;
+}
+//additional info (Boek nu, etc.)
+.btn-block {
+	background-color: #f46835;
+}
+.btn-block :hover {
+	background-color: #cc6030;
+}
+/* Location profile end */

@@ -34,12 +34,17 @@ redirect = "login"
                     </div>
                 </div>
             </div>
+
+
+
             {% endflash %}
         	<a href="#menu-toggle" class="btn btn-warning" id="menu-toggle" title="Hide/Show Sidebar"><span class="glyphicon glyphicon-chevron-left" id="sidebar-toggle"></span></a>
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xs-12">
                         {% page %}
+                        {% partial 'dashboard/dashboard-modal' %}
+
                     </div>
                 </div>
             </div>

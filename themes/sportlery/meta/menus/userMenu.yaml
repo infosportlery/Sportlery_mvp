@@ -14,10 +14,50 @@ items:
             cssClass: ''
             isExternal: '0'
     -
+        title: Dashboard
+        type: url
+        url: /dashboard
+        code: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Gebruikers
+        type: url
+        url: /members
+        code: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Locations
+        type: url
+        url: /locaties
+        code: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Events
+        type: url
+        url: /evenementen
+        code: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
         title: Logout
+        nesting: ''
         type: url
         url: /logout
         code: logout
+        reference: ''
+        cmsPage: ''
+        replace: ''
         viewBag:
             isHidden: '0'
             cssClass: ''

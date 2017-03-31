@@ -2,6 +2,7 @@ html,
 body {
     height: 100%;
 	overflow-x: hidden;
+	word-wrap: break-word;
 }
 
 body {
@@ -81,6 +82,9 @@ body {
 
 // Location profile \\
 // header
+.profile-container {
+	margin-top: -20px;
+}
 #pheader {
 	background-color: black;
 	position: absolute;
@@ -133,7 +137,7 @@ body {
 .btn-block {
 	background-color: #f46835;
 }
-.btn-block :hover {
+.btn-block:hover {
 	background-color: #cc6030;
 }
 /* Location profile end */

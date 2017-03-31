@@ -88,6 +88,10 @@ class UserEventList extends ComponentBase
         return Location::distinct()->orderBy('city', 'asc')->lists('city', 'city');
     }
 
+    public function getEventCity()
+    {
+    }
+
     private function getEventTypes()
     {
         return [Event::TYPE_PAID => 'Paid', Event::TYPE_FREE => 'Free'];

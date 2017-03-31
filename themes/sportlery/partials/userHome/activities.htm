@@ -1,0 +1,32 @@
+[eventList]
+perPage = 10
+
+[viewBag]
+==
+<div class="container">
+	<div class="col-md-8">
+		<div class="row">
+			<!-- list content Upcomming in area you are participating -->
+			{% component 'upcommingEvents' %}
+		</div>
+		<div class="row">
+			{% component 'userEventList' %}	
+			<!-- list all of your created events -->
+		</div>
+			<!-- bigass Create button -->
+		<div class="row">
+			{% component 'eventList' %}
+			<!-- list content upcomming suggestions (all in area with user sports) -->
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="row">
+			<!-- scrolling side menu (with page) -->
+		</div>
+		<div class="row">
+			<!-- calendar with all your events -->
+		</div>
+	</div>
+	
+</div>
+

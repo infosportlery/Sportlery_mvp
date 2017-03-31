@@ -23,17 +23,18 @@ class Plugin extends PluginBase
         return [
             Components\EventList::class => 'eventList',
             Components\EventProfile::class => 'eventProfile',
+            Components\EventForm::class => 'eventForm',
             Components\FriendList::class => 'friendsList',
             Components\LocationList::class => 'locationList',
             Components\LocationProfile::class => 'locationProfile',
+            Components\LocationRequest::class => 'locationRequest',
             Components\UserDashboard::class => 'userDashboard',
             Components\UserList::class => 'userList',
             Components\UserProfile::class => 'userProfile',
             Components\UserTickets::class => 'userTickets',
-            Components\EventForm::class => 'eventForm',
+            Components\UserEventList::class => 'userEventList',
             Components\ChatList::class => 'chatList',
             Components\Chat::class => 'chat',
-            Components\UserEventList::class => 'userEventList',
         ];
     }
 

@@ -31,13 +31,13 @@ fields:
         type: text
         readOnly: true
         required: true
-        cssClass: 'hide'
+        cssClass: hide
     longitude:
         label: Longitude
         type: text
         readOnly: true
         required: true
-        cssClass: 'hide'
+        cssClass: hide
     street:
         label: Street
         type: text
@@ -55,13 +55,13 @@ fields:
         type: text
         required: true
         readOnly: true
-        cssClass: 'hide'
+        cssClass: hide
     country_code:
         label: Country
         type: text
         required: true
         readOnly: true
-        cssClass: 'hide'
+        cssClass: hide
     url:
         label: 'Location Url'
         oc.commentPosition: ''
@@ -76,8 +76,8 @@ fields:
         default: 1
         required: 1
         options:
-          0: Paid
-          1: Public
+            - Paid
+            - Public
     categories:
         label: Categories
         span: auto
@@ -129,3 +129,11 @@ fields:
         oc.commentPosition: ''
         span: auto
         type: richeditor
+    requested:
+        label: 'Requested Location'
+        oc.commentPosition: ''
+        options:
+            1: Accepted
+            2: 'Not Accepted'
+        span: auto
+        type: radio

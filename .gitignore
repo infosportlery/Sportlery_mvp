@@ -1,6 +1,7 @@
 /node_modules
 /bootstrap/compiled.php
 /vendor
+/plugins/rainlab
 composer.phar
 .DS_Store
 .idea

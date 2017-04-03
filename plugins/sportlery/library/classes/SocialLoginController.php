@@ -15,22 +15,14 @@ class SocialLoginController extends Controller
 {
     public function redirectToProvider($provider)
     {
-        $driver = Socialite::driver($provider);
-
-        if ($provider === 'facebook') {
-            $driver->fields([
-                'name', 'first_name', 'last_name', 'email', 'gender', 'verified', 'link'
-            ]);
-        }
-
-        return $driver->redirect();
+        return $this->getSocialiteDriver($provider)->redirect();
     }
 
     public function handleProviderCallback($provider)
     {
         try {
             /** @var \Laravel\Socialite\Two\User $providerUser */
-            $providerUser = Socialite::driver($provider)->user();
+            $providerUser = $this->getSocialiteDriver($provider)->user();
         } catch (\Exception $e) {
             return Redirect::to('/login');
         }
@@ -92,5 +84,22 @@ class SocialLoginController extends Controller
         Auth::login($user);
 
         return Redirect::to('/');
+    }
+
+    /**
+     * @param $provider
+     * @return mixed
+     */
+    private function getSocialiteDriver($provider)
+    {
+        $driver = Socialite::driver($provider);
+
+        if ($provider === 'facebook') {
+            $driver->fields([
+                'name', 'first_name', 'last_name', 'email', 'gender', 'verified', 'link'
+            ]);
+        }
+
+        return $driver;
     }
 }

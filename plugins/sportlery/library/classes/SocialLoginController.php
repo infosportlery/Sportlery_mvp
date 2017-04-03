@@ -52,12 +52,12 @@ class SocialLoginController extends Controller
             $city = array_filter(array_get($providerUser->user, 'placesLived', []), function($lived) {
                 return array_get($lived, 'primary', false);
             });
-            $city = explode(array_get(reset($city), 'value', ''), ',');
+            $city = explode(',', array_get(reset($city), 'value', ''));
             $city = trim(reset($city));
         } elseif ($provider === 'facebook') {
             $firstName = array_get($providerUser->user, 'first_name');
             $lastName = array_get($providerUser->user, 'last_name');
-            $city = explode(array_get($providerUser->user, 'location.name', ''), ',');
+            $city = explode(',', array_get($providerUser->user, 'location.name', ''));
             $city = trim(reset($city));
         }
 

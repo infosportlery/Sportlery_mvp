@@ -15,15 +15,14 @@ Route::get('logout', function() {
     return Redirect::to($url);
 });
 
-Route::post('friends/add', [
-    'as' => 'friends.add', 'uses' => 'Sportlery\Library\Classes\FriendshipsController@addFriend'
+Route::pattern('provider', 'facebook|google');
+
+Route::get('login/{provider}', [
+    'as' => 'login.social',
+    'uses' => 'Sportlery\Library\Classes\SocialLoginController@redirectToProvider',
 ]);
-Route::post('friends/unfriend', [
-    'as' => 'friends.unfriend', 'uses' => 'Sportlery\Library\Classes\FriendshipsController@unfriend'
-]);
-Route::post('friends/block', [
-    'as' => 'friends.block', 'uses' => 'Sportlery\Library\Classes\FriendshipsController@block'
-]);
-Route::post('friends/unblock', [
-    'as' => 'friends.unblock', 'uses' => 'Sportlery\Library\Classes\FriendshipsController@unblock'
+
+Route::get('login/{provider}/callback', [
+    'as' => 'login.social.callback',
+    'uses' => 'Sportlery\Library\Classes\SocialLoginController@handleProviderCallback',
 ]);

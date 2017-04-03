@@ -1,6 +1,6 @@
 <div class="media chat-message" style="margin-bottom: 10px;">
     <div class="media-left">
-        <a href="#">
+        <a href="{{ 'profile'|page({ id: message.user.getHashId() }) }}">
             <img src="{{ message.user.avatarThumb(40) }}"  class="media-object img-rounded">
         </a>
     </div>

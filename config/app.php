@@ -116,7 +116,8 @@ return [
         // 'Illuminate\Html\HtmlServiceProvider', // Example
 
         'System\ServiceProvider',
-        Cmgmyr\Messenger\MessengerServiceProvider::class,
+        // Cmgmyr\Messenger\MessengerServiceProvider::class,
+        \Laravel\Socialite\SocialiteServiceProvider::class,
     ]),
 
     /*

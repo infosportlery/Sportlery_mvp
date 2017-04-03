@@ -57,3 +57,6 @@
 1.0.19:
     - 'updated connection location location_times'
     - update_location_times.php
+1.0.20:
+    - 'Create social logins table'
+    - create_spr_social_logins_table.php

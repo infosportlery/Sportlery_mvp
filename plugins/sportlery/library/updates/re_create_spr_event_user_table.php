@@ -10,6 +10,8 @@ class CreateSprEventUserTable extends Migration
 {
     public function up()
     {
+        Schema::dropIfExists('spr_event_user');
+
         Schema::create('spr_event_user', function(Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->index();

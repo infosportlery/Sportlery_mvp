@@ -3,6 +3,8 @@
 namespace Sportlery\Library\Components;
 
 use Cms\Classes\ComponentBase;
+use Illuminate\Support\Facades\Redirect;
+use October\Rain\Support\Facades\Flash;
 use Sportlery\Library\Classes\FriendshipStatus;
 use Rainlab\User\Models\User;
 
@@ -30,5 +32,61 @@ class UserProfile extends ComponentBase
         $this->page['isFriend'] = $friendshipStatus === FriendshipStatus::ACCEPTED;
         $this->page['friendshipPending'] = $friendshipStatus === FriendshipStatus::PENDING;
         $this->page['friendshipDeclined'] = $friendshipStatus === FriendshipStatus::DECLINED;
+    }
+
+    public function onAddFriend()
+    {
+        $user = \Auth::getUser();
+        $otherUser = User::findByHashId(post('friend_id'));
+
+        if ($user->sendFriendRequest($otherUser)) {
+            Flash::success('Friendship request sent!');
+        } else {
+            Flash::error('Failed to send friendship request, friendship already exists.');
+        }
+
+        return Redirect::back();
+    }
+
+    public function onUnfriend()
+    {
+        $user = \Auth::getUser();
+        $otherUser = User::findByHashId(post('friend_id'));
+
+        if ($user->unfriend($otherUser)) {
+            Flash::success('Successfully unfriended user.');
+        } else {
+            Flash::error('Failed to unfriend.');
+        }
+
+        return Redirect::back();
+    }
+
+    public function onBlock()
+    {
+        $user = \Auth::getUser();
+        $otherUser = User::findByHashId(post('friend_id'));
+
+        if ($user->block($otherUser)) {
+            Flash::success('Successfully blocked user.');
+        } else {
+            Flash::error('Failed to block.');
+        }
+
+        return Redirect::back();
+    }
+
+    public function onUnblock()
+    {
+        $user = \Auth::getUser();
+        $otherUser = User::findByHashId(post('friend_id'));
+
+        if ($user->unblock($otherUser)) {
+            Flash::success('Successfully unblocked user.');
+        } else {
+            Flash::error('Failed to block.');
+        }
+
+        return Redirect::back();
     }
 }

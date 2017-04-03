@@ -80,7 +80,9 @@
                             </div>
                         </div>
                     </div>
+                    {% put scripts %}
                     <script>(function(){window.sportlery=window.sportlery||{};window.sportlery.locations={{ locations.all|json_encode|raw }}; })();</script>
+                    {% endput %}
                 </div>
             </div>
         </div>

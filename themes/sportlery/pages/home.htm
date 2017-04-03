@@ -3,8 +3,6 @@ url = "/"
 layout = "base"
 is_hidden = 0
 ==
-
-
 {% if user %}
 	<div class="row">
         <div class="col-sm-12">
@@ -20,15 +18,15 @@ is_hidden = 0
     <div class="row">
         <div class="col-sm-12">
             <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active" id="tab-activities">
-                    {% partial 'userHome/activities' %}
-                </div>
-                <div role="tabpanel" class="tab-pane" id="tab-sportlers">
-                    {% partial 'userHome/sportlers' %}
-                </div>
-                <div role="tabpanel" class="tab-pane" id="tab-locaties">
-                    {% partial 'userHome/locaties' %}
-                </div>
+                    <div role="tabpanel" class="tab-pane active" id="tab-activities">
+                        {% partial 'userHome/activities' %}
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tab-sportlers">
+                        {% partial 'userHome/sportlers' %}
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tab-locaties">
+                        {% partial 'userHome/locaties' %}
+                    </div>
             </div>
         </div>
     </div>

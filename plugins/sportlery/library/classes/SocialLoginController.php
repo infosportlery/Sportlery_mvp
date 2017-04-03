@@ -44,13 +44,19 @@ class SocialLoginController extends Controller
 
         $firstName = null;
         $lastName = null;
+        $city = null;
 
         if ($provider === 'google') {
             $firstName = array_get($providerUser->user, 'name.givenName');
             $lastName = array_get($providerUser->user, 'name.familyName');
+            $city = array_filter(array_get($providerUser->user, 'placesLived', []), function($lived) {
+                return array_get($lived, 'primary', false);
+            });
+            $city = array_get(reset($city), 'value');
         } elseif ($provider === 'facebook') {
             $firstName = array_get($providerUser->user, 'first_name');
             $lastName = array_get($providerUser->user, 'last_name');
+            $city = array_get($providerUser->user, 'location.name');
         }
 
         if (!$user) {
@@ -62,6 +68,7 @@ class SocialLoginController extends Controller
                 'surname' => $lastName,
                 'password' => $password,
                 'password_confirmation' => $password,
+                'city' => $city,
             ]);
             // Activate the user.
             $user->activation_code = null;
@@ -95,8 +102,9 @@ class SocialLoginController extends Controller
         $driver = Socialite::driver($provider);
 
         if ($provider === 'facebook') {
+            $driver->scopes(['user_location']);
             $driver->fields([
-                'name', 'first_name', 'last_name', 'email', 'gender', 'verified', 'link'
+                'name', 'first_name', 'last_name', 'email', 'gender', 'verified', 'link', 'location'
             ]);
         }
 

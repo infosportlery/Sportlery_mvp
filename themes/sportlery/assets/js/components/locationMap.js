@@ -38,7 +38,15 @@ export default class LocationMap {
             const $tab = $(`[href="#${$tabPane.attr('id')}"]`);
             $tab.on('shown.bs.tab', () => {
                 this.map.invalidateSize();
-                this.map.fitBounds(this.markerGroup.getBounds());
+                if (this.markerGroup.getLayers().length > 0) {
+                    this.map.fitBounds(this.markerGroup.getBounds());
+                } else {
+                    // Dutch border bounds
+                    this.map.fitBounds([
+                        [50.7504, 3.3316],
+                        [53.6316, 7.2275]
+                    ])
+                }
             })
         }
     }

@@ -1,0 +1,24 @@
+name: Grill
+code: Grill
+description: templatemo's Free, responsive restaurant theme with HTML5 layouts, converted for OctoberCMS
+author: templatemo &amp; József Tamás Herczeg
+authorUrl: 'http://www.templatemo.com/'
+
+translate:
+  nl:
+    nav.home: 'Home'
+    nav.partners: 'Partners'
+    nav.sportclub: 'Sportclub'
+    nav.trainer: 'Trainer'
+    nav.about: 'Over Ons'
+    nav.team: 'Team Sportlery'
+    nav.contact: 'Contact'
+
+  en:
+    nav.home: 'Home'
+    nav.partners: 'Partners'
+    nav.sportclub: 'Sportclub'
+    nav.trainer: 'Trainer'
+    nav.about: 'About Us'
+    nav.team: 'Team Sportlery'
+    nav.contact: 'Contact'

@@ -1,0 +1,43 @@
+
+perPage = 10
+
+[viewBag]
+==
+
+<div class="container">
+    <div class="col-md-8">
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="tab-locaties-explore">
+                {% component 'locationList' %}
+            </div>
+            <div role="tabpanel" class="tab-pane" id="tab-locaties-frequently">
+                {% component 'userLocationList' %}
+            </div>
+            <div role="tabpanel" class="tab-pane" id="tab-locaties-nearby">
+                {% component 'nearbyLocation' %}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 col-md-offset-1 col-xs-10 col-xs-offset-1">
+        <div class="sidebar fixedsticky">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <!-- scrolling side menu (with page) -->
+                        <ul class="nav nav-pills nav-stacked" style="margin-bottom:15px;" role="tablist">
+                            <li role="presentation" class="sidebar-content active" ><a href="#tab-locaties-explore" aria-controls="tab-locaties-explore" role="tab" data-toggle="tab">Explore</a></li>
+                            <li role="presentation" class="sidebar-content"><a href="#tab-locaties-frequently" aria-controls="tab-locaties-frequently" role="tab" data-toggle="tab">Frequently Played</a></li>
+                            <li role="presentation" class="sidebar-content"><a href="#tab-locaties-nearby" aria-controls="tab-locaties-nearby" role="tab" data-toggle="tab">Nearby</a></li>
+                        </ul>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <!-- calendar with all your events -->
+                        <strong>Some Filler Content Weow</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

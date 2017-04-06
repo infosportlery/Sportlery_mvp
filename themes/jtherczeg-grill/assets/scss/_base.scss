@@ -1,0 +1,120 @@
+html,
+body {
+    height: 100%;
+	overflow-x: hidden;
+	word-wrap: break-word;
+}
+
+body {
+    padding-top: $navbar-height + $navbar-margin-bottom;
+}
+
+//.content-wrap {
+//     min-height: calc(100vh - #{$footer-height + $navbar-height + $navbar-margin-bottom + $footer-margin-top});
+//}
+
+.hr-invisible {
+	border-top: none;
+}
+
+.strong-name-left {
+	float: left;
+}
+
+.header-row {
+	min-height: 300px;
+}
+
+.profile-container {
+	position: relative;
+}
+
+.panel-edge {
+	padding: 10px;
+}
+
+.menu-content {
+	width: 25%;
+	text-align: center;
+	font-size: 1.0em;
+}
+//
+
+// fixed-sticky \\
+
+.fixedsticky {
+	position: -webkit-sticky;
+	position: -moz-sticky;
+	position: -ms-sticky;
+	position: -o-sticky;
+	position: fixed !important;
+}
+
+/* fixed-sticky end */
+
+// home \\
+
+
+/* home end */
+
+// Location profile \\
+// header
+.profile-container {
+	margin-top: -20px;
+}
+#pheader {
+	background-color: black;
+	position: absolute;
+	height: 30%;
+	top: 0;
+	left: 0;
+	width: 100%;
+	max-height: 400px;
+}
+
+.user-block {
+	height: 150px;
+	width: 60%;
+	top: 75%;
+	left: 10%;
+	position: absolute;
+	z-index: 99;
+}
+
+.avatar-block {
+	height: 150px;
+	width: 150px;
+	z-index: 99;
+	float: left;
+}
+
+.img-circle {
+	border: 1px solid black
+}
+
+.location-title {
+	position: absolute;
+	bottom: 0;
+	padding-left: 160px;
+}
+
+.banner-block {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	bottom: 0;
+	left: 0;
+	background-size: cover;
+	background-image: url('http://rockstartemplate.com/blogheaders/bannerdesign2.jpg');
+	background-position: center;
+	background-repeat: no-repeat;
+	max-height: 400px;
+}
+//additional info (Boek nu, etc.)
+.btn-block {
+	background-color: #f46835;
+}
+.btn-block:hover {
+	background-color: #cc6030;
+}
+/* Location profile end */

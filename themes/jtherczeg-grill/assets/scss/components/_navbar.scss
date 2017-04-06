@@ -1,0 +1,7 @@
+.navbar-brand {
+    padding: 20px $navbar-padding-horizontal;
+
+    img {
+        max-height: $navbar-height - 40px;
+    }
+}

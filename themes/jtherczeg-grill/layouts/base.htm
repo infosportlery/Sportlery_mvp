@@ -1,0 +1,69 @@
+[staticPage]
+
+[session]
+security = "all"
+==
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Sportlery - {{ this.page.title }}</title>
+    <meta name="description" content="{{ this.page.meta_description }}">
+    <meta name="title" content="{{ this.page.meta_title }}">
+    <meta name="author" content="Sportlery">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ 'assets/css/bootstrap.css'|theme }}" rel="stylesheet">
+    <link href="{{ 'assets/css/flexslider.css'|theme }}" rel="stylesheet">
+    <link href="{{ 'assets/css/font-awesome.css'|theme }}" rel="stylesheet">
+    <link href="{{ 'assets/css/offline.css'|theme }}" rel="stylesheet">
+    <link href="{{ 'assets/css/templatemo_misc.css'|theme }}" rel="stylesheet">
+    <link href="{{ 'assets/css/templatemo_style.css'|theme }}" rel="stylesheet">
+    <link href="{{ 'assets/css/testimonails-slider.css'|theme }}" rel="stylesheet">
+    <link href="{{ 'assets/css/sportlery.css'|theme }}" rel="stylesheet">
+    {% styles %}
+</head>
+<body>
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+
+<header>
+    {% partial "top" %}
+    {% partial "nav" %}
+</header>
+<div class="content-wrap">
+
+    <div class="container">
+        {% flash %}
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="alert alert-{{ type == 'error' ? 'danger' : type }}">{{ message }}</div>
+                </div>
+            </div>
+        </div>
+        {% endflash %}
+
+        <div class="row">
+            <div class="col-sm-12">
+                {% page %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        {% partial "socials" %}
+        {% partial "bottom" %}
+        {% partial "footer" %}
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+{% scripts %}
+<script src="{{ 'assets/js/sportlery.js'|theme }}"></script>
+<script>$( '.sidebar' ).fixedsticky();</script>
+</body>
+</html>

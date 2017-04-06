@@ -1,0 +1,44 @@
+
+perPage = 10
+
+[viewBag]
+==
+
+<div class="container">
+    <div class="col-md-8">
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="tab-sportlers-friends">
+                <!--{% component 'sportlersFriendsList' %}-->
+            </div>
+            <div role="tabpanel" class="tab-pane" id="tab-sportlers-suggested">
+                <!--{% component 'sportlersSuggestedList' %}-->
+            </div>
+            <div role="tabpanel" class="tab-pane" id="tab-sportlers-explore">
+                <!--{% component 'sportlersExploreList' %}-->
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 col-md-offset-1 col-xs-10 col-xs-offset-1">
+        <div class="sidebar fixedsticky">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <!-- scrolling side menu (with page) -->
+                        <ul class="nav nav-pills nav-stacked" style="margin-bottom:15px;" role="tablist">
+                            <li role="presentation" class="sidebar-content active" ><a href="#tab-sportlers-friends" aria-controls="tab-sportlers-friends" role="tab" data-toggle="tab">My Sportlers</a></li>
+                            <li role="presentation" class="sidebar-content"><a href="#tab-sportlers-suggested" aria-controls="tab-sportlers-suggested" role="tab" data-toggle="tab">Suggested Sportlers</a></li>
+                            <li role="presentation" class="sidebar-content"><a href="#tab-sportlers-explore" aria-controls="tab-sportlers-explore" role="tab" data-toggle="tab">Explore</a></li>
+                        </ul>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <!-- calendar with all your events -->
+                        <strong>I am a <i class="fa fa-rocket fa-2x" aria-hidden="true"></i></strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

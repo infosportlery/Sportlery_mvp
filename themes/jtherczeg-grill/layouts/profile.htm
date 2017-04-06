@@ -1,0 +1,98 @@
+[staticPage]
+
+[session]
+security = "all"
+==
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Sportlery - {{ this.page.title }}</title>
+    <meta name="description" content="{{ this.page.meta_description }}">
+    <meta name="title" content="{{ this.page.meta_title }}">
+    <meta name="author" content="Sportlery">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ 'assets/css/sportlery.css'|theme }}" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    {% styles %}
+</head>
+<body>
+<div class="content-wrap">
+    {% partial 'site/header' %}
+
+    <div class="profile-container">
+        <div class="row header-row" style="min-height: 300px;">
+            {% partial 'profile/prof-header' %}
+        </div>
+        {% flash %}
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="alert alert-{{ type == 'error' ? 'danger' : type }}">{{ message }}</div>
+                </div>
+            </div>
+        </div>
+        {% endflash %}
+        <div class="row">
+            <div class="col-sm-5 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        {% page %}
+                        <p>https://octobercms.com/https://ochttps://octo  bercms  https://octobercms.com/themes.com    /themes to be rc ms. com/ themes</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+                <div class="panel panel-default">
+                    <h3 style="align-content: center">Lessen</h3>
+                    <div class="panel-body">
+                        <ul>
+                            <li>Ding 1</li>
+                            <li>Ding 2</li>
+                        </ul>
+                        <a class="btn btn-default btn-block" href="#" role="button">Boek nu</a>
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                            <div class="btn-group" role="group">
+                                <a target="_blank" href="https://goo.gl/maps/1zg5Fuu9cNE2"><button type="button" class="btn btn-link"><i class="fa fa-map-marker fa-3x"></i></button></a>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <a href="mailto:info@sportlery.nl"><button type="button" class="btn btn-link"><i class="fa fa-envelope-o fa-3x"></i></button></a>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <a href="tel:+31612345678"><button type="button" class="btn btn-link"><i class="fa fa-phone fa-3x"></i></button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="profile-container">
+
+        <div class="row">
+            <div class="col-sm-5 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2461.0194974308733!2d4.4048711157850375!3d51.915355379704266!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c43516f55943c1%3A0x1546eb6dff5eaaa5!2sMarconistraat+16%2C+3112+EN+Schiedam!5e0!3m2!1snl!2snl!4v1490876169249" width="100%" height="400px" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h3>Dit is een toevoeging wow</h3>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% partial 'site/footer' %}
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="{{ 'assets/js/sportlery.js'|theme }}"></script>
+{% scripts %}
+</body>
+</html>

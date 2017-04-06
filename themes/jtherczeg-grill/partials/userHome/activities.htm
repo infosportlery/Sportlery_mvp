@@ -1,0 +1,50 @@
+[eventList]
+perPage = 10
+
+[viewBag]
+==
+
+<div class="container">
+    <div class="col-md-8">
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="tab-activities-upcoming">
+                {% component 'eventList' %}
+            </div>
+            <div role="tabpanel" class="tab-pane" id="tab-activities-suggested">
+                {% component 'userEventList' %}
+            </div>
+            <div role="tabpanel" class="tab-pane" id="tab-activities-discover">
+                {% component 'upcommingEvents' %}
+            </div>
+            <div role="tabpanel" class="tab-pane" id="tab-activities-created">
+                {% component 'eventList' %}
+            </div>
+        </div>
+        <!-- bigass Create button -->
+        <button type="button" class="btn btn-primary btn-lg">Willy Wonka</button>
+    </div>
+    <div class="col-md-3 col-md-offset-1 col-xs-10 col-xs-offset-1">
+        <div class="sidebar fixedsticky">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <!-- scrolling side menu (with page) -->
+                        <ul class="nav nav-pills nav-stacked" style="margin-bottom:15px;" role="tablist">
+                            <li role="presentation" class="sidebar-content active" ><a href="#tab-activities-upcoming" aria-controls="tab-activities-upcoming" role="tab" data-toggle="tab">Upcoming</a></li>
+                            <li role="presentation" class="sidebar-content"><a href="#tab-activities-suggested" aria-controls="tab-activities-suggested" role="tab" data-toggle="tab">Suggested</a></li>
+                            <li role="presentation" class="sidebar-content"><a href="#tab-activities-discover" aria-controls="tab-activities-discover" role="tab" data-toggle="tab">Discover</a></li>
+                            <li role="presentation" class="sidebar-content"><a href="#tab-activities-created" aria-controls="tab-activities-created" role="tab" data-toggle="tab">Created</a></li>
+                        </ul>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <!-- calendar with all your events -->
+                        <strong>Calender Wow</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

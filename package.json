@@ -1,6 +1,6 @@
 {
   "engines": {
-      "node": "7.x"
+    "node": "7.x"
   },
   "private": true,
   "scripts": {
@@ -12,10 +12,14 @@
     "heroku-postbuild": "npm run production"
   },
   "devDependencies": {
+    "babel-types": "^6.23.0",
     "bootstrap-sass": "^3.3.7",
+    "cross-env": "^3.2.3",
     "eonasdan-bootstrap-datetimepicker": "^4.17.47",
     "jquery": "^3.1.1",
-    "cross-env": "^3.2.3",
     "laravel-mix": "0.*"
+  },
+  "dependencies": {
+    "fixed-sticky": "^0.1.7"
   }
 }

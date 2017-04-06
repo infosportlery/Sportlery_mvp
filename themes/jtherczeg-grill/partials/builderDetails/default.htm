@@ -1,0 +1,44 @@
+{% set record = __SELF__.record %}
+{% set displayColumn = __SELF__.displayColumn %}
+{% set notFoundMessage = __SELF__.notFoundMessage %}
+
+{% if record %}
+<h2>{{ record.name }}</h2>
+
+<img src="
+    {{ record.avatar.thumb(100,100, {'mode':'crop'}) }}">
+
+
+<h5>{{ record.city }}</h5>
+<h6>{{ record.zipcode }}</h6>
+<h6>{{ record.street }}</h6>
+
+{% for cat in record.catagories %}
+
+{{ cat.cat_name }}
+
+{% endfor %}
+
+{% for typ in record.type %}
+
+{{ typ.name_type }}
+
+{% endfor %}
+
+<ul class="gallery clearfix record-list list-group">
+
+    {% for image in record.location_gallery %}
+
+    <li class="record-list list-group-item">
+
+        <img src="{{ image.thumb(60,60, {'mode':'crop'})}}">
+
+    </li>
+
+    {% endfor %}
+
+</ul>
+
+{% else %}
+{{ notFoundMessage }}
+{% endif %}

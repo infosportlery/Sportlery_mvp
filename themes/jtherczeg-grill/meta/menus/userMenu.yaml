@@ -1,0 +1,56 @@
+name: 'User menu'
+items:
+    -
+        title: Home
+        type: cms-page
+        code: home
+        reference: home
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Dashboard
+        type: cms-page
+        code: dashboard
+        reference: dashboard
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Gebruikers
+        type: cms-page
+        code: members
+        reference: members
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Locations
+        type: cms-page
+        code: locations
+        reference: location-list
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Events
+        type: cms-page
+        code: events
+        reference: events
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Logout
+        type: url
+        url: /logout
+        code: logout
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'

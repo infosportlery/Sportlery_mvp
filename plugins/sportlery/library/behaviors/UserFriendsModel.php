@@ -125,6 +125,17 @@ class UserFriendsModel extends ModelBehavior
         return $this->model->newQuery()->with($with)->whereIn('id', $friendIds)->get();
     }
 
+    public function paginateFriends($perPage, array $ids = [], array $with = [])
+    {
+        $friendIds = $this->getFriendIds($ids);
+
+        if (!count($friendIds)) {
+            return $this->model->newCollection();
+        }
+
+        return $this->model->newQuery()->with($with)->whereIn('id', $friendIds)->paginate($perPage);
+    }
+
     /**
      * Get all accepted friends for this model where the user id is not in the given list.
      *

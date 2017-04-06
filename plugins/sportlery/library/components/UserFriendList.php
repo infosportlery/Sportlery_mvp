@@ -9,7 +9,7 @@ use Rainlab\User\Models\User;
 use Sportlery\Library\Models\Location;
 use Sportlery\Library\Models\Sport;
 
-class UserList extends ComponentBase
+class UserFriendList extends ComponentBase
 {
     /**
      * Returns information about this component, including name and description.
@@ -17,8 +17,8 @@ class UserList extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name' => 'User List',
-            'description' => 'Display a list of users',
+            'name' => 'User friends List',
+            'description' => 'Display a list of the users friends',
         ];
     }
 
@@ -51,7 +51,7 @@ class UserList extends ComponentBase
     {
         $this->page['sports'] = $this->getSports();
         $this->page['cities'] = $this->getCities();
-        $this->page['users'] = $this->users();
+        $this->page['users'] = $this->getAllUserFriends();
         $this->page['detailsPage'] = $this->property('detailsPage');
     }
 
@@ -85,8 +85,12 @@ class UserList extends ComponentBase
         return Location::orderBy('city', 'asc')->distinct()->lists('city', 'city');
     }
 
-    public function userFriends() 
-    {
-        
+    public function getAllUserFriends() {
+
+        $perPage = $this->property('perPage');
+
+        $user = Auth::getUser();
+
+        $friends = $user->paginateFriends($perPage);
     }
 }

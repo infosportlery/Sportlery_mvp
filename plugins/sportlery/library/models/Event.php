@@ -47,6 +47,7 @@ class Event extends Model
 
     public $belongsTo = [
         'location' => Location::class,
+        'user' => \RainLab\User\Models\User::class,
     ];
 
     public $belongsToMany = [

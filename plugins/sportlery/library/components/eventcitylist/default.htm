@@ -1,0 +1,59 @@
+
+    {% if events is not empty %}
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active">
+                        {% for row in events|batch(2) %}
+                            <div class="row">
+                                {% for event in row %}
+                                    {% if event.user_id == user.id %}
+                                    <div class="col-md-12">
+                                        <div class="panel panel-default">
+                                            <div class="panel-body">
+                                                <h3>
+                                                    <a href="{{ detailsPage|page({ id: attribute(event, 'id') }) }}">
+                                                        {{ event.name }}
+                                                    </a>
+                                                </h3>
+                                                <p>
+                                                    <strong>Date:</strong>
+                                                    {{ event.starts_at.formatLocalized('%A %d %B, %Y') }}
+                                                </p>
+                                                {{ event.description|raw }}
+                                                <div class="text-right">
+                                                    {% if event.user_id == user.id %}
+                                                        <a href="delete/{{ event.id }}" class="btn btn-warning">Edit</a>
+                                                        <a href="edit/{{ event.id }}" class="btn btn-default">Edit</a>
+                                                    {% endif %}
+                                                    <a href="{{ detailsPage|page({ id: attribute(event, 'id') }) }}" class="btn btn-primary">Bekijk &raquo;</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% else %}
+                                        
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                {{ events.render|raw }}
+            </div>
+        </div>
+    {% else %}
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="alert alert-danger">
+                    Geen evenementen beschikbaar
+                </div>
+            </div>
+        </div>
+    {% endif %}

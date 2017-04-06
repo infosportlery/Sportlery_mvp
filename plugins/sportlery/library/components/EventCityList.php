@@ -10,7 +10,7 @@ use Sportlery\Library\Models\Location;
 use Sportlery\Library\Models\Sport;
 use Auth;
 
-class UserEventList extends ComponentBase
+class EventCityList extends ComponentBase
 {
     /**
      * Returns information about this component, including name and description.
@@ -18,8 +18,8 @@ class UserEventList extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name' => 'Users Event List',
-            'description' => 'Display a list of events from the user',
+            'name' => 'Event City List',
+            'description' => 'Display Events per city on Users Sports',
         ];
     }
 
@@ -50,7 +50,7 @@ class UserEventList extends ComponentBase
 
     public function onRun()
     {
-        $this->page['events'] = $this->getUserEvents();
+        $this->page['events'] = $this->getEventsByCity();
         $this->page['sports'] = $this->getSports();
         $this->page['cities'] = $this->getCities();
         $this->page['eventTypes'] = $this->getEventTypes();
@@ -89,13 +89,15 @@ class UserEventList extends ComponentBase
         return Location::distinct()->orderBy('city', 'asc')->lists('city', 'city');
     }
 
-    public function getUserEvents()
+    public function getEventsByCity()
     {
-        //alle upcomming events waar gebruiker aan mee doet
+        //alle upcomming events in user city
 
-        $user = Auth::getUser();
+        $city = Auth::getUser()->city;
 
-        return $user->events()->get();
+        return Event::whereHas('location', function($query) use ($city) {
+                return $query->where('city', $city);
+            })->paginate(6);
     }
 
     private function getEventTypes()

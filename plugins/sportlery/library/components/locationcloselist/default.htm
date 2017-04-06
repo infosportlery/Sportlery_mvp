@@ -1,0 +1,67 @@
+
+{% if locations is not empty %}
+    <div class="row">
+        <div class="col-sm-12">
+            <ul class="nav nav-tabs" style="margin-bottom:15px;" role="tablist">
+                <li role="presentation" class="active"><a href="#tab-list" aria-controls="tab-list" role="tab" data-toggle="tab">Lijst</a></li>
+                <li role="presentation"><a href="#tab-map" aria-controls="tab-map" role="tab" data-toggle="tab">Map</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="tab-list">
+                    {% for row in locations|batch(2) %}
+                        <div class="row">
+                            {% for location in row %}
+                                <div class="col-md-6">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <h3>
+                                                <a href="{{ detailsPage|page({ id: attribute(location, 'id') }) }}">
+                                                    {{ location.name }}
+                                                </a>
+                                            </h3>
+                                            {{ location.description|raw }}
+                                            <div class="text-right">
+                                                <a href="{{ detailsPage|page({ id: attribute(location, 'id') }) }}" class="btn btn-primary">Bekijk &raquo;</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                </div>
+                <div role="tabpanel" class="tab-pane" id="tab-map">
+                    <div data-component="locationMap" data-locations="locations" style="height:360px;">
+                        <div id="marker-popup-tmpl">
+                            <h4>[[name]]</h4>
+                            [[description]]
+                            <div class="text-right">
+                                <a href="{{ detailsPage|page({ id: '[[id]]' }) }}" class="btn btn-primary">Bekijk &raquo;</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% put scripts %}
+                    <script>(function(){window.sportlery=window.sportlery||{};window.sportlery.locations={{ locations.all|json_encode|raw }}; })();</script>
+                    {% endput %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            {{ locations.render|raw }}
+        </div>
+    </div>
+{% else %}
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="alert alert-danger">
+                Geen locaties beschikbaar
+            </div>
+        </div>
+    </div>
+{% endif %}

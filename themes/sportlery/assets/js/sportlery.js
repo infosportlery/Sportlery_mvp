@@ -4,6 +4,7 @@ require('bootstrap-sass/assets/javascripts/bootstrap/tab');
 require('eonasdan-bootstrap-datetimepicker');
 require('bootstrap-sass/assets/javascripts/bootstrap/modal');
 
+
 import LocationMap from './components/locationMap';
 import './components/chat';
 

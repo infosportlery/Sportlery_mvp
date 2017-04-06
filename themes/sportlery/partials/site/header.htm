@@ -23,7 +23,7 @@ code = "userMenu"
             {% if not user %}
                 {% partial 'site/menu-items' items=guestMenu.menuItems class='nav navbar-nav navbar-right' %}
             {% else %}
-                {% partial 'site/menu-items' items=userMenu.menuItems class='nav navbar-nav navbar-right' %}
+                {% partial 'site/user-menu' class='' %}
             {% endif %}
         </div>
     </div>

@@ -1,21 +1,31 @@
+[viewBag]
+
 [eventList]
 perPage = 10
 
-[viewBag]
+[userEventList]
+perPage = 10
+
+[eventCityList]
+perPage = 10
 ==
 <div class="container">
 	<div class="col-md-8">
 		<div class="row">
 			<!-- list content Upcomming in area you are participating -->
-			{% component 'upcommingEvents' %}
+			{% component 'userEventList' %}
+
+			dsadadasdasd
 		</div>
 		<div class="row">
-			{% component 'userEventList' %}	
+			{% component 'eventCityList' %}
+			dsadasdasdasdsa
 			<!-- list all of your created events -->
 		</div>
 			<!-- bigass Create button -->
 		<div class="row">
 			{% component 'eventList' %}
+			dsadadawqdadws
 			<!-- list content upcomming suggestions (all in area with user sports) -->
 		</div>
 	</div>
@@ -29,4 +39,3 @@ perPage = 10
 	</div>
 	
 </div>
-

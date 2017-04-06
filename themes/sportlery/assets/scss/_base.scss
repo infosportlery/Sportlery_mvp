@@ -33,7 +33,26 @@ body {
 }
 
 .menu-content {
-	width: 25%;
+	width: 100%;
     text-align: center;
     font-size: 1.5em;
 }
+
+.user-menu-dropdown {
+	padding-left: 20px;
+	padding-top: 30px;
+	height: 100px;
+	width: 80px;
+}
+
+.menu-image {
+	border-radius: 50%;
+}
+
+@media screen and (min-width: 800px) {
+	.menu-content {
+		width: 25%;
+	}
+}
+
+

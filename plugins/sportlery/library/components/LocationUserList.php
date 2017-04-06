@@ -5,12 +5,10 @@ namespace Sportlery\Library\Components;
 use Cms\Classes\ComponentBase;
 use Cms\Classes\Page;
 use Hashids\Hashids;
-use Sportlery\Library\Models\Event;
 use Sportlery\Library\Models\Location;
 use Sportlery\Library\Models\Sport;
-use Auth;
 
-class UserEventList extends ComponentBase
+class LocationUserList extends ComponentBase
 {
     /**
      * Returns information about this component, including name and description.
@@ -18,8 +16,8 @@ class UserEventList extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name' => 'Users Event List',
-            'description' => 'Display a list of events from the user',
+            'name' => 'Location User List',
+            'description' => 'Display a list of locations that the user has been to',
         ];
     }
 
@@ -28,7 +26,7 @@ class UserEventList extends ComponentBase
         return [
             'perPage' => [
                 'title'             => 'Per page',
-                'description'       => 'The number of events displayed on each page',
+                'description'       => 'The number of locations displayed on each page',
                 'default'           => 10,
                 'type'              => 'string',
                 'validationPattern' => '^[0-9]+$',
@@ -36,7 +34,7 @@ class UserEventList extends ComponentBase
             ],
             'detailsPage' => [
                 'title'       => 'Details page',
-                'description' => 'The page to redirect to when selecting a event',
+                'description' => 'The page to redirect to when selecting a location',
                 'type'        => 'dropdown',
                 'showExternalParam' => false,
             ],
@@ -50,56 +48,64 @@ class UserEventList extends ComponentBase
 
     public function onRun()
     {
-        $this->page['events'] = $this->getUserEvents();
         $this->page['sports'] = $this->getSports();
         $this->page['cities'] = $this->getCities();
-        $this->page['eventTypes'] = $this->getEventTypes();
+        $this->page['locationTypes'] = $this->getLocationTypes();
+        $this->page['locations'] = $this->getLocationsByEventsAttendedByAtLocation();
         $this->page['detailsPage'] = $this->property('detailsPage');
 
         $this->addCss('https://unpkg.com/leaflet@1.0.3/dist/leaflet.css');
         $this->addJs('https://unpkg.com/leaflet@1.0.3/dist/leaflet.js');
     }
 
-    private function getEvents()
+    public function getLocations()
     {
         $perPage = $this->property('perPage');
         $hashids = \App::make(Hashids::class);
 
-        $searchParameters = \Input::only(['q', 'event_type', 'sport', 'city', 'past']);
+        $searchParameters = \Input::only(['q', 'sport', 'location_type', 'city']);
 
-        $events = Event::search($searchParameters)
-                    ->orderBy('name', 'asc')
-                    ->paginate($perPage);
+        $locations = Location::search($searchParameters)
+                       ->orderBy('name', 'asc')
+                       ->paginate($perPage);
 
-        $events->each(function($event) use ($hashids) {
-            $event->id = $event->getHashId();
-            $event->description = str_limit(strip_tags($event->description), 140);
+        $locations->each(function($location) use ($hashids) {
+            $location->id = $location->getHashId();
         });
 
-        return $events;
+        return $locations;
     }
 
     private function getSports()
     {
-        return Sport::orderBy('name', 'asc')->lists('name', 'id');
+        return Sport::orderBy('name','asc')->lists('name', 'id');
+    }
+
+    private function getLocationTypes()
+    {
+        return [0 => 'Paid', 1 => 'Public'];
+    }
+
+    public function getLocationsByEventsAttendedByAtLocation() 
+    {
+
+        $perPage = $this->property('perPage');
+        $user = Auth::getUser();
+
+        $events = $user->events()->with('location')->get();
+
+        $locations = $events->pluck('location');
+
+        $locations->each(function($location) use ($hashids) {
+            $location->id = $location->getHashId();
+        });
+
+
+        return $locations;
     }
 
     private function getCities()
     {
-        return Location::distinct()->orderBy('city', 'asc')->lists('city', 'city');
-    }
-
-    public function getUserEvents()
-    {
-        //alle upcomming events waar gebruiker aan mee doet
-
-        $user = Auth::getUser();
-
-        return $user->events()->get();
-    }
-
-    private function getEventTypes()
-    {
-        return [Event::TYPE_PAID => 'Paid', Event::TYPE_FREE => 'Free'];
+        return Location::orderBy('city', 'asc')->distinct()->lists('city', 'city');
     }
 }

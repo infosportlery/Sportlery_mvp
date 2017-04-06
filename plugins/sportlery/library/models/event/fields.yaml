@@ -41,3 +41,10 @@ fields:
         label: Description
         span: full
         type: richeditor
+    user:
+        label: User
+        oc.commentPosition: ''
+        nameFrom: name
+        descriptionFrom: description
+        span: auto
+        type: relation

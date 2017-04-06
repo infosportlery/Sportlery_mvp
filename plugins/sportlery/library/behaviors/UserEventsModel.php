@@ -21,7 +21,7 @@ class UserEventsModel extends ModelBehavior
         $model->belongsToMany['events'] = [
             Event::class,
             'table' => 'spr_event_user',
-            'pivot' => ['status', 'invited_by'],
+            'pivot' => ['status',],
             'timestamps' => true,
             'key' => 'user_id',
             'otherKey' => 'event_id',

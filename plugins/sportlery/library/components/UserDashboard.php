@@ -21,4 +21,5 @@ class UserDashboard extends ComponentBase
     {
         $user = \Auth::getUser();
     }
+
 }

@@ -94,10 +94,13 @@ class LocationCloseList extends ComponentBase
         $city = Auth::getUser()->city;
         $sports = Auth::getUser()->sports;
 
-        $locations = Location::where('city', $city)
-                             ->whereHas('sports', function($query) use ($sports) {
-                                return $query->whereIn('id', $sports->lists('id'));
-                             })->paginate($perPage);
+        $searchParameters = \Input::only(['q', 'sport', 'location_type', 'city']);
+
+        $locations = Location::search($searchParameters)
+                             ->where('city', $city)
+                             // ->whereHas('sports', function($query) use ($sports) {
+                             //    return $query->whereIn('id', $sports->lists('id'));
+                             ->paginate($perPage);
         
         $locations->each(function($location) {
             $location->id = $location->getHashId();

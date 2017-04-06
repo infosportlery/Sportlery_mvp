@@ -2,20 +2,20 @@
 
 [locationList]
 perPage = 10
+detailsPage = "location-profile"
 
 [locationCloseList]
 perPage = 10
+detailsPage = "location-profile"
 ==
 <div class="container">
 	<div class="col-md-8">
 		<div class="row">
 			<!-- list content Upcomming/or have been to, in area you are participating -->
-			{% component 'locationUserList' %}
-
+            {% component 'locationCloseList' %}
 			dsadadasdasd
 		</div>
 		<div class="row">
-			{% component 'locationCloseList' %}
 			dsadasdasdasdsa
 			<!-- list all of your created location -->
 		</div>

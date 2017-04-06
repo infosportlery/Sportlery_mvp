@@ -92,7 +92,7 @@ class UserEventList extends ComponentBase
     public function getUserEvents()
     {
         //alle upcomming events waar gebruiker aan mee doet
-
+        
         $user = Auth::getUser();
 
         return $user->events()->get();

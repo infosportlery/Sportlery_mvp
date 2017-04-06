@@ -2,13 +2,16 @@
 
 [userList]
 perPage = 10
-detailsPage = "chat"
+detailsPage = "profile"
+
+[userFriendList]
+listType = "friends"
 ==
 <div class="container">
 	<div class="col-md-8">
 		<div class="row">
-			<!-- list content Upcomming in area you are participating -->
-
+			<!-- List of Friends -->
+			{% component 'userFriendList' %}
 			dsadadasdasd
 		</div>
 		<div class="row">

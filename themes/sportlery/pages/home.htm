@@ -6,7 +6,7 @@ is_hidden = 0
 
 
 {% if user %}
-	<div class="row">
+    <div class="row">
         <div class="col-sm-12">
             <ul class="nav nav-tabs" style="margin-bottom:15px;" role="tablist">
                 <li role="presentation" class="menu-content active" ><a href="#tab-activities" aria-controls="tab-activities" role="tab" data-toggle="tab">Activities</a></li>
@@ -15,7 +15,7 @@ is_hidden = 0
                 <li role="presentation" class="menu-content"><a>Comming Soon</a></li>
             </ul>
         </div>
-    </div>
+    </div>	
 
     <div class="row">
         <div class="col-sm-12">
@@ -32,10 +32,12 @@ is_hidden = 0
             </div>
         </div>
     </div>
+
+
 {% else %}
 	<div class="panel panel-default">
 		<div class="row">
-			You are not logged in
+			{% partial 'site/homeContent' %}
 		</div>
 	</div>
 {% endif %}

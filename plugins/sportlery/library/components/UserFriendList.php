@@ -2,12 +2,11 @@
 
 namespace Sportlery\Library\Components;
 
+use Auth;
 use Cms\Classes\ComponentBase;
-use Cms\Classes\Page;
-use Hashids\Hashids;
-use Rainlab\User\Models\User;
-use Sportlery\Library\Models\Location;
-use Sportlery\Library\Models\Sport;
+use Redirect;
+use RainLab\User\Models\User;
+use Sportlery\Library\Classes\FriendshipStatus;
 
 class UserFriendList extends ComponentBase
 {
@@ -17,80 +16,84 @@ class UserFriendList extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name' => 'User friends List',
-            'description' => 'Display a list of the users friends',
+            'name' => 'User Friends list',
+            'description' => 'Display a list of the current users friends',
         ];
     }
 
     public function defineProperties()
     {
         return [
-            'perPage' => [
-                'title'             => 'Per page',
-                'description'       => 'The number of users displayed on each page',
-                'default'           => 10,
-                'type'              => 'string',
-                'validationPattern' => '^[0-9]+$',
-                'validationMessage' => 'The per page field can only contain numbers'
-            ],
-            'detailsPage' => [
-                'title'       => 'Details page',
-                'description' => 'The page to redirect to when selecting a User',
+            'listType' => [
+                'title'       => 'List type',
+                'description' => 'The type of friends list to show',
                 'type'        => 'dropdown',
-                'showExternalParam' => false,
+                'default'     => 'friends',
+                'options'     => [
+                    'blocked'  => 'Blocked users',
+                    'friends'  => 'All accepted friends',
+                    'sent'     => 'All sent friend requests',
+                    'received' => 'All received friend requests',
+                ]
             ],
         ];
     }
 
-    public function getDetailsPageOptions()
+    public function onRender()
     {
-        return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
-    }
+        $user = Auth::getUser();
+        $this->page['showAcceptButtons'] = false;
+        $this->page['showUnblockButton'] = false;
+        $this->page['showUnfriendButton'] = false;
 
-    public function onRun()
-    {
-        $this->page['sports'] = $this->getSports();
-        $this->page['cities'] = $this->getCities();
-        $this->page['users'] = $this->getAllUserFriends();
-        $this->page['detailsPage'] = $this->property('detailsPage');
-    }
-
-    public function users()
-    {
-        $perPage = $this->property('perPage');
-        $hashids = \App::make(Hashids::class);
-
-        $query = User::orderBy('surname', 'asc')->orderBy('name', 'asc');
-
-        if ($user = \Auth::getUser()) {
-            $query->where('id', '!=', $user->id);
+        switch ($this->property('listType')) {
+            case 'blocked':
+                $this->page['friends'] = $user->listBlockedFriends();
+                $this->page['showUnblockButton'] = true;
+                break;
+            case 'sent':
+                $this->page['friends'] = $user->listSentFriendRequests();
+                break;
+            case 'received':
+                $this->page['friends'] = $user->listReceivedFriendRequests();
+                $this->page['showAcceptButtons'] = true;
+                break;
+            case 'friends':
+            default:
+                $this->page['friends'] = $user->listFriends();
+                $this->page['showUnfriendButton'] = true;
+                break;
         }
 
-        $users = $query->paginate($perPage);
-
-        $users->each(function($user) use ($hashids) {
-            $user->id = $user->getHashId();
+        $this->page['friends']->each(function($friend) {
+            $friend->hashId = $friend->getHashId();
         });
-
-        return $users;
     }
 
-    private function getSports() 
+    public function onUpdateFriendship()
     {
-        return Sport::orderBy('name','asc')->lists('name', 'id');
-    }
-
-    private function getCities()
-    {
-        return Location::orderBy('city', 'asc')->distinct()->lists('city', 'city');
-    }
-
-    public function getAllUserFriends() {
-
-        $perPage = $this->property('perPage');
-
         $user = Auth::getUser();
 
-        $friends = $user->paginateFriends($perPage);
+        if ($friend = User::findByHashId(post('friend_id'))) {
+            switch (post('action')) {
+                case 'accept':
+                    $user->acceptFriendRequest($friend);
+                    break;
+                case 'decline':
+                    $user->declineFriendRequest($friend);
+                    break;
+                case 'block':
+                    $friend->block($user);
+                    break;
+                case 'unblock':
+                    $friend->unblock($user);
+                    break;
+                case 'unfriend':
+                    $friend->unfriend($user);
+                    break;
+            }
+        }
+
+        return Redirect::refresh();
     }
 }

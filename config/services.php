@@ -34,4 +34,16 @@ return [
         'secret' => '',
     ],
 
+    'google' => [
+        'client_id' => env('SOCIAL_GOOGLE_CLIENT_ID'),
+        'client_secret' => env('SOCIAL_GOOGLE_CLIENT_SECRET'),
+        'redirect' => env('SOCIAL_GOOGLE_REDIRECT'),
+    ],
+
+    'facebook' => [
+        'client_id' => env('SOCIAL_FACEBOOK_CLIENT_ID'),
+        'client_secret' => env('SOCIAL_FACEBOOK_CLIENT_SECRET'),
+        'redirect' => env('SOCIAL_FACEBOOK_REDIRECT'),
+    ],
+
 ];

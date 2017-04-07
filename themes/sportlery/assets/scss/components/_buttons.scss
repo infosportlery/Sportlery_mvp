@@ -1,0 +1,7 @@
+.btn-gplus {
+    @include button-variant(#fff, #dd4b39, darken(#dd4b39, 15%));
+}
+
+.btn-facebook {
+    @include button-variant(#fff, #3b5998, darken(#3b5998, 15%));
+}

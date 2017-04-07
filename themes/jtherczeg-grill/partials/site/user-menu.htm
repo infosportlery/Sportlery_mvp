@@ -1,0 +1,34 @@
+{% if user %}
+<ul class="nav navbar-nav navbar-right">
+    <li>
+        <a href="/">Home</a>
+    </li>
+    <li>
+        <div class="dropdown user-menu-dropdown">
+            <a href="#" data-toggle="dropdown" class="user-menu user-menu-image"><img class="menu-image" src="{{ user.avatarThumb(40,40) }}"></a>
+
+            <ul class="dropdown-menu" role="menu" data-dropdown-title="A dropdown menu">
+                <!-- Latest 5 chats -->
+
+                <li role="presentation"><a href="/messages">All Conversations</a></li>
+            </ul>
+        </div>
+    </li>
+    <li>
+        <div class="dropdown user-menu-dropdown">
+            <a href="#" data-toggle="dropdown" class="user-menu user-menu-image"><img class="menu-image" src="{{ user.avatarThumb(40,40) }}"></a>
+
+            <ul class="dropdown-menu" role="menu" data-dropdown-title="A dropdown menu">
+                <li role="presentation" style="text-align: center;"><b>{{user.name}} {{user.surname}}</b></li>
+                <li role="presentation"><a href="/settings" role="menuitem" tabindex="-1"><span class="glyphicon glyphicon-wrench"></span> User Settings</a></li>
+                <li role="presentation"><a href="/FAQ"><span class="glyphicon glyphicon-wrench"></span> Help</a></li>
+                <li role="presentation"><a href="/logout"><span class="glyphicon glyphicon-wrench"></span> Logout</a></li>
+            </ul>
+        </div>
+
+    </li>
+</ul>
+
+{% else %}
+
+{% endif %}

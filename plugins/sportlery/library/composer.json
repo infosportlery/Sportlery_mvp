@@ -5,6 +5,7 @@
     "minimum-stability": "stable",
     "require": {
         "cmgmyr/messenger": "~2.0",
-        "laravel/socialite": "~2.0"
+        "laravel/socialite": "~2.0",
+        "mollie/laravel-mollie": "~1.0"
     }
 }

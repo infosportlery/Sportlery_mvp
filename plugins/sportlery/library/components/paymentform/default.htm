@@ -1,0 +1,39 @@
+{{  form_open({ request: __SELF__~'::onPay' }) }}
+    <ul class="list-group">
+        {% for paymentMethod in paymentMethods %}
+            <li class="list-group-item">
+                <label class="radio">
+                    <input type="radio" name="payment_method" style="margin-left:0;position:relative;" value="{{ paymentMethod.id }}">
+                    {{ paymentMethod.description }}
+                </label>
+                {% if issuers[paymentMethod.id] %}
+                    <div class="form-group" style="margin-top:15px; display: none;">
+                        <label for="issuer_id" class="control-label">Select bank</label>
+                        {{ form_select('issuer_id', issuers[paymentMethod.id], null, { class: 'form-control', disabled: 'disabled' }) }}
+                    </div>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    <button class="btn btn-primary" type="submit">Pay</button>
+{{ form_close() }}
+
+{% put scripts %}
+    <script>
+        $(function() {
+            $('[name=payment_method]').on('change', function() {
+                $(this).closest('.list-group').find('.form-group:visible').slideUp(200).find('select').prop('disabled', true);
+                var $formGroup = $(this).closest('.list-group-item').find('.form-group');
+                if ($formGroup.length) {
+                    $formGroup.slideDown(200).find('select').prop('disabled', false);
+                }
+            });
+
+            if (!$('[name=payment_method]:checked').length) {
+                $('[name=payment_method]:first').prop('checked', true).triggerHandler('change');
+            } else {
+                $('[name=payment_method]:checked').triggerHandler('change');
+            }
+        });
+    </script>
+{% endput %}

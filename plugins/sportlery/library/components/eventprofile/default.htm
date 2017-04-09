@@ -3,30 +3,61 @@
     <p><strong>Categories: </strong> {{ event.categoryNames|join(',')}}</p>
     <p>
         <strong>Starts at:</strong> {{ event.starts_at.formatLocalized('%A %d %B, %Y') }} om {{ event.starts_at.format('H:i') }}<br>
-    <strong>Ends at:</strong> {{ event.ends_at.formatLocalized('%A %d %B, %Y') }} om {{ event.ends_at.format('H:i') }}</p>
+        <strong>Ends at:</strong> {{ event.ends_at.formatLocalized('%A %d %B, %Y') }} om {{ event.ends_at.format('H:i') }}
+        {% if event.price > 0 %}
+            <br><strong>Price: </strong> &euro; {{ event.price|number_format(2, ',', '.') }}
+        {% endif %}
+    </p>
     {{ event.description|raw }}
     {% if event.user_id == user.id %}
         <a href="/dashboard/events/edit/{{ event.getHashId() }}" class="btn btn-default">Edit</a>
     {% endif %}
     {% if user %}
         <p>
-            {{ form_open({ class: 'd-inline', request: __SELF__~'::onUpdateEventJoinStatus' }) }}
-                {{ form_hidden('event_id', event.getHashId()) }}
-                {% if not isGoing %}
-                    <button class="btn btn-primary" name="action" value="join">I'm Going</button>
-                {% else %}
-                    <button class="btn btn-danger" name="action" value="cancel_join">No Longer Going</button>
-                {% endif %}
-                {% if not isInterested %}
-                    <button class="btn btn-default" name="action" value="interest">I'm Interested</button>
-                {% else %}
-                    <button class="btn btn-danger" name="action" value="cancel_interest">No Longer Interested</button>
-                {% endif %}
-            {{ form_close() }}
+            {% if event.price == 0 or (event.price > 0 and not isGoing) %}
+                {{ form_open({ class: 'd-inline', request: __SELF__~'::onUpdateEventJoinStatus' }) }}
+                    {{ form_hidden('event_id', event.getHashId()) }}
+                    {% if not isGoing and event.price == 0 %}
+                        <button class="btn btn-primary" name="action" value="join">I'm Going</button>
+                    {% elseif not isGoing %}
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#event-payment-modal">I'm Going</button>
+                    {% else %}
+                        <button class="btn btn-danger" name="action" value="cancel_join">No Longer Going</button>
+                    {% endif %}
+                    {% if not isInterested %}
+                        <button class="btn btn-default" name="action" value="interest">I'm Interested</button>
+                    {% else %}
+                        <button class="btn btn-danger" name="action" value="cancel_interest">No Longer Interested</button>
+                    {% endif %}
+                {{ form_close() }}
+            {% else %}
+                <div class="alert alert-success">
+                    <i class="glyphicon glyphicon-ok"></i>
+                    You're Going
+                </div>
+            {% endif %}
             {% if hasFriends %}
                 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#invite-friends-modal">Invite Friends to Event</button>
             {% endif %}
         </p>
+        {% if event.price > 0 and not isGoing %}
+            <div class="modal fade" id="event-payment-modal" tabindex="-1" role="dialog" aria-labelledby="event-payment-modal-label">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="event-payment-modal-label">Payment</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Deze activiteit kost &euro; {{ event.price|number_format(2,'.',',') }}</p>
+                            {% component 'paymentForm' %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
         {% if friendsGoing is not empty %}
             <h4>Friends going to this event:</h4>
             <ul class="list-group">

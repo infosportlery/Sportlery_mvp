@@ -1,0 +1,12 @@
+title = "Betaling"
+url = "/betaling/:slug"
+layout = "default"
+meta_title = "Betaling"
+is_hidden = 0
+
+[viewBag]
+localeUrl[en] = "/payment/:slug"
+
+[paymentResult]
+==
+{% component 'paymentResult' %}

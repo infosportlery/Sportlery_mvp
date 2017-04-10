@@ -1,0 +1,48 @@
+[staticPage]
+
+[session]
+security = "all"
+==
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Sportlery - {{ this.page.title }}</title>
+        <meta name="description" content="{{ this.page.meta_description }}">
+        <meta name="title" content="{{ this.page.meta_title }}">
+        <meta name="author" content="Sportlery">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="{{ 'assets/css/sportlery.css'|theme }}" rel="stylesheet">
+        {% styles %}
+    </head>
+    <body>
+        <div class="content-wrap">
+            {% partial 'site/header-2' %}
+            
+            <div class="container">                
+                {% flash %}
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="alert alert-{{ type == 'error' ? 'danger' : type }}">{{ message }}</div>
+                        </div>
+                    </div>
+                </div>
+                {% endflash %}
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        {% page %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% partial 'site/footer' %}
+
+        <!-- Scripts -->
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        {% scripts %}
+        <script src="{{ 'assets/js/sportlery.js'|theme }}"></script>
+    </body>
+</html>

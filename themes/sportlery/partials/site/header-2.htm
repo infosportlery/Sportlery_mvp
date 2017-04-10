@@ -28,3 +28,8 @@ code = "userMenu"
         </div>
     </div>
 </nav>
+{% if not user %}
+    {% partial 'site/bannerHeader' %}
+{% else %}
+    
+{% endif %}

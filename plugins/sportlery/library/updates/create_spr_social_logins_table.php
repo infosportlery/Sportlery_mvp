@@ -18,12 +18,13 @@ class CreateSprSocialLoginsTable extends Migration
             $table->string('access_token', 50)->nullable();
             $table->string('refresh_token', 50)->nullable();
             $table->timestamps();
-
-            $table->foreign('user_id')
+        
+        $table->foreign('user_id')
                   ->references('id')->on('users')
                   ->onUpdate('cascade')
                   ->onDelete('cascade');
         });
+
     }
 
     public function down()

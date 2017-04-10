@@ -2,6 +2,7 @@
 
 namespace Sportlery\Library\Components;
 
+use Auth;
 use Cms\Classes\ComponentBase;
 use Illuminate\Support\Facades\Redirect;
 use October\Rain\Support\Facades\Flash;
@@ -25,6 +26,11 @@ class UserProfile extends ComponentBase
     {
         $this->page['profile'] = User::findByHashId($this->param('id'));
         $this->page['profileHashId'] = $this->param('id');
+        $this->page['authenticated'] = Auth::check();
+
+        if (!$this->page['authenticated']) {
+            return;
+        }
 
         $friendshipStatus = \Auth::getUser()->getFriendshipStatus($this->page['profile']);
         $this->page['friendshipNone'] = is_null($friendshipStatus);

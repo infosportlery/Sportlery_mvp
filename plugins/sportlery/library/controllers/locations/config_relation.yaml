@@ -1,0 +1,8 @@
+openingTimes:
+    label: Times
+    view:
+        form: $/sportlery/library/models/locationtime/fields.yaml
+        toolbarButtons: update
+    manage:
+        form: $/sportlery/library/models/locationtime/fields.yaml
+        list: $/sportlery/library/models/locationtime/columns.yaml

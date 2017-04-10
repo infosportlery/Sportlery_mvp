@@ -11,8 +11,6 @@ class UpdateTimeLocations extends Migration
     public function up()
     {
         Schema::table('spr_location_times', function(Blueprint $table) {
-            
-
             $table->dropColumn('monday_start');
             $table->dropColumn('tuesday_start');
             $table->dropColumn('wednesday_start');
@@ -34,8 +32,9 @@ class UpdateTimeLocations extends Migration
             $table->dropColumn('friday_off');
             $table->dropColumn('saturday_off');
             $table->dropColumn('sunday_off');
+        });
 
-
+        Schema::table('spr_location_times', function(Blueprint $table) {
             $table->time('monday_start')->nullable();
             $table->time('tuesday_start')->nullable();
             $table->time('wednesday_start')->nullable();
@@ -50,7 +49,6 @@ class UpdateTimeLocations extends Migration
             $table->time('friday_end')->nullable();
             $table->time('saturday_end')->nullable();
             $table->time('sunday_end')->nullable();
-
         });
     }
 
@@ -78,8 +76,9 @@ class UpdateTimeLocations extends Migration
             $table->string('friday_off');
             $table->string('saturday_off');
             $table->string('sunday_off');
+        });
 
-
+        Schema::table('spr_location_times', function(Blueprint $table) {
             $table->dropColumn('monday_start');
             $table->dropColumn('tuesday_start');
             $table->dropColumn('wednesday_start');
@@ -91,7 +90,7 @@ class UpdateTimeLocations extends Migration
             $table->dropColumn('tuesday_end');
             $table->dropColumn('wednesday_end');
             $table->dropColumn('thursday_end');
-            $table->dropColumn('friday_end'));
+            $table->dropColumn('friday_end');
             $table->dropColumn('saturday_end');
             $table->dropColumn('sunday_end');
         });

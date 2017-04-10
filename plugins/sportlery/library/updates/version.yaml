@@ -73,4 +73,4 @@
     - add_amount_max_people_to_event_table.php
 1.1.2:
     - 'alter Location Time Table'
-    - update_location_times.php
+    - update_time_locations.php

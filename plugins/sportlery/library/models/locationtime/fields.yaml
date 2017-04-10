@@ -1,0 +1,100 @@
+fields:
+    monday_start:
+        label: Monday from
+        span: left
+        required: 1
+        type: datepicker
+        format: 'H:i'
+        mode: time
+    monday_end:
+        label: Monday until
+        span: right
+        required: 1
+        type: datepicker
+        format: 'H:i'
+        mode: time
+    tuesday_start:
+        label: Tuesday from
+        span: left
+        required: 1
+        type: datepicker
+        format: 'H:i'
+        mode: time
+    tuesday_end:
+        label: Tuesday until
+        span: right
+        required: 1
+        type: datepicker
+        format: 'H:i'
+        mode: time
+    wednesday_start:
+        label: Wednesday from
+        span: left
+        required: 1
+        type: datepicker
+        format: 'H:i'
+        mode: time
+    wednesday_end:
+        label: Wednesday until
+        span: right
+        required: 1
+        type: datepicker
+        format: 'H:i'
+        mode: time
+    thursday_start:
+        label: Thursday from
+        span: left
+        required: 1
+        type: datepicker
+        format: 'H:i'
+        mode: time
+    thursday_end:
+        label: Thursday until
+        span: right
+        required: 1
+        type: datepicker
+        format: 'H:i'
+        mode: time
+    friday_start:
+        label: Friday from
+        span: left
+        required: 1
+        type: datepicker
+        format: 'H:i'
+        mode: time
+    friday_end:
+        label: Friday until
+        span: right
+        required: 1
+        type: datepicker
+        format: 'H:i'
+        mode: time
+    saturday_start:
+        label: Saturday from
+        span: left
+        required: 1
+        type: datepicker
+        format: 'H:i'
+        mode: time
+    saturday_end:
+        label: Saturday until
+        span: right
+        required: 1
+        type: datepicker
+        format: 'H:i'
+        mode: time
+    sunday_start:
+        label: Sunday from
+        span: left
+        required: 1
+        type: datepicker
+        format: 'H:i'
+        mode: time
+    sunday_end:
+        label: Sunday until
+        placeholder: '00:00'
+        span: right
+        required: 1
+        type: datepicker
+        format: 'H:i'
+        mode: time

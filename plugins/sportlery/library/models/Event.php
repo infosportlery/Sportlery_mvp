@@ -27,7 +27,7 @@ class Event extends Model
         'starts_at' => 'required|date_format:"Y-m-d H:i:s"',
         'ends_at' => 'required|date_format:"Y-m-d H:i:s"',
         'description' => 'required',
-        'price' => 'required|integer',
+        'price' => 'required|numeric',
         'location_id' => 'required|exists:spr_locations,id',
     ];
 

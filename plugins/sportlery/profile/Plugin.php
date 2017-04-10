@@ -42,11 +42,6 @@ class Plugin extends PluginBase
                     'type' => 'text',
                     'tab' => 'Profile'
                 ],
-                'street_num' => [
-                    'label' => 'Street Number',
-                    'type' => 'text',
-                    'tab' => 'Profile'
-                ],
                 'zip_code' => [
                     'label' => 'Postal/Zip Code',
                     'type' => 'text',

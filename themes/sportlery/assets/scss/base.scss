@@ -37,3 +37,20 @@ body {
 	height: 100px;
 	vertical-align: middle;
 }
+
+.avatar{
+	max-width: 100%;
+}
+
+.header2 {
+  height: 85vh;
+  padding-top: 100px;
+  margin-top: -50px;
+  margin-bottom: 50px;
+  text-align: center;
+  background-image: url('../resources/image/about_verhaal_2.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+}

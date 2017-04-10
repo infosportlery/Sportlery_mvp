@@ -3,3 +3,6 @@
     - add_new_fields.php
 1.0.2:
     - Plugin.php
+1.0.3:
+    - update User Information to Better suit current Dev patern
+    - update_user_information.php

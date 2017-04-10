@@ -3,6 +3,7 @@
 namespace Sportlery\Library\Components;
 
 use Auth;
+use Illuminate\Support\Facades\Cache;
 use Mollie;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
@@ -46,9 +47,12 @@ class PaymentForm extends ComponentBase
     {
         /** @var \Mollie\Laravel\Wrappers\MollieApiWrapper $api */
         $api = Mollie::api();
-
-        $this->page['paymentMethods'] = collect($api->methods()->all());
-        $allIssuers = collect($api->issuers()->all());
+        $this->page['paymentMethods'] = Cache::remember('mollie_payment_methods', 60, function () use ($api) {
+            return collect($api->methods()->all());
+        });
+        $allIssuers = Cache::remember('mollie_issuers', 60, function () use ($api) {
+            return collect($api->issuers()->all());
+        });
         $allIssuers = $allIssuers->groupBy('method');
         $issuers = [];
 

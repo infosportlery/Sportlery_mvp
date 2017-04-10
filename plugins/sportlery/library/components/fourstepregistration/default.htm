@@ -1,0 +1,49 @@
+{% if show %}
+<div class="modal fade" id="four-step-modal" tabindex="-1" role="dialog" aria-labelledby="four-step-modal-label">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="four-step-modal-label">Registration</h4>
+            </div>
+            <div id="four-step-registration" class="modal-body">
+                {% if currentStep == 1 %}
+                    {% partial __SELF__ ~ '::step-1' %}
+                {% elseif currentStep == 2 %}
+                    {% partial __SELF__ ~ '::step-2' %}
+                {% elseif currentStep == 3 %}
+                    {% partial __SELF__ ~ '::step-3' %}
+                {% elseif currentStep == 4 %}
+                    {% partial __SELF__ ~ '::step-4' %}
+                {% endif %}
+            </div>
+            <div class="modal-footer">
+                <div data-validation-error></div>
+                <button class="btn btn-primary"
+                        data-request="{{ __SELF__ }}::onNextStep"
+                        data-request-form="#four-step-form"
+                        data-request-validate>Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% put scripts %}
+<script>$(function(){
+    $('#four-step-modal').modal('show');
+    $(window).on('ajaxInvalidField', function(event, fieldElement, fieldName, errorMsg) {
+        $(fieldElement).closest('.form-group').addClass('has-error')
+            .find('.help-block').show().text(errorMsg);
+    });
+    $(window).on('ajaxErrorMessage', function(event) {
+        event.preventDefault()
+    });
+    $(document).on('ajaxPromise', '[data-request]', function() {
+        $('#four-step-form').find('.form-group.has-error').removeClass('has-error')
+            .find('.help-block').hide().text('');
+    });
+})</script>
+{% endput %}
+{% endif %}

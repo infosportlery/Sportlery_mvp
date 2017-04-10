@@ -7,8 +7,7 @@ use Sportlery\Library\Models\Sport;
 
 class UserSportsModel extends ModelBehavior
 {
-
-     public function __construct($model)
+    public function __construct($model)
     {
         parent::__construct($model);
 
@@ -21,6 +20,13 @@ class UserSportsModel extends ModelBehavior
         ];
     }
 
+    public function scopeFavoriteSports()
+    {
+        return $this->model->sports()->wherePivot('favorite', 1);
+    }
 
-    
+    public function scopeInterestedSports()
+    {
+        return $this->model->sports()->wherePivot('favorite', 0);
+    }
 }

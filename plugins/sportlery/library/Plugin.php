@@ -41,6 +41,7 @@ class Plugin extends PluginBase
             Components\Chat::class => 'chat',
             Components\PaymentForm::class => 'paymentForm',
             Components\PaymentResult::class => 'paymentResult',
+            Components\FourStepRegistration::class => 'fourStepRegistration',
         ];
     }
 
@@ -76,12 +77,16 @@ class Plugin extends PluginBase
             $model->implement[] = 'Sportlery.Library.Behaviors.UserFriendsModel';
             $model->implement[] = 'Sportlery.Library.Behaviors.UserEventsModel';
             $model->implement[] = 'Sportlery.Library.Behaviors.UserPaymentsModel';
+            $model->implement[] = 'Sportlery.Library.Behaviors.UserSportsModel';
             $model->implement[] = 'Sportlery.Library.Behaviors.MessagableModel';
             $model->addFillable([
+                'latitude',
+                'longitude',
                 'street',
-                'street_num',
                 'zip_code',
                 'city',
+                'state',
+                'country',
                 'tel_no',
                 'bio',
             ]);

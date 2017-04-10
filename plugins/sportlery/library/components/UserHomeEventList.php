@@ -5,20 +5,23 @@ namespace Sportlery\Library\Components;
 use Cms\Classes\ComponentBase;
 use Cms\Classes\Page;
 use Hashids\Hashids;
+use Illuminate\Support\Facades\Input;
 use Sportlery\Library\Models\Event;
 use Sportlery\Library\Models\Location;
 use Sportlery\Library\Models\Sport;
 use Auth;
 
-class UserEventList extends ComponentBase
+class UserHomeEventList extends ComponentBase
 {
+    private $searchParameters = [];
+
     /**
      * Returns information about this component, including name and description.
      */
     public function componentDetails()
     {
         return [
-            'name' => 'Users Event List',
+            'name' => 'User home event List',
             'description' => 'Display a list of events from the user',
         ];
     }
@@ -50,9 +53,12 @@ class UserEventList extends ComponentBase
 
     public function onRun()
     {
-        $this->page['events'] = $this->getUserEvents();
+        $this->searchParameters = \Input::only(['q', 'event_type', 'sport', 'city', 'past']);
+
+        $this->page['events'] = $this->getEvents();
         $this->page['sports'] = $this->getSports();
         $this->page['cities'] = $this->getCities();
+        $this->page['listTypes'] = $this->getListTypes();
         $this->page['eventTypes'] = $this->getEventTypes();
         $this->page['detailsPage'] = $this->property('detailsPage');
 
@@ -63,20 +69,26 @@ class UserEventList extends ComponentBase
     private function getEvents()
     {
         $perPage = $this->property('perPage');
-        $hashids = \App::make(Hashids::class);
+        $listType = trim(Input::get('list_type'));
+        $user = Auth::getUser();
 
-        $searchParameters = \Input::only(['q', 'event_type', 'sport', 'city', 'past']);
+        if ($listType == 'my') {
+            $events = $user->events()->search($this->searchParameters);
+        } elseif ($listType === 'suggested') {
+            $searchParameters = array_except($this->searchParameters, ['city', 'sport']);
+            $sports = $user->sports()->lists('id');
+            $events = Event::search($searchParameters)->whereHas('location', function ($query) use ($user) {
+                return $query->where('city', $user->city);
+            })->whereHas('sports', function ($query) use ($sports) {
+                return $query->whereIn('id', $sports);
+            });
+        } elseif ($listType === 'created') {
+            $events = $user->ownedEvents()->search($this->searchParameters);
+        } else {
+            $events = Event::search($this->searchParameters);
+        }
 
-        $events = Event::search($searchParameters)
-                    ->orderBy('name', 'asc')
-                    ->paginate($perPage);
-
-        $events->each(function($event) use ($hashids) {
-            $event->id = $event->getHashId();
-            $event->description = str_limit(strip_tags($event->description), 140);
-        });
-
-        return $events;
+        return $events->orderBy('name', 'asc')->paginate($perPage);
     }
 
     private function getSports()
@@ -91,15 +103,18 @@ class UserEventList extends ComponentBase
 
     public function getUserEvents()
     {
-        //alle upcomming events waar gebruiker aan mee doet
-        
         $user = Auth::getUser();
 
-        return $user->events()->get();
+        return $user->events()->search($this->searchParameters)->get();
     }
 
     private function getEventTypes()
     {
         return [Event::TYPE_PAID => 'Paid', Event::TYPE_FREE => 'Free'];
+    }
+
+    private function getListTypes()
+    {
+        return ['my' => 'My activities', 'suggested' => 'Suggested activities', 'created' => 'Created activities'];
     }
 }

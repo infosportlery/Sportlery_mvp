@@ -6,12 +6,15 @@ require('bootstrap-sass/assets/javascripts/bootstrap/modal');
 
 
 import LocationMap from './components/locationMap';
+import './components/locationAutocomplete';
 import './components/chat';
 
 window.$(function($) {
     if ($('[data-component="locationMap"]').length) {
         new LocationMap($('[data-component="locationMap"]'));
     }
+
+    $('[data-component="locationAutocomplete"]').locationAutocomplete();
 
     $('#menu-toggle').click(function(e) {
         e.preventDefault();

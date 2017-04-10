@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 128);
+/******/ 	return __webpack_require__(__webpack_require__.s = 129);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1899,7 +1899,7 @@ function loadLocale(name) {
             module && module.exports) {
         try {
             oldLocale = globalLocale._abbr;
-            __webpack_require__(125)("./" + name);
+            __webpack_require__(126)("./" + name);
             // because defineLocale currently also sets the global locale, we
             // want to undo that for lazy loaded locales
             getSetGlobalLocale(oldLocale);
@@ -4534,7 +4534,7 @@ return hooks;
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(126)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(127)(module)))
 
 /***/ }),
 /* 1 */
@@ -15622,14 +15622,17 @@ return zhTw;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_locationMap__ = __webpack_require__(119);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_chat__ = __webpack_require__(118);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_chat___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_chat__);
-__webpack_require__(120);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_locationMap__ = __webpack_require__(120);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_locationAutocomplete__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_locationAutocomplete___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_locationAutocomplete__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_chat__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_chat___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_chat__);
 __webpack_require__(121);
-__webpack_require__(123);
-__webpack_require__(124);
 __webpack_require__(122);
+__webpack_require__(124);
+__webpack_require__(125);
+__webpack_require__(123);
+
 
 
 
@@ -15638,6 +15641,8 @@ window.$(function ($) {
     if ($('[data-component="locationMap"]').length) {
         new __WEBPACK_IMPORTED_MODULE_0__components_locationMap__["a" /* default */]($('[data-component="locationMap"]'));
     }
+
+    $('[data-component="locationAutocomplete"]').locationAutocomplete();
 
     $('#menu-toggle').click(function (e) {
         e.preventDefault();
@@ -15766,6 +15771,95 @@ $(function () {
 
 /***/ }),
 /* 119 */
+/***/ (function(module, exports) {
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var LocationAutocomplete = function () {
+    function LocationAutocomplete(element) {
+        _classCallCheck(this, LocationAutocomplete);
+
+        this.$element = $(element);
+        this.init();
+    }
+
+    _createClass(LocationAutocomplete, [{
+        key: 'init',
+        value: function init() {
+            this.autocomplete = new google.maps.places.Autocomplete(this.$element.get(0), {
+                types: ['address']
+            });
+
+            google.maps.event.addListener(this.autocomplete, 'place_changed', $.proxy(this.handlePlaceChanged, this));
+
+            // Prevent ENTER from submitting form
+            this.$element.bind('keypress keydown keyup', function (e) {
+                if (e.keyCode == 13) {
+                    e.preventDefault();
+                }
+            });
+        }
+    }, {
+        key: 'handlePlaceChanged',
+        value: function handlePlaceChanged() {
+            var place = this.autocomplete.getPlace();
+            var geoLocation = place.geometry.location;
+
+            var result = {
+                latitude: geoLocation.lat(),
+                longitude: geoLocation.lng(),
+                street: this.getAddressValue(place, 'route') + ' ' + this.getAddressValue(place, 'street_number'),
+                city: this.getAddressValue(place, 'locality'),
+                zip_code: this.getAddressValue(place, 'postal_code'),
+                state: this.getAddressValue(place, 'administrative_area_level_1', 'long_name'),
+                country: this.getAddressValue(place, 'country', 'long_name')
+            };
+
+            for (var key in result) {
+                $('[name="' + key + '"]').val(result[key]);
+            }
+        }
+    }, {
+        key: 'getAddressValue',
+        value: function getAddressValue(addressObj, type) {
+            var resultType = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'short_name';
+
+            var result = null;
+
+            if (!addressObj) {
+                return null;
+            }
+
+            for (var i = 0; i < addressObj.address_components.length; i++) {
+                for (var j = 0; j < addressObj.address_components[i].types.length; j++) {
+                    if (addressObj.address_components[i].types[j] == type) {
+                        result = addressObj.address_components[i][resultType];
+                        break;
+                    }
+                }
+
+                if (result) {
+                    break;
+                }
+            }
+
+            return result;
+        }
+    }]);
+
+    return LocationAutocomplete;
+}();
+
+$.fn.locationAutocomplete = function () {
+    this.each(function () {
+        $(this).data('plugin_location_autocomplete', new LocationAutocomplete(this));
+    });
+};
+
+/***/ }),
+/* 120 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15896,7 +15990,7 @@ var LocationMap = function () {
 /* harmony default export */ __webpack_exports__["a"] = (LocationMap);
 
 /***/ }),
-/* 120 */
+/* 121 */
 /***/ (function(module, exports) {
 
 /* ========================================================================
@@ -16114,7 +16208,7 @@ var LocationMap = function () {
 
 
 /***/ }),
-/* 121 */
+/* 122 */
 /***/ (function(module, exports) {
 
 /* ========================================================================
@@ -16285,7 +16379,7 @@ var LocationMap = function () {
 
 
 /***/ }),
-/* 122 */
+/* 123 */
 /***/ (function(module, exports) {
 
 /* ========================================================================
@@ -16630,7 +16724,7 @@ var LocationMap = function () {
 
 
 /***/ }),
-/* 123 */
+/* 124 */
 /***/ (function(module, exports) {
 
 /* ========================================================================
@@ -16791,7 +16885,7 @@ var LocationMap = function () {
 
 
 /***/ }),
-/* 124 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! version : 4.17.47
@@ -16833,7 +16927,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     'use strict';
     if (true) {
         // AMD is used - Register as an anonymous module.
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(127), __webpack_require__(0)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(128), __webpack_require__(0)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -19436,7 +19530,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 
 /***/ }),
-/* 125 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -19685,10 +19779,10 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 125;
+webpackContext.id = 126;
 
 /***/ }),
-/* 126 */
+/* 127 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -19716,13 +19810,13 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 127 */
+/* 128 */
 /***/ (function(module, exports) {
 
 module.exports = jQuery;
 
 /***/ }),
-/* 128 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(116);

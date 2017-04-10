@@ -1,0 +1,50 @@
+{{ form_model(user, { id: 'four-step-form' }) }}
+<div class="form-group">
+    <input type="hidden" name="sport">
+    <p class="help-block"></p>
+</div>
+<p><strong>Choose up to 5 sports that you are interested in:</strong></p>
+<div class="row">
+    <div class="col-sm-6"><strong>Sport</strong></div>
+    <div class="col-sm-6"><strong>Level</strong></div>
+</div>
+<div id="sport-list">
+    {% for i in range(0, 4) %}
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-6">
+                    {{ form_select('sport['~i~'][id]', sports, null, { class: 'form-control' }) }}
+                    <p class="help-block" style="display:none;"></p>
+                </div>
+                <div class="col-sm-6">
+                    {{ form_select('sport['~i~'][level]', levels, null, { class: 'form-control' }) }}
+                    <p class="help-block" style="display:none;"></p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{{ form_hidden('current_step', 4) }}
+{{ form_close() }}
+<script async defer>$(function() {
+        var $sportSelects = $('#sport-list').find('select[name$="[id]"]');
+        var valueMap = {};
+        $sportSelects.each(function(index) {
+            valueMap[index] = $(this).val();
+        });
+        $sportSelects.on('change', function() {
+            var current = this;
+            var currentValue = $(this).val();
+            var currentIndex = $sportSelects.index(current);
+            valueMap[currentIndex] = currentValue;
+            $sportSelects.each(function(index) {
+                $(this).find('option:disabled').prop('disabled', false);
+            });
+            $.each(valueMap, function (index, value) {
+                if (value) {
+                    $sportSelects.not($sportSelects[index]).find('option[value="' + value + '"]').prop('disabled', true);
+                }
+            });
+        });
+    })</script>
+

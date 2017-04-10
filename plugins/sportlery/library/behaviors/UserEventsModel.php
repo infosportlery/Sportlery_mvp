@@ -27,7 +27,7 @@ class UserEventsModel extends ModelBehavior
             'otherKey' => 'event_id',
         ];
 
-        $model->belongsToMany['ownedEvents'] = [
+        $model->hasMany['ownedEvents'] = [
             Event::class,
             'table' => 'spr_events',
             'key' => 'user_id',

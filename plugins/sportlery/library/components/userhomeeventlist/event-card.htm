@@ -1,0 +1,26 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <h3>
+            <a href="{{ detailsPage|page({ id: event.getHashId() }) }}">
+                {{ event.name }}
+            </a>
+        </h3>
+        <p>
+            <strong>Date:</strong>
+            {{ event.starts_at.formatLocalized('%A %d %B, %Y') }}
+            {% if event.price > 0 %}
+        <br>
+            <strong>Price:</strong>
+            &euro; {{ event.price|number_format(2,',','.') }}
+        {% endif %}
+        </p>
+        <div class="text-right">
+            {% if event.user_id == user.id %}
+            <a href="delete/{{ event.id }}" class="btn btn-warning">Edit</a>
+            <a href="edit/{{ event.id }}" class="btn btn-default">Edit</a>
+            {% endif %}
+            <a href="{{ detailsPage|page({ id: event.getHashId() }) }}"
+               class="btn btn-primary">Bekijk &raquo;</a>
+        </div>
+    </div>
+</div>

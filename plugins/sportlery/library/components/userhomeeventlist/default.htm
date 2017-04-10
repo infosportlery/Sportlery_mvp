@@ -1,0 +1,73 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                {{ form_open({ method: 'get' }) }}
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            {{ form_label('sport', 'Sport', {class: 'control-label'}) }}
+                            {{ form_select('sport', sports, input('sport'), {class: 'form-control', emptyOption: 'All'}) }}
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        {{ form_label('event_type', 'Event type', {class: 'control-label'}) }}
+                        {{ form_select('event_type', eventTypes, input('event_type'), {class: 'form-control', emptyOption: 'All'}) }}
+                    </div>
+                    <div class="col-sm-2">
+                        {{ form_label('city', 'City', {class: 'control-label'}) }}
+                        {{ form_select('city', cities, input('city'), {class: 'form-control', emptyOption: 'All'}) }}
+                    </div>
+                    <div class="col-sm-2">
+                        {{ form_label('list_type', 'List Type', {class: 'control-label'}) }}
+                        {{ form_select('list_type', listTypes, input('list_type'), {class: 'form-control', emptyOption: 'All'}) }}
+                    </div>
+                    <div class="col-sm-2">
+                        {{ form_label('q', 'Search', {class: 'control-label'}) }}
+                        {{ form_text('q', input('q'), {class: 'form-control'}) }}
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="checkbox">
+                            <label>
+                                {{ form_checkbox('past', '1', input('past')) }}
+                                Include past events
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <div>&nbsp;</div>
+                            {{ form_submit('Search', {class: 'btn btn-primary'}) }}
+                            {{ link_to(url_current(), 'Reset', {class: 'btn btn-default'}) }}
+                        </div>
+                    </div>
+                </div>
+                {{ form_close() }}
+            </div>
+        </div>
+    </div>
+</div>
+{% if events is not empty %}
+    {% for row in events|batch(2) %}
+        <div class="row">
+            {% for event in row %}
+                <div class="col-md-6">
+                    {% partial __SELF__~'::event-card' event=event %}
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+    <div class="row">
+        <div class="col-sm-12">
+            {{ events.render|raw }}
+        </div>
+    </div>
+{% else %}
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="alert alert-danger">
+                Geen evenementen beschikbaar
+            </div>
+        </div>
+    </div>
+{% endif %}

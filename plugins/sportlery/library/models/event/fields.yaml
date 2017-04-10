@@ -22,12 +22,17 @@ fields:
         label: 'Ends at'
         span: auto
         type: datepicker
+    max_attendees:
+        label: 'Maximum attendees'
+        span: auto
+        type: number
+        default: 0
     price:
         label: Price
         oc.commentPosition: ''
         span: auto
-        placeholder: '0'
-        default: '0'
+        placeholder: 'Price'
+        default: 0
         type: number
     location:
         label: Location

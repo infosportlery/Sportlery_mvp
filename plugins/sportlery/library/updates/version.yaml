@@ -68,3 +68,6 @@
 1.1.0:
     - 'Mayor Update V2'
     - update_database_mayor_one.php
+1.1.1:
+    - 'Add Event Amount/Max Attendees'
+    - add_amount_max_people_to_event_table.php

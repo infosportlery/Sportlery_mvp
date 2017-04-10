@@ -52,6 +52,16 @@ class Plugin extends PluginBase
                     'type' => 'text',
                     'tab' => 'Profile'
                 ],
+                'state' => [
+                    'label' => 'State',
+                    'type' => 'text',
+                    'tab' => 'Profile',
+                ],
+                'country' => [
+                    'label' => 'Country',
+                    'type' => 'text',
+                    'tab' => 'Profile',
+                ],
                 'tel_no' => [
                     'label' => 'Telephone Number',
                     'type' => 'number',

@@ -6,3 +6,6 @@
 1.0.3:
     - update User Information to Better suit current Dev patern
     - update_user_information.php
+1.0.4:
+    - add Country and State to user
+    - add_user_city_state.php

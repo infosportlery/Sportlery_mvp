@@ -60,6 +60,12 @@
 1.0.20:
     - 'Create social logins table'
     - create_spr_social_logins_table.php
+1.0.21:
+    - 'Create payment tables'
+    - create_spr_payments_table.php
+    - make_event_price_decimal.php
+    - add_payment_id_to_event_user_table.php
 1.1.0:
     - 'Mayor Update V2'
     - update_database_mayor_one.php
+=======

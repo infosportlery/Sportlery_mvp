@@ -39,6 +39,8 @@ class Plugin extends PluginBase
             Components\UserFriendList::class => 'userFriendList',
             Components\ChatList::class => 'chatList',
             Components\Chat::class => 'chat',
+            Components\PaymentForm::class => 'paymentForm',
+            Components\PaymentResult::class => 'paymentResult',
         ];
     }
 
@@ -73,6 +75,7 @@ class Plugin extends PluginBase
         User::extend(function(User $model) {
             $model->implement[] = 'Sportlery.Library.Behaviors.UserFriendsModel';
             $model->implement[] = 'Sportlery.Library.Behaviors.UserEventsModel';
+            $model->implement[] = 'Sportlery.Library.Behaviors.UserPaymentsModel';
             $model->implement[] = 'Sportlery.Library.Behaviors.MessagableModel';
             $model->addFillable([
                 'street',

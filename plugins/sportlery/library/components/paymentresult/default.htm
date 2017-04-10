@@ -1,0 +1,32 @@
+{% if payment %}
+    {% if payment.status == 'paid' %}
+        <h1 class="text-success">
+            <i class="glyphicon glyphicon-ok"></i>
+            Betaling succesvol afgerond
+        </h1>
+        <p>De betaling is succesvol afgerond. U wordt binnen enkele seconden naar de pagina
+        van de activiteit terugverwezen.</p>
+        {% put scripts %}
+            <script>setTimeout(function() { window.location = '{{redirectUrl}}' }, 3000)</script>
+        {% endput %}
+    {% elseif payment.status == 'failed' or payment.status == 'cancelled' %}
+        <h1 class="text-danger">
+            <i class="glyphicon glyphicon-remove"></i>
+            Betaling mislukt
+        </h1>
+        <p>De betaling is mislukt. Je wordt terugverwezen naar de activiteit.</p>
+        {% put scripts %}
+            <script>setTimeout(function() { window.location = '{{redirectUrl}}' }, 3000)</script>
+        {% endput %}
+    {% else %}
+        <p>
+            <i class="glyphicon glyphicon-time text-muted"></i>
+            De betaling is nog niet afgerond. <a href="{{ paymentUrl }}">Probeer het nogmaals</a>
+            of <a href="{{ redirectUrl }}">ga terug naar de activiteit pagina</a>.
+        </p>
+    {% endif %}
+{% else %}
+    <h1>Betaling niet gevonden</h1>
+    <p>De opgevraagde betaling kon niet worden gevonden in ons systeem.</p>
+{% endif %}
+

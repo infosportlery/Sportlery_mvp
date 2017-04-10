@@ -22,13 +22,16 @@ class EventProfile extends ComponentBase
     public function init()
     {
         $this->addComponent('RainLab\User\Components\Session', 'session', ['security' => 'all']);
+        $this->addComponent(PaymentForm::class, 'paymentForm', [
+            'redirectPage' => 'payment-result',
+        ]);
     }
 
     public function onRun()
     {
         $this->page['event'] = Event::findByHashId($this->param('id'));
 
-        if ($this->page['user']) {
+        if ($this->page['event'] && $this->page['user']) {
             $this->setEventJoinContext();
         }
     }

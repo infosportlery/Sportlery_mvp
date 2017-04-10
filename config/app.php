@@ -117,7 +117,9 @@ return [
 
         'System\ServiceProvider',
         // Cmgmyr\Messenger\MessengerServiceProvider::class,
-        \Laravel\Socialite\SocialiteServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
+        Mollie\Laravel\MollieServiceProvider::class,
+
     ]),
 
     /*
@@ -134,6 +136,7 @@ return [
     'aliases' => array_merge(include(base_path('modules/system/aliases.php')), [
 
         // 'Str' => 'Illuminate\Support\Str', // Example
+        'Mollie' => Mollie\Laravel\Facades\Mollie::class,
 
     ]),
 

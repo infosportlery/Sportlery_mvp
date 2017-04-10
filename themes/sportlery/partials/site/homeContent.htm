@@ -12,24 +12,29 @@
 		</div>
 	</div>
 	
-	<div class="row text-center">
-		
+  <div class="row text-center">
     <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
-    	<div class="col-md-4 col-sm-4 col-xs-12">
-    		<img src="">
-    		<h2></h2>
-    		<p></p>
-    		<button></button>
-    	</div>
-    	<div class="col-md-4 col-sm-4 col-xs-12">
-    		<img src="">
-    		<h2></h2>
-    	</div>
-    	<div class="col-md-4 col-sm-4 col-xs-12">
-    		<img src="">
-    		<h2></h2>
-    		<button class="btn btn-primary" id=""></button>
-    	</div>
+      <div class="col-md-4 col-sm-4 infomation-col" id="index-slideup-obj">
+        <img src="{{ 'resources/img/location.png'|theme }}" style="width: 80px;">
+        <h1 class="h1-default text-center"><strong>Sport Locations</strong></h1>
+        <p>Choose your favourite sport and find a sports facility in your neighbourhood. Book your slot and enjoy!</p>
+        <hr class="hr-sm">
+        <?= Html::button(Yii::t('app', 'Read more!'), ['class' => 'btn btn-primary information-btn', 'id' => 'btn-locations-more']); ?>
+      </div>
+      <div class="col-md-4 col-sm-4 infomation-col" id="index-slideup-obj-2">
+        <img src="{{ 'resources/img/location.png'|theme }}" style="width: 80px;">
+        <h1 class="h1-default text-center h1-header-sub-2"><strong>Match making</strong></h1>
+        <p>Find sportbuddies, create or participate in events and find substitute players for your team.') ?></p>
+        <hr class="hr-sm">
+         <?= Html::button(Yii::t('app', 'Read more!'), ['class' => 'btn btn-primary information-btn', 'id' => 'btn-whatis-more']); ?>
+      </div>
+      <div class="col-md-4 col-sm-4 infomation-col" id="index-slideup-obj-3" >
+        <img src="{{ 'resources/img/location.png'|theme }}" style="width: 80px;">
+        <h1 class="h1-default text-center"><strong>Sport Classes</strong></h1>
+        <p>Discover and try-out new sports! A clear overview of all classes and workshops that are being offered in your neighbourhood.</p>
+        <hr class="hr-sm">
+        <?= Html::button(Yii::t('app', 'Under Construction'), ['class' => 'btn btn-primary information-btn']); ?>
+      </div>
     </div>
-	</div>
+  </div> 
 </div>

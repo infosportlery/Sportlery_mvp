@@ -172,6 +172,7 @@ body {
     color: #fff;
 }
 
+.home-header { height: 80vh;}
 .home-header h1 {font-family: 'Graduate', sans-serif; font-size: 80px;margin-bottom: 50px;}
 .home-header .lead {margin-top: -40px; letter-spacing: 5px; }
 
@@ -197,4 +198,75 @@ body {
     /* height: 100%; */
     width: 100%;
     left: 0;
+}
+
+h1 {
+	font-weight: 300 ;
+    line-height: 1.1;
+    color: inherit;
+}
+
+h2 {
+		font-weight: 300;
+    line-height: 1.1;
+    color: inherit;
+
+}
+h3 {
+		font-weight: 300 ;
+    line-height: 1.1;
+    color: inherit;
+}
+
+h4{
+		font-weight: 300;
+    line-height: 1.1;
+    color: inherit;
+}
+
+h5 {
+		font-weight: 300;
+    line-height: 1.1;
+    color: inherit;
+}
+
+h6 {
+		font-weight: 300;
+    line-height: 1.1;
+    color: inherit;
+}
+.h-orange {
+	font-weight: bold;
+    color: #F46835;
+}
+
+.hr-invisible {
+	border: none;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.hr-invisible-sm {
+    border: none;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.parallaxTwo {
+    min-height: 280px;
+    padding-top: 25px;
+    margin-top: -50px;
+    text-align: center;
+    background-image: url('../../resources/img/header2_blur.jpg');
+    background-attachment: scroll;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+}
+.parallaxTwo p {
+    text-shadow: 1px 1px 10px #000;
+    }
+.parallaxTwo h2 {
+    text-shadow: 1px 1px 10px #000;
 }

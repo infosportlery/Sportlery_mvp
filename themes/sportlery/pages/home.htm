@@ -1,42 +1,8 @@
 title = "Home"
 url = "/"
-layout = "home"
+layout = "pre-register"
 is_hidden = 0
+
+[session]
 ==
-
-
-{% if user %}
-    <div class="row">
-        <div class="col-sm-12">
-            <ul class="nav nav-tabs" style="margin-bottom:15px;" role="tablist">
-                <li role="presentation" class="menu-content active" ><a href="#tab-activities" aria-controls="tab-activities" role="tab" data-toggle="tab">Activities</a></li>
-                <li role="presentation" class="menu-content"><a href="#tab-sportlers" aria-controls="tab-sportlers" role="tab" data-toggle="tab">Sportlers</a></li>
-                <li role="presentation" class="menu-content"><a href="#tab-locaties" aria-controls="tab-locaties" role="tab" data-toggle="tab">Locaties</a></li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active" id="tab-activities">
-                    {% partial 'userHome/activities' %}
-                </div>
-                <div role="tabpanel" class="tab-pane" id="tab-sportlers">
-                    {% partial 'userHome/sportlers' %}
-                </div>
-                <div role="tabpanel" class="tab-pane" id="tab-locaties">
-                    {% partial 'userHome/locaties' %}
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-{% else %}
-	<div class="panel panel-default">
-		<div class="row">
-			{% partial 'site/homeContent' %}
-		</div>
-	</div>
-{% endif %}
+{% component 'account' %}

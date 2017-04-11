@@ -1,38 +1,13 @@
 [viewBag]
 
-[userList]
+[userHomeUserList]
 perPage = 10
 detailsPage = "profile"
 
-[userFriendList]
-listType = "friends"
 ==
-<div class="container">
-	<div class="col-md-8">
-		<div class="row">
-			<!-- List of Friends -->
-			{% component 'userFriendList' %}
-			dsadadasdasd
-		</div>
-		<div class="row">
-			{% component 'eventCityList' %}
-			dsadasdasdasdsa
-			<!-- list all of your created events -->
-		</div>
-			<!-- bigass Create button -->
-		<div class="row">
-		{% component 'userList' %}
-			dsadadawqdadws
-			<!-- list content upcomming suggestions (all in area with user sports) -->
-		</div>
-	</div>
-	<div class="col-md-4">
-		<div class="row">
-			<!-- scrolling side menu (with page) -->
-		</div>
-		<div class="row">
-			<!-- calendar with all your events -->
-		</div>
-	</div>
-	
+
+<div class="row">
+    <div class="col-md-12">
+        {% component 'userHomeUserList' %}
+    </div>
 </div>

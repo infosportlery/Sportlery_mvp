@@ -1,9 +1,10 @@
 <div class="row" id="page-one"></div>
 
-<div class="container">
+<div class="container home-container-1">
 	<div class="row">
 		<div class="col-md-12 text-center">
-			<h2>What is Sportlery?</h2>
+			<h1 style="margin-bottom: 20px;"><b>What is Sportlery?</b></h1>
+            <h3 style="margin-bottom: 20px;">Sportlery is an online sports community where people can find each other to sport together, organise sport events and book sport locations.</h3>
 		</div>
 	</div>
 	<div class="row text-center">
@@ -11,6 +12,7 @@
 			<!-- Content -->
 		</div>
 	</div>
+    <hr class="hr-invisible">
 	
   <div class="row text-center">
     <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
@@ -19,22 +21,100 @@
         <h1 class="h1-default text-center"><strong>Sport Locations</strong></h1>
         <p>Choose your favourite sport and find a sports facility in your neighbourhood. Book your slot and enjoy!</p>
         <hr class="hr-sm">
-        <?= Html::button(Yii::t('app', 'Read more!'), ['class' => 'btn btn-primary information-btn', 'id' => 'btn-locations-more']); ?>
+        <button class="btn btn-primary information-btn" id="btn-locations-more">Read more!</button>
       </div>
       <div class="col-md-4 col-sm-4 infomation-col" id="index-slideup-obj-2">
-        <img src="{{ 'resources/img/location.png'|theme }}" style="width: 80px;">
+        <img src="{{ 'resources/img/matchmaking.png'|theme }}" style="width: 80px;">
         <h1 class="h1-default text-center h1-header-sub-2"><strong>Match making</strong></h1>
-        <p>Find sportbuddies, create or participate in events and find substitute players for your team.') ?></p>
+        <p>Find sportbuddies, create or participate in activities and find substitute players for your team.</p>
         <hr class="hr-sm">
-         <?= Html::button(Yii::t('app', 'Read more!'), ['class' => 'btn btn-primary information-btn', 'id' => 'btn-whatis-more']); ?>
+        <button class="btn btn-primary information-btn" id="btn-whatis-more">Read more!</button>
       </div>
       <div class="col-md-4 col-sm-4 infomation-col" id="index-slideup-obj-3" >
-        <img src="{{ 'resources/img/location.png'|theme }}" style="width: 80px;">
+        <img src="{{ 'resources/img/trainer.png'|theme }}" style="width: 80px;">
         <h1 class="h1-default text-center"><strong>Sport Classes</strong></h1>
         <p>Discover and try-out new sports! A clear overview of all classes and workshops that are being offered in your neighbourhood.</p>
         <hr class="hr-sm">
-        <?= Html::button(Yii::t('app', 'Under Construction'), ['class' => 'btn btn-primary information-btn']); ?>
+        <button class="btn btn-primary information-btn">Under Construction</button>
       </div>
     </div>
   </div> 
+</div>
+<hr class="hr-invisible">
+
+
+<div class="parallaxTwo">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3 text-center">
+        <h2 class="featurette-heading">Partners</h2>
+        <p>Are you in charge of a sport location which can be booked or do you offer sport classes? <br> Share your service on our platform and reach more sports enthusiasts. For benefits click below.</p>
+      </div> <!-- end col -->
+    </div>
+    <hr class="hr-invisible-sm">
+    <div class="row">
+      <div class="col-xs-6 col-md-4 col-md-offset-2">
+        <a class="btn btn-default" href="/sportclub">Sportclubs</a>      </div>
+      <div class="col-xs-6 col-md-4">
+        <a class="btn btn-default" href="/trainer">Trainer</a>      </div>
+    </div><!-- end row -->
+  </div> <!-- end container -->
+</div>
+<div class="parallax3" style="background-color: rgb(244, 104, 53);padding: 25px 0 25px 0px;">
+    <div class="container" style="background-color: rgb(244, 104, 53);">
+          <div class="row text-center">
+        <h3 style="color: white;"><b>Do you want to become one of the first Sportlers? Fill in your e-mail address below:</b></h3>
+        <div class="mailing col-md-12">
+
+        <!-- Begin MailChimp Signup Form -->
+        <style type="text/css">
+          #mc_embed_signup{ clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+          /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+             We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+        </style>
+        <div id="mc_embed_signup">
+        <form action="//sportlery.us15.list-manage.com/subscribe/post?u=aa872f36fd0b3fc238705937c&amp;id=3032f2fb1e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
+            <div id="mc_embed_signup_scroll">
+          
+          <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Email Address" required="">
+            <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+            <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_aa872f36fd0b3fc238705937c_3032f2fb1e" tabindex="-1" value=""></div>
+            <div class="clear" style="min-width: 25%; display: inline-block;"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+            </div>
+        </form>
+        </div>
+
+        <!--End mc_embed_signup-->  
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+<hr class="hr-invisible-sm">
+<hr class="hr-invisible-sm">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h3>"Doing sports has never been so easy! Sportlery crosses all barriers between sports enthusiasts and their favourite sport"</h3>
+    </div>
+  </div>
+
+  <div class="row text-center">
+    <div class="col-md-10 col-md-offset-1">
+      <div class="col-md-4">
+        <h2 class="h-orange">Flexible <h4><span class="text-muted">No fixed contracts</span></h4>
+      </div>
+      <div class="col-md-4">
+        <h2 class="h-orange">Variation <h4><span class="text-muted">Discover more sports and join events</span></h4>
+      </div>
+      <div class="col-md-4">
+        <h2 class="h-orange">Motivation <h4><span class="text-muted">There are more people out there who enjoy sports, do it together!</span></h4>
+      </div>
+    </div>
+  </div> <!-- end row -->
+
+  <hr class="hr-invisible-sm">
+
 </div>

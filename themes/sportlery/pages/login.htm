@@ -3,6 +3,11 @@ url = "/login"
 layout = "pre-register"
 is_hidden = 0
 
+[viewBag]
+localeUrl[en] = "/login"
+
 [session]
+security = "guest"
+redirect = "home"
 ==
 {% component 'account' %}

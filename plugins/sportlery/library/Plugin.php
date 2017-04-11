@@ -3,6 +3,8 @@
 use App;
 use Cmgmyr\Messenger\MessengerServiceProvider;
 use Event;
+use Illuminate\Support\Facades\View;
+use RainLab\User\Facades\Auth;
 use Rainlab\User\Models\User;
 use Hashids\Hashids;
 use RainLab\User\Controllers\Users;

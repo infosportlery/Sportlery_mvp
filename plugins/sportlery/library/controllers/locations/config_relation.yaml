@@ -1,0 +1,10 @@
+openingTimes:
+    label: Times
+    emptyMessage: 'Openingtimes unknown'
+    view:
+        form: $/sportlery/library/models/locationtime/fields.yaml
+        list: $/sportlery/library/models/locationtime/columns.yaml
+        toolbarButtons: update|delete
+    manage:
+        form: $/sportlery/library/models/locationtime/fields.yaml
+        list: $/sportlery/library/models/locationtime/columns.yaml

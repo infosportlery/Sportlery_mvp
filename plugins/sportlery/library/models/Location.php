@@ -47,6 +47,14 @@ class Location extends Model
         'location_gallery' => 'System\Models\File'
     ];
 
+    public $hasOne = [
+        'openingTimes' => [
+            LocationTime::class,
+            'table' => 'spr_location_times',
+            'key' => 'location_id',
+        ]
+    ];
+
     public $belongsToMany = [
         'categories' => [
             Category::class,

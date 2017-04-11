@@ -19,6 +19,7 @@
         <div class="panel panel-default">
             <div class="panel-heading"><strong>Friend</strong></div>
             <div class="panel-body">
+                {% if user %}
                 <div class="row">
                     <div class="col-md-12">
                         {% if isFriend %}
@@ -62,6 +63,14 @@
                         {% endif %}
                     </div>
                 </div>
+                {% else %}
+                    <p class="text-muted">
+                        <a href="{{ 'login'|page }}">
+                            Please login
+                        </a>
+                         to make friends
+                    </p>
+                {% endif %}
             </div>
         </div>
         {% else %}

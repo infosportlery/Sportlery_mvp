@@ -50,9 +50,9 @@
 {% if locations is not empty %}
     {% for row in locations|batch(2) %}
         <div class="row">
-            {% for event in row %}
+            {% for location in row %}
                 <div class="col-md-6">
-                    {% partial __SELF__~'::event-card' event=event %}
+                    {% partial __SELF__~'::event-card' location=location %}
                 </div>
             {% endfor %}
         </div>

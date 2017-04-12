@@ -1,6 +1,0 @@
-plugin:
-    name: 'sportlery.profile::lang.plugin.name'
-    description: 'sportlery.profile::lang.plugin.description'
-    author: Sportlery
-    icon: oc-icon-plus-circle
-    homepage: ''

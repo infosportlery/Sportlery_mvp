@@ -1,0 +1,26 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <h3>
+            <a href="{{ detailsPage|page({ id: locations.getHashId() }) }}">
+                {{ locations.name }}
+            </a>
+        </h3>
+        <p>
+            <strong>Date:</strong>
+            {{ locations.starts_at.formatLocalized('%A %d %B, %Y') }}
+            {% if locations.price > 0 %}
+        <br>
+            <strong>Price:</strong>
+            &euro; {{ locations.price|number_format(2,',','.') }}
+        {% endif %}
+        </p>
+        <div class="text-right">
+            {% if locations.user_id == user.id %}
+            <a href="delete/{{ locations.id }}" class="btn btn-warning">Edit</a>
+            <a href="edit/{{ locations.id }}" class="btn btn-default">Edit</a>
+            {% endif %}
+            <a href="{{ detailsPage|page({ id: locations.getHashId() }) }}"
+               class="btn btn-primary">Bekijk &raquo;</a>
+        </div>
+    </div>
+</div>

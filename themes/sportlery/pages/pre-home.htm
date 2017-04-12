@@ -9,6 +9,10 @@ paramCode = "code"
 forceSecure = 0
 
 [fourStepRegistration]
+
+[session]
+security = "all"
+redirect = "pre-home"
 ==
 {% if not user %}
 {% component 'account' %}

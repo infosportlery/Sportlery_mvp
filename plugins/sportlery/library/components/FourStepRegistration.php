@@ -151,17 +151,13 @@ class FourStepRegistration extends ComponentBase
             $this->page['apiKey'] = Setting::get('google_maps_key');
         }
 
-        if ($currentStep > 4) {
+        if ($currentStep > 3) {
             return Redirect::refresh();
         }
         $this->page['user'] = Auth::getUser();
         $this->page['isPartial'] = true;
         if ($currentStep > 2) {
             $sportQuery = Sport::orderBy('name', 'asc');
-            if ($currentStep == 4) {
-                $idList = $user->favoriteSports()->lists('id');
-                $sportQuery->whereNotIn('id', $idList);
-            }
             $this->page['sports'] = ['' => '- None -'] + $sportQuery->lists('name', 'id');
             $this->page['levels'] = ['' => '- None -', 1 => 'Beginner', 2 => 'Intermediate', 3 => 'Pro'];
         }
@@ -183,10 +179,6 @@ class FourStepRegistration extends ComponentBase
 
         if ($user->favoriteSports()->count() == 0) {
             return 3;
-        }
-
-        if ($user->interestedSports()->count() == 0) {
-            return 4;
         }
 
         return true;

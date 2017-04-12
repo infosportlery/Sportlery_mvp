@@ -3,11 +3,14 @@
 use App;
 use Cmgmyr\Messenger\MessengerServiceProvider;
 use Event;
+use Illuminate\Mail\TransportManager;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\View;
 use RainLab\User\Facades\Auth;
 use Rainlab\User\Models\User;
 use Hashids\Hashids;
 use RainLab\User\Controllers\Users;
+use Sportlery\Library\Classes\Mail\SparkPostTransport;
 use Sportlery\Library\Components;
 use System\Classes\PluginBase;
 
@@ -53,10 +56,14 @@ class Plugin extends PluginBase
     {
     }
 
+    public function register()
+    {
+        $this->registerMessengerPackage();
+        $this->registerSparkPostMailer();
+    }
+
     public function boot()
     {
-        $this->bootMessengerPackage();
-
         App::singleton(Hashids::class, function() {
             // All lowercase characters.
             $alphabet = 'abcdefghijklmnopqrstuvwxyz0123456789';
@@ -140,7 +147,7 @@ class Plugin extends PluginBase
         });
     }
 
-    private function bootMessengerPackage()
+    private function registerMessengerPackage()
     {
         \Config::set('messenger', [
             'user_model' => User::class,
@@ -150,5 +157,30 @@ class Plugin extends PluginBase
         ]);
 
         App::register(MessengerServiceProvider::class);
+    }
+
+    private function registerSparkPostMailer()
+    {
+        if (class_exists('Illuminate\Mail\Transport\SparkPostTransport')) {
+            return;
+        }
+
+        $this->app->extend('swift.transport', function(TransportManager $manager) {
+            $manager->extend('sparkpost', function($app) {
+                $config = $app['config']->get('services.sparkpost', []);
+
+                $guzzleClient = new \GuzzleHttp\Client(array_add(
+                    array_get($config, 'guzzle', []), 'connect_timeout', 60
+                ));
+
+                return new SparkPostTransport(
+                    $guzzleClient, $config['secret'], array_get($config, 'options', [])
+                );
+            });
+
+            return $manager;
+        });
+//        Mail::extend('sparkpost', function ($app) {
+//        });
     }
 }

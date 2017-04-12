@@ -13,14 +13,23 @@ forceSecure = 0
 [session]
 security = "all"
 redirect = "home"
-==
-{% if not user %}
-{% component 'account' %}
-{% else %} 
-{% component 'fourStepRegistration' %}
-<div class="row text-center">
 
-	<h1>Thank You for registering!</h1>
-	<p>We hope to see you on the 17th of april!</p>
-</div>
+[restrictUserCountry]
+countryCode = "NL"
+==
+{% if not userCountryAccess %}
+    <div class="row text-center">
+        <h1>Not Available</h1>
+        <p>Sorry, this page is not yet available in your country. Please check back later!</p>
+    </div>
+{% else %}
+    {% if not user %}
+        {% component 'account' %}
+    {% else %}
+        {% component 'fourStepRegistration' %}
+        <div class="row text-center">
+            <h1>Thank You for registering!</h1>
+            <p>We hope to see you on the 17th of april!</p>
+        </div>
+    {% endif %}
 {% endif %}

@@ -1,26 +1,38 @@
-title = "Pre-Registration Page"
+title = "Home"
 url = "/"
-layout = "pre-register"
+layout = "home"
 is_hidden = 0
-
-[account]
-redirect = "home"
-paramCode = "code"
-forceSecure = 0
-
-[fourStepRegistration]
-
-[session]
-security = "all"
-redirect = "home"
 ==
-{% if not user %}
-{% component 'account' %}
-{% else %} 
-{% component 'fourStepRegistration' %}
-<div class="row text-center">
 
-	<h1>Thank You for registering!</h1>
-	<p>We hope to see you on the 17th of april!</p>
-</div>
+
+{% if user %}
+    <div class="row">
+        <div class="col-sm-12">
+            <ul class="nav nav-tabs" style="margin-bottom:15px;" role="tablist">
+                <li role="presentation" class="menu-content active" ><a href="#tab-activities" aria-controls="tab-activities" role="tab" data-toggle="tab">Activities</a></li>
+                <li role="presentation" class="menu-content"><a href="#tab-sportlers" aria-controls="tab-sportlers" role="tab" data-toggle="tab">Sportlers</a></li>
+                <li role="presentation" class="menu-content"><a href="#tab-locaties" aria-controls="tab-locaties" role="tab" data-toggle="tab">Locaties</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="tab-activities">
+                        {% partial 'userHome/activities' %}
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tab-sportlers">
+                        {% partial 'userHome/sportlers' %}
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tab-locaties">
+                        {% partial 'userHome/locaties' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% else %}
+	{% partial 'site/homeContent' %}
 {% endif %}

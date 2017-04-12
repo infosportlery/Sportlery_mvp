@@ -102,16 +102,19 @@ class FourStepRegistration extends ComponentBase
             }
 
             $user->update(Input::only('latitude', 'longitude', 'street', 'city', 'zip_code', 'state', 'country'));
-        } elseif ($currentStep == 3 || $currentStep == 4) {
+        } elseif ($currentStep == 3) {
             $sports = array_filter(post('sport'), function($sport) {
                 return $sport['id'] !== '';
             });
 
-            if (empty($sports)) {
+            if (empty($sports) && empty(post('sport_custom'))) {
                 throw new ValidationException(['sport' => 'Please pick at least one sport']);
             }
 
-            $rules = [];
+            $rules = [
+                'sport_custom' => 'alphadash|unique:spr_sports,name',
+                'sport_custom_level' => 'required_with:sport_custom|in:1,2,3',
+            ];
             foreach ($sports as $index => $sport) {
                 $rules['sport.'.$index.'.id'] = 'required|exists:spr_sports,id';
                 $rules['sport.'.$index.'.level'] = 'required|in:1,2,3';
@@ -140,6 +143,13 @@ class FourStepRegistration extends ComponentBase
                 if (!isset($syncList[$sport['id']])) {
                     $syncList[$sport['id']] = ['favorite' => $currentStep == 3, 'level' => $sport['level']];
                 }
+            }
+
+            if (trim(post('sport_custom'))) {
+                $sport = new Sport;
+                $sport->name = post('sport_custom');
+                $sport->slug = str_slug($sport->name);
+                $user->sports()->save($sport, ['favorite' => 1, 'level' => post('sport_custom_level')]);
             }
 
             $user->sports()->sync($syncList, false);

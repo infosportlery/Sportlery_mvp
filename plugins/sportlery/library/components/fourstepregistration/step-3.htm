@@ -23,6 +23,18 @@
                 </div>
             </div>
         {% endfor %}
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-6">
+                    {{ form_text('sport_custom', null, { class: 'form-control', placeholder: 'Other...' }) }}
+                    <p class="help-block" style="display:none;"></p>
+                </div>
+                <div class="col-sm-6">
+                    {{ form_select('sport_custom_level', levels, null, { class: 'form-control' }) }}
+                    <p class="help-block" style="display:none;"></p>
+                </div>
+            </div>
+        </div>
     </div>
     {{ form_hidden('current_step', 3) }}
 {{ form_close() }}

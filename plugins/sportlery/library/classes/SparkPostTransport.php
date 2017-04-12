@@ -1,6 +1,6 @@
 <?php
 
-namespace Sportlery\Library\Classes\Mail;
+namespace Sportlery\Library\Classes;
 
 use Illuminate\Mail\Transport\Transport;
 use Swift_Mime_Message;

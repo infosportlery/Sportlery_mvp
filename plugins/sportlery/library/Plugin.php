@@ -10,7 +10,7 @@ use RainLab\User\Facades\Auth;
 use Rainlab\User\Models\User;
 use Hashids\Hashids;
 use RainLab\User\Controllers\Users;
-use Sportlery\Library\Classes\Mail\SparkPostTransport;
+use Sportlery\Library\Classes\SparkPostTransport;
 use Sportlery\Library\Components;
 use System\Classes\PluginBase;
 

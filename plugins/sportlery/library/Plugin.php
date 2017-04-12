@@ -39,7 +39,6 @@ class Plugin extends PluginBase
             Components\UserTickets::class => 'userTickets',
             Components\UserHomeEventList::class => 'userHomeEventList',
             Components\UserHomeLocationList::class => 'userHomeLocationList',
-            Components\UserHomeUserList::class => 'userHomeUserList',
             Components\UserFriendList::class => 'userFriendList',
             Components\ChatList::class => 'chatList',
             Components\Chat::class => 'chat',

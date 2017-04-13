@@ -16,9 +16,9 @@ class UpdateDatabaseMayorOne extends Migration
         });
 
         Schema::table('spr_locations', function(Blueprint $table) {
-            $table->string('kvk_number');
-            $table->string('btw_number');
-            $table->string('iban_id');
+            $table->string('kvk_number')->nullable();
+            $table->string('btw_number')->nullable();
+            $table->string('iban_id')->nullable();
         });
     }
 

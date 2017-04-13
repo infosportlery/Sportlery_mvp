@@ -6,6 +6,7 @@
     "require": {
         "cmgmyr/messenger": "~2.0",
         "laravel/socialite": "~2.0",
-        "mollie/laravel-mollie": "~1.0"
+        "mollie/laravel-mollie": "~1.0",
+        "guzzlehttp/guzzle": "~6.0"
     }
 }

@@ -46,4 +46,13 @@ return [
         'redirect' => env('SOCIAL_FACEBOOK_REDIRECT'),
     ],
 
+    'sparkpost' => [
+        'secret' => env('SPARKPOST_SECRET'),
+        'options' => [
+            'open_tracking' => true,
+            'click_tracking' => true,
+            'transactional' => true,
+        ],
+    ],
+
 ];

@@ -74,3 +74,6 @@
 1.1.2:
     - 'alter Location Time Table'
     - update_time_locations.php
+1.1.3:
+    - 'update Events and Location table'
+    - add_data_to_event_table_fix_location_addin_data.php

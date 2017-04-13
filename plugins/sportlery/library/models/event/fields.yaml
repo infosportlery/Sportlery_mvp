@@ -31,7 +31,7 @@ fields:
         label: Price
         oc.commentPosition: ''
         span: auto
-        placeholder: 'Price'
+        placeholder: Price
         default: 0
         type: number
     location:
@@ -53,3 +53,18 @@ fields:
         descriptionFrom: description
         span: auto
         type: relation
+    kvk_number:
+        label: 'KVK Number'
+        oc.commentPosition: ''
+        span: auto
+        type: text
+    btw_number:
+        label: 'BTW Number'
+        oc.commentPosition: ''
+        span: auto
+        type: text
+    iban_id:
+        label: IBAN
+        oc.commentPosition: ''
+        span: auto
+        type: text

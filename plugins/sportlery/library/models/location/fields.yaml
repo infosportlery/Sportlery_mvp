@@ -11,7 +11,7 @@ fields:
         oc.commentPosition: ''
         span: auto
         placeholder: 'Locations active contact Email'
-        required: 1
+        required: 0
         type: text
     address:
         label: Address

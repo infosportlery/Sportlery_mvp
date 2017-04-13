@@ -15,7 +15,7 @@ navigation:
                 url: sportlery/library/locations
                 icon: icon-location-arrow
             events:
-                label: Events
+                label: Activities
                 url: sportlery/library/events
                 icon: icon-calendar
             categories:

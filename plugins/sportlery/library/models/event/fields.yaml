@@ -34,6 +34,13 @@ fields:
         placeholder: Price
         default: 0
         type: number
+    sports:
+        label: Sports
+        oc.commentPosition: ''
+        nameFrom: name
+        descriptionFrom: description
+        span: auto
+        type: relation
     location:
         label: Location
         oc.commentPosition: ''

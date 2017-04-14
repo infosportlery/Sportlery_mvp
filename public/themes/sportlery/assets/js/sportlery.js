@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 121);
+/******/ 	return __webpack_require__(__webpack_require__.s = 122);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1884,7 +1884,7 @@ function loadLocale(name) {
             module && module.exports) {
         try {
             oldLocale = globalLocale._abbr;
-            __webpack_require__(119)("./" + name);
+            __webpack_require__(120)("./" + name);
             // because defineLocale currently also sets the global locale, we
             // want to undo that for lazy loaded locales
             getSetGlobalLocale(oldLocale);
@@ -4372,7 +4372,7 @@ return hooks;
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(120)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(121)(module)))
 
 /***/ }),
 /* 1 */
@@ -14726,16 +14726,16 @@ return zhTw;
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function($) {Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_locationMap__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_locationAutocomplete__ = __webpack_require__(130);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_locationMap__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_locationAutocomplete__ = __webpack_require__(113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_locationAutocomplete___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_locationAutocomplete__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_chat__ = __webpack_require__(112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_chat___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_chat__);
-__webpack_require__(114);
 __webpack_require__(115);
-__webpack_require__(117);
-__webpack_require__(118);
 __webpack_require__(116);
+__webpack_require__(118);
+__webpack_require__(119);
+__webpack_require__(117);
 
 
 
@@ -14877,6 +14877,96 @@ $(function () {
 
 /***/ }),
 /* 113 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function($) {var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var LocationAutocomplete = function () {
+    function LocationAutocomplete(element) {
+        _classCallCheck(this, LocationAutocomplete);
+
+        this.$element = $(element);
+        this.init();
+    }
+
+    _createClass(LocationAutocomplete, [{
+        key: 'init',
+        value: function init() {
+            this.autocomplete = new google.maps.places.Autocomplete(this.$element.get(0), {
+                types: ['address']
+            });
+
+            google.maps.event.addListener(this.autocomplete, 'place_changed', $.proxy(this.handlePlaceChanged, this));
+
+            // Prevent ENTER from submitting form
+            this.$element.bind('keypress keydown keyup', function (e) {
+                if (e.keyCode == 13) {
+                    e.preventDefault();
+                }
+            });
+        }
+    }, {
+        key: 'handlePlaceChanged',
+        value: function handlePlaceChanged() {
+            var place = this.autocomplete.getPlace();
+            var geoLocation = place.geometry.location;
+
+            var result = {
+                latitude: geoLocation.lat(),
+                longitude: geoLocation.lng(),
+                street: this.getAddressValue(place, 'route') + ' ' + this.getAddressValue(place, 'street_number'),
+                city: this.getAddressValue(place, 'locality'),
+                zip_code: this.getAddressValue(place, 'postal_code'),
+                state: this.getAddressValue(place, 'administrative_area_level_1', 'long_name'),
+                country: this.getAddressValue(place, 'country', 'long_name')
+            };
+
+            for (var key in result) {
+                $('[name="' + key + '"]').val(result[key]);
+            }
+        }
+    }, {
+        key: 'getAddressValue',
+        value: function getAddressValue(addressObj, type) {
+            var resultType = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'short_name';
+
+            var result = null;
+
+            if (!addressObj) {
+                return null;
+            }
+
+            for (var i = 0; i < addressObj.address_components.length; i++) {
+                for (var j = 0; j < addressObj.address_components[i].types.length; j++) {
+                    if (addressObj.address_components[i].types[j] == type) {
+                        result = addressObj.address_components[i][resultType];
+                        break;
+                    }
+                }
+
+                if (result) {
+                    break;
+                }
+            }
+
+            return result;
+        }
+    }]);
+
+    return LocationAutocomplete;
+}();
+
+$.fn.locationAutocomplete = function () {
+    this.each(function () {
+        $(this).data('plugin_location_autocomplete', new LocationAutocomplete(this));
+    });
+};
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 114 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15008,7 +15098,7 @@ var LocationMap = function () {
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 
 /***/ }),
-/* 114 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {/* ========================================================================
@@ -15227,7 +15317,7 @@ var LocationMap = function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 115 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {/* ========================================================================
@@ -15399,7 +15489,7 @@ var LocationMap = function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 116 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {/* ========================================================================
@@ -15745,7 +15835,7 @@ var LocationMap = function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 117 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {/* ========================================================================
@@ -15907,7 +15997,7 @@ var LocationMap = function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 118 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! version : 4.17.47
@@ -18552,7 +18642,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 
 /***/ }),
-/* 119 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -18787,11 +18877,11 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 119;
+webpackContext.id = 120;
 
 
 /***/ }),
-/* 120 */
+/* 121 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -18819,110 +18909,12 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 121 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(110);
 module.exports = __webpack_require__(111);
 
-
-/***/ }),
-/* 122 */,
-/* 123 */,
-/* 124 */,
-/* 125 */,
-/* 126 */,
-/* 127 */,
-/* 128 */,
-/* 129 */,
-/* 130 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function($) {var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var LocationAutocomplete = function () {
-    function LocationAutocomplete(element) {
-        _classCallCheck(this, LocationAutocomplete);
-
-        this.$element = $(element);
-        this.init();
-    }
-
-    _createClass(LocationAutocomplete, [{
-        key: 'init',
-        value: function init() {
-            this.autocomplete = new google.maps.places.Autocomplete(this.$element.get(0), {
-                types: ['address']
-            });
-
-            google.maps.event.addListener(this.autocomplete, 'place_changed', $.proxy(this.handlePlaceChanged, this));
-
-            // Prevent ENTER from submitting form
-            this.$element.bind('keypress keydown keyup', function (e) {
-                if (e.keyCode == 13) {
-                    e.preventDefault();
-                }
-            });
-        }
-    }, {
-        key: 'handlePlaceChanged',
-        value: function handlePlaceChanged() {
-            var place = this.autocomplete.getPlace();
-            var geoLocation = place.geometry.location;
-
-            var result = {
-                latitude: geoLocation.lat(),
-                longitude: geoLocation.lng(),
-                street: this.getAddressValue(place, 'route') + ' ' + this.getAddressValue(place, 'street_number'),
-                city: this.getAddressValue(place, 'locality'),
-                zip_code: this.getAddressValue(place, 'postal_code'),
-                state: this.getAddressValue(place, 'administrative_area_level_1', 'long_name'),
-                country: this.getAddressValue(place, 'country', 'long_name')
-            };
-
-            for (var key in result) {
-                $('[name="' + key + '"]').val(result[key]);
-            }
-        }
-    }, {
-        key: 'getAddressValue',
-        value: function getAddressValue(addressObj, type) {
-            var resultType = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'short_name';
-
-            var result = null;
-
-            if (!addressObj) {
-                return null;
-            }
-
-            for (var i = 0; i < addressObj.address_components.length; i++) {
-                for (var j = 0; j < addressObj.address_components[i].types.length; j++) {
-                    if (addressObj.address_components[i].types[j] == type) {
-                        result = addressObj.address_components[i][resultType];
-                        break;
-                    }
-                }
-
-                if (result) {
-                    break;
-                }
-            }
-
-            return result;
-        }
-    }]);
-
-    return LocationAutocomplete;
-}();
-
-$.fn.locationAutocomplete = function () {
-    this.each(function () {
-        $(this).data('plugin_location_autocomplete', new LocationAutocomplete(this));
-    });
-};
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ })
 /******/ ]);

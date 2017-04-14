@@ -1,19 +1,15 @@
-[viewBag]
-title = "Sportclub"
+title = "sportclub"
 url = "/sportclub"
 layout = "nocontainer"
 is_hidden = 0
-navigation_hidden = 0
-meta_title = "Sportclub"
-meta_description = "Sportclub pagina"
 ==
 
 <div class="header3">
       <div class="container info-container-2">
-    <img src="{{ 'img/header3.jpeg'|media }}" class="about-header-2">
+    <img src="{{'resources/img/header3.jpg'|theme}}" class="about-header-2">
         <div class="row">
           <div class="col-md-6 col-sm-12 text-left">
-            <h1>Bereik meer!</h1>
+            <h1>{{ sportc.reach|_ }}Bereik meer</h1>
             <p class="lead">Op Sportlery is een groot publiek aan diverse sporters. Velen van hen willen graag deze sport beoefenen maar weten niet altijd waar ze dat het best kunnen doen. Door jouw sport locatie aan te bieden op Sportlery, kan je veel meer mensen bereiken en vergroot je de bezetting!</p>
             <button class="btn btn-primary" id="btn-sportclub">lees meer!</button>
           </div>
@@ -34,7 +30,7 @@ meta_description = "Sportclub pagina"
       </p>
     </div> <!-- end col -->
     <div class="col-xs-4 hidden-xs">
-      <img src="http://sportlery.dev/themes/sportlery/resources/img/imac_demo.png" class="mockup img-responsive">
+      <img src="{{ 'resources/img/imac_demo.png'|theme }}" class="mockup img-responsive">
     </div> <!-- end col -->
   </div> <!-- end row -->
 </div> <!-- end container -->
@@ -64,22 +60,22 @@ meta_description = "Sportclub pagina"
     </div>
 </div> <!-- end container -->
 <div class="parallax3" style="background-color: rgb(244, 104, 53);padding: 25px 0 25px 0px;">
-	<div class="container" style="background-color: rgb(244, 104, 53);">
-		  <div class="row text-center">
-	    <h3 style="color: white;"><b>Wil je één van de eerste trainers zijn? Laat dan nu je e-mail achter:</b></h3>
-	    <div class="mailing col-md-12">
+  <div class="container" style="background-color: rgb(244, 104, 53);">
+      <div class="row text-center">
+      <h3 style="color: white;"><b>Wil je één van de eerste trainers zijn? Laat dan nu je e-mail achter:</b></h3>
+      <div class="mailing col-md-12">
 
 <!-- Begin MailChimp Signup Form -->
 <style type="text/css">
-	#mc_embed_signup{ clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
-	/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
-	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+  #mc_embed_signup{ clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+  /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+     We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
 </style>
 <div id="mc_embed_signup">
 <form action="//sportlery.us15.list-manage.com/subscribe/post?u=aa872f36fd0b3fc238705937c&amp;id=45329b885f" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
     <div id="mc_embed_signup_scroll">
-	
-	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+  
+  <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
     <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
     <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_aa872f36fd0b3fc238705937c_45329b885f" tabindex="-1" value=""></div>
     <div class="clear" style="min-width: 25%; display: inline-block;"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
@@ -88,8 +84,8 @@ meta_description = "Sportclub pagina"
 </div>
 
 <!--End mc_embed_signup-->
-	    </div>
-	  </div>
-	</div>
+      </div>
+    </div>
+  </div>
 </div>
 <hr class="hr-invisible">

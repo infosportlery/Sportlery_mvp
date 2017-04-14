@@ -1,26 +1,40 @@
 <div class="panel panel-default">
     <div class="panel-body">
-        <h3>
-            <a href="{{ detailsPage|page({ id: event.getHashId() }) }}">
-                {{ event.name }}
-            </a>
-        </h3>
-        <p>
-            <strong>Date:</strong>
-            {{ event.starts_at.formatLocalized('%A %d %B, %Y') }}
-            {% if event.price > 0 %}
-        <br>
-            <strong>Price:</strong>
-            &euro; {{ event.price|number_format(2,',','.') }}
-        {% endif %}
-        </p>
-        <div class="text-right">
-            {% if event.user_id == user.id %}
-            <a href="delete/{{ event.id }}" class="btn btn-warning">Edit</a>
-            <a href="edit/{{ event.id }}" class="btn btn-default">Edit</a>
+        <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-3">
+            {% if event.avatar %}
+                <img src="{{ event.avatar.thumb(100,100) }}" alt="">
+            {% else %}
+                <img src="http://placehold.it/100x100" alt="">
             {% endif %}
-            <a href="{{ detailsPage|page({ id: event.getHashId() }) }}"
-               class="btn btn-primary">Bekijk &raquo;</a>
+            </div>
+            <!-- /.col-md-4 -->
+            <div class="row">
+                <div class="col-md-6">
+                    <h1 class="listing-heading"><a href="{{ detailsPage|page({ id: event.getHashId() }) }}">{{ event.name }}</a></h1>
+                    {% for sport in event.sports %}
+                        {{ sport.name }} |
+                    {% endfor %}
+                     {{ event.location.city }} | {{ event.starts_at.format('d M Y') }}
+                </div>
+                <!-- /.col-md-8 -->
+                <div class="col-md-2">
+                    <h1 class="listing-amount">
+                    {{ event.max_attendees - event.current_attendees }}
+                     <span class="glyphicon glyphicon-user glyphicon-small" aria-hidden="true"></span></h1>
+                    <hr>
+                    {% if event.user_id == user.id %}
+                        <a href="delete/{{ event.id }}" class="btn btn-warning">Edit</a>
+                        <a href="edit/{{ event.id }}" class="btn btn-default">Edit</a>
+                    {% endif %}
+                        <a href="{{ detailsPage|page({ id: event.getHashId() }) }}" class="btn btn-primary">Bekijk &raquo;</a>
+                </div>
+                <!-- /.col-md-1 -->
+            </div>
         </div>
+        <!-- /.col-md-12 -->
+        </div>
+        <!-- /.row -->
     </div>
 </div>

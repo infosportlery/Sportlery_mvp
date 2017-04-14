@@ -14,6 +14,7 @@ class CreateSprEventsTable extends Migration
             $table->increments('id');
             $table->string('slug')->unique();
             $table->string('name');
+            $table->string('avatar');
             $table->dateTime('starts_at')->index();
             $table->dateTime('ends_at');
             $table->text('description');

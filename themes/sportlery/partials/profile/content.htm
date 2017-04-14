@@ -1,0 +1,79 @@
+<div class="col-sm-7">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h1 class="panel-heading">
+            Informatie
+            </h1>
+            <ul class="profile-information">
+                <li><b>Name</b>: {{ profile.name }}</li>
+                <li><b>Street</b>: {{ profile.street }}</li>
+                <li><b>Zipcode</b>: {{ profile.zipcode }}</li>
+                <li><b>City</b>: {{ profile.city }}</li>
+                <li><b>Favorite Sport</b>: {{ profile.name }}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- /.col-sm-12 -->
+
+<div class="col-sm-5">
+{% if user.id != profile.id %}
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h1 class="panel-heading">
+            Options
+            </h1>
+            {% if user %}
+            <p>
+                {% if isFriend %}
+                    {{ form_open({ request: 'onUnfriend' }) }}
+                        {{ form_hidden('friend_id', profileHashId) }}
+                        <button type="submit" class="btn btn-success btn-block">Friended</button>
+                    {{ form_close() }}
+                {% elseif friendshipPending %}
+                    <button class="btn btn-default btn-block" disabled>Awaiting response</button>
+                {% elseif blocked %}
+                    {{ form_open({ request: 'onBlock' }) }}
+                        {{ form_hidden('friend_id', profileHashId) }}
+                        <button class="btn btn-danger btn-block">Blocked</button>
+                    {{ form_close() }}
+                {% elseif friendshipNone or friendshipDeclined %}
+                    {{ form_open({ request: 'onAddFriend' }) }}
+                        {{ form_hidden('friend_id', profileHashId) }}
+                        <button type="submit" class="btn btn-primary btn-block">Add friend</button>
+                    {{ form_close() }}
+                {% endif %}
+            </p>
+            <p>
+                {% if blocked %}
+                    {{ form_open({ request: 'onUnblock' }) }}
+                        {{ form_hidden('friend_id', profileHashId) }}
+                        <button class="btn btn-danger btn-block">Unblock</button>
+                    {{ form_close() }}
+                {% else %}
+                    {{ form_open({ request: 'onBlock' }) }}
+                        {{ form_hidden('friend_id', profileHashId) }}
+                        <button class="btn btn-danger btn-block">Block</button>
+                    {{ form_close() }}
+                {% endif %}
+                
+                {% if not blocked %}
+                    <button class="btn btn-default medium-btn btn-block">Message</button>
+                {% endif %}
+            </p>
+
+            {% else %}
+                <p class="text-muted">
+                    <a href="{{ 'login'|page }}">
+                        Please login
+                    </a>
+                     to make friends
+                </p>
+            {% endif %}
+        </div>
+    </div>
+    {% else %}
+        <p>Dit ben jij zelf</p>
+    {% endif %}
+</div>
+<!-- /.col-sm-12 -->

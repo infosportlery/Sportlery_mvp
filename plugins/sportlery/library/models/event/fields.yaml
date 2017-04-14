@@ -41,6 +41,13 @@ fields:
         descriptionFrom: description
         span: auto
         type: relation
+    user:
+        label: User
+        oc.commentPosition: ''
+        nameFrom: name
+        descriptionFrom: description
+        span: auto
+        type: relation
     location:
         label: Location
         oc.commentPosition: ''
@@ -49,17 +56,22 @@ fields:
         span: auto
         required: 0
         type: relation
+    avatar:
+        label: Avatar
+        oc.commentPosition: ''
+        mode: file
+        imageWidth: '100'
+        imageHeight: '100'
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: auto
+        type: fileupload
     description:
         label: Description
         span: full
         type: richeditor
-    user:
-        label: User
-        oc.commentPosition: ''
-        nameFrom: name
-        descriptionFrom: description
-        span: auto
-        type: relation
     kvk_number:
         label: 'KVK Number'
         oc.commentPosition: ''

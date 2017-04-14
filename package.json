@@ -1,6 +1,6 @@
 {
   "engines": {
-      "node": "7.x"
+    "node": "7.x"
   },
   "private": true,
   "scripts": {
@@ -13,9 +13,28 @@
   },
   "devDependencies": {
     "bootstrap-sass": "^3.3.7",
+    "cross-env": "^3.2.3",
     "eonasdan-bootstrap-datetimepicker": "^4.17.47",
     "jquery": "^3.1.1",
-    "cross-env": "^3.2.3",
+    "laravel-elixir": "^6.0.0-15",
+    "laravel-elixir-livereload": "^1.1.6",
     "laravel-mix": "0.*"
-  }
+  },
+  "name": "sportlery",
+  "description": "This is the development repository for the [Sportlery](http://www.sportlery.nl) website.",
+  "version": "1.0.0",
+  "main": "webpack.mix.js",
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/infosportlery/Sportlery_mvp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/infosportlery/Sportlery_mvp/issues"
+  },
+  "homepage": "https://github.com/infosportlery/Sportlery_mvp#readme"
 }

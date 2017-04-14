@@ -1,0 +1,27 @@
+<!-- profile: components/UserProfile -->
+
+<div class="col-sm-12">
+    <div class="profile-header">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                {% if profile.avatar %}
+                    <img src="{{ profile.avatar.thumb(100,100) }}" height="100" weight="100">
+                {% else %}
+                    <img src="http://placehold.it/100x100">
+                {% endif %}
+            </div>
+            <!-- /.col-sm-12 text-center -->
+        </div>
+        <!-- /.row -->
+        <div class="col-sm-12 text-center">
+            <h1 class="profile-heading">{{ profile.name }} {{ profile.surname }}</h1>
+            <h1 class="profile-description">
+            {% for sport in profile.sports %}
+                {{ sport.name ?: 'No Sport' }}
+            {% endfor %}
+             | {{ profile.city ?: 'No Location'}} |</h1>
+        </div>
+    </div>
+
+</div>
+<!-- /.col-sm-12 -->

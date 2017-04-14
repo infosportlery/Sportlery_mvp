@@ -117,4 +117,9 @@ class UserHomeEventList extends ComponentBase
     {
         return ['my' => 'My activities', 'suggested' => 'Suggested activities', 'created' => 'Created activities'];
     }
+
+    public function getSpots()
+    {
+        return 1;
+    }
 }

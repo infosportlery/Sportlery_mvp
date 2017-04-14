@@ -41,6 +41,19 @@ fields:
         descriptionFrom: description
         span: auto
         type: relation
+    booking_ends_at:
+        label: 'Joining Experation Date'
+        oc.commentPosition: ''
+        mode: datetime
+        span: auto
+        type: datepicker
+    user:
+        label: User
+        oc.commentPosition: ''
+        nameFrom: name
+        descriptionFrom: description
+        span: auto
+        type: relation
     location:
         label: Location
         oc.commentPosition: ''
@@ -48,17 +61,6 @@ fields:
         descriptionFrom: description
         span: auto
         required: 0
-        type: relation
-    description:
-        label: Description
-        span: full
-        type: richeditor
-    user:
-        label: User
-        oc.commentPosition: ''
-        nameFrom: name
-        descriptionFrom: description
-        span: auto
         type: relation
     kvk_number:
         label: 'KVK Number'
@@ -75,3 +77,7 @@ fields:
         oc.commentPosition: ''
         span: auto
         type: text
+    description:
+        label: Description
+        span: full
+        type: richeditor

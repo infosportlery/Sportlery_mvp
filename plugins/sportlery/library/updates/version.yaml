@@ -75,5 +75,5 @@
     - 'alter Location Time Table'
     - update_time_locations.php
 1.1.3:
-    - 'update Events and Location table'
-    - add_data_to_event_table_fix_location_addin_data.php
+    - 'added Event Experiation Date'
+    - add_experation_event_join_date.php

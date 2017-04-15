@@ -3,24 +3,14 @@ url = "/"
 layout = "home"
 is_hidden = 0
 ==
+
 {% if user %}
-    <div class="row text-center">
-        <div class="col-sm-12">
-            <ul class="nav nav-tabs" style="margin-bottom:15px;" role="tablist">
-                <a class="btn btn-primary super-btn" href="{{ '/'|page }}">{{ 'home.activity_link'|_ }}</a>
-                <a class="btn btn-primary super-btn" href="{{ 'sportlers'|page }}">{{ 'home.sportlers_link'|_ }}</a>
-                <a class="btn btn-primary super-btn" href="{{ 'locations'|page }}">{{ 'home.location_link'|_ }}</a>
-            </ul>
-        </div>
-    </div>
+    {% partial 'userHome/buttons' %}
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="tab-activities">
-                        {% partial 'userHome/activities' %}
-                    </div>
-                </div>
+                {% partial 'userHome/activities' %}
+
             </div>
         </div>
     </div>

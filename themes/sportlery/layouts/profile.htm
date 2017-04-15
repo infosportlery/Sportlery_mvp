@@ -21,51 +21,17 @@ security = "all"
         <div class="content-wrap">
             {% partial 'site/header' %}
             
-            <div class="row header-row" style="min-height: 300px;">
-                {% partial 'profile/prof-header' %}
-            </div>
+                {% partial 'profile/header' %}
 
-            <div class="container profile-container">
-                            
-                {% flash %}
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="alert alert-{{ type == 'error' ? 'danger' : type }}">{{ message }}</div>
-                        </div>
-                    </div>
-                </div>
-                {% endflash %}
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                {% page %}
-                            </div>
-                        </div>
-                    </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="profile-content">
+                    {% partial 'profile/content' sportler=sportler %}  
                 </div>
             </div>
-            <div class="container profile-container">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container profile-container">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="panel-default">
-                            <div class="panel-body">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!-- /.row -->
+        </div>
         </div>
 
         {% partial 'site/footer' %}

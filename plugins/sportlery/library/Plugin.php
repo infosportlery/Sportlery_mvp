@@ -48,6 +48,7 @@ class Plugin extends PluginBase
             Components\PaymentForm::class => 'paymentForm',
             Components\PaymentResult::class => 'paymentResult',
             Components\FourStepRegistration::class => 'fourStepRegistration',
+            Components\SportlersList::class => 'sportlersList',
         ];
     }
 

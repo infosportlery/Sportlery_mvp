@@ -126,11 +126,11 @@ body {
 }
 
 .info-container-2 {
-	min-height: 100vh;
+	min-height: 90vh;
 }
 
 .info-container-1 {
-	min-height: 110vh;
+	min-height: 90vh;
 }
 
 .mockup {
@@ -180,9 +180,9 @@ body {
 .header3 h1 {font-size: 80px;}
 .header4 h1 {font-size: 80px;}
 
-.header3 {
-	background-image: url('../../resources/img/header3.jpg');
-}
+// .header3 {
+// 	background-image: url('../../resources/img/pexels-photo-167817.jpeg');
+// }
 
 .about-header-2 {
     position: absolute;
@@ -269,4 +269,24 @@ h6 {
     }
 .parallaxTwo h2 {
     text-shadow: 1px 1px 10px #000;
+}
+
+.mockup.img-responsive {
+  box-shadow: none;
+}
+
+.about-header-3 {
+      position: absolute;
+    top: -40px;
+    /* height: 100%; */
+    width: 100%;
+    left: 0;
+}
+
+.about-header-4 {
+    position: absolute;
+    top: -300px;
+    /* height: 100%; */
+    width: 100%;
+    left: 0;
 }

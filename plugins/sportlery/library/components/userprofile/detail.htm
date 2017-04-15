@@ -9,7 +9,9 @@
                 <p class="text-right"><strong class="strong-name-left">Street:</strong> {{ profile.street ?: '-' }} {{ profile.street_num }}</p>
                 <p class="text-right"><strong class="strong-name-left">Zipcode:</strong> {{ profile.zip_code ?: '-' }}</p>
                 <p class="text-right"><strong class="strong-name-left">City:</strong> {{ profile.city ?: '-' }}</p>
-                <p class="text-right"><strong class="strong-name-left">Favorite Sports:</strong>
+                <p class="text-right"><strong class="strong-name-left">Favorite Sports:</strong>  {% for sport in user.sports %}
+                    {{ sport.name }}
+                 {% endfor %}
                 </p>
             </div>
         </div>

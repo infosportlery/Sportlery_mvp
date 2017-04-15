@@ -94,7 +94,7 @@ class EventForm extends ComponentBase
 
         $event->delete();
 
-        Flash::success('AWESOME! No more event!');
+        Flash::success('AWESOME! No more Activity!');
 
         return Redirect::back();
     }

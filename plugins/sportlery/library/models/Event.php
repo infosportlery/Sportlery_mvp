@@ -1,5 +1,6 @@
 <?php namespace Sportlery\Library\Models;
 
+use Carbon\Carbon;
 use Model;
 
 /**
@@ -71,7 +72,7 @@ class Event extends Model
     public function scopeSearch($query, array $params)
     {
         if (!isset($params['past']) || $params['past'] === '0') {
-            $query->whereDate('ends_at', '>=', date('Y-m-d'));
+            $query->where('ends_at', '>=', Carbon::now());
         }
 
         if (isset($params['q']) && $q = trim($params['q'])) {

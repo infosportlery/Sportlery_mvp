@@ -14725,7 +14725,7 @@ return zhTw;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function($) {Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_locationMap__ = __webpack_require__(114);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_locationAutocomplete__ = __webpack_require__(113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_locationAutocomplete___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_locationAutocomplete__);
@@ -14753,20 +14753,20 @@ window.$(function ($) {
         $('#wrapper').toggleClass('toggled');
         $('#sidebar-toggle').toggleClass('glyphicon-chevron-left glyphicon-chevron-right');
     });
-});
-$(function () {
+
+    $('#logout').on('click', function (e) {
+        e.preventDefault();
+        $(this).next('form').submit();
+    });
     $('#datetime-start').datetimepicker({
         locale: 'nl',
         format: 'YYYY-MM-DD HH:mm:ss'
     });
-});
-$(function () {
     $('#datetime-end').datetimepicker({
         locale: 'nl',
         format: 'YYYY-MM-DD HH:mm:ss'
     });
 });
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 
 /***/ }),
 /* 111 */
@@ -14781,12 +14781,7 @@ $(function () {
 /* WEBPACK VAR INJECTION */(function($) {$(function () {
 
     $('#new-chat-modal').on('show.bs.modal', function () {
-        $.request('onFetchFriends', {
-            success: function success(data) {
-                console.log(data);
-                this.success(data);
-            }
-        });
+        $.request('onFetchFriends');
     });
 
     var $chatForm = $('#chat-form');
@@ -14799,10 +14794,19 @@ $(function () {
     var $messages = $('#chat-messages');
     var POLL_RATE = 10000; // 10 seconds.
     var $loadMoreChats = $('#load-more-chats');
+    var $emptyConversation = $('.empty-conversation');
     var polledSince = new Date().toISOString();
+
+    $message.on('input', function () {
+        $chatForm.find('[type=submit]').prop('disabled', $.trim($(this).val()).length == 0);
+    });
 
     var handleSuccess = function handleSuccess(data) {
         var shouldScroll = $messages.scrollTop() >= $messages.prop('scrollHeight') - $messages.height() - 15;
+
+        if (data.length !== 0) {
+            $emptyConversation.remove();
+        }
 
         this.success(data);
 
@@ -14818,9 +14822,6 @@ $(function () {
 
         $chatForm.find('[type=submit]').prop('disabled', true);
         $chatForm.request('onAddMessage', {
-            complete: function complete() {
-                $chatForm.find('[type=submit]').prop('disabled', false);
-            },
             success: function success(data) {
                 handleSuccess.call(this, data);
             }

@@ -2,10 +2,12 @@
 
 namespace Sportlery\Library\Components;
 
+use Redirect;
 use Carbon\Carbon;
 use Cmgmyr\Messenger\Models\Message;
 use Cmgmyr\Messenger\Models\Thread;
 use Cms\Classes\ComponentBase;
+use Hashids\Hashids;
 use Illuminate\Support\Str;
 use October\Rain\Exception\AjaxException;
 
@@ -22,9 +24,17 @@ class Chat extends ComponentBase
         ];
     }
 
+    public function init()
+    {
+        $this->addComponent('RainLab\User\Components\Session', 'session', [
+            'security' => 'user',
+            'redirect' => 'login',
+        ]);
+    }
+
     public function onRun()
     {
-        $user = \Auth::getUser();
+        $user = Auth::getUser();
 
         $messages = function ($q) {
             return $q->latest()->limit(25);
@@ -33,7 +43,12 @@ class Chat extends ComponentBase
         $thread = $user->threads()->with([
             'messages' => $messages,
             'messages.user.avatar'
-        ])->where('spr_chats.id', $this->param('id'))->firstOrFail();
+        ])->where('spr_chats.id', '=', $this->getThreadId())->first();
+
+        if (!$thread) {
+            return Redirect::to($this->controller->pageUrl('message-center'));
+        }
+
         $thread->messages = $thread->messages->reverse();
         $thread->markAsRead($user->id);
         $thread->messageCount = $thread->messages()->count();
@@ -51,7 +66,11 @@ class Chat extends ComponentBase
 
         $user = \Auth::getUser();
         /** @var Thread $thread */
-        $thread = $user->threads()->where('spr_chats.id', $this->param('id'))->firstOrFail();
+        $thread = $user->threads()->where('spr_chats.id', $this->getThreadId())->first();
+
+        if (!$thread) {
+            return Redirect::to($this->controller->pageUrl('message-center'));
+        }
 
         $message = new Message();
         $message->body = $body;
@@ -77,7 +96,11 @@ class Chat extends ComponentBase
         $since = Carbon::createFromTimestamp($since);
 
         $user = \Auth::getUser();
-        $thread = $user->threads()->where('spr_chats.id', $this->param('id'))->firstOrFail(['spr_chats.id']);
+        $thread = $user->threads()->where('spr_chats.id', $this->getThreadId())->first(['spr_chats.id']);
+
+        if (!$thread) {
+            return Redirect::to($this->controller->pageUrl('message-center'));
+        }
 
         $messages = $thread->messages()
                            ->with('user')
@@ -114,7 +137,11 @@ class Chat extends ComponentBase
         $until = Carbon::createFromTimestamp($until);
 
         $user = \Auth::getUser();
-        $thread = $user->threads()->where('spr_chats.id', $this->param('id'))->firstOrFail(['spr_chats.id']);
+        $thread = $user->threads()->where('spr_chats.id', $this->getThreadId())->first(['spr_chats.id']);
+
+        if (!$thread) {
+            return Redirect::to($this->controller->pageUrl('message-center'));
+        }
 
         $messages = $thread->messages()
                            ->with('user')
@@ -136,5 +163,12 @@ class Chat extends ComponentBase
         return [
             '^#chat-messages' => $result,
         ];
+    }
+
+    private function getThreadId()
+    {
+        $decoded = app(Hashids::class)->decode($this->param('id'));
+
+        return count($decoded) > 0 ? reset($decoded) : 0;
     }
 }

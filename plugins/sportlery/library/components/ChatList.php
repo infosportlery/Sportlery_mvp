@@ -29,7 +29,8 @@ class ChatList extends ComponentBase
 
     private function getChats()
     {
-        $userId = \Auth::getUser()->id;
+        $userId = Auth::getUser()->id;
+        // $userId = $this->page['user']->id;
         $messages = function ($q) {
             $q->latest()->take(1);
         };
@@ -58,7 +59,10 @@ class ChatList extends ComponentBase
             }
         });
 
-        return $threads->each(function ($thread) use ($userId) {
+        $hashIds = app(Hashids::class);
+
+        return $threads->each(function ($thread) use ($userId, $hashIds) {
+            $thread->id = $hashIds->encode($thread->id);
             $thread->lastMessage = $thread->messages->isEmpty() ? null : $thread->messages->first();
             $thread->unreadMessagesCount = $thread->userUnreadMessagesCount($userId);
         });

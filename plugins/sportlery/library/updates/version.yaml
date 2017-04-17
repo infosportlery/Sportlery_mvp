@@ -77,3 +77,6 @@
 1.1.3:
     - 'added Event Experiation Date'
     - add_experation_event_join_date.php
+1.1.4:
+    - 'Add soft deletes to chat messages table'
+    - add_soft_deletes_to_chat_messages.php

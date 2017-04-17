@@ -3,9 +3,13 @@ url = "/messages"
 layout = "base"
 is_hidden = 0
 
+[session]
+security = "user"
+redirect = "login"
+
 [chatList]
 ==
-<h2>Message Center</h2>
+<h2>{{ this.page.title|_ }}</h2>
 <div class="row">
     <div class="col-sm-12">
         {% component 'chatList' %}

@@ -1,8 +1,16 @@
 title = "Chat"
-url = "/dashboard/messages/:id"
-layout = "dashboard"
+url = "/messages/:id"
+layout = "base"
 is_hidden = 0
+
+[session]
+security = "user"
+redirect = "login"
 
 [chat]
 ==
+<h2>{{ this.page.title|_ }}</h2>
+<p>
+    <a href="{{ 'message-center'|page }}">&laquo; {{ 'Terug'|_ }}</a>
+</p>
 {% component 'chat' %}

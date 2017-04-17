@@ -1,12 +1,7 @@
 $(function() {
 
     $('#new-chat-modal').on('show.bs.modal', function() {
-        $.request('onFetchFriends', {
-            success(data) {
-                console.log(data);
-                this.success(data);
-            }
-        });
+        $.request('onFetchFriends');
     });
 
     const $chatForm = $('#chat-form');
@@ -19,10 +14,19 @@ $(function() {
     const $messages = $('#chat-messages');
     const POLL_RATE = 10000; // 10 seconds.
     const $loadMoreChats = $('#load-more-chats');
+    const $emptyConversation = $('.empty-conversation');
     let polledSince = (new Date()).toISOString();
+
+    $message.on('input', function() {
+        $chatForm.find('[type=submit]').prop('disabled', $.trim($(this).val()).length == 0);
+    });
 
     const handleSuccess = function (data) {
         let shouldScroll = $messages.scrollTop() >= ($messages.prop('scrollHeight') - $messages.height()) - 15;
+
+        if (data.length !== 0) {
+            $emptyConversation.remove();
+        }
 
         this.success(data);
 
@@ -38,9 +42,6 @@ $(function() {
 
         $chatForm.find('[type=submit]').prop('disabled', true);
         $chatForm.request('onAddMessage', {
-            complete() {
-                $chatForm.find('[type=submit]').prop('disabled', false);
-            },
             success(data) {
                 handleSuccess.call(this, data);
             }

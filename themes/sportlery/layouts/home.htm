@@ -18,16 +18,7 @@ security = "all"
     </head>
     <body>
         <div class="content-wrap">
-            {% partial 'site/header-2' %}       
-            {% flash %}
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="alert alert-{{ type == 'error' ? 'danger' : type }}">{{ message }}</div>
-                    </div>
-                </div>
-            </div>
-            {% endflash %}
+            {% partial 'site/header-2' %}
 
             <div class="row">
                 <div class="col-sm-12">

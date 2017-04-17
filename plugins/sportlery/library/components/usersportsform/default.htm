@@ -1,0 +1,71 @@
+<div class="form-group">
+    <input type="hidden" name="sport">
+    <p class="help-block"></p>
+</div>
+<div class="row">
+    <div class="col-sm-5"><strong>{{ 'Sport'|_ }}</strong></div>
+    <div class="col-sm-5"><strong>{{ 'Niveau'|_ }}</strong></div>
+</div>
+<div id="sport-list">
+    {{ form_open({ request: __SELF__~'::onUpdate' }) }}
+    {% for userSport in userSports %}
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-5">
+                    <p class="form-control-static">{{ userSport.name }}</p>
+                    <p class="help-block" style="display:none;"></p>
+                </div>
+                <div class="col-sm-5">
+                    {{ form_select('sport['~userSport.id~']', userLevels, userSport.pivot.level, { class: 'form-control' }) }}
+                    {{ errors.first('sport.'~userSport.id) }}
+                    <p class="help-block" style="display:none;"></p>
+                </div>
+                <div class="col-sm-2">
+                    <a data-request="{{ __SELF__~'::onDelete' }}" data-request-data="sport_id: {{ userSport.id }}" class="btn btn-danger">&times;</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    <hr>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-sm-5">
+                {{ form_select('sport_new_id', sports, null, { class: 'form-control' }) }}
+                {{ errors.first('sport_new_id', '<p class="help-block">:message</p>')|raw }}
+            </div>
+            <div class="col-sm-5">
+                {{ form_select('sport_new_level', levels, null, { class: 'form-control' }) }}
+                {{ errors.first('sport_new_level', '<p class="help-block">:message</p>')|raw }}
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-sm-5">
+                {{ form_text('sport_custom', null, { class: 'form-control', placeholder: ('Anders'|_)~'...' }) }}
+                {{ errors.first('sport_custom', '<p class="help-block">:message</p>')|raw }}
+            </div>
+            <div class="col-sm-5">
+                {{ form_select('sport_custom_level', levels, null, { class: 'form-control' }) }}
+                {{ errors.first('sport_custom_level', '<p class="help-block">:message</p>')|raw }}
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-sm-10 text-right">
+                <button class="btn btn-primary">Sporten Opslaan</button>
+            </div>
+        </div>
+    </div>
+    {{ form_close() }}
+</div>
+{#{% put scripts %}#}
+{#<script>$(function() {#}
+    {#$('[data-delete]').on('click', function(e) {#}
+        {#e.preventDefault();#}
+        {#$.request('{{ __SELF__~'::onDelete' }}');#}
+    {#});#}
+{#})</script>#}
+{#{% endput %}#}
+

@@ -51,6 +51,7 @@ class Plugin extends PluginBase
             Components\FourStepRegistration::class => 'fourStepRegistration',
             Components\SportlersList::class => 'sportlersList',
             Components\NotificationCounts::class => 'notificationCounts',
+            Components\UserSportsForm::class => 'userSportsForm',
         ];
     }
 

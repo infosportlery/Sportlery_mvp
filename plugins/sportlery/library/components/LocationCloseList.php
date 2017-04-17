@@ -66,6 +66,7 @@ class LocationCloseList extends ComponentBase
         $searchParameters = \Input::only(['q', 'sport', 'location_type', 'city']);
 
         $locations = Location::search($searchParameters)
+                       ->where('is_hidden', 0)
                        ->orderBy('name', 'asc')
                        ->paginate($perPage);
 
@@ -101,7 +102,7 @@ class LocationCloseList extends ComponentBase
                              // ->whereHas('sports', function($query) use ($sports) {
                              //    return $query->whereIn('id', $sports->lists('id'));
                              ->paginate($perPage);
-        
+
         $locations->each(function($location) {
             $location->id = $location->getHashId();
         });

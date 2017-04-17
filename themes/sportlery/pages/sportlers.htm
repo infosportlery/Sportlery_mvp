@@ -1,4 +1,3 @@
-
 title = "sportlers"
 url = "/sportlers"
 layout = "home"
@@ -7,27 +6,23 @@ is_hidden = 0
 [viewBag]
 localeUrl[en] = "/sportlers"
 
-
 [sportlersList]
 detailsPage = "profile"
 
+[session]
+redirect = "login"
+security = "user"
 ==
-{% if user %}
-    {% partial 'userHome/buttons' %}
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <h1>Sportlers</h1>
-            </div>
-            <!-- /.col-sm-12 -->
-        </div>
-        <!-- /.row -->
-        <div class="row">
-            <div class="col-sm-12">
-                {% component 'sportlersList' %}
-            </div>
+{% partial 'userHome/buttons' %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>Sportlers</h1>
         </div>
     </div>
-{% else %}
-	{% partial 'site/homeContent' %}
-{% endif %}
+    <div class="row">
+        <div class="col-sm-12">
+            {% component 'sportlersList' %}
+        </div>
+    </div>
+</div>

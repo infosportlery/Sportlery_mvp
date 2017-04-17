@@ -21,6 +21,6 @@ class LocationProfile extends ComponentBase
 
     public function onRun()
     {
-        $this->page['location'] = Location::findByHashId($this->param('id'));
+        $this->page['location'] = Location::whereHashId($this->param('id'))->first();
     }
 }

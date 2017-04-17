@@ -1,7 +1,10 @@
-<div class="row">
-    {% for sportler in sportlers %}
-        <div class="col-md-2">
-            {% partial __SELF__~'::sportler-card' sportler=sportler %}
-        </div>
-    {% endfor %}
-</div>
+{% for row in sportlers|batch(6) %}
+    <div class="row">
+        {% for sportler in row %}
+            <div class="col-md-2">
+                {% partial __SELF__~'::sportler-card' sportler=sportler %}
+            </div>
+        {% endfor %}
+    </div>
+{% endfor %}
+{{ sportlers.render|raw }}

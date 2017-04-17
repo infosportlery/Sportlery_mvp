@@ -78,6 +78,11 @@ fields:
         options:
             - Paid
             - Public
+    is_hidden:
+        label: 'Do not show location in listings'
+        span: auto
+        type: checkbox
+        default: false
     categories:
         label: Categories
         span: auto
@@ -132,6 +137,7 @@ fields:
     requested:
         label: 'Requested Location'
         oc.commentPosition: ''
+        hidden: true
         options:
             1: Accepted
             2: 'Not Accepted'

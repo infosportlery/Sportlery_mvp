@@ -50,6 +50,6 @@ class SportlersList extends ComponentBase
 
     private function getUsers()
     {
-        return User::paginate(24);
+        return User::paginate($this->property('perPage'));
     }
 }

@@ -519,3 +519,16 @@ button.information-btn-top {
     border: 1px solid #29719B;
     border-radius: 0px;
 }
+
+.footer-logo {
+  height: 60px;
+  width: 60px;
+}
+
+.graphic {
+    background: url('../../resources/img/footer.png') bottom no-repeat;
+    min-height: 290px;
+    width: 100%;
+    margin-bottom: -50px;
+    background-size: contain;
+  }

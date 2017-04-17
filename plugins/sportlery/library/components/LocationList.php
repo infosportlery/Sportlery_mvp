@@ -66,8 +66,9 @@ class LocationList extends ComponentBase
         $searchParameters = \Input::only(['q', 'sport', 'location_type', 'city']);
 
         $locations = Location::search($searchParameters)
-                       ->orderBy('name', 'asc')
-                       ->paginate($perPage);
+                             ->where('is_hidden', 0)
+                             ->orderBy('name', 'asc')
+                             ->paginate($perPage);
 
         $locations->each(function($location) use ($hashids) {
             $location->id = $location->getHashId();

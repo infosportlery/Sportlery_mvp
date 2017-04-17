@@ -56,7 +56,6 @@ class UserHomeLocationList extends ComponentBase
     {
         $this->searchParameters = \Input::only(['q', 'event_type', 'sport', 'city', 'past']);
 
-        $this->page['events'] = $this->getEvents();
         $this->page['locations'] = $this->getLocations();
         $this->page['sports'] = $this->getSports();
         $this->page['cities'] = $this->getCities();
@@ -89,7 +88,7 @@ class UserHomeLocationList extends ComponentBase
             $locations = Location::search($this->searchParameters);
         }
 
-        return $locations->orderBy('name', 'asc')->paginate($perPage);
+        return $locations->where('is_hidden', 0)->orderBy('name', 'asc')->paginate($perPage);
     }
 
     private function getSports()
@@ -97,22 +96,16 @@ class UserHomeLocationList extends ComponentBase
         return Sport::orderBy('name', 'asc')->lists('name', 'id');
     }
 
-    private function getEvents()
-    {
-        $user = Auth::getUser();
-        $events = $user->events();
-    }
-
     private function getCities()
     {
-        return Location::distinct()->orderBy('city', 'asc')->lists('city', 'city');
+        return Location::distinct()->where('is_hidden', 0)->orderBy('city', 'asc')->lists('city', 'city');
     }
 
     public function getUserEventsLocations()
     {
         $user = Auth::getUser();
 
-        return $user->locations()->search($this->searchParameters)->get();
+        return $user->locations()->search($this->searchParameters)->where('is_hidden', 0)->get();
     }
 
     private function getLocationTypes()

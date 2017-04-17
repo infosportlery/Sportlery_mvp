@@ -79,29 +79,31 @@ class Location extends Model
     {
         $query = (new static)->newQuery();
 
-        if (isset($params['q']) && $q = trim($params['q'])) {
-            $q = '%'.$q.'%';
+        $query->where(function ($query) use ($params) {
+            if (isset($params['q']) && $q = trim($params['q'])) {
+                $q = '%'.$q.'%';
 
-            $query->where(function($query) use ($q) {
-                $query->orWhere('name', 'like', $q)
-                      ->orWhere('city', 'like', $q)
-                      ->orWhere('description', 'like', $q);
-            });
-        }
+                $query->where(function($query) use ($q) {
+                    $query->orWhere('name', 'like', $q)
+                          ->orWhere('city', 'like', $q)
+                          ->orWhere('description', 'like', $q);
+                });
+            }
 
-        if (isset($params['sport']) && $params['sport'] !== '') {
-            $query->whereHas('sports', function($query) use ($params) {
-                return $query->where('id', $params['sport']);
-            });
-        }
+            if (isset($params['sport']) && $params['sport'] !== '') {
+                $query->whereHas('sports', function($query) use ($params) {
+                    return $query->where('id', $params['sport']);
+                });
+            }
 
-        if (isset($params['location_type']) && $params['location_type'] !== '') {
-            $query->where('is_public', $params['location_type']);
-        }
+            if (isset($params['location_type']) && $params['location_type'] !== '') {
+                $query->where('is_public', $params['location_type']);
+            }
 
-        if (isset($params['city']) && $city = trim($params['city'])) {
-            $query->where('city', $city);
-        }
+            if (isset($params['city']) && $city = trim($params['city'])) {
+                $query->where('city', $city);
+            }
+        });
 
         return $query;
     }

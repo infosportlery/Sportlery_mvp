@@ -5,15 +5,6 @@
                 {{ location.name }}
             </a>
         </h3>
-        <p>
-            <strong>Date:</strong>
-            {{ location.starts_at.formatLocalized('%A %d %B, %Y') }}
-            {% if location.price > 0 %}
-        <br>
-            <strong>Price:</strong>
-            &euro; {{ location.price|number_format(2,',','.') }}
-        {% endif %}
-        </p>
         <div class="text-right">
             {% if location.user_id == user.id %}
             <a href="delete/{{ location.id }}" class="btn btn-warning">Edit</a>

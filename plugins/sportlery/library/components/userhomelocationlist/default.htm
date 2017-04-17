@@ -19,14 +19,6 @@
                         {{ form_text('q', input('q'), {class: 'form-control'}) }}
                     </div>
                     <div class="col-sm-3">
-                        <div class="checkbox">
-                            <label>
-                                {{ form_checkbox('past', '1', input('past')) }}
-                                Include past locations
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
                         <div class="form-group">
                             <div>&nbsp;</div>
                             {{ form_submit('Search', {class: 'btn btn-primary'}) }}
@@ -44,7 +36,7 @@
         <div class="row">
             {% for location in row %}
                 <div class="col-md-6">
-                    {% partial __SELF__~'::event-card' location=location %}
+                    {% partial __SELF__~'::location-card' location=location %}
                 </div>
             {% endfor %}
         </div>
@@ -58,7 +50,7 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="alert alert-danger">
-                Geen locations beschikbaar
+                {{ 'Geen locaties gevonden'|_ }}
             </div>
         </div>
     </div>

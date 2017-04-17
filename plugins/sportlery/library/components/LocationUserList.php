@@ -86,20 +86,18 @@ class LocationUserList extends ComponentBase
         return [0 => 'Paid', 1 => 'Public'];
     }
 
-    public function getLocationsByEventsAttendedByAtLocation() 
+    public function getLocationsByEventsAttendedByAtLocation()
     {
-
         $perPage = $this->property('perPage');
         $user = Auth::getUser();
 
-        $events = $user->events()->with('location')->get();
+        $events = $user->events()->with('location')->where('is_hidden', 0)->get();
 
         $locations = $events->pluck('location');
 
-        $locations->each(function($location) use ($hashids) {
+        $locations->each(function($location) {
             $location->id = $location->getHashId();
         });
-
 
         return $locations;
     }

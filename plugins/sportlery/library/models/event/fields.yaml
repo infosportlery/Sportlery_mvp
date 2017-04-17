@@ -57,7 +57,7 @@ fields:
     avatar:
         label: Avatar
         oc.commentPosition: ''
-        mode: file
+        mode: image
         imageWidth: '100'
         imageHeight: '100'
         useCaption: true

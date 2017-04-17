@@ -57,6 +57,7 @@ body {
 
 .thin {
 	font-weight: 300;
+  color: white;
 }
 
 .header2 .lead {
@@ -106,7 +107,7 @@ body {
 }
 
 .about-text-style {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 1.1em;
   text-align: justify;
 }
@@ -125,8 +126,21 @@ body {
   padding-top: 50px;
 }
 
-.info-container-2 {
-	min-height: 110vh;
+.header3 {
+	min-height: 100vh;
+  background-image: url('../../resources/img/header3.jpg');
+  background-attachment: fixed;
+  background-position-y: -150px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.header5 {
+  min-height: 100vh;
+  background-image: url('../../resources/img/trainer.jpg');
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .info-container-1 {
@@ -172,7 +186,13 @@ body {
     color: #fff;
 }
 
-.home-header { height: 80vh;}
+.home-header { 
+  height: 80vh;  
+  background-image: url('../../resources/img/header1.jpg'); 
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  background-attachment: fixed;
+}
 .home-header h1 {font-family: 'Graduate', sans-serif; font-size: 80px;margin-bottom: 50px;}
 .home-header .lead {margin-top: -40px; letter-spacing: 5px; }
 
@@ -258,7 +278,7 @@ h6 {
     margin-top: -50px;
     text-align: center;
     background-image: url('../../resources/img/header2_blur.jpg');
-    background-attachment: scroll;
+    background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -296,4 +316,206 @@ h6 {
   margin-bottom: 25px;
   color: #F46835;
   transition: all .2s ease-in-out;
+}
+
+.home-container-1 {
+
+
+}
+
+footer {
+  background-color: #f3f3f3;
+  border-top: 4px solid #f78e21;
+  margin-top: 120px;
+}
+
+.social-bottom {
+  margin-top: 40px;
+  padding-bottom: 40px;
+}
+
+.social-bottom span {
+  font-size: 22px;
+  font-weight: 600;
+  color: #333;
+  text-transform: uppercase;
+  float: left;
+  margin-right: 26px;
+}
+
+.social-bottom ul {
+  margin: 0;
+  padding: 0;
+}
+
+.social-bottom li {
+  list-style: none;
+  display: inline-block;
+}
+
+.social-bottom a {
+  background-color: #fff;
+  font-size: 18px;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  color: #bbb;
+}
+
+.social-bottom a:hover {
+  background-color: #f78e21;
+  color: #fff;
+}
+
+.subscribe-form {
+  margin-top: 40px;
+  padding-bottom: 40px;
+}
+
+.subscribe-form span {
+  font-size: 22px;
+  font-weight: 600;
+  color: #333;
+  text-transform: uppercase;
+  float: left;
+  margin-right: 26px;
+}
+
+.subscribeForm {
+  position: relative;
+  display: inline-block;
+}
+
+.subscribe-form input[type="submit"] {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 34px;
+  height: 34px;
+  background: url('../../resources/img/subscribe-icon.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  color: transparent;
+  background-color: transparent;
+  content: '';
+  margin-top: 0;
+  border: 0;
+}
+
+.subscribe-form input#subscribe {
+  padding: 4px 10px 4px 10px;
+  line-height: 34px;
+  height: 34px;
+  max-width: 280px;
+  width: 280px;
+  margin-top: 0px;
+  outline: 0;
+  border-color: #f3f3f3;
+}
+
+.footer-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #333;
+  text-transform: uppercase;
+  padding-bottom: 20px;
+}
+
+.shop-list ul {
+  margin: 0;
+  padding: 0;
+}
+
+.shop-list li {
+  list-style: none;
+  margin: 10px 0;
+}
+
+.shop-list i {
+  font-size: 16px;
+  margin-right: 5px;
+  color: #f78e21;
+}
+
+.shop-list a {
+  text-transform: uppercase;
+  color: #888;
+  font-size: 13px;
+}
+
+.shop-list a:hover {
+  color: #f78e21;
+}
+
+.recent-post {
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.recent-post-thumb {
+  float: left;
+  margin-right: 10px;
+  width: 70px;
+  height: 70px;
+}
+
+.recent-post-info {
+  overflow: hidden;
+}
+
+.recent-post-info h6 {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: 0;
+}
+
+.recent-post-info a {
+  color: #333;
+}
+
+.recent-post-info a:hover {
+  color: #f78e21;
+}
+
+.recent-post-info span {  font-size: 13px;
+  color: #f78e21;
+}
+
+.more-info p {
+  padding-bottom: 20px;
+}
+
+.more-info ul {
+  margin: 0;
+  padding: 0;
+}
+
+.more-info li {
+  list-style: none;
+  margin: 10px 0;
+  font-size: 13px;
+  color: #666;
+}
+
+.more-info i {
+  color: #f78e21;
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+.bottom-footer {
+  text-align: left;
+  padding: 60px 0 15px 0;
+}
+
+/*-- End Footer --*/
+
+button.information-btn-top {
+    font-size: 22px;
+    margin: 15px;
+    background-color: #29719B;
+    border: 1px solid #29719B;
+    border-radius: 0px;
 }

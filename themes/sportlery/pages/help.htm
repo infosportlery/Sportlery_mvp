@@ -17,14 +17,19 @@ detailedErrors = 0
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <h1>{{'Contacteer ons'|_}}</h1>
+                <h1></h1>
             </div>
             <!-- /.col-sm-12 -->
         </div>
         <!-- /.row -->
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-6">
 				{% component 'simpleContact' %}
+            </div>
+            <div class="col-md-5 col-md-offset-1 text-center">
+            	<i class="fa fa-envelope fa-x5"></i>
+            	<h3>{{'Heb je vragen of suggesties?'|_}}</h3>
+            	<hr class="hr-sm">
             </div>
         </div>
     </div>

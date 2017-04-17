@@ -35,3 +35,8 @@ window.$(function($) {
         format: 'YYYY-MM-DD HH:mm:ss',
     });
 });
+$("#btn-index-more").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#page-one").offset().top
+    }, 2000);
+});

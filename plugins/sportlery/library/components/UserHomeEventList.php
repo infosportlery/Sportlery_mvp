@@ -98,6 +98,7 @@ class UserHomeEventList extends ComponentBase
 
     private function getCities()
     {
+
         return Location::distinct()->orderBy('city', 'asc')->lists('city', 'city');
     }
 

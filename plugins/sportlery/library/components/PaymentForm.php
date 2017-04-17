@@ -75,7 +75,7 @@ class PaymentForm extends ComponentBase
             /** @var \Mollie\Laravel\Wrappers\MollieApiWrapper $api */
             $api = Mollie::api();
             $molliePayment = $api->payments()->create([
-                'amount' => $event->price,
+                'amount' => $event->price + 0.35,
                 'description' => 'Ticket '.$event->name,
                 'redirectUrl' => $redirectUrl,
                 'method' => $paymentMethod,

@@ -6,31 +6,31 @@
                 <div class="row">
                     <div class="col-sm-3">
                         <div class="form-group">
-                            {{ form_label('sport', 'Sport', {class: 'control-label'}) }}
-                            {{ form_select('sport', sports, input('sport'), {class: 'form-control', emptyOption: 'All'}) }}
+                            {{ form_label('sport', 'Sport'|_, {class: 'control-label'}) }}
+                            {{ form_select('sport', sports, input('sport'), {class: 'form-control', emptyOption: 'Alle'|_}) }}
                         </div>
                     </div>
                     <div class="col-sm-3">
-                        {{ form_label('city', 'City', {class: 'control-label'}) }}
-                        {{ form_select('city', cities, input('city'), {class: 'form-control', emptyOption: 'All'}) }}
+                        {{ form_label('city', 'Stad'|_, {class: 'control-label'}) }}
+                        {{ form_select('city', cities, input('city'), {class: 'form-control', emptyOption: 'Alle'|_}) }}
                     </div>
                     <div class="col-sm-3">
-                        {{ form_label('q', 'Search', {class: 'control-label'}) }}
+                        {{ form_label('q', 'Zoek'|_, {class: 'control-label'}) }}
                         {{ form_text('q', input('q'), {class: 'form-control'}) }}
                     </div>
                     <div class="col-sm-3">
                         <div class="checkbox">
                             <label>
                                 {{ form_checkbox('past', '1', input('past')) }}
-                                Include past events
+                                {{ 'Laat verlopen activiteiten zien'|_ }}
                             </label>
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="form-group">
                             <div>&nbsp;</div>
-                            {{ form_submit('Search', {class: 'btn btn-primary'}) }}
-                            {{ link_to(url_current(), 'Reset', {class: 'btn btn-default'}) }}
+                            {{ form_submit('Zoeken'|_, {class: 'btn btn-primary'}) }}
+                            {{ link_to(url_current(), 'Opnieuw'|_, {class: 'btn btn-default'}) }}
                         </div>
                     </div>
                 </div>
@@ -58,7 +58,7 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="alert alert-danger">
-                Geen evenementen beschikbaar
+                {{ 'Geen activiteiten gevonden'|_ }}
             </div>
         </div>
     </div>

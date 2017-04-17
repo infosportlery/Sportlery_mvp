@@ -11,9 +11,8 @@ security = "all"
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Sportlery - {{ this.page.title }}</title>
-        <meta name="description" content="{{ this.page.meta_description }}">
-        <meta name="title" content="{{ this.page.meta_title }}">
+        <title>{{ this.page.title|_ }} | Sportlery</title>
+        <meta name="description" content="{{ this.page.meta_description|_ }}">
         <meta name="author" content="Sportlery">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="{{ 'assets/css/sportlery.css'|theme }}" rel="stylesheet">
@@ -21,12 +20,14 @@ security = "all"
     </head>
     <body>
         <div class="content-wrap">
-
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="panel panel-default">
                             <div class="panel-body">
+                                {% flash error %}
+                                    <div class="alert alert-danger" style="margin-bottom:0;">{{ message }}</div>
+                                {% endflash %}
                                 {% page %}
                             </div>
                         </div>

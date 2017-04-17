@@ -62,9 +62,9 @@ class ChatList extends ComponentBase
         $hashIds = app(Hashids::class);
 
         return $threads->each(function ($thread) use ($userId, $hashIds) {
-            $thread->id = $hashIds->encode($thread->id);
             $thread->lastMessage = $thread->messages->isEmpty() ? null : $thread->messages->first();
             $thread->unreadMessagesCount = $thread->userUnreadMessagesCount($userId);
+            $thread->id = $hashIds->encode($thread->id);
         });
     }
 

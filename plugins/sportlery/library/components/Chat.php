@@ -2,6 +2,7 @@
 
 namespace Sportlery\Library\Components;
 
+use Auth;
 use Redirect;
 use Carbon\Carbon;
 use Cmgmyr\Messenger\Models\Message;
@@ -22,14 +23,6 @@ class Chat extends ComponentBase
             'name' => 'Chat',
             'description' => 'Shows a chat thread',
         ];
-    }
-
-    public function init()
-    {
-        $this->addComponent('RainLab\User\Components\Session', 'session', [
-            'security' => 'user',
-            'redirect' => 'login',
-        ]);
     }
 
     public function onRun()

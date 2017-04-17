@@ -4,7 +4,7 @@
         <a href="{{ 'home'|page }}">{{ 'Home'|_ }}</a>
     </li>
     <li class="dropdown">
-        <a href="#" data-toggle="dropdown" class="img-dropdown">
+        <a href="#" data-toggle="dropdown" class="img-dropdown{% if notificationCount > 0 %} new-notifications{% endif %}">
             <i class="glyphicon glyphicon-envelope"></i>
             <span class="visible-xs-inline">{{ 'Meldingen'|_ }}</span>
             <span class="caret visible-xs-inline-block"></span>
@@ -12,7 +12,16 @@
 
         <ul class="dropdown-menu" role="menu">
             <li class="dropdown-header hidden-xs" role="presentation">{{ 'Meldingen'|_ }}</li>
-            <li role="presentation"><a href="{{ 'message-center'|page }}">{{ 'Berichtencentrum'|_ }}</a></li>
+            <li role="presentation">
+                <a href="{{ 'friends-list'|page }}">{{ 'Sport Buddies'|_ }}
+                    {% if friendRequestCount > 0 %}<span class="badge">{{ friendRequestCount }}</span>{% endif %}
+                </a>
+            </li>
+            <li role="presentation">
+                <a href="{{ 'message-center'|page }}">{{ 'Berichtencentrum'|_ }}
+                    {% if unreadMessageCount > 0 %}<span class="badge">{{ unreadMessageCount }}</span>{% endif %}
+                </a>
+            </li>
         </ul>
     </li>
     <li class="dropdown">
@@ -25,7 +34,10 @@
         <ul class="dropdown-menu" role="menu" data-dropdown-title="A dropdown menu">
             <li class="dropdown-header hidden-xs" role="presentation">{{user.name}} {{user.surname}}</li>
             <li role="presentation">
-                <a href="{{ 'settings'|page }}" role="menuitem" tabindex="-1"><span class="glyphicon glyphicon-wrench"></span> {{ 'Profiel instellingen'|_ }}</a>
+                <a href="{{ 'profile'|page({ id: user.getHashId() }) }}" role="menuitem" tabindex="-1"><span class="glyphicon glyphicon-user"></span> {{ 'Jouw Profiel'|_ }}</a>
+            </li>
+            <li role="presentation">
+                <a href="{{ 'settings'|page }}" role="menuitem" tabindex="-1"><span class="glyphicon glyphicon-wrench"></span> {{ 'Profiel Instellingen'|_ }}</a>
             </li>
             <li role="presentation">
                 <a href="{{ 'help'|page }}"><span class="glyphicon glyphicon-question-sign"></span> {{ 'Help'|_ }}</a>

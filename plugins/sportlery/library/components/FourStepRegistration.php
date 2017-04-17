@@ -6,7 +6,7 @@ use Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use October\Rain\Exception\ValidationException;
-use RainLab\Location\Models\Setting;
+use RainLab\Translate\Models\Message;
 use Redirect;
 use Cms\Classes\ComponentBase;
 use Sportlery\Library\Models\Sport;
@@ -52,19 +52,9 @@ class FourStepRegistration extends ComponentBase
         $this->page['currentStep'] = $currentStep;
         $this->page['show'] = $currentStep !== true;
 
-        if ($currentStep == 2) {
-            $apiKey = Setting::get('google_maps_key');
-            $this->addJs('//maps.googleapis.com/maps/api/js?libraries=places&key='.$apiKey);
-        }
-
-        if ($currentStep > 2) {
-            $sportQuery = Sport::orderBy('name', 'asc');
-            if ($currentStep == 4) {
-                $idList = Auth::getUser()->favoriteSports()->lists('id');
-                $sportQuery->whereNotIn('id', $idList);
-            }
-            $this->page['sports'] = ['' => '- None -'] + $sportQuery->lists('name', 'id');
-            $this->page['levels'] = ['' => '- None -', 1 => 'Beginner', 2 => 'Intermediate', 3 => 'Pro'];
+        if ($currentStep == 3) {
+            $this->getSports();
+            $this->getLevels();
         }
     }
 
@@ -88,8 +78,6 @@ class FourStepRegistration extends ComponentBase
             $user->update(Input::only('name', 'surname'));
         } elseif ($currentStep == 2) {
             $rules = [
-                'latitude' => 'required|numeric',
-                'longitude' => 'required|numeric',
                 'street' => 'required',
                 'city' => 'required',
                 'country' => 'required',
@@ -101,17 +89,20 @@ class FourStepRegistration extends ComponentBase
                 throw new ValidationException($validator);
             }
 
-            $user->update(Input::only('latitude', 'longitude', 'street', 'city', 'zip_code', 'state', 'country'));
-        } elseif ($currentStep == 3 || $currentStep == 4) {
+            $user->update(Input::only('street', 'zip_code', 'city', 'country'));
+        } elseif ($currentStep == 3) {
             $sports = array_filter(post('sport'), function($sport) {
                 return $sport['id'] !== '';
             });
 
-            if (empty($sports)) {
+            if (empty($sports) && empty(post('sport_custom'))) {
                 throw new ValidationException(['sport' => 'Please pick at least one sport']);
             }
 
-            $rules = [];
+            $rules = [
+                'sport_custom' => 'alphadash|unique:spr_sports,name',
+                'sport_custom_level' => 'required_with:sport_custom|in:1,2,3',
+            ];
             foreach ($sports as $index => $sport) {
                 $rules['sport.'.$index.'.id'] = 'required|exists:spr_sports,id';
                 $rules['sport.'.$index.'.level'] = 'required|in:1,2,3';
@@ -142,27 +133,46 @@ class FourStepRegistration extends ComponentBase
                 }
             }
 
+            if (trim(post('sport_custom'))) {
+                $sport = new Sport;
+                $sport->name = post('sport_custom');
+                $sport->slug = str_slug($sport->name);
+                $user->sports()->save($sport, ['favorite' => 1, 'level' => post('sport_custom_level')]);
+            }
+
             $user->sports()->sync($syncList, false);
         }
 
         $currentStep++;
 
-        if ($currentStep == 2) {
-            $this->page['apiKey'] = Setting::get('google_maps_key');
-        }
-
         if ($currentStep > 3) {
             return Redirect::refresh();
         }
+
         $this->page['user'] = Auth::getUser();
         $this->page['isPartial'] = true;
         if ($currentStep > 2) {
-            $sportQuery = Sport::orderBy('name', 'asc');
-            $this->page['sports'] = ['' => '- None -'] + $sportQuery->lists('name', 'id');
-            $this->page['levels'] = ['' => '- None -', 1 => 'Beginner', 2 => 'Intermediate', 3 => 'Pro'];
+            $this->getSports();
+            $this->getLevels();
         }
 
         return ['#four-step-registration' => $this->renderPartial($this.'::step-'.$currentStep)];
+    }
+
+    private function getSports()
+    {
+        $sportQuery = Sport::orderBy('name', 'asc');
+        $this->page['sports'] = ['' => '- '.Message::trans('Geen').' -'] + $sportQuery->lists('name', 'id');
+    }
+
+    private function getLevels()
+    {
+        $this->page['levels'] = [
+            '' => '- '.Message::trans('Geen').' -',
+            1 => Message::trans('Beginner'),
+            2 => Message::trans('Gevorderd'),
+            3 => Message::trans('Pro'),
+        ];
     }
 
     private function determineCurrentStep()
@@ -182,5 +192,40 @@ class FourStepRegistration extends ComponentBase
         }
 
         return true;
+    }
+
+    private function geocodeAddress($input)
+    {
+        $address = urlencode(implode(' ', $input));
+        $url = "https://maps.googleapis.com/maps/api/geocode/json?address=$address&sensor=false";
+
+        $data = @file_get_contents($url);
+
+        $json = json_decode($data, true);
+
+        if (!$json || !isset($json['status']) || $json['status'] !== 'OK') {
+            return $input;
+        }
+
+        $json = $json['results'][0];
+        $components = $json['address_components'];
+        $country = $this->getAddressComponent($components, 'country', 'long_name');
+        $input['country'] = $country ?: $input['country'];
+        $input['state'] = $this->getAddressComponent($components, 'administrative_area_level_1', 'long_name');
+        $input['latitude'] = $json['geometry']['location']['lat'];
+        $input['longitude'] = $json['geometry']['location']['lng'];
+
+        return $input;
+    }
+
+    private function getAddressComponent($components, $type, $field = 'short_name')
+    {
+        foreach ($components as $component) {
+            if (in_array($type, $component['types'])) {
+                return $component[$field];
+            }
+        }
+
+        return null;
     }
 }

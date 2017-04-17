@@ -10,6 +10,7 @@ use RainLab\User\Facades\Auth;
 use Rainlab\User\Models\User;
 use Hashids\Hashids;
 use RainLab\User\Controllers\Users;
+use Sportlery\Library\Classes\GoogleAddressGeocoder;
 use Sportlery\Library\Classes\SparkPostTransport;
 use Sportlery\Library\Components;
 use System\Classes\PluginBase;
@@ -49,6 +50,7 @@ class Plugin extends PluginBase
             Components\PaymentResult::class => 'paymentResult',
             Components\FourStepRegistration::class => 'fourStepRegistration',
             Components\SportlersList::class => 'sportlersList',
+            Components\NotificationCounts::class => 'notificationCounts',
         ];
     }
 
@@ -101,6 +103,16 @@ class Plugin extends PluginBase
                 'tel_no',
                 'bio',
             ]);
+
+            $model->bindEvent('model.beforeSave', function() use ($model) {
+                if ($model->street && $model->country && $model->city) {
+                    if ($model->isDirty(['street', 'country', 'city', 'zip_code'])) {
+                        $input = array_only($model->getAttributes(), ['street', 'zip_code', 'city', 'country']);
+                        $result = GoogleAddressGeocoder::geocode($input);
+                        $model->fill($result);
+                    }
+                }
+            });
         });
 
         Users::extend(function($controller) {

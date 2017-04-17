@@ -3,10 +3,10 @@
         <input type="hidden" name="sport">
         <p class="help-block"></p>
     </div>
-    <p><strong>Choose up to 5 sports that you currently practice:</strong></p>
+    <p><strong>{{ 'Kies maximaal 5 sporten die je momenteel beoefend:'|_ }}</strong></p>
     <div class="row">
-        <div class="col-sm-6"><strong>Sport</strong></div>
-        <div class="col-sm-6"><strong>Level</strong></div>
+        <div class="col-sm-6"><strong>{{ 'Sport'|_ }}</strong></div>
+        <div class="col-sm-6"><strong>{{ 'Niveau'|_ }}</strong></div>
     </div>
     <div id="sport-list">
         {% for i in range(0, 4) %}
@@ -23,6 +23,18 @@
                 </div>
             </div>
         {% endfor %}
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-6">
+                    {{ form_text('sport_custom', null, { class: 'form-control', placeholder: ('Anders'|_)~'...' }) }}
+                    <p class="help-block" style="display:none;"></p>
+                </div>
+                <div class="col-sm-6">
+                    {{ form_select('sport_custom_level', levels, null, { class: 'form-control' }) }}
+                    <p class="help-block" style="display:none;"></p>
+                </div>
+            </div>
+        </div>
     </div>
     {{ form_hidden('current_step', 3) }}
 {{ form_close() }}

@@ -1,10 +1,9 @@
-title = "Settings"
+title = "Profiel Instellingen"
 url = "/settings"
 layout = "base"
 is_hidden = 0
 
 [account]
-redirect = "dashboard"
 paramCode = "code"
 forceSecure = 0
 
@@ -27,31 +26,24 @@ function onInit()
 }
 ?>
 ==
+{% component 'fourStepRegistration' %}
 <div class="row">
-    {% component 'fourStepRegistration' %}
+    <div class="col-xs-12">
+        <h2>{{ 'Profiel Instellingen'|_ }}</h2>
+    </div>
 </div>
 <div class="row">
-	<h2>Profile Settings</h2>
-</div>
-<div class="row">
-	<div class="col-md-4">
-		<h3>Personal Settings</h3>
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="form-group">
+                    <label for="#" class="control-label">{{ 'Profielfoto'|_ }}</label>
 
-		{% component 'imageUploader' %}
+                    {% component 'imageUploader' %}
+                </div>
 
-		{% component 'account' %}
-	</div>
-	<div class="col-md-5 col-md-offset-1 col-sm-12">
-		<div class="row">
-			<div class="col-md-12">
-				<h3>Time Management</h3>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12">
-				<h3>Something Else</h3>
-			</div>
-		</div>
-	</div>
-
+                {% component 'account' %}
+            </div>
+        </div>
+    </div>
 </div>

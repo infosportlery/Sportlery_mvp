@@ -4,32 +4,29 @@ layout = "nocontainer"
 is_hidden = 0
 
 [simpleContact]
-nameTitle = "Full Name"
-emailTitle = "Email"
-phoneTitle = "Phone"
-subjectTitle = "Subject"
-messageTitle = "Message"
-buttonText = "Submit"
+nameTitle = "Naam"
+emailTitle = "E-Mail"
+phoneTitle = "Telefoon"
+subjectTitle = "Onderwerp"
+messageTitle = "Bericht"
+buttonText = "Verstuur"
 displayPhone = 0
 detailedErrors = 0
 ==
-
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <h1></h1>
-            </div>
-            <!-- /.col-sm-12 -->
-        </div>
-        <!-- /.row -->
-        <div class="row">
-            <div class="col-sm-6">
-				{% component 'simpleContact' %}
-            </div>
-            <div class="col-md-5 col-md-offset-1 text-center">
-            	<i class="glyphicon glyphicon-envelope glpyh size"></i>
-            	<h3>{{'Heb je vragen of suggesties?'|_}}</h3>
-            	<hr class="hr-sm">
-            </div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>{{ 'Contact'|_ }}</h2>
         </div>
     </div>
+    <div class="row">
+        <div class="col-sm-6">
+            {% component 'simpleContact' %}
+        </div>
+        <div class="col-md-5 col-md-offset-1 text-center">
+            <i class="glyphicon glyphicon-envelope"></i>
+            <h3>{{'Heb je vragen of suggesties?'|_}}</h3>
+            <hr class="hr-sm">
+        </div>
+    </div>
+</div>

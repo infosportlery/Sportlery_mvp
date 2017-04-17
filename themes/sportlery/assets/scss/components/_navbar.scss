@@ -21,18 +21,29 @@
     }
     .glyphicon {
         font-size: 16px;
-        color: $brand-primary;
         vertical-align: middle;
+        color: $text-muted;
         margin-right: 10px;
 
         &:before {
             width: 30px;
             height: 30px;
-            border: 1px solid $brand-primary;
+            border: 1px solid $text-muted;
             display: inline-block;
             text-align:center;
             line-height:30px;
             border-radius: 100%;
+        }
+    }
+
+    &.new-notifications {
+        color: $brand-primary;
+
+        .glyphicon {
+            color: $brand-primary;
+            &:before {
+                border-color: $brand-primary;
+            }
         }
     }
     @media (min-width: $grid-float-breakpoint) {

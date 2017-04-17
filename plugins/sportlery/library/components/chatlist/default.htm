@@ -43,6 +43,7 @@
                             </p>
                         {% endif %}
                     </div>
+                    <a href="{{ 'chat'|page({ id: attribute(chat, 'id')}) }}" class="btn btn-primary">Chat</a>
                 </div>
             {% endfor %}
         {% endif %}

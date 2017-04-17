@@ -3,12 +3,17 @@
 <div class="col-sm-12">
     <div class="profile-header">
         <div class="row">
-            <div class="col-sm-12 text-center">
+            <div class="col-sm-8 col-sm-offset-2 text-center">
                 {% if profile.avatar %}
                     <img src="{{ profile.avatar.thumb(100,100) }}" height="100" weight="100">
                 {% else %}
                     <img src="http://placehold.it/100x100">
                 {% endif %}
+            </div>
+            <div class="col-sm-2">
+                
+                <a href="{{ 'sportlers'|page }}" class="btn btn-default">{{ 'Terug'|_ }}</a>
+    
             </div>
             <!-- /.col-sm-12 text-center -->
         </div>

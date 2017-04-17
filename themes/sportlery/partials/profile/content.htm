@@ -73,7 +73,14 @@
         </div>
     </div>
     {% else %}
-        <p>Dit ben jij zelf</p>
+    <div class="panel panel-default text-center">
+        <div class="panel-body">
+            <h1 class="panel-heading">
+               {{ 'Dit ben jij zelf'|_ }}
+            </h1>
+        </div>
+    </div>
+        
     {% endif %}
 </div>
 <!-- /.col-sm-12 -->

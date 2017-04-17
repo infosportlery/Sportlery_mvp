@@ -17,7 +17,7 @@ class Event extends Model
         'Sportlery.Library.Behaviors.HashIdsModel',
     ];
 
-    public $translatable = ['description'];
+    public $translatable = ['name', 'description'];
 
     /*
      * Validation

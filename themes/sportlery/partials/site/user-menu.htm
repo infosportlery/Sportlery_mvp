@@ -1,7 +1,7 @@
 {% if user %}
 <ul class="nav navbar-nav navbar-right">
     <li>
-        <a href="{{ 'home'|page }}">Home</a>
+        <a href="{{ 'home'|page }}">{{ 'Home'|_ }}</a>
     </li>
     <li class="dropdown">
         <a href="#" data-toggle="dropdown" class="img-dropdown">
@@ -24,12 +24,14 @@
 
         <ul class="dropdown-menu" role="menu" data-dropdown-title="A dropdown menu">
             <li class="dropdown-header hidden-xs" role="presentation">{{user.name}} {{user.surname}}</li>
-            <li role="presentation"><a href="{{ 'settings'|page }}" role="menuitem" tabindex="-1"><span class="glyphicon glyphicon-wrench"></span> Profile Settings</a></li>
-            <li role="presentation"><a href="{{ 'help'|page }}"><span class="glyphicon glyphicon-question-sign"></span> Help</a></li>
             <li role="presentation">
-                <a id="logout" href="#">
-                    <i class="glyphicon glyphicon-off"></i> {{ 'Uitloggen'|_ }}
-                </a>
+                <a href="{{ 'settings'|page }}" role="menuitem" tabindex="-1"><span class="glyphicon glyphicon-wrench"></span> {{ 'Profiel instellingen'|_ }}</a>
+            </li>
+            <li role="presentation">
+                <a href="{{ 'help'|page }}"><span class="glyphicon glyphicon-question-sign"></span> {{ 'Help'|_ }}</a>
+            </li>
+            <li role="presentation">
+                <a id="logout" href="#"><i class="glyphicon glyphicon-off"></i> {{ 'Uitloggen'|_ }}</a>
                 {{ form_open({ request: 'session::onLogout' }) }}
                     {{ form_hidden('redirect', 'home'|page) }}
                 {{ form_close() }}

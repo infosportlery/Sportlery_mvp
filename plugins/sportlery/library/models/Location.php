@@ -15,7 +15,7 @@ class Location extends Model
         'Sportlery.Library.Behaviors.HashIdsModel',
     ];
 
-    public $translatable = ['description'];
+    public $translatable = ['name', 'description'];
 
     /*
      * Validation

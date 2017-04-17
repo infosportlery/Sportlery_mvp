@@ -1,6 +1,6 @@
 {% if profile %}
 	{% partial __SELF__ ~ '::detail' %}
 {% else %}
-    <h1>Niet gevonden</h1>
-    <p>Sorry ik ken deze gebruiker niet.</p>
+    <h1>{{ 'Niet gevonden'|_ }}</h1>
+    <p>{{ 'De sportler die je zocht kon niet gevonden worden'|_ }}</p>
 {% endif %}

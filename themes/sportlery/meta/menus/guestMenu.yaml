@@ -2,13 +2,9 @@ name: 'Guest menu'
 items:
     -
         title: Home
-        nesting: '0'
-        type: static-page
-        url: ''
+        type: cms-page
         code: home
         reference: home
-        cmsPage: ''
-        replace: '0'
         viewBag:
             isHidden: '0'
             cssClass: ''
@@ -29,26 +25,18 @@ items:
         items:
             -
                 title: Sportclub
-                nesting: '0'
-                type: static-page
-                url: ''
+                type: cms-page
                 code: sportclub
                 reference: sportclub
-                cmsPage: ''
-                replace: '0'
                 viewBag:
                     isHidden: '0'
                     cssClass: ''
                     isExternal: '0'
             -
                 title: Trainer
-                nesting: '0'
-                type: static-page
-                url: ''
+                type: cms-page
                 code: trainer
                 reference: trainer
-                cmsPage: ''
-                replace: '0'
                 viewBag:
                     isHidden: '0'
                     cssClass: ''
@@ -69,26 +57,18 @@ items:
         items:
             -
                 title: 'Team Sportlery'
-                nesting: '0'
-                type: static-page
-                url: ''
+                type: cms-page
                 code: team
                 reference: team-sportlery
-                cmsPage: ''
-                replace: '0'
                 viewBag:
                     isHidden: '0'
                     cssClass: ''
                     isExternal: '0'
             -
                 title: Contact
-                nesting: '0'
-                type: static-page
-                url: ''
+                type: cms-page
                 code: contact
-                reference: contact
-                cmsPage: ''
-                replace: '0'
+                reference: help
                 viewBag:
                     isHidden: '0'
                     cssClass: ''

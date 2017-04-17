@@ -45,11 +45,11 @@ class SportlersList extends ComponentBase
     public function onRun()
     {
         $this->page['sportlers'] = $this->getUsers();
-        $this->page['profile'] = $this->property('profile');
+        $this->page['detailsPage'] = $this->property('detailsPage');
     }
 
     private function getUsers()
     {
-        return User::all();
+        return User::paginate(24);
     }
 }

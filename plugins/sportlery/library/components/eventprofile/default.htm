@@ -1,6 +1,16 @@
 {% if event %}
+<div class="row">
     <h1>{{ event.name }}</h1>
-    <p><strong>Categories: </strong> </p>
+    <div class="col-md-7">
+        <div class="panel panel-default">
+            
+        </div>    
+    </div>
+    
+</div>
+    
+    <p><strong>Categories: </strong> 
+    </p>
     <p>
         <strong>Starts at:</strong> {{ event.starts_at.formatLocalized('%A %d %B, %Y') }} om {{ event.starts_at.format('H:i') }}<br>
         <strong>Ends at:</strong> {{ event.ends_at.formatLocalized('%A %d %B, %Y') }} om {{ event.ends_at.format('H:i') }}

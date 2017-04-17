@@ -5,22 +5,31 @@
         <div class="panel panel-default">
             <p><strong>Categories: </strong> 
             </p>
-            <p>
-                <strong>Starts at:</strong> {{ event.starts_at.formatLocalized('%A %d %B, %Y') }} om {{ event.starts_at.format('H:i') }}<br>
-                <strong>Ends at:</strong> {{ event.ends_at.formatLocalized('%A %d %B, %Y') }} om {{ event.ends_at.format('H:i') }}
-                {% if event.price > 0 %}
-                    <br><strong>Price: </strong> &euro; {{ event.price|number_format(2, ',', '.') }}
-                {% endif %}
-            </p>
+            
             {{ event.description|raw }}
-            {% if event.user_id == user.id %}
-                <a href="/dashboard/events/edit/{{ event.getHashId() }}" class="btn btn-default">Edit</a>
-            {% endif %}
         </div>    
     </div>
     <div class="col-md-5">
-        <div class="row">   
+        <div class="row">
             <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="col-md-12">
+                        {% if event.user_id == user.id %}
+                            <a href="/dashboard/events/edit/{{ event.getHashId() }}" class="btn btn-default">Edit</a>
+                        {% endif %}
+                        <p>
+                            <strong>Starts at:</strong> {{ event.starts_at.formatLocalized('%A %d %B, %Y') }} om {{ event.starts_at.format('H:i') }}<br>
+                            <strong>Ends at:</strong> {{ event.ends_at.formatLocalized('%A %d %B, %Y') }} om {{ event.ends_at.format('H:i') }}
+                            {% if event.price > 0 %}
+                                <br><strong>Price: </strong> &euro; {{ event.price|number_format(2, ',', '.') }}
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">   
+            <div class="col-md-12 text-center">
                 <div class="panel panel-default">
                     {% if user %}
                     <p>
@@ -72,7 +81,9 @@
                                 {% endfor %}
                             </ul>
                         {% else %}
-                            <h4>You currently have no friends going to this event.</h4>
+                            <div class="col-md-12 text-center">
+                                <h4>You currently have no friends going to this event.</h4>    
+                            </div>    
                         {% endif %}
                     {% endif%}    
                 </div>

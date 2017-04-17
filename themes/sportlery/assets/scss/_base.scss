@@ -208,6 +208,7 @@ body {
 
 .header3 h1 {font-size: 80px;}
 .header4 h1 {font-size: 80px;}
+.header5 h1 {font-size: 80px;}
 
 // .header3 {
 // 	background-image: url('../../resources/img/pexels-photo-167817.jpeg');
@@ -612,4 +613,27 @@ button.information-btn-top {
     color: #fff;
     background-color: #007bb6;
     border-color: #29719B;
+}
+
+.information-btn {
+  margin-bottom: 10px;
+}
+
+.infomation-col p {
+  min-height: 105px;
+}
+
+.h1-default {
+      color: #F46835;
+}
+
+.container h1 {
+  margin-bottom: 50px;
+}
+
+.btn-default {
+  background-color: #29719B;
+  color: white;
+  border: none;
+
 }

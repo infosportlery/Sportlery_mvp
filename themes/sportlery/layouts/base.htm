@@ -2,14 +2,15 @@
 
 [session]
 security = all
+
+[notificationCounts]
 ==
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Sportlery - {{ this.page.title }}</title>
-        <meta name="description" content="{{ this.page.meta_description }}">
-        <meta name="title" content="{{ this.page.meta_title }}">
+        <title>{{ this.page.title|_ }} | Sportlery</title>
+        <meta name="description" content="{{ this.page.meta_description|_ }}">
         <meta name="author" content="Sportlery">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="{{ 'assets/css/sportlery.css'|theme }}" rel="stylesheet">
@@ -21,16 +22,6 @@ security = all
             {% partial 'site/header-2' %}
 
             <div class="container">
-                {% flash %}
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="alert alert-{{ type == 'error' ? 'danger' : type }}">{{ message }}</div>
-                        </div>
-                    </div>
-                </div>
-                {% endflash %}
-
                 <div class="row">
                     <div class="col-sm-12">
                         {% page %}
@@ -41,7 +32,6 @@ security = all
 
         {% partial 'site/footer' %}
 
-        <!-- Scripts -->
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
         {% framework extras %}
         {% scripts %}

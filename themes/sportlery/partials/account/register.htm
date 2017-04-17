@@ -1,20 +1,25 @@
-<form data-request="onRegister">
+{{ form_open({ request: 'onRegister' }) }}
     <div class="form-group">
-        <label for="email">{{ 'Email'|_ }}</label>
-        <input name="email" type="email" class="form-control" id="email" placeholder="{{ 'Enter your email'|_ }}" />
+        {{ form_label('email', 'E-Mail'|_, { class: 'control-label' }) }}
+        {{ form_input('email', 'email', null, { class: 'form-control', placeholder: 'Vul je e-mail adres in'|_ }) }}
     </div>
 
     <div class="form-group">
-        <label for="password">{{ 'reg.password'|_ }}</label>
-        <input name="password" type="password" class="form-control" id="password" placeholder="Choose a password" />
+        {{ form_label('password', 'Wachtwoord'|_, { class: 'control-label' }) }}
+        {{ form_password('password', { class: 'form-control', placeholder: 'Vul een wachtwoord in'|_ }) }}
     </div>
 
     <div class="form-group">
-        <label for="passwordConfirm">{{ 'reg.password_repeat'|_ }}</label>
-        <input name="password" type="password" class="form-control" id="passwordConfirm" placeholder="Repeat password" />
+        {{ form_label('password_confirmation', 'Wachtwoord bevestiging'|_, { class: 'control-label' }) }}
+        {{ form_password('password_confirmation', { class: 'form-control', placeholder: 'Bevestig je wachtwoord'|_ }) }}
     </div>
 
-    <button type="submit" class="btn btn-primary">{{ 'reg.register'|_ }}</button>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">{{ 'Registreer'|_ }}</button>
+    </div>
 
-    <p>By clicking 'register' or logging in through one of the social networks available you agree to the our <a href="{{ 'privacy-policy'|page }}" target="_blank">Privacy Policy</a>.</p>
-</form>
+    <p>
+        {{ 'Door in te loggen of te registreren ga je akkoord met onze'|_ }}
+        <a href="{{ 'privacy-policy'|page }}" target="_blank">{{ 'Privacy Policy'|_ }}</a>.
+    </p>
+{{ form_close() }}

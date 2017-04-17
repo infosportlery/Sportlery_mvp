@@ -1,54 +1,50 @@
-
 {{ form_ajax('onUpdate', { model: user }, { files: true }) }}
+    {{ form_hidden('redirect', 'profile'|page({ id: user.getHashId() })) }}
     <div class="form-group">
-        {{ form_label('name', 'First Name', { class: 'control-label' }) }}
+        {{ form_label('name', 'Voornaam'|_, { class: 'control-label' }) }}
         {{ form_text('name', null, { class: 'form-control' }) }}
     </div>
     <div class="form-group">
-        {{ form_label('surname', 'Last Name', { class: 'control-label' }) }}
+        {{ form_label('surname', 'Achternaam'|_, { class: 'control-label' }) }}
         {{ form_text('surname', null, { class: 'form-control' }) }}
     </div>
-
     <div class="form-group">
-        {{ form_label('email', 'E-Mail', { class: 'control-label' }) }}
+        {{ form_label('email', 'E-Mail'|_, { class: 'control-label' }) }}
         {{ form_input('email','email', null, { class: 'form-control' }) }}
     </div>
-
     <div class="form-group">
-        {{ form_label('password', 'New Password', { class: 'control-label' }) }}
-        {{ form_password('password', { class: 'form-control' }) }}
+        {{ form_label('password', 'Nieuw Wachtwoord'|_, { class: 'control-label' }) }}
+        {{ form_password('password', { class: 'form-control', autocomplete: 'new-password' }) }}
     </div>
-
     <div class="form-group">
-        {{ form_label('password_confirmation', 'Confrim New Password', { class: 'control-label' }) }}
-        {{ form_password('password_confirmation', { class: 'form-control' }) }}
+        {{ form_label('password_confirmation', 'Nieuw Wachtwoord Bevestigen'|_, { class: 'control-label' }) }}
+        {{ form_password('password_confirmation', { class: 'form-control', autocomplete: 'new-password' }) }}
     </div>
-
     <div class="form-group">
-        {{ form_label('street', 'Street', { class: 'control-label' }) }}
+        {{ form_label('street', 'Straat'|_, { class: 'control-label' }) }}
         {{ form_text('street', null, { class: 'form-control' }) }}
     </div>
     <div class="form-group">
-        {{ form_label('zip_code', 'Zip code', { class: 'control-label' }) }}
+        {{ form_label('zip_code', 'Postcode'|_, { class: 'control-label' }) }}
         {{ form_text('zip_code', null, { class: 'form-control' }) }}
     </div>
     <div class="form-group">
-        {{ form_label('city', 'City', { class: 'control-label' }) }}
+        {{ form_label('city', 'Woonplaats'|_, { class: 'control-label' }) }}
         {{ form_text('city', null, { class: 'form-control' }) }}
     </div>
     <div class="form-group">
-        {{ form_label('state', 'State', { class: 'control-label' }) }}
+        {{ form_label('state', 'Provincie'|_, { class: 'control-label' }) }}
         {{ form_text('state', null, { class: 'form-control' }) }}
     </div>
     <div class="form-group">
-        {{ form_label('country', 'Country', { class: 'control-label' }) }}
+        {{ form_label('country', 'Land'|_, { class: 'control-label' }) }}
         {{ form_text('country', null, { class: 'form-control' }) }}
     </div>
     <div class="form-group">
-        {{ form_label('bio', 'Biography', { class: 'control-label' }) }}
+        {{ form_label('bio', 'Biografie'|_, { class: 'control-label' }) }}
         {{ form_textarea('bio', null, { class: 'form-control', rows: 6 }) }}
     </div>
-
-    <button type="submit" class="btn btn-default">Save</button>
-
+    <div class="form-group">
+        <button type="submit" class="btn btn-default">{{ 'Opslaan'|_ }}</button>
+    </div>
 {{ form_close() }}

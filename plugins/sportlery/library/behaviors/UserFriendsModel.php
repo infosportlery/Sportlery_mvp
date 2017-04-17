@@ -181,6 +181,16 @@ class UserFriendsModel extends ModelBehavior
     }
 
     /**
+     * Get a list of all received friend requests that are pending.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection|User[]
+     */
+    public function countReceivedFriendRequests()
+    {
+        return $this->model->friendedBy()->wherePivot('status', FriendshipStatus::PENDING)->count();
+    }
+
+    /**
      * Get a list of all sent friend requests that are pending.
      *
      * @return \Illuminate\Database\Eloquent\Collection|User[]

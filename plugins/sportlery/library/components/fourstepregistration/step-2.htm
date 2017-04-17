@@ -1,19 +1,19 @@
 {{ form_model(user, { id: 'four-step-form' }) }}
     <div class="form-group">
-        <label for="address_autocomplete" class="control-label">Search address</label>
-        <input type="text" name="address_autocomplete" class="form-control" data-component="locationAutocomplete">
+        {{ form_label('street', 'Adres'|_, { class: 'control-label' }) }}
+        {{ form_text('street', null, { class: 'form-control' }) }}
     </div>
-    {{ form_hidden('latitude') }}
-    {{ form_hidden('longitude') }}
-    {{ form_hidden('street') }}
-    {{ form_hidden('city') }}
-    {{ form_hidden('zip_code') }}
-    {{ form_hidden('state') }}
-    {{ form_hidden('country') }}
+    <div class="form-group">
+        {{ form_label('zip_code', 'Postcode'|_, { class: 'control-label' }) }}
+        {{ form_text('zip_code', null, { class: 'form-control' }) }}
+    </div>
+    <div class="form-group">
+        {{ form_label('city', 'Woonplaats'|_, { class: 'control-label' }) }}
+        {{ form_text('city', null, { class: 'form-control' }) }}
+    </div>
+    <div class="form-group">
+        {{ form_label('country', 'Land'|_, { class: 'control-label' }) }}
+        {{ form_text('country', null, { class: 'form-control' }) }}
+    </div>
     {{ form_hidden('current_step', 2) }}
 {{ form_close() }}
-<style>.pac-container { z-index: 1100; }</style>
-{% if isPartial %}
-    <script>function init() { $('[data-component="locationAutocomplete"]').locationAutocomplete() }</script>
-    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key={{ apiKey }}&callback=init"></script>
-{% endif %}

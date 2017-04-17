@@ -1,33 +1,35 @@
-title = "Sport Buddies"
+title = "Buddy Centrum"
 url = "/sportbuddies"
 layout = "base"
 is_hidden = 0
 
 [viewBag]
-localeUrl[en] = "/dashboard/sportbuddies"
+localeUrl[en] = "/sportbuddies"
 
 [friendsList]
 ==
 <div class="row">
-    <h2>Buddy Centrum</h2>
+    <div class="col-xs-12">
+        <h2>{{ 'Buddy Centrum'|_ }}</h2>
+    </div>
 </div>
 <div class="row">
     <div class="col-md-4 col-sm-12">
-        <h3>Sport Buddies</h3>
+        <h3>{{ 'Sport Buddies'|_ }}</h3>
         {% component 'friendsList' listType="friends" %}
     </div>
     <div class="col-md-4 col-sm-12">
-        <h3>Received Requests</h3>
+        <h3>{{ 'Ontvangen Verzoeken'|_ }}</h3>
         {% component 'friendsList' listType="received" %}
     </div>
     <div class="col-md-4 col-sm-12">
-        <h3>Sent Requests</h3>
+        <h3>{{ 'Verzonden Verzoeken'|_ }}</h3>
         {% component 'friendsList' listType="sent" %}
     </div>
 </div>
 <div class="row">
     <div class="col-sm-12">
-        <h3 class="text-danger">Blocked users</h3>
+        <h3 class="text-danger">{{ 'Geblokkeerde Sportlers'|_ }}</h3>
         {% component 'friendsList' listType="blocked" %}
     </div>
 </div>

@@ -98,7 +98,7 @@ class UserHomeLocationList extends ComponentBase
 
     private function getCities()
     {
-        return Location::distinct()->orderBy('city', 'asc')->lists('city', 'city');
+        return Location::distinct()->where('is_hidden', 0)->orderBy('city', 'asc')->lists('city', 'city');
     }
 
     public function getUserEventsLocations()

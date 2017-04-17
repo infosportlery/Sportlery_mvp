@@ -11,7 +11,7 @@ class AddExperationEventJoinDate extends Migration
     public function up()
     {
         Schema::table('spr_events', function(Blueprint $table) {
-            $table->dateTime('booking_ends_at');
+            $table->dateTime('booking_ends_at')->nullable();
         });
     }
 

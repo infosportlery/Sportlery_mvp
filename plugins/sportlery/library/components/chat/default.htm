@@ -3,25 +3,28 @@
         <div id="chat-messages" style="max-height: 500px; overflow-y: auto;">
             {% if chat.messageCount > chat.messages.count %}
                 <div class="load-more-wrapper text-center">
-                    <button class="btn btn-default" id="load-more-chats">Load More...</button>
+                    <button class="btn btn-default" id="load-more-chats">{{ 'Laad Meer'|_ }}</button>
                 </div>
             {% endif %}
             {% for message in chat.messages %}
                 {% partial __SELF__~'::message' message=message %}
+            {% else %}
+                <div class="text-muted empty-conversation">{{ 'Begin het gesprek!'|_ }}</div>
             {% endfor %}
         </div>
     </div>
 </div>
 
-<div class="row">
-    <form id="chat-form">
-        <div class="form-group">
-            <div class="col-sm-11">
-                <input type="text" id="message" class="form-control" required autocomplete="off" maxlength="255" name="message" placeholder="Say something...">
+<form id="chat-form">
+    <div class="form-group">
+        <div class="row">
+
+            <div class="col-sm-10">
+                <input type="text" id="message" class="form-control" required autocomplete="off" maxlength="255" name="message" placeholder="{{ 'Zeg iets'|_ }}...">
             </div>
-            <div class="col-sm-1">
-                <button class="btn btn-primary" type="submit">Send</button>
+            <div class="col-sm-2">
+                <button class="btn btn-block btn-primary" type="submit" disabled>{{ 'Verstuur'|_ }}</button>
             </div>
         </div>
-    </form>
-</div>
+    </div>
+</form>

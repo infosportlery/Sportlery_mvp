@@ -1,7 +1,47 @@
 .navbar-brand {
-    padding: 20px $navbar-padding-horizontal;
+    padding: 25px $navbar-padding-horizontal;
+
+    @media (min-width: $grid-float-breakpoint) {
+        padding: 20px $navbar-padding-horizontal;
+    }
 
     img {
-        max-height: $navbar-height - 40px;
+        max-height: $navbar-height - 50px;
+
+        @media (min-width: $grid-float-breakpoint) {
+            max-height: $navbar-height - 40px;
+        }
+    }
+}
+
+.navbar-nav > li > a.img-dropdown {
+    img {
+        max-width: 30px;
+        margin-right: 10px;
+    }
+    .glyphicon {
+        font-size: 16px;
+        color: $brand-primary;
+        vertical-align: middle;
+        margin-right: 10px;
+
+        &:before {
+            width: 30px;
+            height: 30px;
+            border: 1px solid $brand-primary;
+            display: inline-block;
+            text-align:center;
+            line-height:30px;
+            border-radius: 100%;
+        }
+    }
+    @media (min-width: $grid-float-breakpoint) {
+        padding-top: ($navbar-height - 30px) / 2;
+        padding-bottom: ($navbar-height - 30px) / 2;
+
+        img {
+            max-width: 100%;
+            margin-right: 0;
+        }
     }
 }

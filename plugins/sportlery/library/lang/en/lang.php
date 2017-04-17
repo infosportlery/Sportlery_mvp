@@ -2,5 +2,5 @@
     'plugin' => [
         'name' => 'library',
         'description' => ''
-    ]
+    ],
 ];

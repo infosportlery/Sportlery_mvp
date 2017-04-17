@@ -21,14 +21,26 @@ class EventForm extends ComponentBase
         ];
     }
 
+    public function init()
+    {
+        $this->addComponent('RainLab\User\Components\Session', 'session', [
+            'security' => 'user',
+            'redirect' => 'login',
+        ]);
+    }
+
     public function onRun()
     {
         $this->page['locations'] = $this->getLocations();
 
         if ($eventId = $this->param('id')) {
-            
-            $unscrabled = 
-            $this->page['event'] = Event::findByHashId($eventId);
+            $this->page['event'] = $this->page['user']->events()->whereHashId($eventId)->first();
+
+            if (!$this->page['event']) {
+                Flash::error('Sorry, the activity you requested could not be found.');
+
+                return Redirect::to($this->controller->pageUrl('home'));
+            }
         }
     }
 
@@ -59,11 +71,11 @@ class EventForm extends ComponentBase
             $event->user_id = $user->id;
             $event->location_id = Input::get('location');
 
-            $user->events()->status = 1;
+            // $user->events()->status = 1;
 
             $user->events()->save($event);
 
-            Flash::success('You\'ve added an Event!');
+            Flash::success('You\'ve added an event!');
 
             return Redirect::back();
         }
@@ -71,7 +83,6 @@ class EventForm extends ComponentBase
 
     public function onUpdate()
     {
-
         $event = Event::findByHashId($this->param('id'));
 
         $event->name = Input::get('name');

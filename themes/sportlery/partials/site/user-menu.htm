@@ -1,34 +1,40 @@
 {% if user %}
 <ul class="nav navbar-nav navbar-right">
-	<li>
-		<a href="{{ 'home'|page }}">Home</a>
-	</li>
-	<li>
-		<div class="dropdown user-menu-dropdown">
-			<a href="#" data-toggle="dropdown" class="user-menu user-menu-image"><img class="menu-image" src="{{ user.avatarThumb(40,40) }}"></a>
+    <li>
+        <a href="{{ 'home'|page }}">Home</a>
+    </li>
+    <li class="dropdown">
+        <a href="#" data-toggle="dropdown" class="img-dropdown">
+            <i class="glyphicon glyphicon-envelope"></i>
+            <span class="visible-xs-inline">{{ 'Meldingen'|_ }}</span>
+            <span class="caret visible-xs-inline-block"></span>
+        </a>
 
-			<ul class="dropdown-menu" role="menu" data-dropdown-title="A dropdown menu">
-				<!-- Latest 5 chats -->
+        <ul class="dropdown-menu" role="menu">
+            <li class="dropdown-header hidden-xs" role="presentation">{{ 'Meldingen'|_ }}</li>
+            <li role="presentation"><a href="{{ 'message-center'|page }}">{{ 'Berichtencentrum'|_ }}</a></li>
+        </ul>
+    </li>
+    <li class="dropdown">
+        <a href="#" data-toggle="dropdown" class="img-dropdown">
+            <img class="img-circle" src="{{ user.avatarThumb(30,30) }}">
+            <span class="visible-xs-inline">{{ user.name }} {{ user.surname }}</span>
+            <span class="caret visible-xs-inline-block"></span>
+        </a>
 
-				<li role="presentation"><a href="/messages">All Conversations</a></li>
-			</ul>	
-		</div>
-	</li>
-	<li>
-		<div class="dropdown user-menu-dropdown">
-			<a href="#" data-toggle="dropdown" class="user-menu user-menu-image"><img class="menu-image" src="{{ user.avatarThumb(40,40) }}"></a>
-
-			<ul class="dropdown-menu" role="menu" data-dropdown-title="A dropdown menu">
-				<li role="presentation" style="text-align: center;"><b>{{user.name}} {{user.surname}}</b></li>
-				<li role="presentation"><a href="/settings" role="menuitem" tabindex="-1"><span class="glyphicon glyphicon-wrench"></span> Profile Settings</a></li>
-				<li role="presentation"><a href="/FAQ"><span class="glyphicon glyphicon-wrench"></span> Help</a></li>
-				<li role="presentation"><a href="/logout"><span class="glyphicon glyphicon-wrench"></span> Logout</a></li>
-			</ul>	
-		</div>
-		
-	</li>
+        <ul class="dropdown-menu" role="menu" data-dropdown-title="A dropdown menu">
+            <li class="dropdown-header hidden-xs" role="presentation">{{user.name}} {{user.surname}}</li>
+            <li role="presentation"><a href="{{ 'settings'|page }}" role="menuitem" tabindex="-1"><span class="glyphicon glyphicon-wrench"></span> Profile Settings</a></li>
+            <li role="presentation"><a href="{{ 'help'|page }}"><span class="glyphicon glyphicon-question-sign"></span> Help</a></li>
+            <li role="presentation">
+                <a id="logout" href="#">
+                    <i class="glyphicon glyphicon-off"></i> {{ 'Uitloggen'|_ }}
+                </a>
+                {{ form_open({ request: 'session::onLogout' }) }}
+                    {{ form_hidden('redirect', 'home'|page) }}
+                {{ form_close() }}
+            </li>
+        </ul>
+    </li>
 </ul>
-
-{% else %}
-
 {% endif %}

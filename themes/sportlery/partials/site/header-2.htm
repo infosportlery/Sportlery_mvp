@@ -28,8 +28,15 @@ code = "userMenu"
         </div>
     </div>
 </nav>
+{% flash %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="alert alert-{{ type == 'error' ? 'danger' : type }}">{{ message }}</div>
+            </div>
+        </div>
+    </div>
+{% endflash %}
 {% if not user %}
     {% partial 'site/bannerHeader' %}
-{% else %}
-    
 {% endif %}

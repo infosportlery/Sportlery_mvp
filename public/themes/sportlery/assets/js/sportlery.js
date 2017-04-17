@@ -15676,12 +15676,7 @@ $(function () {
 $(function () {
 
     $('#new-chat-modal').on('show.bs.modal', function () {
-        $.request('onFetchFriends', {
-            success: function success(data) {
-                console.log(data);
-                this.success(data);
-            }
-        });
+        $.request('onFetchFriends');
     });
 
     var $chatForm = $('#chat-form');
@@ -15694,10 +15689,19 @@ $(function () {
     var $messages = $('#chat-messages');
     var POLL_RATE = 10000; // 10 seconds.
     var $loadMoreChats = $('#load-more-chats');
+    var $emptyConversation = $('.empty-conversation');
     var polledSince = new Date().toISOString();
+
+    $message.on('input', function () {
+        $chatForm.find('[type=submit]').prop('disabled', $.trim($(this).val()).length == 0);
+    });
 
     var handleSuccess = function handleSuccess(data) {
         var shouldScroll = $messages.scrollTop() >= $messages.prop('scrollHeight') - $messages.height() - 15;
+
+        if (data.length !== 0) {
+            $emptyConversation.remove();
+        }
 
         this.success(data);
 
@@ -15713,9 +15717,6 @@ $(function () {
 
         $chatForm.find('[type=submit]').prop('disabled', true);
         $chatForm.request('onAddMessage', {
-            complete: function complete() {
-                $chatForm.find('[type=submit]').prop('disabled', false);
-            },
             success: function success(data) {
                 handleSuccess.call(this, data);
             }

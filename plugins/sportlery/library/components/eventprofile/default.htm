@@ -21,7 +21,8 @@
     <div class="col-md-5">
         <div class="row">   
             <div class="col-md-12">
-                {% if user %}
+                <div class="panel panel-default">
+                    {% if user %}
                     <p>
                         {% if event.price == 0 or (event.price > 0 and not isGoing) %}
                             {{ form_open({ class: 'd-inline', request: __SELF__~'::onUpdateEventJoinStatus' }) }}
@@ -49,27 +50,30 @@
                             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#invite-friends-modal">Invite Friends to Event</button>
                         {% endif %}
                     </p>  
-                {% endif %}          
+                    {% endif %}          
+                </div>    
             </div> 
             <div class="col-md-12">
-                {% if user %}                        
-                    {% if friendsGoing is not empty %}
-                        <h4>Friends going to this event:</h4>
-                        <ul class="list-group">
-                            {% for friend in friendsGoing %}
-                                <li class="list-group-item">
-                                    <img src="{{ friend.avatarThumb(25) }}">
-                                    {{ friend.name }} {{ friend.surname }}
-                                    {% if friend.id in friendsInvited %}
-                                        <span class="pull-right text-muted">
-                                            Invited by you
-                                        </span>
-                                    {% endif %}
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
-                {% endif%}
+                <div class="panel panel-default">
+                    {% if user %}                        
+                        {% if friendsGoing is not empty %}
+                            <h4>Friends going to this event:</h4>
+                            <ul class="list-group">
+                                {% for friend in friendsGoing %}
+                                    <li class="list-group-item">
+                                        <img src="{{ friend.avatarThumb(25) }}">
+                                        {{ friend.name }} {{ friend.surname }}
+                                        {% if friend.id in friendsInvited %}
+                                            <span class="pull-right text-muted">
+                                                Invited by you
+                                            </span>
+                                        {% endif %}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    {% endif%}    
+                </div>
             </div>       
         </div>
     </div>

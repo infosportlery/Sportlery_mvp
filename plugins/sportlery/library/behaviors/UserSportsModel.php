@@ -16,7 +16,7 @@ class UserSportsModel extends ModelBehavior
             'table' => 'sportlery_library_user_sports',
             'key' => 'user_id',
             'otherKey' => 'sport_id',
-            'pivot' => ['favorite'],
+            'pivot' => ['favorite', 'level'],
         ];
     }
 

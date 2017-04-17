@@ -11,6 +11,8 @@ forceSecure = 0
 security = "user"
 
 [fourStepRegistration]
+
+[userSportsForm]
 ==
 <?php
 function onInit()
@@ -28,12 +30,8 @@ function onInit()
 ==
 {% component 'fourStepRegistration' %}
 <div class="row">
-    <div class="col-xs-12">
-        <h2>{{ 'Profiel Instellingen'|_ }}</h2>
-    </div>
-</div>
-<div class="row">
     <div class="col-md-6">
+        <h2>{{ 'Profiel Instellingen'|_ }}</h2>
         <div class="panel panel-default">
             <div class="panel-body">
                 <div class="form-group">
@@ -47,15 +45,10 @@ function onInit()
         </div>
     </div>
     <div class="col-md-6">
+        <h2>{{ 'Sporten'|_ }}</h2>
         <div class="panel panel-default">
             <div class="panel-body">
-                <div class="form-group">
-                    <label for="#" class="control-label">{{ 'Profielfoto'|_ }}</label>
-
-                    {% component 'imageUploader' %}
-                </div>
-
-                {% component 'account' %}
+                {% component 'userSportsForm' %}
             </div>
         </div>
     </div>

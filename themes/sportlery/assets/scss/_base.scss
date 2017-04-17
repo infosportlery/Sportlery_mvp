@@ -49,10 +49,18 @@ body {
 	border-radius: 50%;
 }
 
+
+  .navbar-brand img {
+    max-height: 35px;
+  }
 @media screen and (min-width: 800px) {
 	.menu-content {
 		width: 25%;
 	}
+
+  .navbar-brand img {
+    max-height: 50px;
+  }
 }
 
 .thin {
@@ -78,6 +86,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  background-image: url('../../resources/img/about_verhaal_2.png');
 }
 .header2 h1 {
   font-size: 80px;
@@ -199,10 +208,24 @@ body {
 
 .header3 h1 {font-size: 80px;}
 .header4 h1 {font-size: 80px;}
+.header5 h1 {font-size: 80px;}
 
 // .header3 {
 // 	background-image: url('../../resources/img/pexels-photo-167817.jpeg');
 // }
+
+@media (max-width: 768px) {
+    
+.home-header h1 {
+    font-size: 3em !important;
+  } 
+.header2 h1 {
+  font-size: 3em !important;
+}
+  .navbar-brand img {
+    max-height: 40px;
+  }
+  }
 
 .about-header-2 {
     position: absolute;
@@ -324,10 +347,13 @@ h6 {
 }
 
 footer {
-  background-color: #f3f3f3;
-  border-top: 4px solid #f78e21;
-  margin-top: 120px;
+    bottom: 0;
+    width: 100%;
+    padding: 50px;
+    min-height: 150px;
+    background-color: black;
 }
+
 
 .social-bottom {
   margin-top: 40px;
@@ -518,4 +544,96 @@ button.information-btn-top {
     background-color: #29719B;
     border: 1px solid #29719B;
     border-radius: 0px;
+}
+
+.footer-logo {
+  height: 60px;
+  width: 60px;
+}
+
+.graphic {
+    background-image: url('../../resources/img/footer.png');
+    background-position: bottom;
+    background-repeat: no-repeat;
+    min-height: 290px;
+    width: 100%;
+    background-size: contain;
+  }
+
+.btn-social-icon {
+    position: relative;
+    padding-left: 44px;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 34px;
+    width: 34px;
+    padding: 0;
+}
+
+.btn-social-icon>:first-child {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 32px;
+    line-height: 34px;
+    font-size: 1.6em;
+    text-align: center;
+    border-right: 1px solid rgba(0,0,0,0.2);
+    }
+
+  .btn-social-icon>:first-child {
+    border: none;
+    text-align: center;
+    width: 100% !important;
+  }
+
+  .btn-instagram {
+    color: #fff;
+    background-color: #3f729b;
+    border-color: rgba(0,0,0,0.2);
+}
+
+.btn-twitter {
+    color: #fff;
+    background-color: #55acee;
+    border-color: rgba(0,0,0,0.2);
+}
+
+.btn-us{
+  border: none;
+  padding: 10px;
+  border-color: #29719B;
+  color: white;
+}
+
+.btn-linkedin {
+    color: #fff;
+    background-color: #007bb6;
+    border-color: #29719B;
+}
+
+.information-btn {
+  margin-bottom: 10px;
+}
+
+.infomation-col p {
+  min-height: 105px;
+}
+
+.h1-default {
+      color: #F46835;
+}
+
+.container h1 {
+  margin-bottom: 50px;
+}
+
+.btn-default {
+  background-color: #29719B;
+  color: white;
+  border: none;
+
 }

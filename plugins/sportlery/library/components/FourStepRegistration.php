@@ -193,39 +193,4 @@ class FourStepRegistration extends ComponentBase
 
         return true;
     }
-
-    private function geocodeAddress($input)
-    {
-        $address = urlencode(implode(' ', $input));
-        $url = "https://maps.googleapis.com/maps/api/geocode/json?address=$address&sensor=false";
-
-        $data = @file_get_contents($url);
-
-        $json = json_decode($data, true);
-
-        if (!$json || !isset($json['status']) || $json['status'] !== 'OK') {
-            return $input;
-        }
-
-        $json = $json['results'][0];
-        $components = $json['address_components'];
-        $country = $this->getAddressComponent($components, 'country', 'long_name');
-        $input['country'] = $country ?: $input['country'];
-        $input['state'] = $this->getAddressComponent($components, 'administrative_area_level_1', 'long_name');
-        $input['latitude'] = $json['geometry']['location']['lat'];
-        $input['longitude'] = $json['geometry']['location']['lng'];
-
-        return $input;
-    }
-
-    private function getAddressComponent($components, $type, $field = 'short_name')
-    {
-        foreach ($components as $component) {
-            if (in_array($type, $component['types'])) {
-                return $component[$field];
-            }
-        }
-
-        return null;
-    }
 }

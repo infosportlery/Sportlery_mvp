@@ -324,10 +324,14 @@ h6 {
 }
 
 footer {
-  background-color: #f3f3f3;
-  border-top: 4px solid #f78e21;
-  margin-top: 120px;
+    bottom: 0;
+    width: 100%;
+    padding: 50px;
+    min-height: 150px;
+    position: absolute;
+    background-color: black;
 }
+
 
 .social-bottom {
   margin-top: 40px;
@@ -526,9 +530,11 @@ button.information-btn-top {
 }
 
 .graphic {
-    background: url('../../resources/img/footer.png') bottom no-repeat;
+    background-image: url('../../resources/img/footer.png');
+    background-position: bottom;
+    background-repeat: no-repeat;
     min-height: 290px;
     width: 100%;
-    margin-bottom: -50px;
     background-size: contain;
   }
+

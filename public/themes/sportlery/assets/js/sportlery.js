@@ -15649,14 +15649,15 @@ window.$(function ($) {
         $('#wrapper').toggleClass('toggled');
         $('#sidebar-toggle').toggleClass('glyphicon-chevron-left glyphicon-chevron-right');
     });
-});
-$(function () {
+
+    $('#logout').on('click', function (e) {
+        e.preventDefault();
+        $(this).next('form').submit();
+    });
     $('#datetime-start').datetimepicker({
         locale: 'nl',
         format: 'YYYY-MM-DD HH:mm:ss'
     });
-});
-$(function () {
     $('#datetime-end').datetimepicker({
         locale: 'nl',
         format: 'YYYY-MM-DD HH:mm:ss'

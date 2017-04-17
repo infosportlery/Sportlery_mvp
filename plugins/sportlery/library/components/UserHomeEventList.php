@@ -88,7 +88,7 @@ class UserHomeEventList extends ComponentBase
             $events = Event::search($this->searchParameters);
         }
 
-        return $events->orderBy('name', 'asc')->paginate($perPage);
+        return $events->orderBy('starts_at', 'asc')->orderBy('name', 'asc')->paginate($perPage);
     }
 
     private function getSports()
@@ -98,7 +98,6 @@ class UserHomeEventList extends ComponentBase
 
     private function getCities()
     {
-
         return Location::distinct()->orderBy('city', 'asc')->lists('city', 'city');
     }
 

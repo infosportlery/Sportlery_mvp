@@ -1,27 +1,44 @@
 {% if event %}
 <div class="row">
+    {% if sportler.avatar %}
+        <img src="{{ event.avatar.thumb(100, 100) }}" height="100" width="100">
+    {% else %}
+        <img src="https://www.timeshighereducation.com/sites/default/files/byline_photos/default-avatar.png" height="100" width="100">
+    {% endif %}
     <h1>{{ event.name }}</h1>
+</div>
+<div class="row">
     <div class="col-md-7">
         <div class="panel panel-default">
             <p><strong>Categories: </strong> 
             </p>
-            <p>
-                <strong>Starts at:</strong> {{ event.starts_at.formatLocalized('%A %d %B, %Y') }} om {{ event.starts_at.format('H:i') }}<br>
-                <strong>Ends at:</strong> {{ event.ends_at.formatLocalized('%A %d %B, %Y') }} om {{ event.ends_at.format('H:i') }}
-                {% if event.price > 0 %}
-                    <br><strong>Price: </strong> &euro; {{ event.price|number_format(2, ',', '.') }}
-                {% endif %}
-            </p>
+            
             {{ event.description|raw }}
-            {% if event.user_id == user.id %}
-                <a href="/dashboard/events/edit/{{ event.getHashId() }}" class="btn btn-default">Edit</a>
-            {% endif %}
         </div>    
     </div>
     <div class="col-md-5">
-        <div class="row">   
+        <div class="row">
             <div class="col-md-12">
-                {% if user %}
+                <div class="panel panel-default">
+                    <div class="col-md-12">
+                        {% if event.user_id == user.id %}
+                            <a href="/dashboard/events/edit/{{ event.getHashId() }}" class="btn btn-default">Edit</a>
+                        {% endif %}
+                        <p>
+                            <strong>Starts at:</strong> {{ event.starts_at.formatLocalized('%A %d %B, %Y') }} om {{ event.starts_at.format('H:i') }}<br>
+                            <strong>Ends at:</strong> {{ event.ends_at.formatLocalized('%A %d %B, %Y') }} om {{ event.ends_at.format('H:i') }}
+                            {% if event.price > 0 %}
+                                <br><strong>Price: </strong> &euro; {{ event.price|number_format(2, ',', '.') }}
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">   
+            <div class="col-md-12 text-center">
+                <div class="panel panel-default">
+                    {% if user %}
                     <p>
                         {% if event.price == 0 or (event.price > 0 and not isGoing) %}
                             {{ form_open({ class: 'd-inline', request: __SELF__~'::onUpdateEventJoinStatus' }) }}
@@ -49,27 +66,34 @@
                             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#invite-friends-modal">Invite Friends to Event</button>
                         {% endif %}
                     </p>  
-                {% endif %}          
+                    {% endif %}          
+                </div>    
             </div> 
             <div class="col-md-12">
-                {% if user %}                        
-                    {% if friendsGoing is not empty %}
-                        <h4>Friends going to this event:</h4>
-                        <ul class="list-group">
-                            {% for friend in friendsGoing %}
-                                <li class="list-group-item">
-                                    <img src="{{ friend.avatarThumb(25) }}">
-                                    {{ friend.name }} {{ friend.surname }}
-                                    {% if friend.id in friendsInvited %}
-                                        <span class="pull-right text-muted">
-                                            Invited by you
-                                        </span>
-                                    {% endif %}
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
-                {% endif%}
+                <div class="panel panel-default">
+                    {% if user %}                        
+                        {% if friendsGoing is not empty %}
+                            <h4>Friends going to this event:</h4>
+                            <ul class="list-group">
+                                {% for friend in friendsGoing %}
+                                    <li class="list-group-item">
+                                        <img src="{{ friend.avatarThumb(25) }}">
+                                        {{ friend.name }} {{ friend.surname }}
+                                        {% if friend.id in friendsInvited %}
+                                            <span class="pull-right text-muted">
+                                                Invited by you
+                                            </span>
+                                        {% endif %}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <div class="col-md-12 text-center">
+                                <h4>You currently have no friends going to this event.</h4>    
+                            </div>    
+                        {% endif %}
+                    {% endif%}    
+                </div>
             </div>       
         </div>
     </div>

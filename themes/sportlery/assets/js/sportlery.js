@@ -40,3 +40,13 @@ $("#btn-index-more").click(function() {
         scrollTop: $("#page-one").offset().top
     }, 2000);
 });
+$("#btn-trainer").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#trainerscr").offset().top
+    }, 2000);
+});
+$("#btn-sportclub").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#sportclubscr").offset().top
+    }, 2000);
+});

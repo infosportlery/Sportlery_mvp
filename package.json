@@ -34,5 +34,8 @@
   "bugs": {
     "url": "https://github.com/infosportlery/Sportlery_mvp/issues"
   },
-  "homepage": "https://github.com/infosportlery/Sportlery_mvp#readme"
+  "homepage": "https://github.com/infosportlery/Sportlery_mvp#readme",
+  "dependencies": {
+    "font-awesome": "^4.7.0"
+  }
 }

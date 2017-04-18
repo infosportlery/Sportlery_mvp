@@ -6,6 +6,7 @@ use Auth;
 use Cms\Classes\ComponentBase;
 use Illuminate\Support\Facades\Redirect;
 use October\Rain\Support\Facades\Flash;
+use RainLab\Translate\Models\Message;
 use Sportlery\Library\Classes\FriendshipStatus;
 use Rainlab\User\Models\User;
 
@@ -25,6 +26,14 @@ class UserProfile extends ComponentBase
     public function onRun()
     {
         $this->page['profile'] = User::findByHashId($this->param('id'));
+        $levels = [
+            1 => Message::trans('Beginner'),
+            2 => Message::trans('Gevorderd'),
+            3 => Message::trans('Pro'),
+        ];
+        $this->page['profile']->sports->each(function($sport) use ($levels) {
+            $sport->level = $levels[$sport->pivot->level];
+        });
         $this->page['profileHashId'] = $this->param('id');
         $this->page['authenticated'] = Auth::check();
 

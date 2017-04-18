@@ -1,9 +1,52 @@
+<div class="row">
+    <div class="col-sm-8 col-sm-offset-4 col-xs-6 col-xs-offset-3">
+        <div class="col-sm-6 text-center">
+            <a href="{{ 'home'|page }}" class="btn btn-primary btn-block">{{ 'Activiteiten'|_ }}</a>
+        </div>
+    </div>
+</div>
+
+<hr class="hr-invisible-sm">
+<div class="row">
+    <div class="col-xs-12">
+    <h2>Sportlers</h2>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                {{ form_open({ method: 'get' }) }}
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            {{ form_label('sport', 'Sport'|_, {class: 'control-label'}) }}
+                            {{ form_select('sport', sports, input('sport'), {class: 'form-control', emptyOption: 'Alle'|_}) }}
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        {{ form_label('city', 'Stad'|_, {class: 'control-label'}) }}
+                        {{ form_select('city', cities, input('city'), {class: 'form-control', emptyOption: 'Alle'|_}) }}
+                    </div>
+                    <div class="col-sm-3">
+                        {{ form_label('q', 'Gebruikersnaam'|_, {class: 'control-label'}) }}
+                        {{ form_text('q', input('q'), {class: 'form-control'}) }}
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <div>&nbsp;</div>
+                            {{ form_submit('Zoeken'|_, {class: 'btn btn-primary'}) }}
+                            {{ link_to(url_current(), 'Opnieuw'|_, {class: 'btn btn-default'}) }}
+                        </div>
+                    </div>
+                </div>
+                {{ form_close() }}
+            </div>
+        </div>
+    </div>
+</div>
 
 
 {% for row in sportlers|batch(6) %}
     <div class="row">
         {% for sportler in row %}
-            <div class="col-md-2">
+            <div class="col-md-2 col-xs-6">
                 {% partial __SELF__~'::sportler-card' sportler=sportler %}
             </div>
         {% endfor %}

@@ -19,12 +19,20 @@ localeUrl[en] = "/sportbuddies"
 
 <div class="row">
     <div class="container">
-        <ul class="nav nav-tabs">
-            <li class="nav active"><a href="#A" data-toggle="tab" class="btn btn-primary deco-none">Sport Buddies</a></li>
-            <li class="nav"><a href="#B" data-toggle="tab" class="btn btn-primary btn-block">Ontvangen Verzoeken</a></li>
-            <li class="nav"><a href="#C" data-toggle="tab" class="btn btn-primary btn-block">Verzonden Verzoeken</a></li>
-            <li class="nav"><a href="#D" data-toggle="tab" class="btn btn-danger deco-none">Geblokkeerde Sportlers</a></li>
-        </ul>
+        <div class="col-sm-12 text-center">
+            <div class="col-sm-3 text-center">
+                <a href="#A" data-toggle="tab" class="btn btn-primary btn-block">{{ 'Sport Buddies'|_ }}</a>
+            </div>
+            <div class="col-sm-3 text-center">
+                <a href="#B" data-toggle="tab" class="btn btn-primary btn-block">{{ 'Ontvangen Verzoeken'|_ }}</a>
+            </div>
+            <div class="col-sm-3 text-center">
+                <a href="#C" data-toggle="tab" class="btn btn-primary btn-block">{{ 'Verzonden Verzoeken'|_ }}</a>
+            </div>
+            <div class="col-sm-3 text-center">
+                <a href="#D" data-toggle="tab" class="btn btn-danger btn-block">{{ 'Geblokkeerde Sportlers'|_ }}</a>
+            </div>
+        </div>          
 
         <!-- Tab panes -->
         <div class="tab-content">

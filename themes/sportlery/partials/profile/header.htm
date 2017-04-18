@@ -1,13 +1,13 @@
 <!-- profile: components/UserProfile -->
+<div class="col-sm-12 text-right">
+    <a href="{{ 'sportlers'|page }}" class="btn btn-default">{{ 'Terug'|_ }}</a>
+</div>
 
 <div class="col-sm-12">
     <div class="profile-header">
         <div class="row">
             <div class="col-sm-8 col-xs-4 col-xs-offset-4 col-sm-offset-2 text-center">
                 <img src="{{ profile.avatarThumb(100,100) }}" height="100" weight="100">
-            </div>
-            <div class="col-sm-2 col-xs-2">
-                <a href="{{ 'sportlers'|page }}" class="btn btn-default">{{ 'Terug'|_ }}</a>
             </div>
         </div>
         <div class="col-sm-12 text-center">

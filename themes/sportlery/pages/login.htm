@@ -9,5 +9,10 @@ localeUrl[en] = "/login"
 [session]
 security = "guest"
 redirect = "home"
+
+[account]
+redirect = "settings"
+paramCode = "code"
+forceSecure = 0
 ==
 {% component 'account' %}

@@ -3,7 +3,8 @@
 namespace Sportlery\Library\Classes;
 
 use Auth;
-use Carbon\Carbon;
+use Cms;
+use Cms\Classes\Router;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Str;
 use Redirect;
@@ -13,25 +14,66 @@ use Sportlery\Library\Models\SocialLogin;
 
 class SocialLoginController extends Controller
 {
+    /**
+     * The CMS page to redirect to after the user has been logged in.
+     *
+     * @var string
+     */
+    private $redirectPage = 'settings';
+
+    /**
+     * The OctoberCMS router used to generate URLs to CMS pages.
+     *
+     * @var \Cms\Classes\Router
+     */
+    private $cmsRouter;
+
+    /**
+     * Create a new social login controller instance.
+     *
+     * @param \Cms\Classes\Router $router
+     */
+    public function __construct(Router $router)
+    {
+        $this->cmsRouter = $router;
+    }
+
+    /**
+     * Redirect the user to the social network's login page.
+     *
+     * @param  string  $provider
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function redirectToProvider($provider)
     {
         return $this->getSocialiteDriver($provider)->redirect();
     }
 
+    /**
+     * Handle creating a new user / logging in the user after they get redirected back
+     * from the social network's login page.
+     *
+     * @param  string  $provider
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function handleProviderCallback($provider)
     {
         try {
-            /** @var \Laravel\Socialite\Two\User $providerUser */
             $providerUser = $this->getSocialiteDriver($provider)->user();
         } catch (\Exception $e) {
-            return Redirect::to('/login');
+            return $this->redirectToCmsPage('login');
         }
 
-        $socialLogin = SocialLogin::where('provider_user_id', $providerUser->getId())->where('provider', $provider)->first();
+        $socialLogin = SocialLogin::where('provider_user_id', $providerUser->getId())
+                                  ->where('provider', $provider)
+                                  ->first();
 
         if ($socialLogin) {
+            // The user has already logged in using this social network before,
+            // so we can just login and redirect them.
             Auth::login($socialLogin->user);
-            return Redirect::to('/');
+
+            return $this->redirectToCmsPage($this->redirectPage);
         }
 
         $socialLogin = new SocialLogin();
@@ -63,6 +105,7 @@ class SocialLoginController extends Controller
 
         if (!$user) {
             $password = Str::random(16);
+
             $user = new User([
                 'email' => $providerUser->getEmail(),
                 'username' => $providerUser->getEmail(),
@@ -72,18 +115,20 @@ class SocialLoginController extends Controller
                 'password_confirmation' => $password,
                 'city' => $city,
             ]);
-            // Activate the user.
-            $user->activation_code = null;
-            $user->is_activated = true;
-            $user->activated_at = $user->freshTimestamp();
-            $user->save();
+
+            // Activate the user. This will also send them a welcome email.
+            $user->attemptActivation($user->getActivationCode());
         } else {
             if (!trim($user->name)) {
+                // Only overwrite the first name if it is currently empty.
                 $user->name = $firstName;
             }
+
             if (!trim($user->surname)) {
+                // Only overwrite the last name if it is currently empty.
                 $user->surname = $lastName;
             }
+
             $user->save();
         }
 
@@ -92,12 +137,14 @@ class SocialLoginController extends Controller
 
         Auth::login($user);
 
-        return Redirect::to('/');
+        return $this->redirectToCmsPage($this->redirectPage);
     }
 
     /**
-     * @param $provider
-     * @return mixed
+     * Create a new Socialite driver for the given provider.
+     *
+     * @param  string  $provider
+     * @return \Laravel\Socialite\Two\AbstractProvider
      */
     private function getSocialiteDriver($provider)
     {
@@ -111,5 +158,19 @@ class SocialLoginController extends Controller
         }
 
         return $driver;
+    }
+
+    /**
+     * Create a redirect to the CMS page with the given file name.
+     * This will look for pages in the /themes/sportlery/pages folder.
+     *
+     * @param  string  $fileName
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    private function redirectToCmsPage($fileName)
+    {
+        $url = $this->cmsRouter->findByFile($fileName);
+
+        return Redirect::to(Cms::url($url));
     }
 }

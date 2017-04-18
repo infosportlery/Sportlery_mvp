@@ -26,8 +26,12 @@
                 <p class="text-muted">
                     {{ event.sports.lists('name')|join(' | ') }} |
                     {{ event.location.city }} |
-                    {{ event.starts_at.formatLocalized('%A %d %B, %Y') }}
-                </p>
+                    {{ event.starts_at.formatLocalized('%A %d %B, %Y') }}<br>
+                    {{ 'van'|_ }} {{ event.starts_at.formatLocalized('%H:%M') }} {{'tot'|_}} 
+                    {{ event.ends_at.formatLocalized('%H:%M') }} </p>
+            </div>
+            <div class="media-right">
+                <a href="{{ detailsPage|page({ id: event.getHashId() }) }}" class="btn btn-simple btn-default" style="bottom: 0;">{{ 'Prijs'|_ }}: &euro; {{ event.price }}</a>
             </div>
         </div>
     </div>

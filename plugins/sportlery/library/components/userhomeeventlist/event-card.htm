@@ -28,6 +28,14 @@
                     {{ event.location.city }} |
                     {{ event.starts_at.formatLocalized('%A %d %B, %Y') }}
                 </p>
+                <p class="text-muted">
+                    {{ event.starts_at.formatLocalized('%H:%M') }} {{'tot'|_}} 
+                    {{ event.ends_at.formatLocalized('%H:%M') }} 
+
+                </p>
+            </div>
+            <div class="media-right">
+                <a href="{{ detailsPage|page({ id: event.getHashId() }) }}" class="btn btn-sm btn-simple btn-info">{{ 'bekijk'|_ }}</a>
             </div>
         </div>
     </div>

@@ -13,24 +13,45 @@ localeUrl[en] = "/sportbuddies"
         <h2>{{ 'Buddy Centrum'|_ }}</h2>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-4 col-sm-12">
-        <h3>{{ 'Sport Buddies'|_ }}</h3>
-        {% component 'friendsList' listType="friends" %}
-    </div>
-    <div class="col-md-4 col-sm-12">
-        <h3>{{ 'Ontvangen Verzoeken'|_ }}</h3>
-        {% component 'friendsList' listType="received" %}
-    </div>
-    <div class="col-md-4 col-sm-12">
-        <h3>{{ 'Verzonden Verzoeken'|_ }}</h3>
-        {% component 'friendsList' listType="sent" %}
-    </div>
-</div>
-<div class="row">
-    <div class="col-sm-12">
-        <h3 class="text-danger">{{ 'Geblokkeerde Sportlers'|_ }}</h3>
-        {% component 'friendsList' listType="blocked" %}
-    </div>
-</div>
 
+
+
+
+<div class="row">
+    <div class="container">
+        <ul class="nav nav-tabs">
+            <li class="nav active"><a href="#A" data-toggle="tab" class="btn btn-primary deco-none">Sport Buddies</a></li>
+            <li class="nav"><a href="#B" data-toggle="tab" class="btn btn-primary btn-block">Ontvangen Verzoeken</a></li>
+            <li class="nav"><a href="#C" data-toggle="tab" class="btn btn-primary btn-block">Verzonden Verzoeken</a></li>
+            <li class="nav"><a href="#D" data-toggle="tab" class="btn btn-danger deco-none">Geblokkeerde Sportlers</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div class="tab-pane fade in active" id="A">
+                <div class="col-md-12 col-sm-12">
+                    <h3>{{ 'Sport Buddies'|_ }}</h3>
+                    {% component 'friendsList' listType="friends" %}
+                </div>
+            </div>
+            <div class="tab-pane fade" id="B">
+                <div class="col-md-12 col-sm-12">
+                    <h3>{{ 'Ontvangen Verzoeken'|_ }}</h3>
+                    {% component 'friendsList' listType="received" %}
+                </div>
+            </div>
+            <div class="tab-pane fade" id="C">
+                <div class="col-md-12 col-sm-12">
+                    <h3>{{ 'Verzonden Verzoeken'|_ }}</h3>
+                    {% component 'friendsList' listType="sent" %}
+                </div>
+            </div>
+            <div class="tab-pane fade" id="D">
+                <div class="col-sm-12">
+                    <h3 class="text-danger">{{ 'Geblokkeerde Sportlers'|_ }}</h3>
+                    {% component 'friendsList' listType="blocked" %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

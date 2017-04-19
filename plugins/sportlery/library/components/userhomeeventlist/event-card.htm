@@ -1,7 +1,7 @@
 <div class="panel panel-default">
     <div class="panel-body">
         <div class="media">
-            <div class="media-left">
+            <div class="media-left media-top">
                 <a href="{{ detailsPage|page({ id: event.getHashId() }) }}">
                     {% if event.avatar %}
                         <img class="media-object" src="{{ event.avatar.thumb(100,100) }}" alt="">
@@ -10,7 +10,7 @@
                     {% endif %}
                 </a>
             </div>
-            <div class="media-body">
+            <div class="media-body media-middle">
                 <h3 class="media-heading">
                     <a href="{{ detailsPage|page({ id: event.getHashId() }) }}">
                         {{ event.name }}
@@ -30,8 +30,8 @@
                     {{ 'van'|_ }} {{ event.starts_at.formatLocalized('%H:%M') }} {{'tot'|_}} 
                     {{ event.ends_at.formatLocalized('%H:%M') }} </p>
             </div>
-            <div class="media-right">
-                <a href="{{ detailsPage|page({ id: event.getHashId() }) }}" class="btn btn-simple btn-default" style="bottom: 0;">{{ 'Prijs'|_ }}: &euro; {{ event.price }}</a>
+            <div class="media-right media-bottom">
+                <a href="{{ detailsPage|page({ id: event.getHashId() }) }}" class="btn btn-simple btn-default" style="bottom: 0;">{{ 'Prijs'|_ }}: {% if event.price > 0 %} &euro; {{ event.price }} {% else %} {{ 'Gratis'|_ }} {% endif %}</a> 
             </div>
         </div>
     </div>

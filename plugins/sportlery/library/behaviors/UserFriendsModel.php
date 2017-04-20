@@ -39,6 +39,31 @@ class UserFriendsModel extends ModelBehavior
     }
 
     /**
+     * Returns whether the user has completed their profile details.
+     *
+     * @return bool
+     */
+    public function hasCompletedProfile()
+    {
+        if (!trim($this->model->name) || !trim($this->model->surname)) {
+            // Missing first and/or last name.
+            return false;
+        }
+
+        if (!trim($this->model->street) || !trim($this->model->zip_code) || !trim($this->model->city) || is_null($this->model->latitude) || is_null($this->model->longitude)) {
+            // Missing address details.
+            return false;
+        }
+
+        if ($this->model->favoriteSports()->count() == 0) {
+            // No favorite sports specified.
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
      * Find a model by hash id.
      *
      * @param  string  $hashId

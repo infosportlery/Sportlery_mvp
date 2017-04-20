@@ -73,6 +73,10 @@ class SocialLoginController extends Controller
             // so we can just login and redirect them.
             Auth::login($socialLogin->user);
 
+            if ($socialLogin->user->hasCompletedProfile()) {
+                $this->redirectPage = 'home';
+            }
+
             return $this->redirectToCmsPage($this->redirectPage);
         }
 

@@ -48,12 +48,18 @@
                 {% if event.price == 0 or (event.price > 0 and not isGoing) %}
                     {{ form_open({ class: 'd-inline', request: __SELF__~'::onUpdateEventJoinStatus' }) }}
                     {{ form_hidden('event_id', event.getHashId()) }}
-                    {% if not isGoing and event.price == 0 %}
-                        <button class="btn btn-primary" name="action" value="join">{{ 'Ik ga'|_ }}</button>
-                    {% elseif not isGoing %}
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#event-payment-modal">{{ 'Ik ga'|_ }}</button>
-                    {% else %}
+                    {% if isGoing %}
                         <button class="btn btn-danger" name="action" value="cancel_join">{{ 'Ik ga niet meer'|_ }}</button>
+                    {% elseif event.isFull() %}
+                        <p>{{ 'Sorry, er zijn geen plekken meer vrij!'|_ }}</p>
+                    {% elseif event.isBookingEnded() %}
+                        <p>{{ 'Sorry, je kunt niet meer boeken!'|_ }}</p>
+                    {% else %}
+                        {% if event.price == 0 %}
+                            <button class="btn btn-primary" name="action" value="join">{{ 'Ik ga'|_ }}</button>
+                        {% else %}
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#event-payment-modal">{{ 'Ik ga'|_ }}</button>
+                        {% endif %}
                     {% endif %}
                     {% if not isInterested %}
                         <button class="btn btn-default" name="action" value="interest">{{ 'Ik ben geïnteresseerd'|_ }}</button>

@@ -67,7 +67,7 @@ class Event extends Model
 
     protected $with = ['location'];
     protected $appends = ['latitude', 'longitude'];
-    protected $dates = ['starts_at', 'ends_at'];
+    protected $dates = ['starts_at', 'ends_at', 'booking_ends_at'];
 
     public function scopeSearch($query, array $params)
     {
@@ -124,6 +124,21 @@ class Event extends Model
     public function getLongitudeAttribute()
     {
         return $this->location ? $this->location->longitude : null;
+    }
+
+    public function isFull()
+    {
+        return $this->max_attendees > 0 && $this->current_attendees >= $this->max_attendees;
+    }
+
+    public function isBookingEnded()
+    {
+        if (is_null($this->booking_ends_at) || $this->booking_ends_at <= Carbon::minValue()) {
+            // No booking ends at date set.
+            return false;
+        }
+
+        return $this->booking_ends_at->isPast();
     }
 }
 

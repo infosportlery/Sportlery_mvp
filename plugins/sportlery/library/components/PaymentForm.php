@@ -65,6 +65,19 @@ class PaymentForm extends ComponentBase
     public function onPay()
     {
         $event = Event::findByHashId($this->param('id'));
+
+        if ($event->isBookingEnded()) {
+            Flash::error(Message::trans('Sorry, deze activiteit neemt geen boekingen meer aan.'));
+
+            return \Redirect::back();
+        }
+
+        if ($event->isFull()) {
+            Flash::error(Message::trans('Sorry, deze activiteit heeft geen plaatsen meer vrij.'));
+
+            return \Redirect::back();
+        }
+
         $paymentMethod = post('payment_method');
         $issuerId = post('issuer_id');
         $paymentSlug = Str::random(30);

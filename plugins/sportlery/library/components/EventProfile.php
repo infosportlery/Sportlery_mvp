@@ -3,6 +3,8 @@
 namespace Sportlery\Library\Components;
 
 use Cms\Classes\ComponentBase;
+use October\Rain\Support\Facades\Flash;
+use RainLab\Translate\Models\Message;
 use Sportlery\Library\Classes\EventJoinStatus;
 use Sportlery\Library\Models\Event;
 
@@ -43,10 +45,25 @@ class EventProfile extends ComponentBase
         if ($event = Event::findByHashId(post('event_id'))) {
             switch (post('action')) {
                 case 'join':
+                    if ($event->isBookingEnded()) {
+                        Flash::error(Message::trans('Sorry, deze activiteit neemt geen boekingen meer aan.'));
+
+                        return \Redirect::refresh();
+                    }
+                    if ($event->isFull()) {
+                        Flash::error(Message::trans('Sorry, deze activiteit heeft geen plaatsen meer vrij.'));
+
+                        return \Redirect::refresh();
+                    }
+
                     $user->joinEvent($event);
+                    $event->increment('current_attendees');
                     break;
                 case 'cancel_join':
                     $user->cancelJoinEvent($event);
+                    if ($event->current_attendees > 0) {
+                        $event->decrement('current_attendees');
+                    }
                     break;
                 case 'interest':
                     $user->interestEvent($event);

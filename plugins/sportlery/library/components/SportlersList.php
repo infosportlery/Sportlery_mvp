@@ -5,10 +5,14 @@ use Cms\Classes\Page;
 use Hashids\Hashids;
 use Illuminate\Support\Facades\Input;
 use Rainlab\User\Models\User;
+use Sportlery\Library\Models\Location;
+use Sportlery\Library\Models\Sport;
 use Auth;
 
 class SportlersList extends ComponentBase
 {
+    private $searchParameters = [];
+
     public function componentDetails()
     {
         return [
@@ -45,11 +49,23 @@ class SportlersList extends ComponentBase
     public function onRun()
     {
         $this->page['sportlers'] = $this->getUsers();
+        $this->page['sports'] = $this->getSports();
+        $this->page['cities'] = $this->getCities();
         $this->page['detailsPage'] = $this->property('detailsPage');
     }
 
-    private function getUsers()
+    private function getSports()
     {
+        return Sport::orderBy('name', 'asc')->lists('name', 'id');
+    }
+
+    private function getCities()
+    {
+        return Location::distinct()->orderBy('city', 'asc')->lists('city', 'city');
+    }
+
+    private function getUsers()
+    {   
         return User::paginate($this->property('perPage'));
     }
 }

@@ -62,7 +62,8 @@ class PaymentResult extends ComponentBase
                     'payment_id' => $payment->id,
                     'status' => EventJoinStatus::GOING,
                 ]], false);
-            } else {
+                $event->increment('current_attendees');
+            } elseif (!$molliePayment->isPaid()) {
                 $payment->paid_at = null;
             }
 

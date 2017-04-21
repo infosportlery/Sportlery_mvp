@@ -1,0 +1,11 @@
+<h2>{{ 'Reacties'|_ }}</h2>
+
+<form data-request="onComment">
+
+    <div class="form-group">
+        {{ form_textarea('name', null, {class: 'form-control'}) }}
+    </div>
+
+    <button type="submit" class="btn btn-default">{{ 'Reageren'|_ }}</button>
+
+</form>

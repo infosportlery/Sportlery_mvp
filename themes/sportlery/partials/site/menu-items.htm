@@ -6,12 +6,9 @@ description = "Bootstrap menu markup"
     {% for item in items %}
         <li 
             class="{{ item.isActive or item.isChildActive ? 'active' : '' }} 
-            {{ item.items ? 'dropdown' : '' }}"
-        >
-            <a 
-                {% if item.items %}class="dropdown-toggle" data-toggle="dropdown"{% endif %} 
-                href="{{ item.url }}"
-            >
+            {{ item.items ? 'dropdown' : '' }}">
+            <a {% if item.items %}class="dropdown-toggle" data-toggle="dropdown"{% endif %} 
+                href="{{ item.url }}">
                 {{ ('nav.' ~ item.code)|_ }}
 
                 {% if item.items %}<span class="caret"></span>{% endif %}

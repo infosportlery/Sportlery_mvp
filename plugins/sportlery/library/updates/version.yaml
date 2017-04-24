@@ -83,3 +83,6 @@
 1.1.5:
     - 'Add is hidden to locations table'
     - add_is_hidden_to_locations.php
+1.1.6:
+    - 'Change locations table'
+    - change_locations_table.php

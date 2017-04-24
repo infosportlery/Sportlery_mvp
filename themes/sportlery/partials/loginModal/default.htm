@@ -10,8 +10,9 @@
         {{ form_password('password', { class: 'form-control', placeholder: 'Vul je wachtwoord in'|_, required:true }) }}
         {{ errors.first('password', '<p class="help-block">:message</p>') }}
     </div>
-    <p><a href="{{ route('login.social', 'google') }}" class="btn btn-gplus">{{ 'Login met Google'|_ }}</a></p>
-    <p><a href="{{ route('login.social', 'facebook') }}" class="btn btn-facebook">{{ 'Login met Facebook'|_ }}</a></p>
+    <a href="{{ route('login.social', 'google') }}" class="btn btn-gplus">{{ 'Login met Google'|_ }}</a>
+    <a href="{{ route('login.social', 'facebook') }}" class="btn btn-facebook">{{ 'Login met Facebook'|_ }}</a>
 
-    <p><button type="submit" class="btn btn-default">{{ 'Login'|_ }}</button></p>
+    <button type="submit" class="btn btn-default">{{ 'Login'|_ }}</button>
+    <p>{{ 'Of registreer'|_ }} <a href="{{ 'login'|page }}">{{'hier'|_}}</a> {{'als je nog geen account hebt'|_}}.</p>
 {{ form_close() }}

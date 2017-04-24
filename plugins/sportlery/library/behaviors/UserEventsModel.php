@@ -106,17 +106,22 @@ class UserEventsModel extends ModelBehavior
         return $this->model->usersInvitedToEvents()->wherePivot('event_id', $event->getKey())->lists('user_id');
     }
 
-    public function getFriendsGoingToEvent($event, array $friendIds = [])
+    public function getSportlersGoingToEvent($event, array $friendIds = [])
     {
         $query = $this->model->events()->newPivotStatement()
-                           ->where('event_id', $event->getKey())
-                           ->where('user_id', '!=', $this->model->getKey())
-                           ->where('status', EventJoinStatus::GOING);
+                             ->where('event_id', $event->getKey())
+                             ->where('user_id', '!=', $this->model->getKey())
+                             ->where('status', EventJoinStatus::GOING);
 
         if (count($friendIds)) {
             $query->whereIn('user_id', $friendIds);
         }
 
         return $query->lists('user_id');
+    }
+
+    public function getFriendsGoingToEvent($event, array $friendIds)
+    {
+        return $this->getSportlersGoingToEvent($event, $friendIds);
     }
 }

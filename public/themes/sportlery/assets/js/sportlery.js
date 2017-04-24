@@ -15654,7 +15654,9 @@ $(function () {
 
     $('[data-component="locationAutocomplete"]').locationAutocomplete();
 
-    $('[data-component="locationPicker"]').locationPicker();
+    $('[data-component="locationPicker"]').each(function () {
+        $(this).locationPicker();
+    });
 
     $('[data-component="dateTimePicker"]').each(function () {
         var format = $(this).data('format') || 'YYYY-MM-DD HH:mm';
@@ -16039,6 +16041,7 @@ var LocationPicker = function () {
         if (!window.L) {
             throw new Error('Leaflet must be included to use the location picker.');
         }
+        console.log(element);
 
         this.$element = $(element);
         this.$target = $(this.$element.data('target'));

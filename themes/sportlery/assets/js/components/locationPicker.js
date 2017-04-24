@@ -4,6 +4,7 @@ class LocationPicker {
         if (!window.L) {
             throw new Error('Leaflet must be included to use the location picker.');
         }
+        console.log(element);
 
         this.$element = $(element);
         this.$target = $(this.$element.data('target'));

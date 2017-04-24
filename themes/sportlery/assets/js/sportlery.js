@@ -17,7 +17,9 @@ $(function() {
 
     $('[data-component="locationAutocomplete"]').locationAutocomplete();
 
-    $('[data-component="locationPicker"]').locationPicker();
+    $('[data-component="locationPicker"]').each(function() {
+        $(this).locationPicker();
+    });
 
     $('[data-component="dateTimePicker"]').each(function() {
         var format = $(this).data('format') || 'YYYY-MM-DD HH:mm';

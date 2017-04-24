@@ -8,16 +8,14 @@
     <div class="form-group">
         {{ form_label('code', 'Activatiecode'|_, { class: 'control-label' }) }}
         {{ form_input('code', 'code', get('code'), { class: 'form-control', placeholder: 'Vul de activatiecode in'|_, required:true }) }}
-        {{ errors.first('code', '<p class="help-block>:message</p>') }}">
+        {{ errors.first('code', '<p class="help-block">:message</p>') }}
     </div>
+
     <div class="form-group">
         {{ form_label('password', 'Nieuw wachtwoord'|_, { class: 'control-label' }) }}
         {{ form_password('password', { class: 'form-control', placeholder: 'Vul je wachtwoord in'|_, required:true }) }}
-        {{ errors.first('password', '<p class="help-block>:message</p>') }}"></p>
-
-
+        {{ errors.first('password', '<p class="help-block">:message</p>') }}.
     </div>
 
     <p><button type="submit" class="btn btn-default">{{ 'Wachtwoord aanpassen'|_ }}</button></p>
-    </div>
 </form>

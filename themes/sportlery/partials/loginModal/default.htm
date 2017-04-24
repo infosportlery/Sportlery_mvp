@@ -1,0 +1,18 @@
+{{ form_open({ request: 'onSignin' }) }}
+    <div class="form-group">
+        {{ form_label('login', 'E-Mail'|_, { class: 'control-label' }) }}
+        {{ form_input('email', 'login', null, { class: 'form-control', placeholder: 'Vul je e-mail in'|_, required:true }) }}
+        {{ errors.first('login', '<p class="help-block">:message</p>') }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label('password', 'Wachtwoord'|_, { class: 'control-label' }) }}
+        {{ form_password('password', { class: 'form-control', placeholder: 'Vul je wachtwoord in'|_, required:true }) }}
+        {{ errors.first('password', '<p class="help-block">:message</p>') }}
+    </div>
+    <a href="{{ route('login.social', 'google') }}" class="btn btn-gplus">{{ 'Login met Google'|_ }}</a>
+    <a href="{{ route('login.social', 'facebook') }}" class="btn btn-facebook">{{ 'Login met Facebook'|_ }}</a>
+
+    <button type="submit" class="btn btn-default">{{ 'Login'|_ }}</button>
+    <p>{{ 'Of registreer'|_ }} <a href="{{ 'login'|page }}">{{'hier'|_}}</a> {{'als je nog geen account hebt'|_}}.</p>
+{{ form_close() }}

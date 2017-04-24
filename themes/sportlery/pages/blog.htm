@@ -1,0 +1,28 @@
+title = "Blog"
+url = "/blog"
+layout = "base"
+is_hidden = 0
+
+[viewBag]
+localeUrl[en] = "/blog"
+
+[blogPosts]
+pageNumber = "{{ :page }}"
+postsPerPage = 5
+noPostsMessage = "No posts found"
+sortOrder = "published_at desc"
+categoryPage = "activity-create"
+postPage = "blog-post"
+==
+<div class="row">
+    <div class="col-sm-12 text-center">
+        <h1>Blog</h1>
+    </div>
+    <!-- /.col-sm-8 col-sm-offset-2 -->
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+        {% component 'blogPosts' %}
+    </div>
+</div>

@@ -27,46 +27,11 @@
                 </div>
                 <div class="row">
                     <a href="{{ 'privacy-policy'|page }}" target="_blank">{{ 'Privacy Policy'|_ }}</a>
+                    <a href="{{ 'algemene-voorwaarden'|page }}" target="_blank">{{ 'Algemene Voorwaarden'|_ }}</a>
                 </div>
             </div>
 	</div>
 	<div class="row">
 		<p class="text-muted text-center">Copyright Sportlery &copy; {{ 'now'|date("Y") }}</p>
 	</div>
-<script type='text/javascript' src='https://campaigns.zoho.com/js/jquery-migrate-1.2.1.min.js'></script>
-<script type="text/javascript" src='https://campaigns.zoho.com/js/ui.datepicker.js'  charset="utf-8"></script>
-<script type="text/javascript" src="https://campaigns.zoho.com/js/jquery.form.js"></script>
-<script type="text/javascript" src="https://campaigns.zoho.com/js/optin_min.js"></script>
-<script type="text/javascript">
-    var $ZC = jQuery.noConflict();
-    var trackingText='ZCFORMVIEW';
-    $ZC(document).ready( function($) {
-        $ZC("#zc_trackCode").val(trackingText);
-            $ZC("#fieldBorder").val($ZC("[changeItem='SIGNUP_FORM_FIELD']").css("border-color"));
-            _setOptin(false,function(th){
-            /*Before submit, if you want to trigger your event, "include your code here"*/
-            });
-        /*Load Captcha For this*/
-        loadCaptcha('https://campaigns.zoho.com/campaigns/CaptchaVerify.zc?mode=generate');
-        /*Tracking Enabled*/
-        trackSignupEvent(trackingText);
-    });
-</script>
-<!-- Facebook Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1867163733571980', {
-em: 'insert_email_variable,'
-});
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1867163733571980&ev=PageView&noscript=1"
-/></noscript>
-<!-- DO NOT MODIFY -->
-<!-- End Facebook Pixel Code -->
 </footer>

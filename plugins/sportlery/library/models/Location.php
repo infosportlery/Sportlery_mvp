@@ -23,7 +23,7 @@ class Location extends Model
     public $rules = [
         'name' => 'required',
         'street' => 'required',
-        'email' => 'required|email',
+        'email' => 'email',
         'zipcode' => 'required',
         'city' => 'required',
         'location_url' => 'url',
@@ -32,6 +32,7 @@ class Location extends Model
         'description' => 'required',
     ];
 
+    protected $guarded = [];
 
     /**
      * @var string The database table used by the model.
@@ -144,6 +145,15 @@ class Location extends Model
         }
 
         $this->attributes['street'] = $value;
+    }
+
+    public function jsonSerialize()
+    {
+        $data = $this->toArray();
+
+        return array_except($data, [
+            'kvk_number', 'created_at', 'updated_at', 'is_hidden', 'btw_number', 'iban_id', 'email'
+        ]);
     }
 }
 

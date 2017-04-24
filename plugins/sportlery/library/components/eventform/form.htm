@@ -1,0 +1,52 @@
+<div class="form-group {{ errors.first('name', 'has-error') }}">
+    {{ form_label('name', 'Naam'|_, {class: 'control-label'}) }}
+    {{ form_text('name', null, {class: 'form-control'}) }}
+    {{ errors.first('name', '<p class="help-block">:message</p>')|raw }}
+</div>
+<div class="form-group {{ errors.first('starts_at', 'has-error') }}">
+    {{ form_label('starts_at', 'Begint op'|_, {class: 'control-label'}) }}
+    <div class="input-group date" data-component="dateTimePicker" data-locale="{{ activeLocale }}">
+        {{ form_text('starts_at', null, {class: 'form-control'}) }}
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+    </div>
+    {{ errors.first('starts_at', '<p class="help-block">:message</p>')|raw }}
+</div>
+<div class="form-group {{ errors.first('ends_at', 'has-error') }}">
+    {{ form_label('ends_at', 'Eindigt op'|_, {class: 'control-label'}) }}
+    <div class="input-group date" data-component="dateTimePicker" data-locale="{{ activeLocale }}">
+        {{ form_text('ends_at', null, {class: 'form-control'}) }}
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+    </div>
+    {{ errors.first('ends_at', '<p class="help-block">:message</p>')|raw }}
+</div>
+{#<div class="form-group {{ errors.first('price', 'has-error') }}">#}
+    {#{{ form_label('price', 'Price', {class: 'control-label'}) }}#}
+    {#{{ form_input('number', 'price', null, {class: 'form-control'}) }}#}
+    {#{{ errors.first('price', '<p class="help-block">:message</p>')|raw }}#}
+{#</div>#}
+<div class="form-group {{ errors.first('max_attendees', 'has-error') }}">
+    {{ form_label('max_attendees', 'Maximaal aantal deelnemers'|_, {class: 'control-label'}) }}
+    <span class="help-block">{{ 'Laat deze leeg als er geen maximaal aantal deelnemers is.'|_ }}</span>
+    {{ form_input('number', 'max_attendees', null, {class: 'form-control', min: 1, step: 1}) }}
+    {{ errors.first('max_attendees', '<p class="help-block">:message</p>')|raw }}
+</div>
+<div class="form-group {{ errors.first('description', 'has-error') }}">
+    {{ form_label('description', 'Beschrijving'|_, {class: 'control-label'}) }}
+    {{ form_textarea('description', null, {class: 'form-control'}) }}
+    {{ errors.first('description', '<p class="help-block">:message</p>')|raw }}
+</div>
+<div class="form-group {{ errors.first('location', 'has-error') }}">
+    {{ form_label('location', 'Locatie'|_, {class: 'control-label'}) }}
+    {{ form_select('location', locations, null, {class: 'form-control'}) }}
+    <p class="text-right">
+        <a href="#" data-toggle="modal" data-target="#location-picker-modal">{{ 'Andere locatie'|_ }}</a>
+    </p>
+    {{ errors.first('location', '<p class="help-block">:message</p>')|raw }}
+</div>
+
+<button type="submit" class="btn btn-primary">{{ 'Activiteit aanmaken'|_ }}</button>
+<a href="{{ 'locations'|page }}" class="btn btn-default">{{ 'Annuleren'|_ }}</a>

@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 130);
+/******/ 	return __webpack_require__(__webpack_require__.s = 131);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1899,7 +1899,7 @@ function loadLocale(name) {
             module && module.exports) {
         try {
             oldLocale = globalLocale._abbr;
-            __webpack_require__(128)("./" + name);
+            __webpack_require__(129)("./" + name);
             // because defineLocale currently also sets the global locale, we
             // want to undo that for lazy loaded locales
             getSetGlobalLocale(oldLocale);
@@ -4534,7 +4534,7 @@ return hooks;
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(129)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(130)(module)))
 
 /***/ }),
 /* 1 */
@@ -15631,16 +15631,16 @@ return zhTw;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_locationMap__ = __webpack_require__(121);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_locationAutocomplete__ = __webpack_require__(120);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_locationAutocomplete___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_locationAutocomplete__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_locationPicker__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_locationPicker__ = __webpack_require__(122);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_locationPicker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_locationPicker__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_chat__ = __webpack_require__(119);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_chat___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_chat__);
-__webpack_require__(123);
 __webpack_require__(124);
-__webpack_require__(126);
-__webpack_require__(127);
 __webpack_require__(125);
-__webpack_require__(122);
+__webpack_require__(127);
+__webpack_require__(128);
+__webpack_require__(126);
+__webpack_require__(123);
 
 
 
@@ -16026,6 +16026,107 @@ var LocationMap = function () {
 /* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
+/* WEBPACK VAR INJECTION */(function($) {var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var LocationPicker = function () {
+    function LocationPicker(element) {
+        var _this = this;
+
+        _classCallCheck(this, LocationPicker);
+
+        if (!window.L) {
+            throw new Error('Leaflet must be included to use the location picker.');
+        }
+
+        this.$element = $(element);
+        this.$target = $(this.$element.data('target'));
+        this.$mapElement = this.$element.find('[data-map]');
+        this.map = L.map(this.$mapElement[0]);
+        this.initTiles();
+
+        if (this.$element.closest('.modal').length) {
+            this.$element.closest('.modal').on('shown.bs.modal', function () {
+                if (_this.marker) {
+                    _this.marker.remove();
+                }
+                _this.resetBounds();
+            });
+        } else {
+            this.resetBounds();
+        }
+        this.$element.find('[href="#tab-map"]').on('shown.bs.tab', function () {
+            _this.resetBounds();
+        });
+        this.marker = null;
+        this.map.on('click', function (e) {
+            var latlng = e.latlng;
+            var latitude = latlng.lat;
+            var longitude = latlng.lng;
+            _this.$element.find('[name=latitude]').val(latitude);
+            _this.$element.find('[name=longitude]').val(longitude);
+
+            if (_this.marker === null) {
+                _this.marker = L.marker([latitude, longitude]).addTo(_this.map);
+            } else {
+                _this.marker.setLatLng([latitude, longitude]);
+            }
+        });
+
+        this.$element.find('form').on('submit', function (e) {
+            e.preventDefault();
+            var $form = $(e.target);
+            var handler = $form.find('[name=_handler]').val();
+            $form.request(handler, {
+                success: function success(data) {
+                    var $option = $('<option>').val(data.id).text(data.name);
+                    $option.appendTo(_this.$target);
+                    _this.$target.val(data.id);
+                    if (_this.$element.closest('.modal').length) {
+                        _this.$element.closest('.modal').modal('hide');
+                    }
+                }
+            });
+        });
+    }
+
+    _createClass(LocationPicker, [{
+        key: 'resetBounds',
+        value: function resetBounds() {
+            this.map.invalidateSize();
+            if (this.$element.data('initial-lat') && this.$element.data('initial-lng')) {
+                this.map.setView([this.$element.data('initial-lat'), this.$element.data('initial-lng')], 13);
+            } else {
+                this.map.fitBounds([[50.7504, 3.3316], [53.6316, 7.2275]]);
+            }
+        }
+
+        /**
+         * Initialize the tile layer and add it to the map.
+         */
+
+    }, {
+        key: 'initTiles',
+        value: function initTiles() {
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.map);
+        }
+    }]);
+
+    return LocationPicker;
+}();
+
+$.fn.locationPicker = function () {
+    this.each(function () {
+        $(this).data('plugin_location_picker', new LocationPicker(this));
+    });
+};
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 123 */
+/***/ (function(module, exports, __webpack_require__) {
+
 /* WEBPACK VAR INJECTION */(function(jQuery) {/*
  * jQuery Bootstrap Responsive Tabs v2.0.1 | Valeriu Timbuc - vtimbuc.com
  * github.com/vtimbuc/bootstrap-responsive-tabs
@@ -16036,7 +16137,7 @@ var LocationMap = function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 123 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {/* ========================================================================
@@ -16255,7 +16356,7 @@ var LocationMap = function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 124 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {/* ========================================================================
@@ -16427,7 +16528,7 @@ var LocationMap = function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 125 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {/* ========================================================================
@@ -16773,7 +16874,7 @@ var LocationMap = function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 126 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {/* ========================================================================
@@ -16935,7 +17036,7 @@ var LocationMap = function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 127 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! version : 4.17.47
@@ -19580,7 +19681,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 
 /***/ }),
-/* 128 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -19829,10 +19930,10 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 128;
+webpackContext.id = 129;
 
 /***/ }),
-/* 129 */
+/* 130 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -19860,133 +19961,12 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 130 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(117);
 module.exports = __webpack_require__(118);
 
-
-/***/ }),
-/* 131 */,
-/* 132 */,
-/* 133 */,
-/* 134 */,
-/* 135 */,
-/* 136 */,
-/* 137 */,
-/* 138 */,
-/* 139 */,
-/* 140 */,
-/* 141 */,
-/* 142 */,
-/* 143 */,
-/* 144 */,
-/* 145 */,
-/* 146 */,
-/* 147 */,
-/* 148 */,
-/* 149 */,
-/* 150 */,
-/* 151 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function($) {var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var LocationPicker = function () {
-    function LocationPicker(element) {
-        var _this = this;
-
-        _classCallCheck(this, LocationPicker);
-
-        if (!window.L) {
-            throw new Error('Leaflet must be included to use the location picker.');
-        }
-
-        this.$element = $(element);
-        this.$target = $(this.$element.data('target'));
-        this.$mapElement = this.$element.find('[data-map]');
-        this.map = L.map(this.$mapElement[0]);
-        this.initTiles();
-
-        if (this.$element.closest('.modal').length) {
-            this.$element.closest('.modal').on('shown.bs.modal', function () {
-                if (_this.marker) {
-                    _this.marker.remove();
-                }
-                _this.resetBounds();
-            });
-        } else {
-            this.resetBounds();
-        }
-        this.$element.find('[href="#tab-map"]').on('shown.bs.tab', function () {
-            _this.resetBounds();
-        });
-        this.marker = null;
-        this.map.on('click', function (e) {
-            var latlng = e.latlng;
-            var latitude = latlng.lat;
-            var longitude = latlng.lng;
-            _this.$element.find('[name=latitude]').val(latitude);
-            _this.$element.find('[name=longitude]').val(longitude);
-
-            if (_this.marker === null) {
-                _this.marker = L.marker([latitude, longitude]).addTo(_this.map);
-            } else {
-                _this.marker.setLatLng([latitude, longitude]);
-            }
-        });
-
-        this.$element.find('form').on('submit', function (e) {
-            e.preventDefault();
-            var $form = $(e.target);
-            var handler = $form.find('[name=_handler]').val();
-            $form.request(handler, {
-                success: function success(data) {
-                    var $option = $('<option>').val(data.id).text(data.name);
-                    $option.appendTo(_this.$target);
-                    _this.$target.val(data.id);
-                    if (_this.$element.closest('.modal').length) {
-                        _this.$element.closest('.modal').modal('hide');
-                    }
-                }
-            });
-        });
-    }
-
-    _createClass(LocationPicker, [{
-        key: 'resetBounds',
-        value: function resetBounds() {
-            this.map.invalidateSize();
-            if (this.$element.data('initial-lat') && this.$element.data('initial-lng')) {
-                this.map.setView([this.$element.data('initial-lat'), this.$element.data('initial-lng')], 13);
-            } else {
-                this.map.fitBounds([[50.7504, 3.3316], [53.6316, 7.2275]]);
-            }
-        }
-
-        /**
-         * Initialize the tile layer and add it to the map.
-         */
-
-    }, {
-        key: 'initTiles',
-        value: function initTiles() {
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.map);
-        }
-    }]);
-
-    return LocationPicker;
-}();
-
-$.fn.locationPicker = function () {
-    this.each(function () {
-        $(this).data('plugin_location_picker', new LocationPicker(this));
-    });
-};
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ })
 /******/ ]);

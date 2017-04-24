@@ -81,7 +81,7 @@ class EventForm extends ComponentBase
 
         Flash::success('You\'ve added an event!');
 
-        return Redirect::to($this->controller->pageUrl('locations'));
+        return Redirect::to($this->controller->pageUrl('home'));
     }
 
     public function onUpdate()

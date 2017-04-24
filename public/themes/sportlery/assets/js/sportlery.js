@@ -15668,6 +15668,21 @@ $("#btn-index-more").click(function () {
         scrollTop: $("#page-one").offset().top
     }, 2000);
 });
+$("#btn-activities-more").click(function () {
+    $('html, body').animate({
+        scrollTop: $("#activities").offset().top
+    }, 2000);
+});
+$("#btn-whatis-more").click(function () {
+    $('html, body').animate({
+        scrollTop: $("#matchmaking").offset().top
+    }, 2000);
+});
+$("#btn-locations-more").click(function () {
+    $('html, body').animate({
+        scrollTop: $("#locations").offset().top
+    }, 2000);
+});
 $("#btn-trainer").click(function () {
     $('html, body').animate({
         scrollTop: $("#trainerscr").offset().top

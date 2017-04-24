@@ -3,6 +3,7 @@
 namespace Sportlery\Library\Components;
 
 use Auth;
+use Carbon\Carbon;
 use Cms\Classes\ComponentBase;
 use Validator;
 use Input;
@@ -51,40 +52,45 @@ class EventForm extends ComponentBase
             'name' => 'required|min:8',
             'description' => 'required|min:30',
             'price' => 'numeric',
-            'starts_at' => 'required|date_format:"Y-m-d H:i:s"|before:ends_at',
-            'ends_at' => 'required|date_format:"Y-m-d H:i:s"|after:starts_at',
+            'max_attendees' => 'integer',
+            'starts_at' => 'required|date_format:"Y-m-d H:i"|before:ends_at',
+            'ends_at' => 'required|date_format:"Y-m-d H:i"|after:starts_at',
             'location' => 'required|exists:spr_locations,id'
         ]);
 
         if ($validator->fails()) {
-            //sendbacktothing
             return Redirect::back()->withInput()->withErrors($validator);
-        } else {
-            $user = Auth::getUser();
-            $event = new Event();
-
-            $event->name = Input::get('name');
-            $event->slug = $this->generateRandomString(8);
-            $event->description = Input::get('description');
-            $event->price = Input::get('price');
-            $event->starts_at = Input::get('starts_at');
-            $event->ends_at = Input::get('ends_at');
-            $event->user_id = $user->id;
-            $event->location_id = Input::get('location');
-
-            // $user->events()->status = 1;
-
-            $user->events()->save($event);
-
-            Flash::success('You\'ve added an event!');
-
-            return Redirect::back();
         }
+
+        $user = Auth::getUser();
+
+        $event = new Event();
+
+        $event->name = Input::get('name');
+        $event->slug = str_random(8).'-'.str_slug($event->name);
+        $event->description = Input::get('description');
+        $event->price = Input::get('price') ?: 0;
+        $event->max_attendees = Input::get('max_attendees') ?: 0;
+        $event->current_attendees = 0;
+        $event->starts_at = Carbon::createFromFormat('Y-m-d H:i', Input::get('starts_at'));
+        $event->ends_at = Carbon::createFromFormat('Y-m-d H:i', Input::get('ends_at'));
+        $event->user_id = $user->id;
+        $event->location_id = Input::get('location');
+
+        $user->ownedEvents()->save($event);
+
+        Flash::success('You\'ve added an event!');
+
+        return Redirect::to($this->controller->pageUrl('locations'));
     }
 
     public function onUpdate()
     {
         $event = Event::findByHashId($this->param('id'));
+
+        if ($event->user_id !== Auth::getUser()->id) {
+            return Redirect::back();
+        }
 
         $event->name = Input::get('name');
         $event->description = Input::get('description');
@@ -107,16 +113,6 @@ class EventForm extends ComponentBase
         $event->delete();
 
         return Redirect::back();
-    }
-
-    public function generateRandomString($length) {
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $charactersLength = strlen($characters);
-        $randomString = '';
-        for($i = 0; $i < $length; $i++){
-            $randomString .= $characters[rand(0, $charactersLength - 1)];
-        }
-        return $randomString;
     }
 
     private function getLocations() {

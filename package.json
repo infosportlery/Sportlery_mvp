@@ -36,6 +36,7 @@
   },
   "homepage": "https://github.com/infosportlery/Sportlery_mvp#readme",
   "dependencies": {
+    "bootstrap-responsive-tabs": "^2.0.3",
     "font-awesome": "^4.7.0"
   }
 }

@@ -38,7 +38,8 @@
     </div>
     {{ form_hidden('current_step', 3) }}
 {{ form_close() }}
-<script async defer>$(function() {
+{% put scripts %}
+<script>$(function() {
     var $sportSelects = $('#sport-list').find('select[name$="[id]"]');
     var valueMap = {};
     $sportSelects.each(function(index) {
@@ -59,3 +60,4 @@
         });
     });
 })</script>
+{% endput %}

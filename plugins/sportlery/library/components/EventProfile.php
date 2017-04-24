@@ -5,6 +5,7 @@ namespace Sportlery\Library\Components;
 use Cms\Classes\ComponentBase;
 use October\Rain\Support\Facades\Flash;
 use RainLab\Translate\Models\Message;
+use RainLab\User\Models\User;
 use Sportlery\Library\Classes\EventJoinStatus;
 use Sportlery\Library\Models\Event;
 
@@ -116,10 +117,21 @@ class EventProfile extends ComponentBase
         $this->page['isGoing'] = $eventStatus === EventJoinStatus::GOING;
         $this->page['isInterested'] = $eventStatus === EventJoinStatus::INTERESTED;
 
-        $this->page['friends'] = $this->page['user']->listFriends();
+        $friends = $this->page['user']->listFriends();
+        $friendIds = $friends->modelKeys();
+        $this->page['friends'] = $friends;
         $this->page['hasFriends'] = !$this->page['friends']->isEmpty();
 
-        $friendsGoing = $this->page['user']->getFriendsGoingToEvent($this->page['event']);
+        $sportlersGoing = $this->page['user']->getSportlersGoingToEvent($this->page['event']);
+        $friendsGoing = [];
+        if (count($friendIds)) {
+            $friendsGoing = array_filter($sportlersGoing, function ($userId) use ($friendIds) {
+                return in_array($userId, $friendIds);
+            });
+            $sportlersGoing = array_filter($sportlersGoing, function ($userId) use ($friendIds) {
+                return !in_array($userId, $friendIds);
+            });
+        }
 
         if (count($friendsGoing) === $this->page['friends']->count()) {
             $this->page['hasFriends'] = false;
@@ -127,7 +139,6 @@ class EventProfile extends ComponentBase
 
         if ($this->page['hasFriends']) {
             $friendsInvited = $this->page['user']->getFriendsInvitedToEvent($this->page['event']);
-            $friendIds = $this->page['friends']->modelKeys();
             $this->page['friendsInvited'] = $friendsInvited;
 
             if (count($friendIds) === count($friendsInvited)) {
@@ -137,5 +148,6 @@ class EventProfile extends ComponentBase
         }
 
         $this->page['friendsGoing'] = $this->page['friends']->only($friendsGoing);
+        $this->page['sportlersGoing'] = User::whereIn('id', $sportlersGoing)->get();
     }
 }

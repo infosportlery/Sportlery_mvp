@@ -15631,14 +15631,17 @@ return zhTw;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_locationMap__ = __webpack_require__(121);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_locationAutocomplete__ = __webpack_require__(120);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_locationAutocomplete___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_locationAutocomplete__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_chat__ = __webpack_require__(119);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_chat___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_chat__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_locationPicker__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_locationPicker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_locationPicker__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_chat__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_chat___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_chat__);
 __webpack_require__(123);
 __webpack_require__(124);
 __webpack_require__(126);
 __webpack_require__(127);
 __webpack_require__(125);
 __webpack_require__(122);
+
 
 
 
@@ -15651,6 +15654,19 @@ $(function () {
 
     $('[data-component="locationAutocomplete"]').locationAutocomplete();
 
+    $('[data-component="locationPicker"]').locationPicker();
+
+    $('[data-component="dateTimePicker"]').each(function () {
+        var format = $(this).data('format') || 'YYYY-MM-DD HH:mm';
+        var locale = $(this).data('locale');
+
+        $(this).datetimepicker({
+            locale: locale,
+            minDate: Date.now(),
+            format: 'YYYY-MM-DD HH:mm'
+        });
+    });
+
     $('#menu-toggle').click(function (e) {
         e.preventDefault();
         $('#wrapper').toggleClass('toggled');
@@ -15660,14 +15676,6 @@ $(function () {
     $('#logout').on('click', function (e) {
         e.preventDefault();
         $(this).next('form').submit();
-    });
-    $('#datetime-start').datetimepicker({
-        locale: 'nl',
-        format: 'YYYY-MM-DD HH:mm:ss'
-    });
-    $('#datetime-end').datetimepicker({
-        locale: 'nl',
-        format: 'YYYY-MM-DD HH:mm:ss'
     });
     $("#btn-index-more").click(function () {
         $('html, body').animate({
@@ -15929,7 +15937,10 @@ var LocationMap = function () {
         }
 
         this.map = L.map($el[0]);
-        this.markerPopupTmpl = decodeURI($el.find('#marker-popup-tmpl').detach().html());
+        this.markerPopupTmpl = null;
+        if ($el.find('#marker-popup-tmpl').length) {
+            this.markerPopupTmpl = decodeURI($el.find('#marker-popup-tmpl').detach().html());
+        }
         this.markerGroup = null;
 
         this.initTiles();
@@ -15939,28 +15950,33 @@ var LocationMap = function () {
             var $tabPane = $el.closest('.tab-pane');
             var $tab = $('[href="#' + $tabPane.attr('id') + '"]');
             $tab.on('shown.bs.tab', function () {
-                _this.map.invalidateSize();
-                if (_this.markerGroup.getLayers().length > 0) {
-                    _this.map.fitBounds(_this.markerGroup.getBounds());
-                } else {
-                    // Dutch border bounds
-                    _this.map.fitBounds([[50.7504, 3.3316], [53.6316, 7.2275]]);
-                }
+                _this.resetBounds();
             });
+        } else {
+            this.resetBounds();
         }
     }
 
-    /**
-     * Initialize the tile layer and add it to the map.
-     */
-
-
     _createClass(LocationMap, [{
+        key: 'resetBounds',
+        value: function resetBounds() {
+            this.map.invalidateSize();
+            if (this.markerGroup.getLayers().length > 0) {
+                this.map.fitBounds(this.markerGroup.getBounds());
+            } else {
+                // Dutch border bounds
+                this.map.fitBounds([[50.7504, 3.3316], [53.6316, 7.2275]]);
+            }
+        }
+
+        /**
+         * Initialize the tile layer and add it to the map.
+         */
+
+    }, {
         key: 'initTiles',
         value: function initTiles() {
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: ''
-            }).addTo(this.map);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.map);
         }
 
         /**
@@ -15974,7 +15990,9 @@ var LocationMap = function () {
 
             var markers = this.locations.map(function (location) {
                 var marker = L.marker([location.latitude, location.longitude]).addTo(_this2.map);
-                marker.bindPopup(_this2.renderMarkerPopup(location));
+                if (_this2.markerPopupTmpl) {
+                    marker.bindPopup(_this2.renderMarkerPopup(location));
+                }
                 return marker;
             });
 
@@ -15995,19 +16013,6 @@ var LocationMap = function () {
                 }
                 return result;
             });
-        }
-
-        /**
-         * Center the map around the first available location.
-         */
-
-    }, {
-        key: 'centerMap',
-        value: function centerMap() {
-            if (this.locations.length) {
-
-                // this.map.setView([this.locations[0].latitude, this.locations[0].longitude], 13);
-            }
         }
     }]);
 
@@ -19861,6 +19866,127 @@ module.exports = function(module) {
 __webpack_require__(117);
 module.exports = __webpack_require__(118);
 
+
+/***/ }),
+/* 131 */,
+/* 132 */,
+/* 133 */,
+/* 134 */,
+/* 135 */,
+/* 136 */,
+/* 137 */,
+/* 138 */,
+/* 139 */,
+/* 140 */,
+/* 141 */,
+/* 142 */,
+/* 143 */,
+/* 144 */,
+/* 145 */,
+/* 146 */,
+/* 147 */,
+/* 148 */,
+/* 149 */,
+/* 150 */,
+/* 151 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function($) {var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var LocationPicker = function () {
+    function LocationPicker(element) {
+        var _this = this;
+
+        _classCallCheck(this, LocationPicker);
+
+        if (!window.L) {
+            throw new Error('Leaflet must be included to use the location picker.');
+        }
+
+        this.$element = $(element);
+        this.$target = $(this.$element.data('target'));
+        this.$mapElement = this.$element.find('[data-map]');
+        this.map = L.map(this.$mapElement[0]);
+        this.initTiles();
+
+        if (this.$element.closest('.modal').length) {
+            this.$element.closest('.modal').on('shown.bs.modal', function () {
+                if (_this.marker) {
+                    _this.marker.remove();
+                }
+                _this.resetBounds();
+            });
+        } else {
+            this.resetBounds();
+        }
+        this.$element.find('[href="#tab-map"]').on('shown.bs.tab', function () {
+            _this.resetBounds();
+        });
+        this.marker = null;
+        this.map.on('click', function (e) {
+            var latlng = e.latlng;
+            var latitude = latlng.lat;
+            var longitude = latlng.lng;
+            _this.$element.find('[name=latitude]').val(latitude);
+            _this.$element.find('[name=longitude]').val(longitude);
+
+            if (_this.marker === null) {
+                _this.marker = L.marker([latitude, longitude]).addTo(_this.map);
+            } else {
+                _this.marker.setLatLng([latitude, longitude]);
+            }
+        });
+
+        this.$element.find('form').on('submit', function (e) {
+            e.preventDefault();
+            var $form = $(e.target);
+            var handler = $form.find('[name=_handler]').val();
+            $form.request(handler, {
+                success: function success(data) {
+                    var $option = $('<option>').val(data.id).text(data.name);
+                    $option.appendTo(_this.$target);
+                    _this.$target.val(data.id);
+                    if (_this.$element.closest('.modal').length) {
+                        _this.$element.closest('.modal').modal('hide');
+                    }
+                }
+            });
+        });
+    }
+
+    _createClass(LocationPicker, [{
+        key: 'resetBounds',
+        value: function resetBounds() {
+            this.map.invalidateSize();
+            if (this.$element.data('initial-lat') && this.$element.data('initial-lng')) {
+                this.map.setView([this.$element.data('initial-lat'), this.$element.data('initial-lng')], 13);
+            } else {
+                this.map.fitBounds([[50.7504, 3.3316], [53.6316, 7.2275]]);
+            }
+        }
+
+        /**
+         * Initialize the tile layer and add it to the map.
+         */
+
+    }, {
+        key: 'initTiles',
+        value: function initTiles() {
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.map);
+        }
+    }]);
+
+    return LocationPicker;
+}();
+
+$.fn.locationPicker = function () {
+    this.each(function () {
+        $(this).data('plugin_location_picker', new LocationPicker(this));
+    });
+};
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ })
 /******/ ]);

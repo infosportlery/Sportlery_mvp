@@ -7,6 +7,7 @@ require('bootstrap-responsive-tabs');
 
 import LocationMap from './components/locationMap';
 import './components/locationAutocomplete';
+import './components/locationPicker';
 import './components/chat';
 
 $(function() {
@@ -15,6 +16,19 @@ $(function() {
     }
 
     $('[data-component="locationAutocomplete"]').locationAutocomplete();
+
+    $('[data-component="locationPicker"]').locationPicker();
+
+    $('[data-component="dateTimePicker"]').each(function() {
+        var format = $(this).data('format') || 'YYYY-MM-DD HH:mm';
+        var locale = $(this).data('locale');
+
+        $(this).datetimepicker({
+            locale,
+            minDate: Date.now(),
+            format: 'YYYY-MM-DD HH:mm',
+        });
+    });
 
     $('#menu-toggle').click(function(e) {
         e.preventDefault();
@@ -25,14 +39,6 @@ $(function() {
     $('#logout').on('click', function(e) {
         e.preventDefault();
         $(this).next('form').submit();
-    });
-    $('#datetime-start').datetimepicker({
-        locale: 'nl',
-        format: 'YYYY-MM-DD HH:mm:ss',
-    });
-    $('#datetime-end').datetimepicker({
-        locale: 'nl',
-        format: 'YYYY-MM-DD HH:mm:ss',
     });
     $("#btn-index-more").click(function() {
         $('html, body').animate({

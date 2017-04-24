@@ -1,0 +1,15 @@
+title = "Activity create"
+url = "/activiteit/nieuw"
+layout = "base"
+is_hidden = 0
+
+[viewBag]
+localeUrl[en] = "/activity/new"
+
+[eventForm]
+
+[session]
+security = "user"
+redirect = "login"
+==
+{% component 'eventForm' %}

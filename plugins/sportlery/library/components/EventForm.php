@@ -23,15 +23,13 @@ class EventForm extends ComponentBase
 
     public function init()
     {
-        $this->addComponent('RainLab\User\Components\Session', 'session', [
-            'security' => 'user',
-            'redirect' => 'login',
-        ]);
+        $this->addComponent(LocationPicker::class, 'locationPicker', []);
     }
 
     public function onRun()
     {
         $this->page['locations'] = $this->getLocations();
+        $this->page['user'] = \Auth::getUser();
 
         if ($eventId = $this->param('id')) {
             $this->page['event'] = $this->page['user']->events()->whereHashId($eventId)->first();
@@ -46,7 +44,10 @@ class EventForm extends ComponentBase
 
     public function onCreate()
     {
-        $validator = Validator::make(Input::all(), [
+        $data = Input::all();
+        $data['description'] = strip_tags($data['description']);
+
+        $validator = Validator::make($data, [
             'name' => 'required|min:8',
             'description' => 'required|min:30',
             'price' => 'numeric',
@@ -105,8 +106,6 @@ class EventForm extends ComponentBase
 
         $event->delete();
 
-        Flash::success('AWESOME! No more Activity!');
-
         return Redirect::back();
     }
 
@@ -121,7 +120,10 @@ class EventForm extends ComponentBase
     }
 
     private function getLocations() {
-        return Location::orderBy('name', 'asc')->lists('name', 'id');
+        return Location::orderBy('name', 'asc')
+                       ->orWhere('is_hidden', 0)
+                       ->orWhere('user_id', Auth::getUser()->id)
+                       ->lists('name', 'id');
     }
 
 }

@@ -20,12 +20,12 @@
                             {{ form_select('sport', sports, input('sport'), {class: 'form-control', emptyOption: 'Alle'|_}) }}
                         </div>
                     </div>
-                    <div class="col-sm-3">
+                    <!-- <div class="col-sm-3">
                         {{ form_label('city', 'Stad'|_, {class: 'control-label'}) }}
                         {{ form_select('city', cities, input('city'), {class: 'form-control', emptyOption: 'Alle'|_}) }}
-                    </div>
+                    </div> -->
                     <div class="col-sm-3">
-                        {{ form_label('q', 'Gebruikersnaam'|_, {class: 'control-label'}) }}
+                        {{ form_label('q', 'Naam'|_, {class: 'control-label'}) }}
                         {{ form_text('q', input('q'), {class: 'form-control'}) }}
                     </div>
                     <div class="col-sm-3">

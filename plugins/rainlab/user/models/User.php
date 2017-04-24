@@ -406,4 +406,29 @@ class User extends UserBase
     {
         $this->password = $this->password_confirmation = Str::random(6);
     }
+
+    public function scopeSearch($query, array $params)
+    {
+        if (isset($params['q']) && $q = trim($params['q'])) {
+            $q = '%'.$q.'%';
+
+            $query->where(function($query) use ($q) {
+                $query->orWhere('name', 'like', $q)->orWhere('surname', 'like', $q);
+            });
+        }
+
+        if (isset($params['sport']) && $params['sport'] !== '') {
+            $query->whereHas('sports', function($query) use ($params) {
+                return $query->where('id', $params['sport']);
+            });
+        }
+
+        // if (isset($params['city']) && $city = trim($params['city'])) {
+        //     $query->whereHas('location', function($query) use ($city) {
+        //         return $query->where('city', $city);
+        //     });
+        // }
+
+        return $query;
+    }
 }

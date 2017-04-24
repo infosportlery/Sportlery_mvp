@@ -2,9 +2,13 @@ name: 'Guest menu'
 items:
     -
         title: Home
+        nesting: ''
         type: cms-page
+        url: ''
         code: home
         reference: home
+        cmsPage: ''
+        replace: ''
         viewBag:
             isHidden: '0'
             cssClass: ''
@@ -25,18 +29,26 @@ items:
         items:
             -
                 title: Sportclub
+                nesting: ''
                 type: cms-page
+                url: ''
                 code: sportclub
                 reference: sportclub
+                cmsPage: ''
+                replace: ''
                 viewBag:
                     isHidden: '0'
                     cssClass: ''
                     isExternal: '0'
             -
                 title: Trainer
+                nesting: ''
                 type: cms-page
+                url: ''
                 code: trainer
                 reference: trainer
+                cmsPage: ''
+                replace: ''
                 viewBag:
                     isHidden: '0'
                     cssClass: ''
@@ -57,18 +69,35 @@ items:
         items:
             -
                 title: 'Team Sportlery'
+                nesting: ''
                 type: cms-page
+                url: ''
                 code: team
                 reference: team-sportlery
+                cmsPage: ''
+                replace: ''
                 viewBag:
                     isHidden: '0'
                     cssClass: ''
                     isExternal: '0'
             -
                 title: Contact
+                nesting: ''
                 type: cms-page
+                url: ''
                 code: contact
                 reference: help
+                cmsPage: ''
+                replace: ''
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: 'Blog'
+                type: cms-page
+                code: blog
+                reference: blog
                 viewBag:
                     isHidden: '0'
                     cssClass: ''

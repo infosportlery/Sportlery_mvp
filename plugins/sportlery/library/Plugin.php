@@ -87,6 +87,13 @@ class Plugin extends PluginBase
             setlocale(LC_ALL, $locale);
         });
 
+        Event::listen('rainlab.user.login', function ($user) {
+            if ($user->hasCompletedProfile()) {
+                $request = request();
+                $request['redirect'] = app(\Cms\Classes\Router::class)->findByFile('home');
+            }
+        });
+
         User::extend(function(User $model) {
             $model->implement[] = 'Sportlery.Library.Behaviors.UserFriendsModel';
             $model->implement[] = 'Sportlery.Library.Behaviors.UserEventsModel';

@@ -3,13 +3,13 @@ require('bootstrap-sass/assets/javascripts/bootstrap/dropdown');
 require('bootstrap-sass/assets/javascripts/bootstrap/tab');
 require('eonasdan-bootstrap-datetimepicker');
 require('bootstrap-sass/assets/javascripts/bootstrap/modal');
-
+require('bootstrap-responsive-tabs');
 
 import LocationMap from './components/locationMap';
 import './components/locationAutocomplete';
 import './components/chat';
 
-window.$(function($) {
+$(function() {
     if ($('[data-component="locationMap"]').length) {
         new LocationMap($('[data-component="locationMap"]'));
     }
@@ -34,19 +34,19 @@ window.$(function($) {
         locale: 'nl',
         format: 'YYYY-MM-DD HH:mm:ss',
     });
-});
-$("#btn-index-more").click(function() {
-    $('html, body').animate({
-        scrollTop: $("#page-one").offset().top
-    }, 2000);
-});
-$("#btn-trainer").click(function() {
-    $('html, body').animate({
-        scrollTop: $("#trainerscr").offset().top
-    }, 2000);
-});
-$("#btn-sportclub").click(function() {
-    $('html, body').animate({
-        scrollTop: $("#sportclubscr").offset().top
-    }, 2000);
+    $("#btn-index-more").click(function() {
+        $('html, body').animate({
+            scrollTop: $("#page-one").offset().top
+        }, 2000);
+    });
+    $("#btn-trainer").click(function() {
+        $('html, body').animate({
+            scrollTop: $("#trainerscr").offset().top
+        }, 2000);
+    });
+    $("#btn-sportclub").click(function() {
+        $('html, body').animate({
+            scrollTop: $("#sportclubscr").offset().top
+        }, 2000);
+    });
 });

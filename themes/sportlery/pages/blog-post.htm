@@ -1,0 +1,40 @@
+title = "Blog Post"
+url = "/blog/:slug"
+layout = "base"
+is_hidden = 0
+
+[viewBag]
+localeUrl[en] = "/blog/:slug"
+
+[blogPost]
+slug = "{{ :slug }}"
+categoryPage = "activity-create"
+
+[blogComments]
+==
+<div class="row">
+    <div class="col-md-12 text-right">
+        <a href="{{ 'blog'|page }}" class="btn btn-default">{{ 'Terug'|_ }}</a>
+    </div>
+    <!-- /.col-md-12 -->
+</div>
+<hr class="hr-invisible-sm">
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            {% component 'blogPost' %}
+          </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            {% component 'blogComments' %}
+          </div>
+        </div>
+    </div>
+</div>

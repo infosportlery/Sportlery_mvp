@@ -1,4 +1,6 @@
-<?php namespace Sportlery\Library\Models;
+<?php
+
+namespace Sportlery\Library\Models;
 
 use Carbon\Carbon;
 use Model;

@@ -1,6 +1,6 @@
 title = "Activities"
 url = "/activities"
-layout = "listing"
+layout = "base"
 meta_title = "Evenementen"
 meta_description = "Evenementen"
 is_hidden = 0
@@ -12,6 +12,10 @@ localeUrl[en] = "/events"
 perPage = 10
 detailsPage = "events-profile"
 ==
-<h1>Evenementen</h1>
-
-{% component 'eventList' %}
+<div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                {% partial 'userHome/activities' %}
+            </div>
+        </div>
+    </div>

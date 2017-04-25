@@ -208,6 +208,12 @@ body {
     color: #fff;
 }
 
+/*
+.sportlers-button {
+  display: none;
+}
+*/
+
 .home-header {
   margin-top: -20px;
   height: 90vh;  
@@ -219,12 +225,16 @@ body {
 .home-header h1 {font-family: 'Graduate', sans-serif; font-size: 80px;margin-bottom: 50px;}
 .home-header .lead {margin-top: -40px; letter-spacing: 5px; }
 
+.headerTitle {
+  margin-top: 15%;
+}
 
 .header3 h1 {font-size: 80px;}
 .header4 h1 {font-size: 80px;}
 .header5 h1 {font-size: 80px;}
 
 #page-one {
+  margin-top: 18%;
   height: 50px;
   bottom: 0;
 }
@@ -310,7 +320,56 @@ h6 {
 	font-weight: bold;
     color: #F46835;
 }
+/*  Home Activities */
 
+.activities {
+  margin-top: 50px;
+  height: 500px;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+#activities {
+  margin-top: -5%;
+  height: 50px;
+  bottom: 0;
+}
+
+/*  Home Activities end*/
+
+/*  Home Matchmaking  */
+
+.matchmaking {
+  margin-top: 50px;
+  height: 500px;
+  border-top: 1px solid turquoise;
+  border-bottom: 1px solid turquoise;
+}
+
+#matchmaking {
+  margin-top: -5%;
+  height: 50px;
+  bottom: 0;
+}
+
+/*  Home Matchmaking end*/
+
+/*  Home Locations  */
+
+.locations {
+  margin-top: 50px;
+  height: 500px;
+  border-top: 1px solid purple;
+  border-bottom: 1px solid purple;
+}
+
+#locations {
+  margin-top: -5%;
+  height: 50px;
+  bottom: 0;
+}
+
+/*  Home Locations end  */
 .hr-invisible {
 	border: none;
     margin-top: 100px;
@@ -369,11 +428,7 @@ h6 {
   transition: all .2s ease-in-out;
 }
 
-.home-container-1 {
-
-
-}
-
+/*  Footer Start  */
 footer {
     bottom: 0;
     width: 100%;
@@ -564,6 +619,9 @@ footer {
   padding: 60px 0 15px 0;
 }
 
+.policies {
+  margin-top: 5px;
+}
 /*-- End Footer --*/
 
 button.information-btn-top {

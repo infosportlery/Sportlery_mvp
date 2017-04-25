@@ -3,7 +3,7 @@
 use Schema;
 use October\Rain\Database\Updates\Migration;
 
-class AddNewUsersFields extends Migration
+class AddNewFields extends Migration
 {
 
     public function up()

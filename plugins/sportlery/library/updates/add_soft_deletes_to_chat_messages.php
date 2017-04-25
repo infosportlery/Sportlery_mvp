@@ -6,7 +6,7 @@ use October\Rain\Database\Schema\Blueprint;
 use Schema;
 use October\Rain\Database\Updates\Migration;
 
-class AddSoftDeletesToChatMessages extends Migration
+class AddAmountMaxPeopleToEvent extends Migration
 {
     public function up()
     {

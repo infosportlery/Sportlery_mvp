@@ -10,8 +10,6 @@
         {{ form_password('password', { class: 'form-control', placeholder: 'Vul je wachtwoord in'|_, required:true }) }}
         {{ errors.first('password', '<p class="help-block">:message</p>') }}
     </div>
-    <p><a href="{{ 'password-reset'|page }}">{{ 'Wachtwoord aanvragen'|_ }}</a></p>
-
     <p><a href="{{ route('login.social', 'google') }}" class="btn btn-gplus">{{ 'Login met Google'|_ }}</a></p>
     <p><a href="{{ route('login.social', 'facebook') }}" class="btn btn-facebook">{{ 'Login met Facebook'|_ }}</a></p>
 

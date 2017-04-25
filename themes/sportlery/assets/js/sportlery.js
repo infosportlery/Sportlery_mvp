@@ -66,7 +66,7 @@ $(function() {
         locale: 'nl',
         format: 'YYYY-MM-DD HH:mm:ss',
     });
-});
+
 $("#btn-index-more").click(function() {
     $('html, body').animate({
         scrollTop: $("#page-one").offset().top
@@ -107,6 +107,7 @@ $("#btn-sportclub").click(function() {
  * github.com/vtimbuc/bootstrap-responsive-tabs
  * @license WTFPL http://www.wtfpl.net/about/
  */
+/*
 
 ;(function($) {
 
@@ -124,3 +125,4 @@ $("#btn-sportclub").click(function() {
         $.each(config.accordionOn, function (index, value) {
             accordion += ' accordion-' + value;
         });
+*/

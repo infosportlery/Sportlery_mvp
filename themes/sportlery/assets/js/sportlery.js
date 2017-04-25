@@ -53,11 +53,27 @@ $(function() {
         }, 2000);
     });
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> refs/remotes/origin/tarik
     $("#btn-sportclub").click(function() {
         $('html, body').animate({
             scrollTop: $("#sportclubscr").offset().top
         }, 2000);
+<<<<<<< HEAD
 =======
+=======
+    });
+});
+    $('#datetime-start').datetimepicker({
+        locale: 'nl',
+        format: 'YYYY-MM-DD HH:mm:ss',
+    });
+    $('#datetime-end').datetimepicker({
+        locale: 'nl',
+        format: 'YYYY-MM-DD HH:mm:ss',
+    });
+>>>>>>> refs/remotes/origin/tarik
 });
 $("#btn-index-more").click(function() {
     $('html, body').animate({
@@ -116,6 +132,7 @@ $("#btn-sportclub").click(function() {
         $.each(config.accordionOn, function (index, value) {
             accordion += ' accordion-' + value;
         });
+<<<<<<< HEAD
 
     return this.each(function () {
 
@@ -204,3 +221,5 @@ $("#btn-sportclub").click(function() {
 >>>>>>> refs/remotes/origin/tarik
     });
 });
+=======
+>>>>>>> refs/remotes/origin/tarik

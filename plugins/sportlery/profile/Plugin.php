@@ -37,6 +37,11 @@ class Plugin extends PluginBase
                     'type' => 'text',
                     'tab' => 'Profile'
                 ],
+                'birthday' => [
+                    'label' => 'Date of Birth',
+                    'type' => 'date',
+                    'tab' => 'Profile'
+                ],
                 'street' => [
                     'label' => 'Street Name',
                     'type' => 'text',

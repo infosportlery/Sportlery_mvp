@@ -52,6 +52,7 @@ class Plugin extends PluginBase
             Components\SportlersList::class => 'sportlersList',
             Components\NotificationCounts::class => 'notificationCounts',
             Components\UserSportsForm::class => 'userSportsForm',
+            Components\LocationPicker::class => 'locationPicker',
         ];
     }
 
@@ -63,6 +64,7 @@ class Plugin extends PluginBase
     {
         $this->registerMessengerPackage();
         $this->registerSparkPostMailer();
+
     }
 
     public function boot()

@@ -50,7 +50,8 @@ class UserSportsForm extends ComponentBase
             'sport_custom' => 'unique:spr_sports,slug',
             'sport_custom_level' => 'required_with:sport_custom|in:1,2,3',
         ];
-        foreach ($data['sport'] as $id => $level) {
+        $sports = $data['sport'] ?? [];
+        foreach ($sports as $id => $level) {
             $rules["sport.$id"] = 'required|in:1,2,3';
         }
         $validator = \Validator::make($data, $rules, [
@@ -64,7 +65,7 @@ class UserSportsForm extends ComponentBase
 
         $syncData = [];
 
-        foreach ($data['sport'] as $id => $level) {
+        foreach ($sports as $id => $level) {
             $syncData[$id] = ['favorite' => 1, 'level' => $level];
         }
 

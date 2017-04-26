@@ -1,11 +1,13 @@
 
-
 <div class="container home-container-1">
 	<div class="row">
 		<div class="col-md-12 text-center">
-			<h1 style="margin-bottom: 20px;"><b>{{'Wat is Sportlery?'|_ }}</b></h1>
-            <h3 style="margin-bottom: 20px;">{{'Sportlery is een online community waar mensen elkaar kunnen vinden om samen te sporten, samen activiteiten te organiseren en heel gemakkelijk een sportlocatie kunnen boeken.'|_ }}</h3>
-		</div>
+			<h1 style="margin-top: 50px; margin-bottom: 40px;"><b>{{'Wat is Sportlery?'|_ }}</b></h1>
+            <h3 style="margin-bottom: 35px;">{{'Sportlery is een online community waar mensen elkaar kunnen vinden om samen te sporten, samen activiteiten te organiseren en heel gemakkelijk een sportlocatie kunnen boeken.'|_ }}</h3>
+            <div class="col-md-12 text-center">
+                <iframe style="width: 70%; height: 350px;" src="https://www.youtube.com/embed/3y4G2FyxZnY" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
 	</div>
 	<div class="row text-center">
 		<div class="col-md-6 col-md-offset-3 col-sm-12">
@@ -13,35 +15,61 @@
 		</div>
 	</div>
     <hr class="hr-invisible">
-	
+
   <div class="row text-center">
     <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
-      <div class="col-md-4 col-sm-4 infomation-col" id="index-slideup-obj">
-        <img src="{{ 'resources/img/location.png'|theme }}" style="width: 80px;">
-        <h1 class="h1-default text-center"><strong>{{'Sport Locaties'|_ }}</strong></h1>
-        <p>{{'Kies je sport en zoek een locatie bij jou in de buurt. Boek een plek en sporten maar!'|_}}</p>
-        <hr class="hr-sm">
-        <button class="btn btn-primary information-btn" id="btn-locations-more">{{'Lees meer!'|_}}</button>
-      </div>
-      <div class="col-md-4 col-sm-4 infomation-col" id="index-slideup-obj-2">
-        <img src="{{ 'resources/img/matchmaking.png'|theme }}" style="width: 80px;">
-        <h1 class="h1-default text-center h1-header-sub-2"><strong>{{'Matchmaking'|_ }}</strong></h1>
-        <p>{{'Ga op zoek naar sportbuddies bij jou in de buurt of vind invallers voor jouw team.'|_ }}</p>
-        <hr class="hr-sm">
-        <button class="btn btn-primary information-btn" id="btn-whatis-more">{{'Lees meer!'|_}}</button>
-      </div>
-      <div class="col-md-4 col-sm-4 infomation-col" id="index-slideup-obj-3" >
-        <img src="{{ 'resources/img/trainer.png'|theme }}" style="width: 80px;">
-        <h1 class="h1-default text-center"><strong>{{ 'Activiteiten'|_ }}</strong></h1>
-        <p>{{'Probeer en ontdek nieuwe sporten! Overzichtelijk alle sport activiteiten die aangeboden worden bij jou in de buurt.'|_}}</p>
-        <hr class="hr-sm">
-        <button class="btn btn-primary information-btn">{{'Lees meer'|_ }}</button>
-      </div>
+        <div class="col-md-4 col-sm-4 infomation-col" id="index-slideup-obj-3" >
+            <img src="{{ 'resources/img/trainer.png'|theme }}" style="width: 80px;">
+            <h1 class="h1-default text-center"><strong>{{ 'Activiteiten'|_ }}</strong></h1>
+            <p>{{'Probeer en ontdek nieuwe sporten! Overzichtelijk alle sport activiteiten die aangeboden worden bij jou in de buurt.'|_}}</p>
+            <hr class="hr-sm">
+            <button class="btn btn-primary information-btn" id="btn-activities-more">{{'Lees meer'|_ }}</button>
+        </div>
+        <div class="col-md-4 col-sm-4 infomation-col" id="index-slideup-obj-2">
+            <img src="{{ 'resources/img/matchmaking.png'|theme }}" style="width: 80px;">
+            <h1 class="h1-default text-center h1-header-sub-2"><strong>{{'Matchmaking'|_ }}</strong></h1>
+            <p>{{'Ga op zoek naar sportbuddies bij jou in de buurt of vind invallers voor jouw team.'|_ }}</p>
+            <hr class="hr-sm">
+            <button class="btn btn-primary information-btn" id="btn-whatis-more">{{'Lees meer!'|_}}</button>
+        </div>
+        <div class="col-md-4 col-sm-4 infomation-col" id="index-slideup-obj">
+            <img src="{{ 'resources/img/location.png'|theme }}" style="width: 80px;">
+            <h1 class="h1-default text-center"><strong>{{'Sport Locaties'|_ }}</strong></h1>
+            <p>{{'Kies je sport en zoek een locatie bij jou in de buurt. Boek een plek en sporten maar!'|_}}</p>
+            <hr class="hr-sm">
+            <button class="btn btn-primary information-btn" id="btn-locations-more">{{'Lees meer!'|_}}</button>
+        </div>
     </div>
   </div> 
 </div>
-<hr class="hr-invisible">
+<!--<div class="row" id="activities"></div>
+<div class="activities">
+    <div class="row text-center">
+        <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
+            <h2>Activities</h2>
+            {% partial 'userHome/activities' %}
+        </div>
+    </div>
+</div>
+<div class="row" id="matchmaking"></div>
+<div class="matchmaking">
+    <div class="row text-center">
+        <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
+            <h2>Matchmaking</h2>
 
+        </div>
+    </div>
+</div>
+<div class="row" id="locations"></div>
+<div class="locations">
+    <div class="row text-center">
+        <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
+            <h2>Locations</h2>
+            <small>Coming Soon</small>
+        </div>
+    </div>
+</div>-->
+<hr class="hr-invisible">
 
 <div class="parallaxTwo">
   <div class="container-fluid">
@@ -104,13 +132,13 @@
   <div class="row text-center">
     <div class="col-md-10 col-md-offset-1">
       <div class="col-md-4">
-        <h2 class="h-orange">{{'Flexibel'|_ }} <h4><span class="text-muted">{{'Geen vaste abbonementskosten'|_ }}</span></h4>
+          <h2 class="h-orange">{{'Flexibel'|_ }}</h2><h4><span class="text-muted">{{'Geen vaste abbonementskosten'|_ }}</span></h4>
       </div>
       <div class="col-md-4">
-        <h2 class="h-orange">{{'Variatie'|_ }} <h4><span class="text-muted">{{'Ontdek meer sporten en doe mee aan evenementen.'|_ }}</span></h4>
+          <h2 class="h-orange">{{'Variatie'|_ }}</h2><h4><span class="text-muted">{{'Ontdek meer sporten en doe mee aan evenementen.'|_ }}</span></h4>
       </div>
       <div class="col-md-4">
-        <h2 class="h-orange">{{'Motivatie'|_ }} <h4><span class="text-muted">{{'Er zijn meerdere mensen om je heen die graag sporten, sport samen!'|_ }}</span></h4>
+          <h2 class="h-orange">{{'Motivatie'|_ }}</h2><h4><span class="text-muted">{{'Er zijn meerdere mensen om je heen die graag sporten, sport samen!'|_ }}</span></h4>
       </div>
     </div>
   </div> <!-- end row -->

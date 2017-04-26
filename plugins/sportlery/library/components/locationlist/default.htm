@@ -81,6 +81,7 @@
                         </div>
                     </div>
                     {% put scripts %}
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.js"></script>
                     <script>(function(){window.sportlery=window.sportlery||{};window.sportlery.locations={{ locations.all|json_encode|raw }}; })();</script>
                     {% endput %}
                 </div>

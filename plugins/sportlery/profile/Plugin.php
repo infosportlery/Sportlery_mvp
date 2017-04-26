@@ -40,7 +40,7 @@ class Plugin extends PluginBase
                 'birthday' => [
                     'label' => 'Date of Birth',
                     'type' => 'date',
-                    'tab' => 'Profile'
+                    'tab' => 'Profile',
                 ],
                 'street' => [
                     'label' => 'Street Name',

@@ -31,7 +31,15 @@ $(function() {
             format: 'YYYY-MM-DD HH:mm',
         });
     });
+    $('[data-component="dateTimePickerDay"]').each(function() {
+        var format = $(this).data('format') || 'YYYY-MM-DD';
+        var locale = $(this).data('locale');
 
+        $(this).datetimepicker({
+            locale,
+            format: 'YYYY-MM-DD',
+        });
+    });
     $('#menu-toggle').click(function(e) {
         e.preventDefault();
         $('#wrapper').toggleClass('toggled');
@@ -69,7 +77,6 @@ $(function() {
         locale: 'nl',
         format: 'YYYY-MM-DD HH:mm:ss',
     });
-});
 $("#btn-index-more").click(function() {
     $('html, body').animate({
         scrollTop: $("#page-one").offset().top
@@ -111,7 +118,7 @@ $("#btn-sportclub").click(function() {
  * @license WTFPL http://www.wtfpl.net/about/
  */
 
-;(function($) {
+$(function($) {
 
   "use strict";
 
@@ -127,3 +134,5 @@ $("#btn-sportclub").click(function() {
         $.each(config.accordionOn, function (index, value) {
             accordion += ' accordion-' + value;
         });
+    };
+});

@@ -1,5 +1,17 @@
+<div id="tabs" class="tabs">
+    <nav>
+        <ul>
+            <li><a href="{{ 'home'|page }}" class="icon-shop"><span>Activiteiten</span></a></li>
+            <li><a href="{{ 'sportlers'|page }}" class="icon-cup"><span>Sportlers</span></a></li>
+            <li class="tab-current"><a href="{{ 'locations'|page }}" class="icon-cup"><span>Locaties</span></a></li>
+        </ul>
+    </nav>
+</div><!-- /tabs -->
+
+
 <div class="row">
     <div class="col-xs-12">
+        <h2 style="text-align: center; font-family: Graduate;">Locaties</h2>
         <div class="panel panel-default">
             <div class="panel-body">
                 {{ form_open({ method: 'get' }) }}

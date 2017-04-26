@@ -49,4 +49,7 @@ $(function() {
             scrollTop: $("#sportclubscr").offset().top
         }, 2000);
     });
+    $("#btn-modal-close").click(function() {
+        $('body').css('padding-right', '0px');
+    });
 });

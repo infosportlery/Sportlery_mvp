@@ -67,6 +67,8 @@ class FourStepRegistration extends ComponentBase
             $rules = [
                 'name' => 'required',
                 'surname' => 'required',
+                'password' => 'required|min:6|same:password_confirmation',
+                'password_confirmation' => 'required|min:6|same:password',
             ];
 
             $validator = Validator::make(post(), $rules);

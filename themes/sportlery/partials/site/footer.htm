@@ -3,19 +3,32 @@
 <footer class="footer">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <div class="row">
-	    <div class="col-md-4">
-	        <p class="text-muted text-center">
-	             <span class="lead">{{'Ondersteund door:'|_}}</span> <br>
-	             	<a href="http://centre4innovation.org/"><img src="{{ 'resources/img/center-for-innovation.png'|theme }}" class="footer-logo"></a>
-	             	<a href="http://http://ece.nl/"><img src="{{ 'resources/img/logo_ece.png'|theme }} " class="footer-logo"></a>
-	             	<a href="https://www.s-bb.nl/"><img src=" {{ 'resources/img/sbb.png'|theme }} " class="footer-logo"></a>
-	        </p>
-	    </div>
-	    <div class="col-md-4">
+        <div style="text-align: center;" class="col-md-4">
+            <h2 class="text-muted">{{'Sportlery'|_}}</h2><br>
+                <a href="{{ 'team-sportlery'|_  }}">Team</a><br>
+                <a href="{{ 'team-sportlery'|_  }}">Over Ons</a><br>
+                <a href="#">Blog</a><br> <!-- pagina is nog niet af *kijkt naar @Jesse* -->
+                <a href="#">Pers</a><br><br> <!-- geen pagina??? -->
+                <p class="text-muted text-center">Copyright Sportlery &copy; {{ 'now'|date("Y") }}</p>
+        </div>
 
-	    </div>
-            <div class="col-md-4 text-center">
-                <div class="row">
+
+        <div style="text-align: center;" class="col-md-4">
+            <h2 class="text-muted">{{'Voor Sportaanbieders'|_}}</h2><br>
+                <a href="{{ 'trainer'|_ }}">Trainers</a><br>
+                <a href="{{ 'sportclub'|_ }}">Sportclubs</a><br><br>
+                <p class="text-muted text-center">
+                    <span class="lead">{{'Ondersteund door:'|_}}</span> <br>
+                    <a href="http://centre4innovation.org/"><img src="{{ 'resources/img/center-for-innovation.png'|theme }}" class="footer-logo"></a>
+                    <a href="http://http://ece.nl/"><img src="{{ 'resources/img/logo_ece.png'|theme }} " class="footer-logo"></a>
+                    <a href="https://www.s-bb.nl/"><img src=" {{ 'resources/img/sbb.png'|theme }} " class="footer-logo"></a>
+                </p>
+        </div>
+        <div style="text-align: center;" class="col-md-4">
+            <h2 class="text-muted">{{'Contact'|_}}</h2><br>
+                <a href="{{ 'contact'|_ }}">Contact</a><br>
+                <a href="{{ 'privacy-policy'|_ }}" target="_blank">{{ 'Privacy Policy'|_ }}</a><br>
+                <a href="{{ 'algemene-voorwaarden'|_ }}" target="_blank">{{ 'Algemene Voorwaarden'|_ }}</a><br><br>
                 <a href="https://twitter.com/sportlery" target="_blank" class="btn btn-social-icon btn-twitter">
                     <span class="fa fa-twitter"></span>
                 </a>
@@ -25,14 +38,6 @@
                 <a href="https://instagram.com/sportlery_community" target="_blank" class="btn btn-social-icon btn-instagram">
                     <span class="fa fa-instagram"></span>
                 </a>
-                </div>
-                <div class="row policies">
-                    <a href="{{ 'privacy-policy'|page }}" target="_blank">{{ 'Privacy Policy'|_ }}</a><br>
-                    <a href="{{ 'algemene-voorwaarden'|page }}" target="_blank">{{ 'Algemene Voorwaarden'|_ }}</a>
-                </div>
-            </div>
-	</div>
-	<div class="row">
-		<p class="text-muted text-center">Copyright Sportlery &copy; {{ 'now'|date("Y") }}</p>
-	</div>
+        </div>
+    </div>
 </footer>

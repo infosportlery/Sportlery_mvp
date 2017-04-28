@@ -50,11 +50,6 @@ $(function() {
         e.preventDefault();
         $(this).next('form').submit();
     });
-    $("#btn-index-more").click(function() {
-        $('html, body').animate({
-            scrollTop: $("#page-one").offset().top
-        }, 2000);
-    });
     $("#btn-trainer").click(function() {
         $('html, body').animate({
             scrollTop: $("#trainerscr").offset().top
@@ -79,10 +74,14 @@ $(function() {
         locale: 'nl',
         format: 'YYYY-MM-DD HH:mm:ss',
     });
+<<<<<<< HEAD
+
+=======
+>>>>>>> origin/tarik
 $("#btn-index-more").click(function() {
-    $('html, body').animate({
-        scrollTop: $("#page-one").offset().top
-    }, 2000);
+ $('html, body').animate({
+ scrollTop: $('#page-one').offset().top - $('#layout-nav').height()
+ }, 2000);
 });
 $("#btn-activities-more").click(function() {
     $('html, body').animate({
@@ -137,6 +136,9 @@ $(function($) {
         $.each(config.accordionOn, function (index, value) {
             accordion += ' accordion-' + value;
         });
+<<<<<<< HEAD
+
+=======
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -232,6 +234,7 @@ $(function($) {
 >>>>>>> refs/remotes/origin/tarik
 =======
 >>>>>>> develop
+>>>>>>> origin/tarik
 */
 
 /**
@@ -306,4 +309,7 @@ $(function($) {
     window.CBPFWTabs = CBPFWTabs;
 
 })( window );
+<<<<<<< HEAD
+=======
 
+>>>>>>> origin/tarik

@@ -60,17 +60,12 @@ $(function() {
             scrollTop: $("#trainerscr").offset().top
         }, 2000);
     });
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> refs/remotes/origin/tarik
+
     $("#btn-sportclub").click(function() {
         $('html, body').animate({
             scrollTop: $("#sportclubscr").offset().top
         }, 2000);
-<<<<<<< HEAD
-=======
-=======
+
     });
     $("#btn-modal-close").click(function() {
         $('body').css('padding-right', '0px');
@@ -84,15 +79,7 @@ $(function() {
         locale: 'nl',
         format: 'YYYY-MM-DD HH:mm:ss',
     });
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> refs/remotes/origin/tarik
-});
-=======
 
->>>>>>> refs/remotes/origin/tarik
-=======
->>>>>>> origin/develop
 $("#btn-index-more").click(function() {
     $('html, body').animate({
         scrollTop: $("#page-one").offset().top
@@ -151,9 +138,6 @@ $(function($) {
         $.each(config.accordionOn, function (index, value) {
             accordion += ' accordion-' + value;
         });
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 
     return this.each(function () {
 
@@ -319,8 +303,3 @@ $(function($) {
     window.CBPFWTabs = CBPFWTabs;
 
 })( window );
->>>>>>> refs/remotes/origin/tarik
-=======
-    };
-});
->>>>>>> origin/develop

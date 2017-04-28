@@ -15668,7 +15668,19 @@ $(function () {
             format: 'YYYY-MM-DD HH:mm'
         });
     });
+<<<<<<< HEAD
 
+=======
+    $('[data-component="dateTimePickerDay"]').each(function () {
+        var format = $(this).data('format') || 'YYYY-MM-DD';
+        var locale = $(this).data('locale');
+
+        $(this).datetimepicker({
+            locale: locale,
+            format: 'YYYY-MM-DD'
+        });
+    });
+>>>>>>> refs/remotes/origin/develop
     $('#menu-toggle').click(function (e) {
         e.preventDefault();
         $('#wrapper').toggleClass('toggled');
@@ -15683,6 +15695,7 @@ $(function () {
         $('html, body').animate({
             scrollTop: $("#page-one").offset().top
         }, 2000);
+<<<<<<< HEAD
     });
     $("#btn-trainer").click(function () {
         $('html, body').animate({
@@ -15693,6 +15706,21 @@ $(function () {
         $('html, body').animate({
             scrollTop: $("#sportclubscr").offset().top
         }, 2000);
+=======
+    });
+    $("#btn-trainer").click(function () {
+        $('html, body').animate({
+            scrollTop: $("#trainerscr").offset().top
+        }, 2000);
+    });
+    $("#btn-sportclub").click(function () {
+        $('html, body').animate({
+            scrollTop: $("#sportclubscr").offset().top
+        }, 2000);
+    });
+    $("#btn-modal-close").click(function () {
+        $('body').css('padding-right', '0px');
+>>>>>>> refs/remotes/origin/develop
     });
 });
 $('#datetime-start').datetimepicker({
@@ -15746,7 +15774,11 @@ $("#btn-sportclub").click(function () {
  */
 /*
 
+<<<<<<< HEAD
 ;(function($) {
+=======
+$(function ($) {
+>>>>>>> refs/remotes/origin/develop
 
   "use strict";
 
@@ -15762,6 +15794,7 @@ $("#btn-sportclub").click(function () {
         $.each(config.accordionOn, function (index, value) {
             accordion += ' accordion-' + value;
         });
+<<<<<<< HEAD
 */
 
 /**
@@ -15835,6 +15868,10 @@ $("#btn-sportclub").click(function () {
     // add to global namespace
     window.CBPFWTabs = CBPFWTabs;
 })(window);
+=======
+    };
+});
+>>>>>>> refs/remotes/origin/develop
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 
 /***/ }),

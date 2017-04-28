@@ -74,10 +74,7 @@ $(function() {
         locale: 'nl',
         format: 'YYYY-MM-DD HH:mm:ss',
     });
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/tarik
 $("#btn-index-more").click(function() {
  $('html, body').animate({
  scrollTop: $('#page-one').offset().top - $('#layout-nav').height()
@@ -309,7 +306,3 @@ $(function($) {
     window.CBPFWTabs = CBPFWTabs;
 
 })( window );
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/tarik

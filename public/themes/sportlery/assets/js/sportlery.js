@@ -15668,7 +15668,19 @@ $(function () {
             format: 'YYYY-MM-DD HH:mm'
         });
     });
+<<<<<<< HEAD
 
+=======
+    $('[data-component="dateTimePickerDay"]').each(function () {
+        var format = $(this).data('format') || 'YYYY-MM-DD';
+        var locale = $(this).data('locale');
+
+        $(this).datetimepicker({
+            locale: locale,
+            format: 'YYYY-MM-DD'
+        });
+    });
+>>>>>>> origin/develop
     $('#menu-toggle').click(function (e) {
         e.preventDefault();
         $('#wrapper').toggleClass('toggled');
@@ -15694,6 +15706,17 @@ $(function () {
             scrollTop: $("#sportclubscr").offset().top
         }, 2000);
     });
+    $("#btn-modal-close").click(function () {
+        $('body').css('padding-right', '0px');
+    });
+});
+$('#datetime-start').datetimepicker({
+    locale: 'nl',
+    format: 'YYYY-MM-DD HH:mm:ss'
+});
+$('#datetime-end').datetimepicker({
+    locale: 'nl',
+    format: 'YYYY-MM-DD HH:mm:ss'
 });
 $('#datetime-start').datetimepicker({
     locale: 'nl',
@@ -15755,7 +15778,11 @@ $("#btn-sportclub").click(function () {
  */
 /*
 
+<<<<<<< HEAD
 ;(function($) {
+=======
+$(function ($) {
+>>>>>>> origin/develop
 
   "use strict";
 
@@ -15771,6 +15798,7 @@ $("#btn-sportclub").click(function () {
         $.each(config.accordionOn, function (index, value) {
             accordion += ' accordion-' + value;
         });
+<<<<<<< HEAD
 */
 
 /**
@@ -15853,6 +15881,11 @@ $("#btn-sportclub").click(function () {
 })(window);
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 >>>>>>> refs/remotes/origin/tarik
+=======
+    };
+});
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
+>>>>>>> origin/develop
 
 /***/ }),
 /* 118 */

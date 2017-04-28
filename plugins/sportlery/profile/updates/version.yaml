@@ -9,3 +9,6 @@
 1.0.4:
     - add Country and State to user
     - add_user_city_state.php
+1.0.5:
+    - Add Date of birth
+    - add_day_of_birth.php

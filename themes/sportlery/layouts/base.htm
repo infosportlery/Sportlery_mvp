@@ -34,7 +34,6 @@ security = all
 
         {% partial 'site/footer' %}
 
-
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
         {% framework extras %}
         {% scripts %}
@@ -64,6 +63,7 @@ security = all
         </script>
         <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1867163733571980&ev=PageView&noscript=1" /></noscript>
         <!-- End Facebook Pixel Code -->
+
         {% if not user %}
             <div class="modal fade" tabindex="-1" role="dialog" id="login-modal">
                 <div class="modal-dialog" role="document">

@@ -10,6 +10,15 @@
         <p class="help-block" style="display:none;"></p>
     </div>
     <div class="form-group">
+        {{ form_label('birthday', 'Geboorte Datum'|_, {class: 'control-label'}) }}
+        <div class="input-group date" data-component="dateTimePickerDay" data-locale="{{ activeLocale }}">
+            {{ form_text('birthday', null, {class: 'form-control'}) }}
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
         {{ form_label('avatar', 'Avatar', { class: 'control-label' }) }}
         {% component 'imageUploader' %}
         <p class="help-block" style="display:none;"></p>

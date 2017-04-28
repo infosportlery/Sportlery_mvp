@@ -31,7 +31,15 @@ $(function() {
             format: 'YYYY-MM-DD HH:mm',
         });
     });
+    $('[data-component="dateTimePickerDay"]').each(function() {
+        var format = $(this).data('format') || 'YYYY-MM-DD';
+        var locale = $(this).data('locale');
 
+        $(this).datetimepicker({
+            locale,
+            format: 'YYYY-MM-DD',
+        });
+    });
     $('#menu-toggle').click(function(e) {
         e.preventDefault();
         $('#wrapper').toggleClass('toggled');
@@ -64,6 +72,9 @@ $(function() {
 =======
 =======
     });
+    $("#btn-modal-close").click(function() {
+        $('body').css('padding-right', '0px');
+    });
 });
     $('#datetime-start').datetimepicker({
         locale: 'nl',
@@ -74,11 +85,14 @@ $(function() {
         format: 'YYYY-MM-DD HH:mm:ss',
     });
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> refs/remotes/origin/tarik
 });
 =======
 
 >>>>>>> refs/remotes/origin/tarik
+=======
+>>>>>>> origin/develop
 $("#btn-index-more").click(function() {
     $('html, body').animate({
         scrollTop: $("#page-one").offset().top
@@ -121,7 +135,7 @@ $("#btn-sportclub").click(function() {
  */
 /*
 
-;(function($) {
+$(function($) {
 
   "use strict";
 
@@ -137,6 +151,7 @@ $("#btn-sportclub").click(function() {
         $.each(config.accordionOn, function (index, value) {
             accordion += ' accordion-' + value;
         });
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 
@@ -305,3 +320,7 @@ $("#btn-sportclub").click(function() {
 
 })( window );
 >>>>>>> refs/remotes/origin/tarik
+=======
+    };
+});
+>>>>>>> origin/develop

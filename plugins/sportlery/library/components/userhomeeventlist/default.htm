@@ -1,3 +1,307 @@
+<div id="tabs" class="tabs">
+    <nav>
+        <ul>
+            <li><a href="#section-1" class="icon-shop"><span>Activiteiten</span></a></li>
+            <li><a href="#section-2" class="icon-cup"><span>Sportlers</span></a></li>
+            <li><a href="#section-3" class="icon-food"><span>Locaties</span></a></li>
+        </ul>
+    </nav>
+    <div class="content">
+        <section id="section-1">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2 style="text-align: center; font-family: Graduate;">Activiteiten</h2>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            {{ form_open({ method: 'get' }) }}
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        {{ form_label('sport', 'Sport'|_, {class: 'control-label'}) }}
+                                        {{ form_select('sport', sports, input('sport'), {class: 'form-control', emptyOption: 'Alle'|_}) }}
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    {{ form_label('city', 'Stad'|_, {class: 'control-label'}) }}
+                                    {{ form_select('city', cities, input('city'), {class: 'form-control', emptyOption: 'Alle'|_}) }}
+                                </div>
+                                <div class="col-sm-3">
+                                    {{ form_label('q', 'Zoek'|_, {class: 'control-label'}) }}
+                                    {{ form_text('q', input('q'), {class: 'form-control'}) }}
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="checkbox">
+                                        <label>
+                                            {{ form_checkbox('past', '1', input('past')) }}
+                                            {{ 'Laat verlopen activiteiten zien'|_ }}
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <div>&nbsp;</div>
+                                        {{ form_submit('Zoeken'|_, {class: 'btn btn-primary'}) }}
+                                        {{ link_to(url_current(), 'Opnieuw'|_, {class: 'btn btn-default'}) }}
+                                    </div>
+                                </div>
+                            </div>
+                            {{ form_close() }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% if events is not empty %}
+            {% for row in events|batch(2) %}
+            <div class="row">
+                {% for event in row %}
+                <div class="col-md-6">
+                    {% partial __SELF__~'::event-card' event=event %}
+                </div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+            <div class="row">
+                <div class="col-sm-12">
+                    {{ events.render|raw }}
+                </div>
+            </div>
+            {% else %}
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="alert alert-danger">
+                        {{ 'Geen activiteiten gevonden'|_ }}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </section>
+        <section id="section-2">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2 style="text-align: center; font-family: Graduate;">Sportlers</h2>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            {{ form_open({ method: 'get' }) }}
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        {{ form_label('sport', 'Sport'|_, {class: 'control-label'}) }}
+                                        {{ form_select('sport', sports, input('sport'), {class: 'form-control', emptyOption: 'Alle'|_}) }}
+                                    </div>
+                                </div>
+                                <!-- <div class="col-sm-3">
+                                    {{ form_label('city', 'Stad'|_, {class: 'control-label'}) }}
+                                    {{ form_select('city', cities, input('city'), {class: 'form-control', emptyOption: 'Alle'|_}) }}
+                                </div> -->
+                                <div class="col-sm-3">
+                                    {{ form_label('q', 'Naam'|_, {class: 'control-label'}) }}
+                                    {{ form_text('q', input('q'), {class: 'form-control'}) }}
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <div>&nbsp;</div>
+                                        {{ form_submit('Zoeken'|_, {class: 'btn btn-primary'}) }}
+                                        {{ link_to(url_current(), 'Opnieuw'|_, {class: 'btn btn-default'}) }}
+                                    </div>
+                                </div>
+                            </div>
+                            {{ form_close() }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="row">
+                {% for sportler in row %}
+                <div class="col-md-2 col-xs-6">
+                    {% partial __SELF__~'::sportler-card' sportler=sportler %}
+                </div>
+                {% endfor %}
+            </div>
+            {{ sportlers.render|raw }}
+
+        </section>
+        <section id="section-3">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2 style="text-align: center; font-family: Graduate;">Locaties</h2>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            {{ form_open({ method: 'get' }) }}
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        {{ form_label('sport', 'Sport', {class: 'control-label'}) }}
+                                        {{ form_select('sport', sports, input('sport'), {class: 'form-control', emptyOption: 'All'}) }}
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    {{ form_label('city', 'City', {class: 'control-label'}) }}
+                                    {{ form_select('city', cities, input('city'), {class: 'form-control', emptyOption: 'All'}) }}
+                                </div>
+                                <div class="col-sm-3">
+                                    {{ form_label('q', 'Search', {class: 'control-label'}) }}
+                                    {{ form_text('q', input('q'), {class: 'form-control'}) }}
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <div>&nbsp;</div>
+                                        {{ form_submit('Search', {class: 'btn btn-primary'}) }}
+                                        {{ link_to(url_current(), 'Reset', {class: 'btn btn-default'}) }}
+                                    </div>
+                                </div>
+                            </div>
+                            {{ form_close() }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% if locations is not empty %}
+            <div class="row">
+                <div class="col-sm-12">
+                    <ul class="nav nav-tabs" style="margin-bottom:15px;" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="#tab-list" aria-controls="tab-list" role="tab" data-toggle="tab">{{ 'Lijst'|_ }}</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#tab-map" aria-controls="tab-map" role="tab" data-toggle="tab">{{ 'Kaart'|_ }}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="tab-list">
+                            {% for row in locations|batch(2) %}
+                            <div class="row">
+                                {% for location in row %}
+                                <div class="col-md-6">
+                                    {% partial __SELF__~'::location-card' location=location %}
+                                </div>
+                                {% endfor %}
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="tab-map">
+                            <div data-component="locationMap" data-locations="locations" style="height:360px;">
+                                <div id="marker-popup-tmpl">
+                                    <h4>[[name]]</h4>
+                                    [[description]]
+                                    <div class="text-right">
+                                        <a href="{{ detailsPage|page({ id: '[[id]]' }) }}" class="btn btn-primary">Bekijk &raquo;</a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% put scripts %}
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.js"></script>
+                            <script>(function(){window.sportlery=window.sportlery||{};window.sportlery.locations={{ locations.all|json_encode|raw }}; })();</script>
+                            {% endput %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    {{ locations.render|raw }}
+                </div>
+            </div>
+            {% else %}
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="alert alert-danger">
+                        {{ 'Geen locaties gevonden'|_ }}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+        </section>
+    </div><!-- /content -->
+</div><!-- /tabs -->
+<!-- <script src="js/cbpFWTabs.js"></script> -->
+
+
+<script>
+    /**
+     * cbpFWTabs.js v1.0.0
+     * http://www.codrops.com
+     *
+     * Licensed under the MIT license.
+     * http://www.opensource.org/licenses/mit-license.php
+     *
+     * Copyright 2014, Codrops
+     * http://www.codrops.com
+     */
+    ;( function( window ) {
+
+        'use strict';
+
+        function extend( a, b ) {
+            for( var key in b ) {
+                if( b.hasOwnProperty( key ) ) {
+                    a[key] = b[key];
+                }
+            }
+            return a;
+        }
+
+        function CBPFWTabs( el, options ) {
+            this.el = el;
+            this.options = extend( {}, this.options );
+            extend( this.options, options );
+            this._init();
+        }
+
+        CBPFWTabs.prototype.options = {
+            start : 0
+        };
+
+        CBPFWTabs.prototype._init = function() {
+            // tabs elemes
+            this.tabs = [].slice.call( this.el.querySelectorAll( 'nav > ul > li' ) );
+            // content items
+            this.items = [].slice.call( this.el.querySelectorAll( '.content > section' ) );
+            // current index
+            this.current = -1;
+            // show current content item
+            this._show();
+            // init events
+            this._initEvents();
+        };
+
+        CBPFWTabs.prototype._initEvents = function() {
+            var self = this;
+            this.tabs.forEach( function( tab, idx ) {
+                tab.addEventListener( 'click', function( ev ) {
+                    ev.preventDefault();
+                    self._show( idx );
+                } );
+            } );
+        };
+
+        CBPFWTabs.prototype._show = function( idx ) {
+            if( this.current >= 0 ) {
+                this.tabs[ this.current ].className = '';
+                this.items[ this.current ].className = '';
+            }
+            // change current
+            this.current = idx != undefined ? idx : this.options.start >= 0 && this.options.start < this.items.length ? this.options.start : 0;
+            this.tabs[ this.current ].className = 'tab-current';
+            this.items[ this.current ].className = 'content-current';
+        };
+
+        // add to global namespace
+        window.CBPFWTabs = CBPFWTabs;
+
+    })( window );
+
+    new CBPFWTabs( document.getElementById( 'tabs' ) );
+</script>
+<!--
 <div class="row sportlers-button">
     <div class="col-sm-8 col-sm-offset-4 col-xs-6 col-xs-offset-3">
         <div class="col-sm-6 text-center">
@@ -74,3 +378,4 @@
         </div>
     </div>
 {% endif %}
+-->

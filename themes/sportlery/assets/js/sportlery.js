@@ -60,10 +60,12 @@ $(function() {
             scrollTop: $("#trainerscr").offset().top
         }, 2000);
     });
+
     $("#btn-sportclub").click(function() {
         $('html, body').animate({
             scrollTop: $("#sportclubscr").offset().top
         }, 2000);
+
     });
     $("#btn-modal-close").click(function() {
         $('body').css('padding-right', '0px');
@@ -77,6 +79,7 @@ $(function() {
         locale: 'nl',
         format: 'YYYY-MM-DD HH:mm:ss',
     });
+
 $("#btn-index-more").click(function() {
     $('html, body').animate({
         scrollTop: $("#page-one").offset().top
@@ -117,6 +120,7 @@ $("#btn-sportclub").click(function() {
  * github.com/vtimbuc/bootstrap-responsive-tabs
  * @license WTFPL http://www.wtfpl.net/about/
  */
+/*
 
 $(function($) {
 
@@ -134,5 +138,168 @@ $(function($) {
         $.each(config.accordionOn, function (index, value) {
             accordion += ' accordion-' + value;
         });
-    };
+
+    return this.each(function () {
+
+      var $self = $(this),
+          $navTabs = $self.find('> li > a'),
+          $tabContent = $($navTabs.first().attr('href')).parent('.tab-content'),
+          $tabs = $tabContent.children('.tab-pane');
+
+      // Wrap the tabs
+      $self.add($tabContent).wrapAll('<div class="responsive-tabs-container" />');
+
+      var $container = $self.parent('.responsive-tabs-container');
+
+      $container.addClass(accordion);
+
+      // Duplicate links for accordion
+      $navTabs.each(function (i) {
+        var $this = $(this),
+            id = $this.attr('href'),
+            active = '',
+            first = '',
+            last = '';
+
+        // Add active class
+        if ($this.parent('li').hasClass('active')) {
+          active = ' active';
+        }
+
+        // Add first class
+        if (i === 0) {
+          first = ' first';
+        }
+
+        // Add last class
+        if (i === $navTabs.length - 1) {
+          last = ' last';
+        }
+
+        $this.clone(false).addClass('accordion-link' + active + first + last).insertBefore(id);
+      });
+
+      var $accordionLinks = $tabContent.children('.accordion-link');
+
+      // Tabs Click Event
+      $navTabs.on('click', function (event) {
+        event.preventDefault();
+
+        var $this = $(this),
+            $li = $this.parent('li'),
+            $siblings = $li.siblings('li'),
+            id = $this.attr('href'),
+            $accordionLink = $tabContent.children('a[href="' + id + '"]');
+
+        if (!$li.hasClass('active')) {
+          $li.addClass('active');
+          $siblings.removeClass('active');
+
+          $tabs.removeClass('active');
+          $(id).addClass('active');
+
+          $accordionLinks.removeClass('active');
+          $accordionLink.addClass('active');
+        }
+      });
+
+      // Accordion Click Event
+      $accordionLinks.on('click', function (event) {
+        event.preventDefault();
+
+        var $this = $(this),
+            id = $this.attr('href'),
+            $tabLink = $self.find('li > a[href="' + id + '"]').parent('li');
+
+        if (!$this.hasClass('active')) {
+          $accordionLinks.removeClass('active');
+          $this.addClass('active');
+
+          $tabs.removeClass('active');
+          $(id).addClass('active');
+
+          $navTabs.parent('li').removeClass('active');
+          $tabLink.addClass('active');
+        }
+      });
+
+>>>>>>> refs/remotes/origin/tarik
+    });
 });
+=======
+>>>>>>> refs/remotes/origin/tarik
+=======
+*/
+
+/**
+ * cbpFWTabs.js v1.0.0
+ * http://www.codrops.com
+ *
+ * Licensed under the MIT license.
+ * http://www.opensource.org/licenses/mit-license.php
+ *
+ * Copyright 2014, Codrops
+ * http://www.codrops.com
+ */
+;( function( window ) {
+
+    'use strict';
+
+    function extend( a, b ) {
+        for( var key in b ) {
+            if( b.hasOwnProperty( key ) ) {
+                a[key] = b[key];
+            }
+        }
+        return a;
+    }
+
+    function CBPFWTabs( el, options ) {
+        this.el = el;
+        this.options = extend( {}, this.options );
+        extend( this.options, options );
+        this._init();
+    }
+
+    CBPFWTabs.prototype.options = {
+        start : 0
+    };
+
+    CBPFWTabs.prototype._init = function() {
+        // tabs elemes
+        this.tabs = [].slice.call( this.el.querySelectorAll( 'nav > ul > li' ) );
+        // content items
+        this.items = [].slice.call( this.el.querySelectorAll( '.content > section' ) );
+        // current index
+        this.current = -1;
+        // show current content item
+        this._show();
+        // init events
+        this._initEvents();
+    };
+
+    CBPFWTabs.prototype._initEvents = function() {
+        var self = this;
+        this.tabs.forEach( function( tab, idx ) {
+            tab.addEventListener( 'click', function( ev ) {
+                ev.preventDefault();
+                self._show( idx );
+            } );
+        } );
+    };
+
+    CBPFWTabs.prototype._show = function( idx ) {
+        if( this.current >= 0 ) {
+            this.tabs[ this.current ].className = '';
+            this.items[ this.current ].className = '';
+        }
+        // change current
+        this.current = idx != undefined ? idx : this.options.start >= 0 && this.options.start < this.items.length ? this.options.start : 0;
+        this.tabs[ this.current ].className = 'tab-current';
+        this.items[ this.current ].className = 'content-current';
+    };
+
+    // add to global namespace
+    window.CBPFWTabs = CBPFWTabs;
+
+})( window );

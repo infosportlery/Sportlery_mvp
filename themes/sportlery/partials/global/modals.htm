@@ -1,0 +1,77 @@
+<!--*
+*
+* Global Modals If Not Logged in
+* 
+*-->
+
+{% if not user %}
+<!--*
+*
+*  Login Modal
+* 
+*-->
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="login-modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">{{'Login'|_ }}</h4>
+                </div>
+                <div class="modal-body">
+                    {% partial 'modals/login' %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'Annuleer'|_ }}</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+<!--*
+*
+* Register Modal
+* 
+*-->
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="register-modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">{{'Registreer'|_ }}</h4>
+                </div>
+                <div class="modal-body">
+                    {% partial 'modals/register' %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'Annuleer'|_ }}</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+{% endif %}
+
+<!--* 
+*
+* Global Modals If Logged in
+* 
+*
+*-->
+
+{% if user %}
+
+	<!-- Modal -->
+
+{% endif %}
+
+<!--* 
+*
+* Global Modals No Limitation
+* 
+*
+*-->
+
+	<!-- Modal -->

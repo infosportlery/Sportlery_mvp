@@ -35,24 +35,6 @@ security = "all"
                     </div>
                 </div>
         {% partial 'site/footer' %}
-        {% if not user %}
-            <div class="modal fade" tabindex="-1" role="dialog" id="login-modal">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title">{{'Login'|_ }}</h4>
-                        </div>
-                        <div class="modal-body">
-                            {% partial 'loginModal/default' %}
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'Annuleer'|_ }}</button>
-                        </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
-        {% endif %}
 
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
         {% framework extras %}
@@ -84,5 +66,8 @@ security = "all"
         <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1867163733571980&ev=PageView&noscript=1" /></noscript>
         <!-- DO NOT MODIFY -->
         <!-- End Facebook Pixel Code -->
+
+        
+        {% partial 'global/modals' %}
     </body>
 </html>

@@ -133,12 +133,6 @@ $(function($) {
         $.each(config.accordionOn, function (index, value) {
             accordion += ' accordion-' + value;
         });
-<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
     return this.each(function () {
 
@@ -224,14 +218,8 @@ $(function($) {
         }
       });
 
->>>>>>> refs/remotes/origin/tarik
     });
 });
-=======
->>>>>>> refs/remotes/origin/tarik
-=======
->>>>>>> develop
->>>>>>> origin/tarik
 */
 
 /**

@@ -15687,14 +15687,6 @@ $(function () {
         e.preventDefault();
         $(this).next('form').submit();
     });
-<<<<<<< HEAD
-=======
-    $("#btn-index-more").click(function () {
-        $('html, body').animate({
-            scrollTop: $("#page-one").offset().top
-        }, 2000);
-    });
->>>>>>> origin/tarik
     $("#btn-trainer").click(function () {
         $('html, body').animate({
             scrollTop: $("#trainerscr").offset().top
@@ -15718,6 +15710,7 @@ $('#datetime-end').datetimepicker({
     locale: 'nl',
     format: 'YYYY-MM-DD HH:mm:ss'
 });
+
 $("#btn-index-more").click(function () {
     $('html, body').animate({
         scrollTop: $('#page-one').offset().top - $('#layout-nav').height()
@@ -15776,12 +15769,6 @@ $(function($) {
         $.each(config.accordionOn, function (index, value) {
             accordion += ' accordion-' + value;
         });
-<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
     return this.each(function () {
 
@@ -15867,14 +15854,8 @@ $(function($) {
         }
       });
 
->>>>>>> refs/remotes/origin/tarik
     });
 });
-=======
->>>>>>> refs/remotes/origin/tarik
-=======
->>>>>>> develop
->>>>>>> origin/tarik
 */
 
 /**

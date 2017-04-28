@@ -309,7 +309,3 @@ $(function($) {
     window.CBPFWTabs = CBPFWTabs;
 
 })( window );
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/tarik

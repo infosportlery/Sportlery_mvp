@@ -79,7 +79,6 @@ $(function() {
         locale: 'nl',
         format: 'YYYY-MM-DD HH:mm:ss',
     });
-
 $("#btn-index-more").click(function() {
     $('html, body').animate({
         scrollTop: $("#page-one").offset().top
@@ -138,6 +137,9 @@ $(function($) {
         $.each(config.accordionOn, function (index, value) {
             accordion += ' accordion-' + value;
         });
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
 
     return this.each(function () {
 
@@ -229,6 +231,7 @@ $(function($) {
 =======
 >>>>>>> refs/remotes/origin/tarik
 =======
+>>>>>>> develop
 */
 
 /**
@@ -303,3 +306,4 @@ $(function($) {
     window.CBPFWTabs = CBPFWTabs;
 
 })( window );
+

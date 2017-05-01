@@ -786,6 +786,7 @@ button.information-btn-top {
 }
 
 /* Icons */
+/*
 .tabs nav a:before {
   display: inline-block;
   vertical-align: middle;
@@ -818,6 +819,7 @@ button.information-btn-top {
 .icon-shop:before {
   content: "\e604";
 }
+*/
 
 /* Content */
 .content section {
@@ -884,7 +886,7 @@ button.information-btn-top {
   }
   
   .tabs nav ul li {
-    width: 33%;
+    width: 25%;
     //width: calc(20% + 1px);
     margin: 0 0 0 -1px;
   }
@@ -934,7 +936,7 @@ button.information-btn-top {
   }
 
   .tabs nav ul li {
-    width: 33%;
+    width: 25%;
     //width: calc(20% + 1px);
     margin: 0 0 0 -1px;
   }

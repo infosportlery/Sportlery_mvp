@@ -1017,3 +1017,18 @@ button.information-btn-top {
 .btn-def-border {
   border: 1px solid #29719B;
 }
+
+@media screen and (max-width: 991px) {
+  #copyright {
+    display: none;
+  }
+}
+#copyright2 {
+  display: none;
+}
+
+@media screen and (max-width: 991px) {
+  #copyright2 {
+    display: block;
+  }
+}

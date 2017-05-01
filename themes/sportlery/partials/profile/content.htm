@@ -27,6 +27,7 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <p>
+                    <button class="btn btn-info btn-block">Send A Message</button>
                     {% if isFriend %}
                     {{ form_open({ request: 'onUnfriend' }) }}
                     {{ form_hidden('friend_id', profileHashId) }}

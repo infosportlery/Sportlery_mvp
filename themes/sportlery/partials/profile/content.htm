@@ -7,7 +7,6 @@
                 </h3>
                 <ul class="profile-information list-unstyled">
                     <li><b>{{ 'Naam'|_ }}</b>: {{ profile.name }}</li>
-                    <li><b>{{ 'Naam'|_ }}</b>: {{ profile.name }}</li>
                     <li><b>{{ 'Stad'|_ }}</b>: {% if profile.city %}{{ profile.city }}{% else %}{{ 'Onbekend'|_ }}{% endif %}</li>
                     <li><b>{{ 'Sporten'|_ }}</b>:
                         {% if profile.sports is empty %}
@@ -71,7 +70,8 @@
 
 <div class="col-sm-6 col-sm-offset-3">
     <div class="panel panel-default">
-        <p>dit is een test bio wow: {{ profile.bio }} </p>
+        <p><b>Bio van {{ profile.name }} :</b></p>
+        <p>{{ profile.bio }}</p>
     </div>
 </div>
 {% if not user or user.id != profile.id %}

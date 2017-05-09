@@ -4,6 +4,7 @@ require('bootstrap-sass/assets/javascripts/bootstrap/tab');
 require('eonasdan-bootstrap-datetimepicker');
 require('bootstrap-sass/assets/javascripts/bootstrap/modal');
 require('bootstrap-responsive-tabs');
+require('readmore-js');
 
 import LocationMap from './components/locationMap';
 import './components/locationAutocomplete';

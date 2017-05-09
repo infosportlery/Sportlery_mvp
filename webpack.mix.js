@@ -12,6 +12,10 @@ const { mix, config } = require('laravel-mix');
  |
  */
 
+mix.autoload({
+    jquery: ['$', 'window.jQuery', 'jQuery']
+});
+
 mix.webpackConfig({
     externals: {
         jquery: 'jQuery'

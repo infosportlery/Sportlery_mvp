@@ -1,69 +1,79 @@
-<div class="col-sm-6 col-sm-offset-3">
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <h3>
-                {{ 'Persoonlijke Informatie'|_ }}
-            </h3>
-            <ul class="profile-information list-unstyled">
-                <li><b>{{ 'Naam'|_ }}</b>: {{ profile.name }}</li>
-                <li><b>{{ 'Stad'|_ }}</b>: {% if profile.city %}{{ profile.city }}{% else %}{{ 'Onbekend'|_ }}{% endif %}</li>
-                <li><b>{{ 'Sporten'|_ }}</b>:
-                {% if profile.sports is empty %}
-                    {{ 'Onbekend'|_ }}
-                {% else %}
-                    <ul>
-                        {% for sport in profile.sports %}
-                        <li>{{ sport.name }} ({{ sport.level }})</li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
-            </ul>
+<div class="col-sm-12">
+    <div class="col-sm-5 col-sm-offset-1">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h3>
+                    {{ 'Persoonlijke Informatie'|_ }}
+                </h3>
+                <ul class="profile-information list-unstyled">
+                    <li><b>{{ 'Naam'|_ }}</b>: {{ profile.name }}</li>
+                    <li><b>{{ 'Stad'|_ }}</b>: {% if profile.city %}{{ profile.city }}{% else %}{{ 'Onbekend'|_ }}{% endif %}</li>
+                    <li><b>{{ 'Sporten'|_ }}</b>:
+                        {% if profile.sports is empty %}
+                        {{ 'Onbekend'|_ }}
+                        {% else %}
+                        <ul>
+                            {% for sport in profile.sports %}
+                            <li>{{ sport.name }} ({{ sport.level }})</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                </ul>
+            </div>
         </div>
     </div>
-</div>
-
-{% if not user or user.id != profile.id %}
-<div class="col-sm-6 col-sm-offset-3">
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <p>
-                {% if isFriend %}
+    <div class="col-sm-5">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <p>
+                    <button class="btn btn-info btn-block">Send A Message</button>
+                    {% if isFriend %}
                     {{ form_open({ request: 'onUnfriend' }) }}
-                        {{ form_hidden('friend_id', profileHashId) }}
-                        <button type="submit" class="btn btn-success btn-block">{{ 'Buddies'|_ }}</button>
+                    {{ form_hidden('friend_id', profileHashId) }}
+                    <button type="submit" class="btn btn-success btn-block">{{ 'Buddies'|_ }}</button>
                     {{ form_close() }}
-                {% elseif friendshipPending %}
+                    {% elseif friendshipPending %}
                     <button class="btn btn-default btn-block" disabled>{{ 'In afwachting van reactie'|_ }}</button>
-                {% elseif blocked %}
+                    {% elseif blocked %}
                     {{ form_open({ request: 'onBlock' }) }}
-                        {{ form_hidden('friend_id', profileHashId) }}
-                        <button class="btn btn-danger btn-block">{{ 'Geblokkeerd'|_ }}</button>
+                    {{ form_hidden('friend_id', profileHashId) }}
+                    <button class="btn btn-danger btn-block">{{ 'Geblokkeerd'|_ }}</button>
                     {{ form_close() }}
-                {% elseif friendshipNone or friendshipDeclined %}
+                    {% elseif friendshipNone or friendshipDeclined %}
                     {{ form_open({ request: 'onAddFriend' }) }}
-                        {{ form_hidden('friend_id', profileHashId) }}
-                        <button type="submit" class="btn btn-primary btn-block">{{ 'Buddy toevoegen'|_ }}</button>
+                    {{ form_hidden('friend_id', profileHashId) }}
+                    <button type="submit" class="btn btn-primary btn-block">{{ 'Buddy toevoegen'|_ }}</button>
                     {{ form_close() }}
-                {% endif %}
-            </p>
-            <p>
-                {% if blocked %}
+                    {% endif %}
+                </p>
+                <p>
+                    {% if blocked %}
                     {{ form_open({ request: 'onUnblock' }) }}
-                        {{ form_hidden('friend_id', profileHashId) }}
-                        <button class="btn btn-danger btn-block">{{ 'Deblokkeren'|_ }}</button>
+                    {{ form_hidden('friend_id', profileHashId) }}
+                    <button class="btn btn-danger btn-block">{{ 'Deblokkeren'|_ }}</button>
                     {{ form_close() }}
-                {% else %}
+                    {% else %}
                     {{ form_open({ request: 'onBlock' }) }}
-                        {{ form_hidden('friend_id', profileHashId) }}
-                        <button class="btn btn-danger btn-block">{{ 'Blokkeren'|_ }}</button>
+                    {{ form_hidden('friend_id', profileHashId) }}
+                    <button class="btn btn-danger btn-block">{{ 'Blokkeren'|_ }}</button>
                     {{ form_close() }}
-                {% endif %}
+                    {% endif %}
 
-                {#{% if not blocked %}#}
+                    {#{% if not blocked %}#}
                     {#<button class="btn btn-default medium-btn btn-block">{{ 'Bericht sturen'|_ }}</button>#}
-                {#{% endif %}#}
-            </p>
+                    {#{% endif %}#}
+                </p>
+            </div>
         </div>
     </div>
 </div>
+
+<div class="col-sm-6 col-sm-offset-3">
+    <div class="panel panel-default">
+        <p><b>Bio van {{ profile.name }} :</b></p>
+        <p>{{ profile.bio }}</p>
+    </div>
+</div>
+{% if not user or user.id != profile.id %}
+
 {% endif %}

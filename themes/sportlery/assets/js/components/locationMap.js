@@ -27,7 +27,10 @@ export default class LocationMap {
         }
 
         this.map = L.map($el[0]);
-        this.markerPopupTmpl = decodeURI($el.find('#marker-popup-tmpl').detach().html());
+        this.markerPopupTmpl = null;
+        if ($el.find('#marker-popup-tmpl').length) {
+            this.markerPopupTmpl = decodeURI($el.find('#marker-popup-tmpl').detach().html());
+        }
         this.markerGroup = null;
 
         this.initTiles();
@@ -37,17 +40,23 @@ export default class LocationMap {
             const $tabPane = $el.closest('.tab-pane');
             const $tab = $(`[href="#${$tabPane.attr('id')}"]`);
             $tab.on('shown.bs.tab', () => {
-                this.map.invalidateSize();
-                if (this.markerGroup.getLayers().length > 0) {
-                    this.map.fitBounds(this.markerGroup.getBounds());
-                } else {
-                    // Dutch border bounds
-                    this.map.fitBounds([
-                        [50.7504, 3.3316],
-                        [53.6316, 7.2275]
-                    ])
-                }
-            })
+                this.resetBounds();
+            });
+        } else {
+            this.resetBounds();
+        }
+    }
+
+    resetBounds() {
+        this.map.invalidateSize();
+        if (this.markerGroup.getLayers().length > 0) {
+            this.map.fitBounds(this.markerGroup.getBounds());
+        } else {
+            // Dutch border bounds
+            this.map.fitBounds([
+                [50.7504, 3.3316],
+                [53.6316, 7.2275]
+            ])
         }
     }
 
@@ -55,9 +64,7 @@ export default class LocationMap {
      * Initialize the tile layer and add it to the map.
      */
     initTiles() {
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: ''
-        }).addTo(this.map);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.map);
     }
 
     /**
@@ -66,7 +73,9 @@ export default class LocationMap {
     addMarkers() {
         const markers = this.locations.map((location) => {
             const marker = L.marker([location.latitude, location.longitude]).addTo(this.map);
-            marker.bindPopup(this.renderMarkerPopup(location));
+            if (this.markerPopupTmpl) {
+                marker.bindPopup(this.renderMarkerPopup(location));
+            }
             return marker;
         });
 
@@ -86,15 +95,5 @@ export default class LocationMap {
             }
             return result;
         });
-    }
-
-    /**
-     * Center the map around the first available location.
-     */
-    centerMap() {
-        if (this.locations.length) {
-
-            // this.map.setView([this.locations[0].latitude, this.locations[0].longitude], 13);
-        }
     }
 }

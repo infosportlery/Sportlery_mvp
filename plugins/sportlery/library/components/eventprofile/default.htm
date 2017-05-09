@@ -1,6 +1,20 @@
+<!--
+Event Profile (show)
+
+event: components/EventProfile
+
+-->
+
 {% if event %}
 <div class="row">
-    <div class="col-md-10 col-xs-8 col-xs-offset-1">
+    <div class="col-md-12 text-right">
+        <a href="{{ 'home'|page }}" class="btn btn-default">{{ 'Terug'|_ }}</a>
+    </div>
+    <!-- /.col-md-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="col-md-10 col-xs-8">
         <div style="display:inline-block; margin-right:15px;">
             {% if event.avatar %}
                 <img src="{{ event.avatar.thumb(100, 100) }}" height="100" width="100">
@@ -9,9 +23,6 @@
             {% endif %}
         </div>
         <h1 style="display:inline-block;">{{ event.name }}</h1>
-    </div>
-    <div class="col-md-2 col-xs-3 text-right">
-        <a href="{{ 'home'|page }}" class="btn btn-default">{{ 'Terug'|_ }}</a>
     </div>
 </div>
 <div class="row">
@@ -33,6 +44,7 @@
                 <p>
                     <strong>{{ 'Begint op'|_ }}:</strong> {{ event.starts_at.formatLocalized('%A %d %B, %Y') }} {{ 'om'|_ }} {{ event.starts_at.format('H:i') }}<br>
                     <strong>{{ 'Eindigt op' }}:</strong> {{ event.ends_at.formatLocalized('%A %d %B, %Y') }} {{ 'om'|_ }} {{ event.ends_at.format('H:i') }}<br>
+                    <strong>{{ 'Adres'|_ }}:</strong> {{event.location.street}}, {{event.location.zipcode}}, {{ event.location.city }} <br>
                     <strong>{{ 'Prijs' }}: </strong>
                     {% if event.price > 0 %}
                         &euro; {{ event.price|number_format(2, ',', '.') }}
@@ -40,6 +52,14 @@
                         {{ 'Gratis'|_ }}
                     {% endif %}
                 </p>
+                <div data-component="locationMap" data-locations="location" style="height:240px;"></div>
+                {% put styles %}
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.css"/>
+                {% endput %}
+                {% put scripts %}
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.js"></script>
+                    <script>(function(){window.sportlery=window.sportlery||{};window.sportlery.location={{ event.location|json_encode|raw }}; })();</script>
+                {% endput %}
             </div>
         </div>
         {% if user %}
@@ -61,11 +81,11 @@
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#event-payment-modal">{{ 'Ik ga'|_ }}</button>
                         {% endif %}
                     {% endif %}
-                    {% if not isInterested %}
-                        <button class="btn btn-default" name="action" value="interest">{{ 'Ik ben geïnteresseerd'|_ }}</button>
-                    {% else %}
-                        <button class="btn btn-danger" name="action" value="cancel_interest">{{ 'Ik ben niet meer geïntresseerd'|_ }}</button>
-                    {% endif %}
+                    {#{% if not isInterested %}#}
+                        {#<button class="btn btn-default" name="action" value="interest">{{ 'Ik ben geïnteresseerd'|_ }}</button>#}
+                    {#{% else %}#}
+                        {#<button class="btn btn-danger" name="action" value="cancel_interest">{{ 'Ik ben niet meer geïntresseerd'|_ }}</button>#}
+                    {#{% endif %}#}
                     {{ form_close() }}
                 {% else %}
                     <div class="alert alert-success">
@@ -82,10 +102,10 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 {% if friendsGoing is not empty %}
-                    <h4>{{ 'Vrienden die naar deze activiteit gaan'|_ }}:</h4>
-                    <ul class="list-group">
+                    <h4>{{ 'Buddies die naar deze activiteit gaan'|_ }}:</h4>
+                    <div class="list-group">
                         {% for friend in friendsGoing %}
-                            <li class="list-group-item">
+                            <a href="{{ 'profile'|page({ id: friend.getHashId() }) }}" class="list-group-item">
                                 <img src="{{ friend.avatarThumb(25) }}">
                                 {{ friend.name }} {{ friend.surname }}
                                 {% if friend.id in friendsInvited %}
@@ -93,12 +113,23 @@
                                         {{ 'Door jou uitgenodigd'|_ }}
                                     </span>
                                 {% endif %}
-                            </li>
+                            </a>
                         {% endfor %}
-                    </ul>
-                {% else %}
+                    </div>
+                {% elseif sportlersGoing is empty %}
                     <div class="col-md-12 text-center">
                         <h4>{{ 'Geen van je buddies gaan naar deze activiteit'|_ }}</h4>
+                    </div>
+                {% endif %}
+                {% if sportlersGoing is not empty %}
+                    <h4>{{ 'Sportlers die naar deze activiteit gaan'|_ }}</h4>
+                    <div class="list-group">
+                        {% for sportler in sportlersGoing %}
+                            <a href="{{ 'profile'|page({ id: sportler.getHashId() }) }}" class="list-group-item">
+                                <img src="{{ sportler.avatarThumb(25) }}">
+                                {{ sportler.name }} {{ sportler.surname }}
+                            </a>
+                        {% endfor %}
                     </div>
                 {% endif %}
             </div>

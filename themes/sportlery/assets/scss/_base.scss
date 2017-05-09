@@ -53,13 +53,26 @@ body {
   .navbar-brand img {
     max-height: 35px;
   }
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 768px) {
 	.menu-content {
 		width: 25%;
 	}
 
+  .navbar-brand {
+    position: absolute;
+  }
+
   .navbar-brand img {
     max-height: 50px;
+  }
+
+  .navbar-right {
+    margin-top: -10px;
+    max-height: 100px;
+  }
+
+  .navbar-mob {
+    display: none;
   }
 }
 
@@ -195,7 +208,8 @@ body {
     color: #fff;
 }
 
-.home-header { 
+.home-header {
+  margin-top: -20px;
   height: 90vh;  
   background-image: url('../../resources/img/header1.jpg'); 
   background-size: cover; 
@@ -205,15 +219,13 @@ body {
 .home-header h1 {font-family: 'Graduate', sans-serif; font-size: 80px;margin-bottom: 50px;}
 .home-header .lead {margin-top: -40px; letter-spacing: 5px; }
 
+.headerTitle {
+  margin-top: 15%;
+}
 
 .header3 h1 {font-size: 80px;}
 .header4 h1 {font-size: 80px;}
 .header5 h1 {font-size: 80px;}
-
-#page-one {
-  height: 50px;
-  bottom: 0;
-}
 
 // .header3 {
 // 	background-image: url('../../resources/img/pexels-photo-167817.jpeg');
@@ -221,16 +233,25 @@ body {
 
 @media (max-width: 768px) {
     
-.home-header h1 {
+  .home-header h1 {
     font-size: 3em !important;
   } 
-.header2 h1 {
-  font-size: 3em !important;
-}
+  .header2 h1 {
+    font-size: 3em !important;
+  }
+  .navbar-brand {
+    position: inherit;
+  }
   .navbar-brand img {
     max-height: 40px;
   }
+  /*.navbar-mob {
+    display: block;
+  }*/
+  .navbar-guest {
+    display: none;
   }
+}
 
 .about-header-2 {
     position: absolute;
@@ -346,11 +367,7 @@ h6 {
   transition: all .2s ease-in-out;
 }
 
-.home-container-1 {
-
-
-}
-
+/*  Footer Start  */
 footer {
     bottom: 0;
     width: 100%;
@@ -541,6 +558,20 @@ footer {
   padding: 60px 0 15px 0;
 }
 
+@media screen and (max-width: 991px) {
+  #copyright {
+    display: none;
+  }
+}
+#copyright2 {
+  display: none;
+}
+
+@media screen and (max-width: 991px) {
+  #copyright2 {
+    display: block;
+  }
+}
 /*-- End Footer --*/
 
 button.information-btn-top {
@@ -640,5 +671,316 @@ button.information-btn-top {
   background-color: #29719B;
   color: white;
   border: none;
+}
 
+.navbar-brand
+{
+    left: 40%;
+    text-align: center;
+    margin:0 auto;
+}
+.navbar-toggle {
+    z-index:3;
+}
+
+.btn-guest-menu {
+  padding: 10px 15px;
+}
+
+.btn-guest-default {
+  border: 1px solid #29719B;
+}
+//
+//
+//
+//
+//
+//
+/*  Blueprint Responsive Full Width Tabs:
+    https://tympanus.net/codrops/2014/03/21/responsive-full-width-tabs/
+*/
+//
+//
+//
+//
+
+@font-face {
+  font-family: 'icomoon';
+ /* src:url('../fonts/icomoon/icomoon.eot?pvm5gj');
+  src:url('../fonts/icomoon/icomoon.eot?#iefixpvm5gj') format('embedded-opentype'),
+  url('../fonts/icomoon/icomoon.woff?pvm5gj') format('woff'),
+  url('../fonts/icomoon/icomoon.ttf?pvm5gj') format('truetype'),
+  url('../fonts/icomoon/icomoon.svg?pvm5gj#icomoon') format('svg');*/
+  font-weight: normal;
+  font-style: normal;
+} /* Icons created with icomoon.io/app */
+
+.tabs {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin: 1em 0 2em;
+  font-weight: 300;
+}
+
+/* Nav */
+.tabs nav {
+  text-align: center;
+}
+
+.tabs nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: inline-block;
+}
+
+.tabs nav ul li {
+  border: 1px solid #becbd2;
+  border-bottom: none;
+  margin: 0 0.25em;
+  display: block;
+  float: left;
+  position: relative;
+}
+
+.tabs nav li.tab-current {
+  border: 1px solid #F46835;
+  box-shadow: inset 0 2px #F46835;
+  border-bottom: none;
+  z-index: 100;
+}
+
+.tabs nav li.tab-current:before,
+.tabs nav li.tab-current:after {
+  content: '';
+  position: absolute;
+  height: 1px;
+  right: 100%;
+  bottom: 0;
+  width: 1000px;
+  background: #F46835;
+}
+
+.tabs nav li.tab-current:after {
+  right: auto;
+  left: 100%;
+  width: 4000px;
+}
+
+.tabs nav a {
+  color: #becbd2;
+  display: block;
+  font-size: 1.45em;
+  line-height: 2.5;
+  padding: 0 1.25em;
+  white-space: nowrap;
+}
+
+.tabs nav a:hover {
+  color: #768e9d;
+}
+
+.tabs nav li.tab-current a {
+  color: #F46835;
+}
+
+/* Icons */
+/*
+.tabs nav a:before {
+  display: inline-block;
+  vertical-align: middle;
+  text-transform: none;
+  font-weight: normal;
+  font-variant: normal;
+  font-family: 'font-awesome';
+  line-height: 1;
+  speak: none;
+  -webkit-font-smoothing: antialiased;
+  margin: -0.25em 0.4em 0 0;
+}
+
+.icon-food:before {
+  content: "\e600";
+}
+
+.icon-lab:before {
+  content: "\e601";
+}
+
+.icon-cup:before {
+  content: "\e602";
+}
+
+.icon-truck:before {
+  content: "\e603";
+}
+
+.icon-shop:before {
+  content: "\e604";
+}
+*/
+
+/* Content */
+.content section {
+  padding: 3em 1em;
+  display: none;
+  max-width: 1230px;
+  margin: 0 auto;
+}
+
+.content section:before,
+.content section:after {
+  content: '';
+  display: table;
+}
+
+.content section:after {
+  clear: both;
+}
+
+/* Fallback example */
+.no-js .content section {
+  display: block;
+  padding-bottom: 2em;
+  border-bottom: 1px solid #47a3da;
+}
+
+.content section.content-current {
+  display: block;
+}
+
+.mediabox {
+  float: left;
+  width: 33%;
+  padding: 0 25px;
+}
+
+.mediabox img {
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+.mediabox h3 {
+  margin: 0.75em 0 0.5em;
+}
+
+.mediabox p {
+  padding: 0 0 1em 0;
+  margin: 0;
+  line-height: 1.3;
+}
+
+/* Example media queries */
+
+@media screen and (max-width: 52.375em) {
+  .tabs nav a span {
+    display: none;
+  }
+
+  .tabs nav ul,
+  .tabs nav ul li a {
+    width: 100%;
+    padding: 0;
+  }
+  
+  .tabs nav ul li {
+    width: 25%;
+    //width: calc(20% + 1px);
+    margin: 0 0 0 -1px;
+  }
+
+  .tabs nav a:before {
+    margin-right: 0;
+  }
+
+  .mediabox {
+    float: none;
+    width: auto;
+    padding: 0 0 35px 0;
+    font-size: 90%;
+  }
+
+  .mediabox img {
+    float: left;
+    margin: 0 25px 10px 0;
+    max-width: 40%;
+  }
+
+  .mediabox h3 {
+    margin-top: 0;
+  }
+
+  .mediabox p {
+    margin-left: 40%;
+    margin-left: calc(40% + 25px);
+  }
+
+  .mediabox:before,
+  .mediabox:after {
+    content: '';
+    display: table;
+  }
+
+  .mediabox:after {
+    clear: both;
+  }
+}
+
+@media screen and (max-width: 32em) {
+  .tabs nav ul,
+  .tabs nav ul li a {
+    width: 100%;
+    padding: 0;
+  }
+
+  .tabs nav ul li {
+    width: 25%;
+    //width: calc(20% + 1px);
+    margin: 0 0 0 -1px;
+  }
+
+  .tabs nav ul li:last-child {
+    border-right: none;
+  }
+
+  .mediabox {
+    text-align: center;
+  }
+
+  .mediabox img {
+    float: none;
+    margin: 0 auto;
+    max-width: 100%;
+  }
+
+  .mediabox h3 {
+    margin: 1.25em 0 1em;
+  }
+
+  .mediabox p {
+    margin: 0;
+  }
+}
+
+/*  End of Blueprint Tabs   */
+
+.btn-def-border {
+  border: 1px solid #29719B;
+}
+
+@media screen and (max-width: 991px) {
+  .lijn {
+    display: none;
+  }
+}
+.lijn2 {
+  display: none;
+}
+
+@media screen and (max-width: 991px) {
+  .lijn2 {
+    display: block;
+  }
 }

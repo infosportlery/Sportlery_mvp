@@ -16,7 +16,9 @@
     "cross-env": "^3.2.3",
     "eonasdan-bootstrap-datetimepicker": "^4.17.47",
     "jquery": "^3.1.1",
-    "laravel-mix": "0.*"
+    "jquery-clockpicker": "0.0.8",
+    "laravel-mix": "^0.11.3",
+    "pikaday": "^1.5.1"
   },
   "name": "sportlery",
   "description": "This is the development repository for the [Sportlery](http://www.sportlery.nl) website.",
@@ -36,6 +38,7 @@
   },
   "homepage": "https://github.com/infosportlery/Sportlery_mvp#readme",
   "dependencies": {
+    "bootstrap-responsive-tabs": "^2.0.3",
     "font-awesome": "^4.7.0"
   }
 }

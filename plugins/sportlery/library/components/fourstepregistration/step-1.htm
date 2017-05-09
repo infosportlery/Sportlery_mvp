@@ -10,6 +10,26 @@
         <p class="help-block" style="display:none;"></p>
     </div>
     <div class="form-group">
+        {{ form_label('birthday', 'Geboorte Datum'|_, {class: 'control-label'}) }}
+        <div class="input-group date" data-component="dateTimePickerDay" data-locale="{{ activeLocale }}">
+            {{ form_text('birthday', null, {class: 'form-control'}) }}
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+        </div>
+    </div>
+    {% if user.password %}
+    {% else %}
+    <div class="form-group">
+        {{ form_label('password', 'Nieuw Wachtwoord'|_, { class: 'control-label' }) }}
+        {{ form_password('password', { class: 'form-control', autocomplete: 'new-password' }) }}
+    </div>
+    <div class="form-group">
+        {{ form_label('password_confirmation', 'Nieuw Wachtwoord Bevestigen'|_, { class: 'control-label' }) }}
+        {{ form_password('password_confirmation', { class: 'form-control', autocomplete: 'new-password' }) }}
+    </div>
+    {% endif %}
+    <div class="form-group">
         {{ form_label('avatar', 'Avatar', { class: 'control-label' }) }}
         {% component 'imageUploader' %}
         <p class="help-block" style="display:none;"></p>

@@ -1,4 +1,4 @@
-<?php namespace Sportlery\profile\Updates;
+<?php /*namespace Sportlery\profile\Updates;
 
 use Schema;
 use October\Rain\Database\Updates\Migration;
@@ -22,4 +22,4 @@ class AddDayOfBirth extends Migration
         });
     }
 
-}
+}*/
